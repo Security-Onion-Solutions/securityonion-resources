@@ -1,0 +1,19 @@
+title: Security Onion - Grid Node Login Failure (Console)
+id: 37379ef6-95e7-4025-bd19-f751e9e41e06
+status: experimental
+description: Detects when a user fails to login to a grid node via the console. Review associated logs for username.
+license: Elastic-2.0
+author: 'Security Onion Solutions'
+date: 2024/04/05
+logsource:
+    product: linux
+    service: auth
+detection:
+    selection:
+        process.name: 'login'
+        event.outcome: 'failure'
+        tags|contains: 'SOGridNode' # Only generate alerts for Grid Nodess
+    condition: selection
+falsepositives:
+    - none
+level: high
