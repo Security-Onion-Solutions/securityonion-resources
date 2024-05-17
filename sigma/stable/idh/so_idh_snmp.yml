@@ -1,0 +1,20 @@
+title: Security Onion IDH - SNMP OID Request
+id: 789d4e19-6d07-4be9-9587-0e5a6b460f6d
+status: experimental
+description: Detects when the SNMP service on a SO Intrusion Detection Honeypot (IDH) node has had an OID request sent to it.
+license: Elastic-2.0
+references:
+    - https://opencanary.readthedocs.io/en/latest/starting/configuration.html#services-configuration
+    - https://github.com/thinkst/opencanary/blob/a0896adfcaf0328cfd5829fe10d2878c7445138e/opencanary/logger.py#L52
+author: 'Security Onion Solutions'
+date: 2024/05/17
+logsource:
+    product: opencanary
+detection:
+    selection:
+        logtype:
+            - 13001
+    condition: selection
+falsepositives:
+    - none
+level: critical

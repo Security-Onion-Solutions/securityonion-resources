@@ -1,0 +1,20 @@
+title: Security Onion IDH - HTTP Access
+id: a02961c9-4e4b-4421-a04d-2ad753d6b06a
+status: experimental
+description: Detects when the HTTP service on a SO Intrusion Detection Honeypot (IDH) node has received a GET request.
+license: Elastic-2.0
+references:
+    - https://opencanary.readthedocs.io/en/latest/starting/configuration.html#services-configuration
+    - https://github.com/thinkst/opencanary/blob/a0896adfcaf0328cfd5829fe10d2878c7445138e/opencanary/logger.py#L52
+author: 'Security Onion Solutions'
+date: 2024/05/17
+logsource:
+    product: opencanary
+detection:
+    selection:
+        logtype:
+            - 3000
+    condition: selection
+falsepositives:
+    - none
+level: critical

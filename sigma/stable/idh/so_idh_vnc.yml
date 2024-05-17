@@ -1,0 +1,20 @@
+title: Security Onion IDH - VNC Login Attempt
+id: 5d52bf82-19f8-4f18-9bc6-e1d6bdc1872f
+status: experimental
+description: Detects when the VNC service on a SO Intrusion Detection Honeypot (IDH) node has had a login attempt.
+license: Elastic-2.0
+references:
+    - https://opencanary.readthedocs.io/en/latest/starting/configuration.html#services-configuration
+    - https://github.com/thinkst/opencanary/blob/a0896adfcaf0328cfd5829fe10d2878c7445138e/opencanary/logger.py#L52
+author: 'Security Onion Solutions'
+date: 2024/05/17
+logsource:
+    product: opencanary
+detection:
+    selection:
+        logtype:
+            - 12001
+    condition: selection
+falsepositives:
+    - none
+level: critical

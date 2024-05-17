@@ -1,0 +1,20 @@
+title: Security Onion IDH - TFTP Requests
+id: a803dec9-d49f-4987-a7f5-e2148fcc460d
+status: experimental
+description: Detects when the TFTP service on a SO Intrusion Detection Honeypot (IDH) node has had requests.
+license: Elastic-2.0
+references:
+    - https://opencanary.readthedocs.io/en/latest/starting/configuration.html#services-configuration
+    - https://github.com/thinkst/opencanary/blob/a0896adfcaf0328cfd5829fe10d2878c7445138e/opencanary/logger.py#L52
+author: 'Security Onion Solutions'
+date: 2024/05/17
+logsource:
+    product: opencanary
+detection:
+    selection:
+        logtype:
+            - 10001
+    condition: selection
+falsepositives:
+    - none
+level: critical

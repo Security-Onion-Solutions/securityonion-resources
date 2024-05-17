@@ -1,0 +1,22 @@
+title: Security Onion IDH - SSH Accessed
+id: fcf94210-f188-4363-a707-a1a410ebec03
+status: experimental
+description: Detects when the SSH service on a SO Intrusion Detection Honeypot (IDH) node has had a new connection (logtype 4000) or login attempt (logtype 4002).
+license: Elastic-2.0
+references:
+    - https://opencanary.readthedocs.io/en/latest/starting/configuration.html#services-configuration
+    - https://github.com/thinkst/opencanary/blob/a0896adfcaf0328cfd5829fe10d2878c7445138e/opencanary/logger.py#L52
+author: 'Security Onion Solutions'
+date: 2024/05/17
+logsource:
+    product: opencanary
+detection:
+    selection:
+        logtype:
+            - 4000
+            - 4001
+            - 4002
+    condition: selection
+falsepositives:
+    - none
+level: critical

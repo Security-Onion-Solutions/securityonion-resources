@@ -1,0 +1,20 @@
+title: Security Onion IDH - Redis Accessed
+id: 62a3b85c-2923-4af3-8827-0c35e0d303da
+status: experimental
+description: Detects when the Redis service on a SO Intrusion Detection Honeypot (IDH) node has had an action sent to it.
+license: Elastic-2.0
+references:
+    - https://opencanary.readthedocs.io/en/latest/starting/configuration.html#services-configuration
+    - https://github.com/thinkst/opencanary/blob/a0896adfcaf0328cfd5829fe10d2878c7445138e/opencanary/logger.py#L52
+author: 'Security Onion Solutions'
+date: 2024/05/17
+logsource:
+    product: opencanary
+detection:
+    selection:
+        logtype:
+            - 17001
+    condition: selection
+falsepositives:
+    - none
+level: critical

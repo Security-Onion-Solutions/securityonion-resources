@@ -1,0 +1,20 @@
+title: Security Onion IDH - HTTP Login Attempt
+id: d0ba1b93-968a-401c-94fb-c8db49ff3f1a
+status: experimental
+description: Detects when the HTTP service on a SO Intrusion Detection Honeypot (IDH) node has had a login attempt.
+license: Elastic-2.0
+references:
+    - https://opencanary.readthedocs.io/en/latest/starting/configuration.html#services-configuration
+    - https://github.com/thinkst/opencanary/blob/a0896adfcaf0328cfd5829fe10d2878c7445138e/opencanary/logger.py#L52
+author: 'Security Onion Solutions'
+date: 2024/05/17
+logsource:
+    product: opencanary
+detection:
+    selection:
+        logtype:
+            - 3001
+    condition: selection
+falsepositives:
+    - none
+level: critical
