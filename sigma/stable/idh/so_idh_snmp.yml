@@ -1,5 +1,5 @@
 title: Security Onion IDH - SNMP OID Request
-id: 789d4e19-6d07-4be9-9587-0e5a6b460f6d
+id: dce29957-6cb5-4fcf-9497-0e50d6372357
 status: experimental
 description: Detects when the SNMP service on a SO Intrusion Detection Honeypot (IDH) node has had an OID request sent to it.
 license: Elastic-2.0
