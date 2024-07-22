@@ -1,5 +1,5 @@
 title: Security Onion IDH - REDIS Action Command Attempt
-id: fcf94210-f188-4363-a707-a1a410ebec03
+id: 39ae3791-133c-4beb-bdf7-559e7a4cd428
 status: experimental
 description: Detects instances where a REDIS service on an OpenCanary node has had an action command attempted.
 license: Elastic-2.0
