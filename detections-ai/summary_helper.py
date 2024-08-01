@@ -71,7 +71,6 @@ def parse_sigma_rules(so_path, core_path, et_path):
             with open(os.path.join(root, filename), encoding="utf8") as readfile:
                 content = readfile.read()
                 sigma_rule = yaml.safe_load(content)
-                print(sigma_rule)
                 id = sigma_rule.get('id', None)
                 print(readfile.read())
                 msg_dict[id] = content
@@ -81,7 +80,6 @@ def parse_sigma_rules(so_path, core_path, et_path):
             with open(os.path.join(root, filename), encoding="utf8") as readfile:
                 content = readfile.read()
                 sigma_rule = yaml.safe_load(content)
-                print(sigma_rule)
                 id = sigma_rule.get('id', None)
                 msg_dict[id] = content
                 ruleset_dict[id] = 'core'
@@ -90,7 +88,6 @@ def parse_sigma_rules(so_path, core_path, et_path):
             with open(os.path.join(root, filename), encoding="utf8") as readfile:
                 content = readfile.read()
                 sigma_rule = yaml.safe_load(content)
-                print(sigma_rule)
                 id = sigma_rule.get('id', None)
                 msg_dict[id] = content
                 ruleset_dict[id] = 'emerging-threats'
