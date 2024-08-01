@@ -72,7 +72,6 @@ def parse_sigma_rules(so_path, core_path, et_path):
                 content = readfile.read()
                 sigma_rule = yaml.safe_load(content)
                 id = sigma_rule.get('id', None)
-                print(readfile.read())
                 msg_dict[id] = content
                 ruleset_dict[id] = 'securityonion-resources'
     for root, _, files in os.walk(core_path):
