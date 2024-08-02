@@ -166,7 +166,6 @@ def generate_summaries(client, test_ids, batch_size, prompt, msg_dict, gpt_dict,
 
         resp_dict = {dct['custom_id']: dct['response']['body']['choices'][0]['message']['content'] for dct in response}
 
-        print(response)
         print(len(response))
 
         for id in batch_ids:
