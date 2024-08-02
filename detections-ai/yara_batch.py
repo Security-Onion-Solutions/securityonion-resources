@@ -24,8 +24,8 @@ def main():
 
         modified_ids = check_for_modify(gpt_dict, msg_dict)
 
-        test_indices = 120 # Set how many rules to generate summaries for (set to len(list(msg_dict.keys())) to generate summaries for all rules)
-        batch_size = 100
+        test_indices = 10 # Set how many rules to generate summaries for (set to len(list(msg_dict.keys())) to generate summaries for all rules)
+        batch_size = 10
         test_ids = (added_ids + modified_ids)[:test_indices]
 
         client = init_environment()
