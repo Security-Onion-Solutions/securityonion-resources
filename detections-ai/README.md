@@ -1,0 +1,1 @@
+This directory contains the AI-generated summaries for Suricata, YARA, and Sigma detections.
