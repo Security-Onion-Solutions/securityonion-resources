@@ -1,0 +1,331 @@
+APT30_Generic_B:
+  Created-Date: '2024_08_06'
+  Custom-Edited: false
+  Reviewed: false
+  Rule-Body-Hash: b0943c6f2352622f2e0ea7be8bbccdfd
+  Ruleset: securityonion-yara
+  Summary: This rule detects samples associated with APT30, a cyber espionage group,
+    based on specific file hashes and the presence of the string "Moziea/4.0" within
+    executable files smaller than 100KB and starting with the hexadecimal value 0x5A4D.
+  Updated-Date: '2024_08_06'
+APT_APT41_HIGHNOON:
+  Created-Date: '2024_08_06'
+  Custom-Edited: false
+  Reviewed: false
+  Rule-Body-Hash: 9c2ceb54731aa5584715f02b427e07e0
+  Ruleset: securityonion-yara
+  Summary: This rule detects APT41 malware known as HIGHNOON, identified by specific
+    strings and patterns within a file. It looks for the presence of "workdll64.dll"
+    and other indicators such as directory paths like "\\Fonts\\Error.log" and "\\svchost.exe".
+    Additionally, it checks for log format patterns, system settings references like
+    "LoadAppInit_DLLs" and "netsvcs", and specific code markers such as "HookAPIs
+    ...PID %d", "DllMain_mem", and "%s\\NtKlRes.dat". Overall, the rule scans for
+    key characteristics of the HIGHNOON malware within executable files that are smaller
+    than 2000KB.
+  Updated-Date: '2024_08_06'
+APT_MAL_WinntiLinux_Main_AzazelFork_May19:
+  Created-Date: '2024_08_06'
+  Custom-Edited: false
+  Reviewed: false
+  Rule-Body-Hash: 18c02311f8d43038cd30079f536424b7
+  Ruleset: securityonion-yara
+  Summary: This rule detects the Linux variant of the Winnti malware by identifying
+    specific patterns within the binary. It looks for a particular UUID lookup command,
+    an error message related to the creation of a PF_INET socket, and several RTTI
+    (Run-Time Type Information) names including "CNetBase," "CMyEngineNetEvent," "CBufferCache,"
+    "CSocks5Base," "CDataEngine," "CSocks5Mgr," and "CRemoteMsg." The rule triggers
+    if the binary starts with the ELF magic number (0x457f) and meets one of several
+    conditions involving the presence of these strings.
+  Updated-Date: '2024_08_06'
+Empire_portscan:
+  Created-Date: '2024_08_06'
+  Custom-Edited: false
+  Reviewed: false
+  Rule-Body-Hash: 12e3e4d36703503b040ea86aed208201
+  Ruleset: securityonion-yara
+  Summary: This rule detects the Empire post-exploitation framework specifically by
+    identifying the presence of the file "portscan.py," which is a PowerShell script
+    used for network port scanning operations. The detection focuses on specific strings
+    within the script that indicate the use of the "Invoke-PortScan" function and
+    the formatting of scan results using "Out-String." The script retrieves information
+    about open ports on targeted hosts and provides details about hostnames and open
+    port numbers by joining and formatting the output.
+  Updated-Date: '2024_08_06'
+EquationGroup_eggbasket:
+  Created-Date: '2024_08_06'
+  Custom-Edited: false
+  Reviewed: false
+  Rule-Body-Hash: baa6cd00af31279d85dc23f3c7aed190
+  Ruleset: securityonion-yara
+  Summary: 'This rule detects a malicious tool attributed to the Equation Group, known
+    as "eggbasket", which was leaked by ShadowBrokers. It identifies files with specific
+    characteristics, such as a particular ELF file header and content size less than
+    90KB. The rule searches for distinct strings within the file: one indicating shellcode
+    construction, another resembling a command for executing a remote xterm session,
+    and a final one signaling the start of an exhaustive attack. These markers help
+    in pinpointing the presence of this specific hack tool.'
+  Updated-Date: '2024_08_06'
+EquationGroup_orleans_stride_sunos5_9_v_2_4_0:
+  Created-Date: '2024_08_06'
+  Custom-Edited: false
+  Reviewed: false
+  Rule-Body-Hash: 9ecafa29628952778ce117ef166ade50
+  Ruleset: securityonion-yara
+  Summary: This rule detects the presence of a specific hack tool set attributed to
+    the Equation Group. It identifies files by checking for specific ASCII strings
+    such as "_lib_version," a formatted string containing ",%02d%03d," and the word
+    "TRANSIT." Additionally, it conditions the detection on the file having a specific
+    initial signature (0x457f) and being less than 200KB in size.
+  Updated-Date: '2024_08_06'
+Equation_Kaspersky_TripleFantasy_1:
+  Created-Date: '2024_08_06'
+  Custom-Edited: false
+  Reviewed: false
+  Rule-Body-Hash: 5dfa016cf7b1a642dd281231ebc9a0a0
+  Ruleset: securityonion-yara
+  Summary: This rule detects the TripleFantasy malware, which is associated with the
+    Equation Group. It identifies specific filenames, paths, and global object names
+    within the Windows operating system, such as "%SystemRoot%\system32\hnetcfg.dll"
+    and "Global\{8c38e4f3-591f-91cf-06a6-67b84d8a0102}". It also looks for connections
+    to certain URLs and IP addresses at specific ports, notably itemagic.net, team4heat.net,
+    62.216.152.69, and 84.233.205.37 over port 443, as well as common URLs like www.microsoft.com
+    and www.google.com over port 80. This rule triggers if an executable's initial
+    two bytes match "MZ" and its filesize is less than 300 KB, provided that all specified
+    string patterns and at least some network indicators are present.
+  Updated-Date: '2024_08_06'
+Exploit_MS15_077_078_HackingTeam:
+  Created-Date: '2024_08_06'
+  Custom-Edited: false
+  Reviewed: false
+  Rule-Body-Hash: 2ee1b3aa3087040e77813502c0dff4ba
+  Ruleset: securityonion-yara
+  Summary: This rule detects malware associated with the Hacking Team that exploits
+    the MS15-078 and MS15-077 vulnerabilities. It identifies suspicious files based
+    on specific strings within the targeted software, including references to critical
+    system files like "CI.dll" and "CRTDLL.DLL," as well as web user-agent strings
+    mimicking common browsers. This is effective for identifying malicious files under
+    a certain size threshold with specific characteristics indicative of exploitation
+    attempts.
+  Updated-Date: '2024_08_06'
+HKTL_LNX_Pnscan:
+  Created-Date: '2024_08_06'
+  Custom-Edited: false
+  Reviewed: false
+  Rule-Body-Hash: 37fd9d625d7173e4758874f33267ac8e
+  Ruleset: securityonion-yara
+  Summary: This rule detects the presence of the Pnscan port scanner software, which
+    is a multithreaded TCP port scanner. It specifically looks for a hex-coded response
+    string and a description of the program's function within files smaller than 6000KB.
+  Updated-Date: '2024_08_06'
+HKTL_NET_GUID_BlockEtw:
+  Created-Date: '2024_08_06'
+  Custom-Edited: false
+  Reviewed: false
+  Rule-Body-Hash: e9924734a18d86c79b75d818ebaf5c57
+  Ruleset: securityonion-yara
+  Summary: This rule detects C# red/black-team tools through the identification of
+    a specific typelib GUID. The rule searches for the GUID "daedf7b3-8262-4892-adc4-425dd5f85bca"
+    in both lowercase and uppercase ASCII or wide string formats within executable
+    files indicated by PE (Portable Executable) headers.
+  Updated-Date: '2024_08_06'
+HKTL_NET_GUID_SharpWitness:
+  Created-Date: '2024_08_06'
+  Custom-Edited: false
+  Reviewed: false
+  Rule-Body-Hash: d8a1636efe07a763bf3e1180a268868a
+  Ruleset: securityonion-yara
+  Summary: This rule detects the presence of SharpWitness, a tool commonly used by
+    red and black teams to aid in cybersecurity exercises. It identifies specific
+    type library GUIDs associated with the tool, checking for their presence in both
+    lowercase and uppercase formats within executable files. The detection is based
+    on the Magic Header and PE signature of the file.
+  Updated-Date: '2024_08_06'
+HKTL_PowerSploit:
+  Created-Date: '2024_08_06'
+  Custom-Edited: false
+  Reviewed: false
+  Rule-Body-Hash: 555eb0522583a9112f113d1836fa4623
+  Ruleset: securityonion-yara
+  Summary: This rule detects specific strings commonly used by PowerSploit, a post-exploitation
+    framework designed for penetration testing and red teaming, to establish persistence
+    on a compromised system. The rule identifies the presence of the term "function,"
+    alongside parameters involved in creating scheduled tasks upon user logon, and
+    modifications to the Windows registry key associated with autorun programs.
+  Updated-Date: '2024_08_06'
+Invoke_Metasploit:
+  Created-Date: '2024_08_06'
+  Custom-Edited: false
+  Reviewed: false
+  Rule-Body-Hash: 2b6923dd99c848e67339ee8f792a50e8
+  Ruleset: securityonion-yara
+  Summary: This rule detects the presence of an Invoke-Metasploit payload. It specifically
+    looks for characteristic strings in files smaller than 20KB, which suggest the
+    usage of a 64-bit environment with PowerShell, the execution of a download process
+    in a new instance, and the use of default proxy credentials to download and execute
+    a remote script.
+  Updated-Date: '2024_08_06'
+JSP_jfigueiredo_APT_webshell_2:
+  Created-Date: '2024_08_06'
+  Custom-Edited: false
+  Reviewed: false
+  Rule-Body-Hash: 28b6e427df9f9db8bd2f37161b027dc1
+  Ruleset: securityonion-yara
+  Summary: This rule detects a JSP-based web shell known to be utilized by APT groups
+    for malicious purposes. Indicators of compromise include specific HTML and JavaScript
+    code fragments, such as an HTML division tag with a particular image source and
+    a jQuery command that destroys a dialog. Additionally, it looks for form elements
+    that upload files with a specific action attribute and hidden input fields with
+    base64 encoded values. This type of web shell can be used by attackers to gain
+    unauthorized access and control over web servers.
+  Updated-Date: '2024_08_06'
+Loader_Win_Generic_19:
+  Created-Date: '2024_08_06'
+  Custom-Edited: false
+  Reviewed: false
+  Rule-Body-Hash: 61e6ece2d752de2272f002fa6840557b
+  Ruleset: securityonion-yara
+  Summary: This rule detects a generic Windows loader by identifying specific byte
+    sequences and string indicators commonly associated with loading processes. It
+    checks for the presence of the "MZ" header and the PE signature in executable
+    files alongside characteristic patterns such as certain byte sequences, the "VirtualProtect"
+    function, and the "malloc" function, helping to flag potential malicious activity
+    in Windows environments.
+  Updated-Date: '2024_08_06'
+OilRig_ISMAgent_Campaign_Samples1:
+  Created-Date: '2024_08_06'
+  Custom-Edited: false
+  Reviewed: false
+  Rule-Body-Hash: 780087732e5c61880d76e32b66acd8b9
+  Ruleset: securityonion-yara
+  Summary: This rule detects malicious software associated with the OilRig group,
+    specifically targeting samples reported by Unit 42 in October 2017. It identifies
+    files through specific strings, including a unique file marker, a path to an image
+    on a desktop, and PowerShell command fragments. The rule also looks for references
+    to a file named "servicereset.exe" and certain directory paths. This malware is
+    characterized by its small size, being less than 3000KB, and contains unique patterns
+    in its content.
+  Updated-Date: '2024_08_06'
+OtherTools_servu:
+  Created-Date: '2024_08_06'
+  Custom-Edited: false
+  Reviewed: false
+  Rule-Body-Hash: 1e074b5b25f9a2f278642fc610ddedcb
+  Ruleset: securityonion-yara
+  Summary: This rule detects the file 'svu.exe' associated with a Chinese hacktool
+    set. It identifies specific string patterns within the file, such as "MZKERNEL32.DLL",
+    "UpackByDwing@", "GetProcAddress", and "WriteFile", in addition to validating
+    the file size to be less than 50KB. The detection is confirmed if all the specified
+    strings are present within the file.
+  Updated-Date: '2024_08_06'
+TurlaMosquito_Mal_3:
+  Created-Date: '2024_08_06'
+  Custom-Edited: false
+  Reviewed: false
+  Rule-Body-Hash: b197e26dfb9242f920355d77dc3ac45f
+  Ruleset: securityonion-yara
+  Summary: This rule detects a malware sample associated with the Turla Mosquito malware,
+    a sophisticated cyber-espionage tool known for targeting high-profile entities.
+    It looks for specific indicators in the file, such as the presence of the "InstructionerDLL.dll"
+    string and various HTTP user-agent and URL patterns. These include a Mozilla user-agent
+    string mimicking an older Chrome browser and a script path used in network communications.
+    Additionally, the rule searches for SQL queries related to antivirus products
+    and a Microsoft Update string, indicating attempts to query system defenses and
+    possibly masquerade as legitimate network traffic. The rule also checks for specific
+    export functions and an exact import hash value to further validate the presence
+    of this malware.
+  Updated-Date: '2024_08_06'
+Waterbear_4_Jun17:
+  Created-Date: '2024_08_06'
+  Custom-Edited: false
+  Reviewed: false
+  Rule-Body-Hash: ec451116bcdce4210a9891f3ff50ab33
+  Ruleset: securityonion-yara
+  Summary: This rule detects malware associated with Operation Waterbear, which is
+    identified by specific patterns and behaviors. It targets the presence of a user-agent
+    string that mimics an outdated version of Internet Explorer, suggesting potential
+    deceptive network activity. Additionally, it looks for certain functions related
+    to network operations within the 'Wininet.dll' library, such as establishing and
+    managing HTTP connections. The rule also identifies specific command patterns
+    and pipe handling strings, along with hardcoded IP addresses and version identifiers,
+    which are indicative of the malware's attempt to execute commands, manipulate
+    file systems, and communicate stealthily over a network. These combined heuristics
+    help in identifying the distinctive characteristics of the Waterbear malware strain.
+  Updated-Date: '2024_08_06'
+WebShell_ftpsearch:
+  Created-Date: '2024_08_06'
+  Custom-Edited: false
+  Reviewed: false
+  Rule-Body-Hash: 1e8d51ed53b58e51a0f8648e972907cb
+  Ruleset: securityonion-yara
+  Summary: This rule detects a specific PHP webshell script known as `ftpsearch.php`,
+    found in an archived collection of PHP webshells on GitHub. The indicators of
+    this webshell include error messages related to reading the `/etc/passwd` file,
+    an FTP connection attempt to `127.0.0.1`, and HTML content indicating that the
+    page has been edited by "KingDefacer". Additionally, it looks for output messages
+    reporting the number of entries found in the `/etc/passwd` file.
+  Updated-Date: '2024_08_06'
+WinDivert_Driver:
+  Created-Date: '2024_08_06'
+  Custom-Edited: false
+  Reviewed: false
+  Rule-Body-Hash: 5eedaa5280fe711f22348985447b7806
+  Ruleset: securityonion-yara
+  Summary: This rule detects the presence of the WinDivert User-Mode packet capturing
+    driver. It looks for specific strings such as "WinDivertDllEntry" and "WinDivertHelperParseIPv4Address"
+    in both ASCII and wide formats within executable files smaller than 80KB. The
+    rule relies on unique identifiers present in the WinDivert driver to identify
+    the software, which is associated with user-mode packet capturing functions.
+  Updated-Date: '2024_08_06'
+backdoor1_php:
+  Created-Date: '2024_08_06'
+  Custom-Edited: false
+  Reviewed: false
+  Rule-Body-Hash: 2214c5b75e363a57cc707a771949ad9e
+  Ruleset: securityonion-yara
+  Summary: This rule detects the presence of a PHP-based backdoor, identified in the
+    file named "backdoor1.php.txt." The backdoor includes strings indicative of its
+    functionality, such as an echo statement for directory listing, a class definition
+    named "backdoor," and a hyperlink for file copying. These strings suggest that
+    the backdoor can list directories and offer file management capabilities, which
+    may be used maliciously to control the server.
+  Updated-Date: '2024_08_06'
+gen_Excel_xll_addin_suspicious:
+  Created-Date: '2024_08_06'
+  Custom-Edited: false
+  Reviewed: false
+  Rule-Body-Hash: 725be5c326c704e36d811263eb814f9a
+  Ruleset: securityonion-yara
+  Summary: This rule detects suspicious XLL add-ins to Excel by identifying specific
+    characteristics and behaviors often associated with malicious activity. It targets
+    files smaller than 1MB recognized as DLLs with the "xlAutoOpen" export, indicative
+    of Excel add-ins. Special attention is given to the presence of certain imported
+    functions like "LookupPrivilegeValue", "AdjustTokenPrivileges", and "OpenProcess"
+    from the KERNEL32.dll, along with "CryptDecrypt" and "CryptImportKey" from the
+    ADVAPI32.dll. Additionally, the rule looks for DNS queries, resource handling
+    and memory manipulation functions, thread context management, and specific debug
+    privileges. The combination of these factors helps pinpoint potentially harmful
+    Excel XLL add-ins.
+  Updated-Date: '2024_08_06'
+gen_macro_ShellExecute_action:
+  Created-Date: '2024_08_06'
+  Custom-Edited: false
+  Reviewed: false
+  Rule-Body-Hash: c360ef045eed08ec39192801831e9677
+  Ruleset: securityonion-yara
+  Summary: This rule detects VBA macro techniques that use the ShellExecute function
+    to launch payloads. It identifies specific patterns of strings and codes related
+    to these techniques within files smaller than 1MB. The rule focuses on the presence
+    of strings such as "ShellExecute" and "GetObject" and checks for specific byte
+    patterns at the beginning of the file.
+  Updated-Date: '2024_08_06'
+snifferport:
+  Created-Date: '2024_08_06'
+  Custom-Edited: false
+  Reviewed: false
+  Rule-Body-Hash: b88e15213a91c64f50c3292b982d6b26
+  Ruleset: securityonion-yara
+  Summary: This rule detects the file "snifferport.exe," which is part of a disclosed
+    hacktool set. It identifies specific strings within the file such as "iphlpapi.DLL,"
+    "ystem\\CurrentCorolSet\\," "Port.TX," "32Next," and "V1.2 B." These strings are
+    used to confirm the presence of this particular hacktool.
+  Updated-Date: '2024_08_06'

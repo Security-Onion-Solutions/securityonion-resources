@@ -1,0 +1,286 @@
+'2010479':
+  Created-Date: '2024_08_06'
+  Custom-Edited: false
+  Reviewed: false
+  Rule-Body-Hash: 9e0ad47c266a01df5ead07ab0d9c6441
+  Ruleset: ETOPEN
+  Summary: This rule detects an SQL Injection attempt in the Joomla com_jshop component.
+    The attack is executed through a GET request to a specific URI that contains the
+    parameters `option=com_jshop` and `&pid=` followed by an SQL `INSERT INTO` statement.
+    This indicates an attempt to exploit a vulnerability associated with a known issue
+    in Joomla, as documented in security references such as Bugtraq ID 36808 and a
+    detailed exploit posted on Packet Storm Security.
+  Updated-Date: '2024_08_06'
+'2010531':
+  Created-Date: '2024_08_06'
+  Custom-Edited: false
+  Reviewed: false
+  Rule-Body-Hash: 6bdb1dede3f5e8dce56ae7097a5ee251
+  Ruleset: ETOPEN
+  Summary: This rule detects an attempt to exploit a remote PHP file inclusion vulnerability
+    in the PHP-Calendar software version 1.1. The rule specifically looks for HTTP
+    traffic directed to the update directory of PHP-Calendar, targeting files with
+    a .php extension and involving the "configfile" parameter. Such activity aims
+    to execute arbitrary code on the server, potentially leading to a successful arbitrary
+    code execution attack.
+  Updated-Date: '2024_08_06'
+'2011065':
+  Created-Date: '2024_08_06'
+  Custom-Edited: false
+  Reviewed: false
+  Rule-Body-Hash: 8a4a04bcf9021aa5f7adb76b276ec9c5
+  Ruleset: ETOPEN
+  Summary: This rule detects a cross-site scripting (XSS) attempt in the SurgeFTP
+    web management interface, specifically targeting the `surgeftpmgr.cgi` script.
+    The attack is identified by a request containing the parameters `cmd=class` and
+    `classid=`, and it looks for typical XSS attack vectors such as script tags or
+    event handlers within these parameters.
+  Updated-Date: '2024_08_06'
+'2011583':
+  Created-Date: '2024_08_06'
+  Custom-Edited: false
+  Reviewed: false
+  Rule-Body-Hash: da6d3d86301736e5b930e073983da2ca
+  Ruleset: ETOPEN
+  Summary: This rule detects activity associated with the Neosploit exploit pack by
+    monitoring HTTP GET requests to external networks. It specifically looks for requests
+    targeting URLs with particular file extensions such as PHP, ASP, PY, EXE, HTM,
+    and HTML. The rule matches patterns indicative of Neosploit's obfuscated URLs
+    in the request URI. Additionally, it checks for the presence of the "User-Agent"
+    HTTP header while ensuring the "Referer" header is absent. Neosploit is known
+    for delivering payloads through sophisticated URL structures, making this detection
+    crucial for identifying potential exploit attempts in network traffic.
+  Updated-Date: '2024_08_06'
+'2012330':
+  Created-Date: '2024_08_06'
+  Custom-Edited: false
+  Reviewed: false
+  Rule-Body-Hash: c06749f61eb5bf34fadd2233559b0e62
+  Ruleset: ETOPEN
+  Summary: This rule detects HTTP requests to domains ending with the ".rr.nu" extension,
+    analyzing the request headers for this specific pattern.
+  Updated-Date: '2024_08_06'
+'2017676':
+  Created-Date: '2024_08_06'
+  Custom-Edited: false
+  Reviewed: false
+  Rule-Body-Hash: 6f65b73c246179525cf564f80fb10c17
+  Ruleset: ETOPEN
+  Summary: This rule detects an HTTP GET request from a host within the internal network
+    to an external server that includes the file name "lgfxsrvc.exe" in the URI. This
+    activity is potentially indicative of a process dump or trojan download, suggesting
+    malicious or suspicious behavior associated with the file "lgfxsrvc.exe".
+  Updated-Date: '2024_08_06'
+'2018566':
+  Created-Date: '2024_08_06'
+  Custom-Edited: false
+  Reviewed: false
+  Rule-Body-Hash: b3476e1cf508f40e1a43e413ebb2bf3b
+  Ruleset: ETOPEN
+  Summary: This rule detects network traffic associated with the Hangover campaign
+    by identifying HTTP POST requests to "post.php" with specific query parameters
+    and verifying the absence of a "Referer" header. Hangover is a Python-based malware
+    used for targeted attacks, and this rule helps to identify command-and-control
+    communications from the compromised system to the attacker's server.
+  Updated-Date: '2024_08_06'
+'2018919':
+  Created-Date: '2024_08_06'
+  Custom-Edited: false
+  Reviewed: false
+  Rule-Body-Hash: d2e76da6430144d5366120ee93ab3826
+  Ruleset: ETOPEN
+  Summary: This rule detects potential data leakage from Xiaomi phones by monitoring
+    HTTP traffic for connections to "api.account.xiaomi.com".
+  Updated-Date: '2024_08_06'
+'2019697':
+  Created-Date: '2024_08_06'
+  Custom-Edited: false
+  Reviewed: false
+  Rule-Body-Hash: ae79840e952b10471b9604b93c174be5
+  Ruleset: ETOPEN
+  Summary: This rule detects potential Dridex malware campaign downloads from November
+    2014 by monitoring HTTP traffic where the URI path includes "/get/get.php" and
+    lacks the "referer" header.
+  Updated-Date: '2024_08_06'
+'2021394':
+  Created-Date: '2024_08_06'
+  Custom-Edited: false
+  Reviewed: false
+  Rule-Body-Hash: b654341eb4c0675836f1546ad27cae5d
+  Ruleset: ETOPEN
+  Summary: This rule detects a malicious redirector leading to an Exploit Kit (EK)
+    delivery. It identifies an established HTTP connection from an external network
+    to the home network, looking for specific patterns in the file data associated
+    with JavaScript tags and URLs. The rule targets obfuscated JavaScript that includes
+    a redirection to a PHP file with a specific ID parameter, which is a characteristic
+    of exploit kits utilizing such redirectors.
+  Updated-Date: '2024_08_06'
+'2022647':
+  Created-Date: '2024_08_06'
+  Custom-Edited: false
+  Reviewed: false
+  Rule-Body-Hash: 724e1e18b667d69de0f6560e2d2a42b0
+  Ruleset: ETOPEN
+  Summary: This rule detects DNS queries for the domain "3qbyaoohkcqkzrz6", which
+    is associated with Cryptolocker payment activities, indicating potential malware-related
+    activity on the network.
+  Updated-Date: '2024_08_06'
+'2025065':
+  Created-Date: '2024_08_06'
+  Custom-Edited: false
+  Reviewed: false
+  Rule-Body-Hash: 1a8770c5430b3eca329bb438146a9fce
+  Ruleset: ETOPEN
+  Summary: This rule detects communication from the Backdoor.Perl.Shellbot.cd, an
+    IRC bot with DoS/DDoS capabilities, by identifying established TCP connections
+    to the client within an IRC protocol. It specifically looks for IRC messages containing
+    suspicious commands associated with malicious activities such as port scanning,
+    flooding (TCP, UDP, HTTP), and other unauthorized operations.
+  Updated-Date: '2024_08_06'
+'2026640':
+  Created-Date: '2024_08_06'
+  Custom-Edited: false
+  Reviewed: false
+  Rule-Body-Hash: b7d0a31b2a604608d4d103aca484bcc4
+  Ruleset: ETOPEN
+  Summary: This rule detects DNS queries attempting to resolve a domain associated
+    with Kraken ransomware command-and-control (C2) operations, specifically the domain
+    "kraken656kn6wyyx". Kraken ransomware is malware targeting Windows systems, utilized
+    for illicit activities such as data encryption and ransom demands. The presence
+    of this domain in DNS lookups suggests potential communication with malicious
+    servers involved in ransomware campaigns.
+  Updated-Date: '2024_08_06'
+'2027609':
+  Created-Date: '2024_08_06'
+  Custom-Edited: false
+  Reviewed: false
+  Rule-Body-Hash: 02941565ce5ce322c923855424661341
+  Ruleset: ETOPEN
+  Summary: This rule detects a DNS query to the domain "ssofiles.online," which is
+    associated with the malware campaign known as Gift Cardshark. The rule aims to
+    identify command-and-control (CnC) communication attempts initiated by infected
+    clients, signaling that a client endpoint might be compromised by this specific
+    malware.
+  Updated-Date: '2024_08_06'
+'2035156':
+  Created-Date: '2024_08_06'
+  Custom-Edited: false
+  Reviewed: false
+  Rule-Body-Hash: 391922510c086b056f180ec27d11ab40
+  Ruleset: ETOPEN
+  Summary: This rule detects inbound DNS over HTTPS (DoH) certificates from the domain
+    "dns.keweon.center" to the internal network. It triggers when a TLS certificate
+    subject contains "CN=dns.keweon.center" in an established connection, aiming to
+    monitor potential usage of this specific DoH service.
+  Updated-Date: '2024_08_06'
+'2037948':
+  Created-Date: '2024_08_06'
+  Custom-Edited: false
+  Reviewed: false
+  Rule-Body-Hash: 7b72f844213fb64165ea7e7df93ef002
+  Ruleset: ETOPEN
+  Summary: This rule detects a DNS lookup for the domain "avira.ltd," which is associated
+    with the CHIMNEYSWEEP backdoor malware's command and control (C2) infrastructure.
+  Updated-Date: '2024_08_06'
+'2038929':
+  Created-Date: '2024_08_06'
+  Custom-Edited: false
+  Reviewed: false
+  Rule-Body-Hash: e9cfccb67132c5165f7ece3fed9d5ca2
+  Ruleset: ETOPEN
+  Summary: This rule detects DNS queries made to domains ending with ".tptf.cloud,"
+    which is associated with the TA444 group. This rule is used to identify potential
+    communication with malware controlled by this threat actor.
+  Updated-Date: '2024_08_06'
+'2039225':
+  Created-Date: '2024_08_06'
+  Custom-Edited: false
+  Reviewed: false
+  Rule-Body-Hash: 4a8d16d9f89ea32cbb3d715322a5ebcf
+  Ruleset: ETOPEN
+  Summary: This rule detects DNS queries to the domain "rfvg.karlosb.com", which is
+    associated with the Budminer malware.
+  Updated-Date: '2024_08_06'
+'2039801':
+  Created-Date: '2024_08_06'
+  Custom-Edited: false
+  Reviewed: false
+  Rule-Body-Hash: bfea584ef6db1137a65c2b03e7bb46b9
+  Ruleset: ETOPEN
+  Summary: This rule detects network traffic indicative of Cobalt Strike activity
+    by identifying HTTP GET requests with specific characteristics. It looks for a
+    request line containing "GET /1Pfu HTTP/1.1" and HTTP headers including "User-Agent,"
+    "Host," "Connection," and "Cache-Control," formatted in a particular sequence.
+    Additionally, the rule examines the User-Agent field for a distinctive pattern
+    "; MAN)". The presence of these elements suggests the use of Cobalt Strike, a
+    well-known penetration testing tool often utilized by threat actors for command
+    and control operations and data obfuscation.
+  Updated-Date: '2024_08_06'
+'2039938':
+  Created-Date: '2024_08_06'
+  Custom-Edited: false
+  Reviewed: false
+  Rule-Body-Hash: 3b021c48c8bead9f8084fe96ae34f826
+  Ruleset: ETOPEN
+  Summary: This rule detects DNS queries to any domain ending with ".serverpit.com,"
+    which is associated with dynamic DNS services.
+  Updated-Date: '2024_08_06'
+'2044562':
+  Created-Date: '2024_08_06'
+  Custom-Edited: false
+  Reviewed: false
+  Rule-Body-Hash: c2036ba902bd4852ad66ffaea2cf5dba
+  Ruleset: ETOPEN
+  Summary: This rule detects traffic associated with the Prometei botnet, specifically
+    identifying an HTTP GET request to a URL path "/cgi-bin/prometei.cgi?r=" that
+    begins with this string. It also requires the presence of a parameter "i=" following
+    immediately after, with the value being a 16-character alphanumeric string. This
+    activity represents a botnet Command and Control (CnC) check-in attempt.
+  Updated-Date: '2024_08_06'
+'2046370':
+  Created-Date: '2024_08_06'
+  Custom-Edited: false
+  Reviewed: false
+  Rule-Body-Hash: e739bf736734bc1987ce95b32d712e0c
+  Ruleset: ETOPEN
+  Summary: This rule detects DNS queries for the domain "connectivitycheck.live,"
+    which is associated with the Android malware called Spy PREDATOR. This malware's
+    command-and-control (CnC) activity is monitored through DNS lookups to this specific
+    domain.
+  Updated-Date: '2024_08_06'
+'2049527':
+  Created-Date: '2024_08_06'
+  Custom-Edited: false
+  Reviewed: false
+  Rule-Body-Hash: 7ba8c5b9aa561f9e24b2de8b62f54ef5
+  Ruleset: ETOPEN
+  Summary: This rule detects the presence of a SnappyTCP reverse shell by identifying
+    a specific HTTP header value, "x-auth-43245-s-20". This detection occurs within
+    established connections, specifically targeting communications from internal to
+    external networks. The rule is relevant for Linux systems and is intended to identify
+    client endpoint attacks.
+  Updated-Date: '2024_08_06'
+'2050735':
+  Created-Date: '2024_08_06'
+  Custom-Edited: false
+  Reviewed: false
+  Rule-Body-Hash: f828f31af1765fbead60c2fcfeca3100
+  Ruleset: ETOPEN
+  Summary: This rule detects network traffic where a TLS connection server name identifier
+    (SNI) includes the domain "a0917004.xsph.ru," which is associated with malware
+    delivery. When an established connection from the monitored network to an external
+    network matches this specific SNI, it indicates activity related to the Xworm
+    malware family.
+  Updated-Date: '2024_08_06'
+'2051017':
+  Created-Date: '2024_08_06'
+  Custom-Edited: false
+  Reviewed: false
+  Rule-Body-Hash: 9a75eed658b05611d42f78cc9efacd03
+  Ruleset: ETOPEN
+  Summary: This rule detects TLS traffic where the Server Name Indication (SNI) contains
+    the domain "chrysalisc.com," which is associated with the Lazarus Group, a known
+    cybercrime organization. The detection is triggered when established traffic flows
+    from the internal network to an external network, indicating potential malicious
+    activity.
+  Updated-Date: '2024_08_06'

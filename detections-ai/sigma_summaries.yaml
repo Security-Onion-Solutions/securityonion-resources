@@ -1,0 +1,343 @@
+0685b176-c816-4837-8e7b-1216f346636b:
+  Created-Date: '2024_08_06'
+  Custom-Edited: false
+  Reviewed: false
+  Rule-Body-Hash: f55a7d36d57068bf57df1ab77b64c5e6
+  Ruleset: core
+  Summary: This rule detects the execution of the Quarks PwDump tool through specific
+    command-line arguments related to credential access activities. Quarks PwDump
+    is a tool used to extract password hashes and other sensitive information from
+    Windows systems. The detection is focused on identifying instances where the executable
+    file 'QuarksPwDump.exe' is used with commands that target local password dumps,
+    domain cached credentials, BitLocker keys, domain hashes, and NTDS files. This
+    activity could indicate an attempt to compromise system credentials and access
+    sensitive information within an enterprise environment.
+  Updated-Date: '2024_08_06'
+21117127-21c8-437a-ae03-4b51e5a8a088:
+  Created-Date: '2024_08_06'
+  Custom-Edited: false
+  Reviewed: false
+  Rule-Body-Hash: 8d64d201486234594cf2940b558096c5
+  Ruleset: emerging-threats
+  Summary: This rule detects the presence of a specific command line argument being
+    passed to an executable, which is associated with the Small Sieve malware. Small
+    Sieve is a form of malware that exhibits persistence techniques. The detection
+    involves identifying processes where the command line ends with '.exe Platypus',
+    which is a characteristic behavior of this particular malware. The rule is designed
+    to trigger on this specific pattern to facilitate early detection and mitigation
+    of the threat on Windows systems.
+  Updated-Date: '2024_08_06'
+2131cfb3-8c12-45e8-8fa0-31f5924e9f07:
+  Created-Date: '2024_08_06'
+  Custom-Edited: false
+  Reviewed: false
+  Rule-Body-Hash: 8fe4f9850fa3cf568446d4b3d7a53a94
+  Ruleset: emerging-threats
+  Summary: This rule detects the default filename pattern commonly used in proof-of-concept
+    (PoC) code exploiting the print spooler vulnerability identified as CVE-2021-1675.
+    The vulnerability, also known as "PrintNightmare," impacts the Windows print spooler
+    service and can allow for remote code execution or privilege escalation. The detection
+    is specifically focused on file events where the target filename contains the
+    path 'C:\Windows\System32\spool\drivers\x64\3\old\1\123'.
+  Updated-Date: '2024_08_06'
+3121461b-5aa0-4a41-b910-66d25524edbb:
+  Created-Date: '2024_08_06'
+  Custom-Edited: false
+  Reviewed: false
+  Rule-Body-Hash: 7e6d3fb6b451ebb3451008ca8f2916fa
+  Ruleset: emerging-threats
+  Summary: This rule detects specific process characteristics associated with the
+    Winnti malware, identified during a Dec/Jan 2020 campaign targeting Hong Kong
+    universities. The rule flags instances where particular parent-child process relationships
+    suggest the presence of Winnti malware, including parent processes originating
+    from temporary directories and disguised as typical system applications. Specific
+    suspicious processes include those starting from or interacting with the 'C:\ProgramData\DRM'
+    directory and named in ways that mimic legitimate applications like 'wmplayer.exe'
+    and 'SearchFilterHost.exe'. These patterns are critical for identifying potential
+    malware activity aimed at evading defenses.
+  Updated-Date: '2024_08_06'
+39019a4e-317f-4ce3-ae63-309a8c6b53c5:
+  Created-Date: '2024_08_06'
+  Custom-Edited: false
+  Reviewed: false
+  Rule-Body-Hash: 7675fba5695498dbc8019fb5dab2b956
+  Ruleset: core
+  Summary: This rule detects the creation of scheduled tasks involving the `Temp`
+    folder on Windows systems, where the task is set to run only once. This behavior
+    is often observed in malicious activity, as attackers may use it to execute malicious
+    scripts or programs stored temporarily. The detection focuses on the use of `schtasks.exe`
+    with specific command-line parameters (`/create`, `/sc once`, and paths containing
+    `\Temp\`). While legitimate administrative activity and software installations
+    might also trigger this rule, its primary purpose is to spot potential threats.
+  Updated-Date: '2024_08_06'
+49aae26c-450e-448b-911d-b3c13d178dfc:
+  Created-Date: '2024_08_06'
+  Custom-Edited: false
+  Reviewed: false
+  Rule-Body-Hash: 1d2f512e33142298dd2d5c6402ef5612
+  Ruleset: core
+  Summary: This rule detects attempts to enable auditing of TTY input on Linux systems
+    by monitoring specific PAM (Pluggable Authentication Modules) configuration files,
+    such as '/etc/pam.d/system-auth' and '/etc/pam.d/password-auth'. Auditing TTY
+    input can be indicative of keylogging activities, which pose a risk to credential
+    security by potentially capturing keystrokes. The rule triggers upon identifying
+    changes related to TTY or USER_TTY events, signaling possible malicious intent
+    to gather sensitive input data.
+  Updated-Date: '2024_08_06'
+515c8be5-e5df-4c5e-8f6d-a4a2f05e4b48:
+  Created-Date: '2024_08_06'
+  Custom-Edited: false
+  Reviewed: false
+  Rule-Body-Hash: 023757bd00e89e39e9865b2381f95090
+  Ruleset: core
+  Summary: This rule detects the use of the createdump.exe LOLOBIN (Living Off the
+    Land Binary) utility to dump process memory on Windows systems. It identifies
+    the execution of createdump.exe through specific command-line arguments, such
+    as "-u", "--full", "-f", "--name", and ".dmp", which indicate memory dump operations.
+    The presence of these command-line flags suggests potentially malicious activity
+    aimed at extracting sensitive data from a running process, often associated with
+    techniques for defense evasion and credential dumping.
+  Updated-Date: '2024_08_06'
+53207cc2-0745-4c19-bc72-80be1cc16b3f:
+  Created-Date: '2024_08_06'
+  Custom-Edited: false
+  Reviewed: false
+  Rule-Body-Hash: bb22bfe5017807b2480bb563d4a95f13
+  Ruleset: emerging-threats
+  Summary: This rule detects potential exploitation of CVE-2023-21554, also known
+    as QueueJumper. This vulnerability allows unauthorized remote code execution in
+    the Microsoft Message Queuing (MSMQ) service. The rule triggers when it identifies
+    process creations originating from the mqsvc.exe process executing a list of specific
+    command-line tools, such as cmd.exe, cscript.exe, mshta.exe, powershell.exe, pwsh.exe,
+    regsvr32.exe, rundll32.exe, schtasks.exe, wmic.exe, wscript.exe, or wsl.exe.
+  Updated-Date: '2024_08_06'
+5325945e-f1f0-406e-97b8-65104d393fff:
+  Created-Date: '2024_08_06'
+  Custom-Edited: false
+  Reviewed: false
+  Rule-Body-Hash: 8202577a04180ae1ceb9b8de6d7981b0
+  Ruleset: emerging-threats
+  Summary: This rule detects specific process characteristics of Snatch ransomware
+    Word document droppers. It focuses on identifying command lines that immediately
+    shut down the system and reboot into safe mode, a technique used by Snatch ransomware
+    to bypass endpoint protection mechanisms. Additionally, it looks for attempts
+    to stop the service "SuperBackupMan," which may be related to backup software
+    protection.
+  Updated-Date: '2024_08_06'
+56c217c3-2de2-479b-990f-5c109ba8458f:
+  Created-Date: '2024_08_06'
+  Custom-Edited: false
+  Reviewed: false
+  Rule-Body-Hash: fdc8fc5ddcc7b1e0bd47263538fc257f
+  Ruleset: core
+  Summary: This rule detects the creation of a scheduled task via PowerSploit or Empire
+    default configuration. It identifies instances where `schtasks.exe` is triggered
+    by `powershell.exe` or `pwsh.exe` with specific command line arguments such as
+    '/Create' and 'powershell.exe -NonI', coupled with task scheduling parameters
+    like '/SC ONLOGON' or '/SC DAILY /ST'. The aim is to recognize unauthorized task
+    persistence mechanisms often utilized for malicious purposes like privilege escalation
+    or maintaining execution persistence in a system. This detection method minimizes
+    the likelihood of false positives.
+  Updated-Date: '2024_08_06'
+5b80a791-ad9b-4b75-bcc1-ad4e1e89c200:
+  Created-Date: '2024_08_06'
+  Custom-Edited: false
+  Reviewed: false
+  Rule-Body-Hash: dfe9d8a143c48c53c5b852c0d1627233
+  Ruleset: core
+  Summary: This rule detects the usage of Bitsadmin to download a file with a suspicious
+    extension. Bitsadmin is a command-line tool used to create, monitor, and manage
+    download and upload jobs. The rule focuses on identifying instances where Bitsadmin.exe
+    attempts downloads and the command line includes specific flags (e.g., /transfer,
+    /create, /addfile) along with file extensions typically associated with scripts,
+    executables, compressed archives, and other potentially malicious files, such
+    as .exe, .dll, .ps1, .bat, and .vbs.
+  Updated-Date: '2024_08_06'
+93199800-b52a-4dec-b762-75212c196542:
+  Created-Date: '2024_08_06'
+  Custom-Edited: false
+  Reviewed: false
+  Rule-Body-Hash: c4f64ea4ca52d8b1d3985a243bd796e6
+  Ruleset: core
+  Summary: This rule detects the use of the RunXCmd tool for executing commands with
+    System or TrustedInstaller accounts on Windows systems. The tool, RunXCmd, is
+    typically used to run programs with elevated privileges. The detection mechanism
+    focuses on specific command-line parameters that indicate such usage, including
+    markers for System or TrustedInstaller accounts and command execution flags. Potential
+    false positives might occur when administrators use the tool for legitimate purposes.
+  Updated-Date: '2024_08_06'
+951f8d29-f2f6-48a7-859f-0673ff105e6f:
+  Created-Date: '2024_08_06'
+  Custom-Edited: false
+  Reviewed: false
+  Rule-Body-Hash: a692132b5ffe75d7e00001a84afe22d4
+  Ruleset: core
+  Summary: This rule detects the presence of a loaded unsigned kernel module on a
+    Windows system by monitoring for an event with EventID 3001 in the Code Integrity
+    operational logs. Such an occurrence may indicate a potential privilege escalation
+    attack and should be investigated thoroughly.
+  Updated-Date: '2024_08_06'
+953945c5-22fe-4a92-9f8a-a9edc1e522da:
+  Created-Date: '2024_08_06'
+  Custom-Edited: false
+  Reviewed: false
+  Rule-Body-Hash: e2d768b1dcd7690292fef22e30899591
+  Ruleset: core
+  Summary: This rule detects the use of the "Set-Service" PowerShell cmdlet to configure
+    a new Security Descriptor that allows a service to be hidden from other utilities
+    such as "sc.exe" and "Get-Service". This technique works only in PowerShell 7
+    and can be associated with persistence, defense evasion, and privilege escalation
+    tactics.
+  Updated-Date: '2024_08_06'
+c0c67b21-eb8a-4c84-a395-40473ec3b482:
+  Created-Date: '2024_08_06'
+  Custom-Edited: false
+  Reviewed: false
+  Rule-Body-Hash: a7e4047bc4ab01883987bfda2042c391
+  Ruleset: emerging-threats
+  Summary: This rule detects the setting of a new value in the Autorun registry key,
+    specifically used by the Kapeka backdoor for persistence on Windows systems. It
+    identifies registry modifications where the target object paths contain '\SOFTWARE\Microsoft\Windows\CurrentVersion\Run'
+    and end with either '\Sens Api' or '\OneDrive'. The modifications also must involve
+    details containing ':\WINDOWS\system32\rundll32.exe', '.wll', and '#1'. The Kapeka
+    backdoor is recognized for its persistence mechanisms that exploit autorun functionalities
+    to maintain access and control over infected machines.
+  Updated-Date: '2024_08_06'
+cf879ffb-793a-4753-9a14-bc8f37cc90df:
+  Created-Date: '2024_08_06'
+  Custom-Edited: false
+  Reviewed: false
+  Rule-Body-Hash: 896f963a307230c94dce62c2108bb1b0
+  Ruleset: emerging-threats
+  Summary: "This rule detects specific process tree behaviors involving \"rundll32\"\
+    \ execution that are often associated with Qakbot malware activity. It identifies\
+    \ suspicious parent processes, such as \"cmd.exe,\" \"powershell.exe,\" \"cscript.exe,\"\
+    \ \"curl.exe,\" \"mshta.exe,\" \"pwsh.exe,\" and \"wscript.exe\" launching \"\
+    rundll32.exe\" with command lines referencing directories typically used by Qakbot,\
+    \ including \"ProgramData,\" \"Users\\Public,\" \"AppData\\Local\\Temp,\" and\
+    \ \"AppData\\Roaming.\u201D Additionally, it looks for command lines that contain\
+    \ the \".dll\" extension, suggesting the execution of DLL files common in Qakbot's\
+    \ operation."
+  Updated-Date: '2024_08_06'
+d047726b-c71c-4048-a99b-2e2f50dc107d:
+  Created-Date: '2024_08_06'
+  Custom-Edited: false
+  Reviewed: false
+  Rule-Body-Hash: b8d1e9d74c1e384479b62b50b6811fb7
+  Ruleset: core
+  Summary: This rule detects the execution of a signed binary dropped by Kaspersky
+    Lab Products Remover (kavremover) which can be exploited as a Living-Off-The-Land
+    Binary (LOLBIN) to execute arbitrary commands and binaries. Detecting such activity
+    is crucial as the kavremover utility and its associated binaries could be misused
+    for malicious purposes, including bypassing security measures and executing unauthorized
+    commands. This rule specifically looks for command lines containing 'run run-cmd'
+    and excludes legitimate instances where the parent processes are either 'cleanapi.exe'
+    or 'kavremover.exe'.
+  Updated-Date: '2024_08_06'
+e31033fc-33f0-4020-9a16-faf9b31cbf08:
+  Created-Date: '2024_08_06'
+  Custom-Edited: false
+  Reviewed: false
+  Rule-Body-Hash: 37bb2cf03f9824f3f57d6730fcec6a2a
+  Ruleset: core
+  Summary: This rule detects the execution of Netcat on a Windows system, which is
+    often used by adversaries to facilitate communication between a host and a command-and-control
+    (C2) server or to enable communication among infected hosts within a network.
+    The detection focuses on specific executable names such as 'nc.exe', 'ncat.exe',
+    and 'netcat.exe', as well as typical command line parameters associated with Netcat
+    usage, including '-lvp', '-lvnp', and various proxy and execution commands. While
+    legitimate use of Netcat can occur, the presence of these indicators generally
+    signifies potentially malicious activity warranting a high level of concern.
+  Updated-Date: '2024_08_06'
+e37db05d-d1f9-49c8-b464-cee1a4b11638:
+  Created-Date: '2024_08_06'
+  Custom-Edited: false
+  Reviewed: false
+  Rule-Body-Hash: 1c50ba2efb9159552903c5fc935cb6db
+  Ruleset: core
+  Summary: This rule detects the execution of the Rclone utility, a tool commonly
+    used for file exfiltration, particularly by various ransomware strains such as
+    REvil, Conti, and FiveHands. It monitors for specific command line options and
+    arguments typically associated with Rclone's usage, such as configuration settings,
+    operations related to copying and syncing files, and bypassing certificate checks.
+    The detection focuses on the presence of specific keywords and command line patterns
+    that indicate Rclone activity, helping to identify potential malicious exfiltration
+    attempts.
+  Updated-Date: '2024_08_06'
+e5a29b54-6fe7-4258-8a23-82960e31231a:
+  Created-Date: '2024_08_06'
+  Custom-Edited: false
+  Reviewed: false
+  Rule-Body-Hash: 9fc0f0d7935cbda5c7176146a8132aba
+  Ruleset: emerging-threats
+  Summary: This rule detects a crash of "WinRAR.exe" where the version is lower than
+    6.23 on Windows systems. This could indicate potential exploitation of the vulnerability
+    identified as CVE-2023-40477. The detection is focused on application error events,
+    specifically looking for event ID 1000 associated with WinRAR. The rule aims to
+    identify crashes potentially linked to the vulnerability while excluding versions
+    known to have fixes.
+  Updated-Date: '2024_08_06'
+e61e8a88-59a9-451c-874e-70fcc9740d67:
+  Created-Date: '2024_08_06'
+  Custom-Edited: false
+  Reviewed: false
+  Rule-Body-Hash: ed4e98441aacdb709ef1fcda8ae49ce3
+  Ruleset: core
+  Summary: This rule detects the installation of a DNS plugin DLL through the ServerLevelPluginDll
+    parameter in the Windows registry. This action can facilitate the execution of
+    code within the context of the DNS server, although a server restart is required
+    for the changes to take effect.
+  Updated-Date: '2024_08_06'
+eafb8bd5-7605-4bfe-a9ec-0442bc151f15:
+  Created-Date: '2024_08_06'
+  Custom-Edited: false
+  Reviewed: false
+  Rule-Body-Hash: 622c21be8593e9fde1de53f0f2aea437
+  Ruleset: emerging-threats
+  Summary: This rule detects potential exploitation of CVE-2024-1212, an unauthenticated
+    command injection vulnerability in Progress Kemp LoadMaster. The detection focuses
+    on GET requests to the '/access/set' API endpoint containing the parameters 'param=enableapi'
+    and 'value=1', along with an "Authorization" header that includes a base64 encoded
+    value featuring an uncommon character. This combination of request characteristics
+    suggests an attempt to exploit this specific vulnerability.
+  Updated-Date: '2024_08_06'
+f1b3a22a-45e6-4004-afb5-4291f9c21166:
+  Created-Date: '2024_08_06'
+  Custom-Edited: false
+  Reviewed: false
+  Rule-Body-Hash: 416fd0669da24d7c022da17d9ad6dcb5
+  Ruleset: core
+  Summary: This rule detects the execution of PsExec or PaExec with a renamed service
+    name. It aims to filter out legitimate uses of PsExec or occurrences where an
+    attacker uses a PsExec client other than the official Sysinternals one. PsExec
+    is a remote administration tool that allows users to execute processes on other
+    systems, commonly used for both legitimate administrative tasks and malicious
+    activities like lateral movement within a network. By identifying the presence
+    of paths and filenames typically associated with PsExec and excluding known legitimate
+    service names, this rule helps to pinpoint suspicious activities.
+  Updated-Date: '2024_08_06'
+fcbb4a77-f368-4945-b046-4499a1da69d1:
+  Created-Date: '2024_08_06'
+  Custom-Edited: false
+  Reviewed: false
+  Rule-Body-Hash: b6ecff1a250972fdeea48ee836b613a3
+  Ruleset: emerging-threats
+  Summary: This rule detects an authentication bypass vulnerability in the REST API
+    URLs of Zoho ManageEngine ADSelfService Plus, specifically identified as CVE-2021-40539.
+    The vulnerability affects certain endpoints like '/help/admin-guide/Reports/ReportGenerate.jsp',
+    '/RestAPI/LogonCustomization', and '/RestAPI/Connection', which could be exploited
+    by attackers to gain unauthorized access. The detection relies on monitoring web
+    server logs related to ADSelfService Plus.
+  Updated-Date: '2024_08_06'
+ff23ffbc-3378-435e-992f-0624dcf93ab4:
+  Created-Date: '2024_08_06'
+  Custom-Edited: false
+  Reviewed: false
+  Rule-Body-Hash: cf509593fd893276fedde8410f6d5aaf
+  Ruleset: core
+  Summary: This rule detects the execution of the PurpleSharp adversary simulation
+    tool on Windows systems. PurpleSharp is used for testing and simulating attack
+    scenarios to evaluate security measures. This detection is triggered by identifying
+    specific image names or command line parameters associated with the tool, such
+    as 'PurpleSharp.exe' or references to 'purplesharp' in the process creation logs.
+  Updated-Date: '2024_08_06'
