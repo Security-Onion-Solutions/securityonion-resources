@@ -23,6 +23,22 @@ APT_APT41_HIGHNOON:
     key characteristics of the HIGHNOON malware within executable files that are smaller
     than 2000KB.
   Updated-Date: '2024_08_06'
+APT_Kaspersky_Duqu2_procexp:
+  Created-Date: '2024_08_06'
+  Custom-Edited: false
+  Reviewed: false
+  Rule-Body-Hash: 814b5830f5dc1791c86ce9167d0b2980
+  Ruleset: securityonion-yara
+  Summary: This rule detects a malicious MSI file related to the Duqu2 APT (Advanced
+    Persistent Threat) as reported by Kaspersky. The detection focuses on the presence
+    of specific strings within the MSI file that are indicative of the Duqu2 malware.
+    These strings include references to various DLL files such as "svcmsi_32.dll",
+    "msi3_32.dll", "msi4_32.dll", and "MSI.dll". Additionally, the rule checks for
+    certain patterns commonly associated with the Sysinternals Process Explorer, including
+    phrases like "SELECT `Data` FROM `Binary` WHERE `Name`='%s%i'", "Sysinternals
+    installer", and "Process Explorer". The file must also be less than 100KB in size
+    and have a specific initial byte pattern to trigger detection.
+  Updated-Date: '2024_08_06'
 APT_MAL_WinntiLinux_Main_AzazelFork_May19:
   Created-Date: '2024_08_06'
   Custom-Edited: false
@@ -128,6 +144,30 @@ HKTL_NET_GUID_BlockEtw:
     in both lowercase and uppercase ASCII or wide string formats within executable
     files indicated by PE (Portable Executable) headers.
   Updated-Date: '2024_08_06'
+HKTL_NET_GUID_Group3r:
+  Created-Date: '2024_08_06'
+  Custom-Edited: false
+  Reviewed: false
+  Rule-Body-Hash: 6c7c9d400f4ea63e40cdb36c3c6a5ea9
+  Ruleset: securityonion-yara
+  Summary: This rule detects .NET red/black-team tools by identifying specific type
+    library GUIDs (Globally Unique Identifiers). It searches for the presence of two
+    GUIDs, either in lowercase or uppercase formats, within the target file. The rule
+    is further refined by verifying the file's signature to ensure it matches the
+    format of a PE (Portable Executable) file, indicated by the specific values at
+    given offsets.
+  Updated-Date: '2024_08_06'
+HKTL_NET_GUID_SharpShooter:
+  Created-Date: '2024_08_06'
+  Custom-Edited: false
+  Reviewed: false
+  Rule-Body-Hash: fbdb2c0ad39641585d9567f2debeed2e
+  Ruleset: securityonion-yara
+  Summary: This rule detects the presence of SharpShooter, a C# tool used by red and
+    black teams for penetration testing and security assessments. It identifies unique
+    typelibguid strings associated with SharpShooter. The detection relies on specific
+    GUID patterns found within executable files.
+  Updated-Date: '2024_08_06'
 HKTL_NET_GUID_SharpWitness:
   Created-Date: '2024_08_06'
   Custom-Edited: false
@@ -217,6 +257,43 @@ OtherTools_servu:
     the file size to be less than 50KB. The detection is confirmed if all the specified
     strings are present within the file.
   Updated-Date: '2024_08_06'
+PowerShell_Mal_HackTool_Gen:
+  Created-Date: '2024_08_06'
+  Custom-Edited: false
+  Reviewed: false
+  Rule-Body-Hash: 6d79abb5b1d7e9ee96752033dd6210f0
+  Ruleset: securityonion-yara
+  Summary: This rule detects the presence of specific PowerShell hack tool samples,
+    which serve as a generic PE loader. It matches unique strings associated with
+    these tools, such as encoded PE bytes, PowerShell commands for writing bytes to
+    memory, and references to shellcode operations like LoadLibraryA. The rule triggers
+    when the file size is less than 8000KB and at least one of the specified strings
+    is found.
+  Updated-Date: '2024_08_06'
+SnakeTurla_Malware_May17_1:
+  Created-Date: '2024_08_06'
+  Custom-Edited: false
+  Reviewed: false
+  Rule-Body-Hash: fb80710115e34e94e3fcdb15ef609235
+  Ruleset: securityonion-yara
+  Summary: This rule detects a sample of the Snake or Turla malware by identifying
+    a specific path string and validating the file's properties. The rule specifically
+    looks for the string "/Users/vlad/Desktop/install/install/" in files with a size
+    less than 200KB and a file header that starts with the hexadecimal value 0xfacf.
+  Updated-Date: '2024_08_06'
+TrojanDownloader:
+  Created-Date: '2024_08_06'
+  Custom-Edited: false
+  Reviewed: false
+  Rule-Body-Hash: dd3e081b124bc8a10f5766a5223e4ab9
+  Ruleset: securityonion-yara
+  Summary: This rule detects a Trojan Downloader exploiting a vulnerability in Flash,
+    identified in February 2015. It looks for specific ASCII strings and API functions
+    commonly used by the malware, such as "GetCommandLineA," "ExitProcess," "CreateFileA,"
+    and several others from kernel32.dll and user32.dll. It triggers a match if these
+    strings are found together in a file smaller than 35KB, additionally including
+    the phrase "Hello World!" and the string "CONIN$".
+  Updated-Date: '2024_08_06'
 TurlaMosquito_Mal_3:
   Created-Date: '2024_08_06'
   Custom-Edited: false
@@ -233,6 +310,19 @@ TurlaMosquito_Mal_3:
     possibly masquerade as legitimate network traffic. The rule also checks for specific
     export functions and an exact import hash value to further validate the presence
     of this malware.
+  Updated-Date: '2024_08_06'
+UBoatRAT_Dropper:
+  Created-Date: '2024_08_06'
+  Custom-Edited: false
+  Reviewed: false
+  Rule-Body-Hash: e5222d267154c2ff3357d843d1859407
+  Ruleset: securityonion-yara
+  Summary: This rule detects the UBoatRAT Dropper, a malicious software component
+    associated with the UBoatRAT malware. UBoatRAT targets environments in East Asia,
+    often focusing on reconnaissance and command-and-control operations. This detection
+    is based on specific strings found in the executable file, such as "GetCurrenvackageId"
+    and "fghijklmnopq." The rule triggers if the file has a specific header signature,
+    is under 200KB in size, and contains all the specified string patterns.
   Updated-Date: '2024_08_06'
 Waterbear_4_Jun17:
   Created-Date: '2024_08_06'
@@ -318,6 +408,20 @@ gen_macro_ShellExecute_action:
     of strings such as "ShellExecute" and "GetObject" and checks for specific byte
     patterns at the beginning of the file.
   Updated-Date: '2024_08_06'
+p0wnedPowerCat:
+  Created-Date: '2024_08_06'
+  Custom-Edited: false
+  Reviewed: false
+  Rule-Body-Hash: ddda3ef63455f7d01bf3c2a947995d84
+  Ruleset: securityonion-yara
+  Summary: This rule detects the presence of the p0wnedShell Runspace Post Exploitation
+    Toolkit, specifically focusing on a file named p0wnedPowerCat.cs. It identifies
+    this toolkit based on unique strings related to its operation and usage, such
+    as references to local network connections established through Firefox, the command-line
+    tool powercat, and various labels and functions like "P0wnedListener," "EncodedPayload.bat,"
+    and "Invoke-PowerShellTcpOneLine." These indicators help identify the execution
+    or presence of the p0wnedShell toolkit within a file smaller than 150KB.
+  Updated-Date: '2024_08_06'
 snifferport:
   Created-Date: '2024_08_06'
   Custom-Edited: false
@@ -328,4 +432,28 @@ snifferport:
     hacktool set. It identifies specific strings within the file such as "iphlpapi.DLL,"
     "ystem\\CurrentCorolSet\\," "Port.TX," "32Next," and "V1.2 B." These strings are
     used to confirm the presence of this particular hacktool.
+  Updated-Date: '2024_08_06'
+webshell_PHP_redcod:
+  Created-Date: '2024_08_06'
+  Custom-Edited: false
+  Reviewed: false
+  Rule-Body-Hash: d8230a8619012446c4aa6a0fcaf715c8
+  Ruleset: securityonion-yara
+  Summary: This rule detects a specific PHP web shell known as "redcod.php" by looking
+    for the presence of unique strings ("H8p0bGFOEy7eAly4h4E4o88LTSVHoAglJ2KLQhUw"
+    and "HKP7dVyCf8cgnWFy8ocjrP5ffzkn9ODroM0/raHm"). These strings must be found in
+    the file exactly as specified, indicating the presence of this particular malicious
+    script. The detection aims to identify unauthorized or malicious scripts used
+    to manage and control compromised web servers.
+  Updated-Date: '2024_08_06'
+webshell_php_sh_server:
+  Created-Date: '2024_08_06'
+  Custom-Edited: false
+  Reviewed: false
+  Rule-Body-Hash: f38b42e47434182181b719e332864adf
+  Ruleset: securityonion-yara
+  Summary: This rule detects the presence of a web shell in a PHP file named "server.php."
+    It identifies the malicious file by searching for a specific string containing
+    the code snippet `eval(getenv('HTTP_CODE'));`, which is a known indicator of a
+    web shell that executes code based on the environment variable 'HTTP_CODE'.
   Updated-Date: '2024_08_06'

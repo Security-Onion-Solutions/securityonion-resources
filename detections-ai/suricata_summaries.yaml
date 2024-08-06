@@ -1,3 +1,17 @@
+'2006022':
+  Created-Date: '2024_08_06'
+  Custom-Edited: false
+  Reviewed: false
+  Rule-Body-Hash: c2607fbbddc4ddc90d58e48fd0e36386
+  Ruleset: ETOPEN
+  Summary: This rule detects an attempted SQL injection attack targeting the Address
+    Book application through a vulnerable `user.php` script. The attack specifically
+    involves manipulating the `passwordNew` parameter and using a `UNION SELECT` SQL
+    query to exploit the application. This activity is indicative of an attacker attempting
+    to execute arbitrary SQL commands, potentially revealing sensitive data or compromising
+    the server. The rule identifies the specific attack pattern and references a known
+    vulnerability, CVE-2006-4575.
+  Updated-Date: '2024_08_06'
 '2010479':
   Created-Date: '2024_08_06'
   Custom-Edited: false
@@ -102,6 +116,19 @@
     2014 by monitoring HTTP traffic where the URI path includes "/get/get.php" and
     lacks the "referer" header.
   Updated-Date: '2024_08_06'
+'2020157':
+  Created-Date: '2024_08_06'
+  Custom-Edited: false
+  Reviewed: false
+  Rule-Body-Hash: 1a87d2d293c3e395a46db7e53e6accba
+  Ruleset: ETOPEN
+  Summary: This rule detects communication initiated by the Win32/Emotet.C malware
+    variant. It specifically identifies an established HTTP session where a POST request
+    is made to the URI path containing "/download.php?listfiles=" with a content length
+    of zero. Additionally, the rule ensures that certain header fields, such as "user-agent,"
+    "referer," and "accept" are not present in the request, indicating potential command-and-control
+    activity.
+  Updated-Date: '2024_08_06'
 '2021394':
   Created-Date: '2024_08_06'
   Custom-Edited: false
@@ -124,6 +151,20 @@
   Summary: This rule detects DNS queries for the domain "3qbyaoohkcqkzrz6", which
     is associated with Cryptolocker payment activities, indicating potential malware-related
     activity on the network.
+  Updated-Date: '2024_08_06'
+'2022694':
+  Created-Date: '2024_08_06'
+  Custom-Edited: false
+  Reviewed: false
+  Rule-Body-Hash: 0e4b056a7836e99619bec40acef86bf1
+  Ruleset: ETOPEN
+  Summary: This rule detects HTTP GET requests related to the potentially unwanted
+    program (PUP) known as Win32/SmartTab. The detection focuses on outgoing traffic
+    from the internal network to external networks, specifically looking for URIs
+    that start with "/v" and end with ".asp" in the established HTTP connections.
+    Additionally, the rule targets requests with a User-Agent string corresponding
+    to "Mozilla/3.0 (compatible|3b 20|Indy Library)" that is exactly 38 bytes in size,
+    indicative of SmartTab's installer activity.
   Updated-Date: '2024_08_06'
 '2025065':
   Created-Date: '2024_08_06'
@@ -162,6 +203,17 @@
     clients, signaling that a client endpoint might be compromised by this specific
     malware.
   Updated-Date: '2024_08_06'
+'2030964':
+  Created-Date: '2024_08_06'
+  Custom-Edited: false
+  Reviewed: false
+  Rule-Body-Hash: ba5d932591fa4b7f14ec3873e0bba43f
+  Ruleset: ETOPEN
+  Summary: This rule detects an inbound attempt to connect to a server using an HTTP
+    User-Agent field containing "NotRift/", which is associated with variants of the
+    ELF/Mirai malware. The traffic is identified when it is part of an established
+    connection targeting Internet of Things (IoT) devices running on Linux.
+  Updated-Date: '2024_08_06'
 '2035156':
   Created-Date: '2024_08_06'
   Custom-Edited: false
@@ -172,6 +224,20 @@
     "dns.keweon.center" to the internal network. It triggers when a TLS certificate
     subject contains "CN=dns.keweon.center" in an established connection, aiming to
     monitor potential usage of this specific DoH service.
+  Updated-Date: '2024_08_06'
+'2037414':
+  Created-Date: '2024_08_06'
+  Custom-Edited: false
+  Reviewed: false
+  Rule-Body-Hash: 72cf36a7e3fd731eb5cf0a3b2753d260
+  Ruleset: ETOPEN
+  Summary: "This rule detects the presence of TLS certificates associated with the\
+    \ Havoc and Sliver frameworks, which are used for malicious activities. Specifically,\
+    \ it inspects TLS flows from an external network to the home network and looks\
+    \ for certain patterns in the certificate\u2019s content and structure, including\
+    \ details like country code \"US\", state \"Arizona\", city \"Phoenix\", and other\
+    \ organizational identifiers. It aims to identify certificates issued by these\
+    \ frameworks, which are commonly used by attackers to establish secure communications."
   Updated-Date: '2024_08_06'
 '2037948':
   Created-Date: '2024_08_06'
@@ -225,6 +291,18 @@
   Summary: This rule detects DNS queries to any domain ending with ".serverpit.com,"
     which is associated with dynamic DNS services.
   Updated-Date: '2024_08_06'
+'2043669':
+  Created-Date: '2024_08_06'
+  Custom-Edited: false
+  Reviewed: false
+  Rule-Body-Hash: a35eea7bed8f24236f1898656c5bc904
+  Ruleset: ETOPEN
+  Summary: This rule detects data exfiltration attempts associated with Win32/Obsidium
+    Stealer malware targeting Firefox browser data. It looks for an established TCP
+    connection from the internal network to an external network, searching for specific
+    patterns in the data related to Firefox's "cookies_firefox.db" file, which may
+    indicate malicious activity.
+  Updated-Date: '2024_08_06'
 '2044562':
   Created-Date: '2024_08_06'
   Custom-Edited: false
@@ -260,6 +338,18 @@
     external networks. The rule is relevant for Linux systems and is intended to identify
     client endpoint attacks.
   Updated-Date: '2024_08_06'
+'2049875':
+  Created-Date: '2024_08_06'
+  Custom-Edited: false
+  Reviewed: false
+  Rule-Body-Hash: 1fe1a346a4bd027ed6fcb5a435edf343
+  Ruleset: ETOPEN
+  Summary: This rule detects network traffic containing a TLS Server Name Indication
+    (SNI) for the domain "politefrightenpowoa.pw," which is associated with Lumma
+    Stealer malware. It triggers an alert when a connection to this domain is established,
+    indicating potential communication with a command and control server used by Lumma
+    Stealer.
+  Updated-Date: '2024_08_06'
 '2050735':
   Created-Date: '2024_08_06'
   Custom-Edited: false
@@ -283,4 +373,45 @@
     cybercrime organization. The detection is triggered when established traffic flows
     from the internal network to an external network, indicating potential malicious
     activity.
+  Updated-Date: '2024_08_06'
+'2052017':
+  Created-Date: '2024_08_06'
+  Custom-Edited: false
+  Reviewed: false
+  Rule-Body-Hash: 2b69c77dbce2a3a0bc4eb241d05d6d1f
+  Ruleset: ETOPEN
+  Summary: This rule detects transport layer security (TLS) traffic from the internal
+    network to any external network where the server name indication (SNI) field contains
+    the domain "cdn31.space", which is suspected to be related to Fin7 malware activity.
+    The rule monitors established connections directed to servers and matches a specific
+    payload size. The aim is to identify potentially malicious communication associated
+    with Fin7, a known cybercrime group that targets various systems including Windows
+    operating environments.
+  Updated-Date: '2024_08_06'
+'2052174':
+  Created-Date: '2024_08_06'
+  Custom-Edited: false
+  Reviewed: false
+  Rule-Body-Hash: 4ef8d9b5ccf4e8828c16180162b47ee1
+  Ruleset: ETOPEN
+  Summary: This rule detects a server response indicative of the Kapeka/ICYWELL backdoor
+    malware, specifically when there is an attempt to write to a file. The rule looks
+    for established connections where data is flowing to the client and checks the
+    content for specific strings that match the backdoor communication patterns. It
+    identifies part of the content structure involving writing data to a file and
+    a notable directory path. The detection is linked to known malware families SANDWORM
+    and APT44 targeting Windows operating systems, and it is intended for deployment
+    at the network perimeter or for decrypting SSL traffic.
+  Updated-Date: '2024_08_06'
+'2054848':
+  Created-Date: '2024_08_06'
+  Custom-Edited: false
+  Reviewed: false
+  Rule-Body-Hash: f09fe8ded73cd5c065c78b8cdf4c3e7f
+  Ruleset: ETOPEN
+  Summary: This rule detects DNS queries for the domain "21centuryart.com," which
+    is associated with a command-and-control (CnC) server used by an unknown malware
+    loader. The rule monitors DNS traffic to identify attempts by compromised systems
+    to contact this malicious domain, indicating potential infection and communication
+    with the CnC server.
   Updated-Date: '2024_08_06'

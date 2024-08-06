@@ -13,6 +13,17 @@
     activity could indicate an attempt to compromise system credentials and access
     sensitive information within an enterprise environment.
   Updated-Date: '2024_08_06'
+1070db9a-3e5d-412e-8e7b-7183b616e1b3:
+  Created-Date: '2024_08_06'
+  Custom-Edited: false
+  Reviewed: false
+  Rule-Body-Hash: 8787bbc337b54cba70bc2dc7176e57f7
+  Ruleset: core
+  Summary: This rule detects an attacker gaining unauthorized privileged access by
+    replacing the sticky keys executable with the command prompt executable on a Windows
+    system. When sticky keys are activated, the privileged command shell is launched,
+    allowing access to a high-privilege console session without authentication.
+  Updated-Date: '2024_08_06'
 21117127-21c8-437a-ae03-4b51e5a8a088:
   Created-Date: '2024_08_06'
   Custom-Edited: false
@@ -55,6 +66,21 @@
     directory and named in ways that mimic legitimate applications like 'wmplayer.exe'
     and 'SearchFilterHost.exe'. These patterns are critical for identifying potential
     malware activity aimed at evading defenses.
+  Updated-Date: '2024_08_06'
+3245cd30-e015-40ff-a31d-5cadd5f377ec:
+  Created-Date: '2024_08_06'
+  Custom-Edited: false
+  Reviewed: false
+  Rule-Body-Hash: aa9187f08474c667a73ae2181a1d5e1d
+  Ruleset: core
+  Summary: This rule detects the execution of the hacktool Rubeus through the presence
+    of specific command line flags in PowerShell Script Block Logging. Rubeus is a
+    tool used for various Kerberos-related attacks, including AS-REP roasting, Kerberoasting,
+    and ticket extraction. The rule identifies commands indicative of Rubeus activity,
+    such as `/service:krbtgt`, `/luid`, `kerberoast`, and `createnetonly`, among others.
+    It focuses on keywords related to actions like impersonating users, renewing tickets,
+    harvesting, and brute-forcing passwords. The intention is to monitor and flag
+    these potentially malicious operations for further investigation.
   Updated-Date: '2024_08_06'
 39019a4e-317f-4ce3-ae63-309a8c6b53c5:
   Created-Date: '2024_08_06'
@@ -153,6 +179,33 @@
     executables, compressed archives, and other potentially malicious files, such
     as .exe, .dll, .ps1, .bat, and .vbs.
   Updated-Date: '2024_08_06'
+65c0a0ab-d675-4441-bd6b-d3db226a2685:
+  Created-Date: '2024_08_06'
+  Custom-Edited: false
+  Reviewed: false
+  Rule-Body-Hash: 786acc82dcb8145c70c08a7548472ace
+  Ruleset: emerging-threats
+  Summary: This rule detects attempts to exploit the Atlassian Bitbucket Command Injection
+    vulnerability identified as CVE-2022-36804. This vulnerability allows attackers
+    to execute arbitrary commands via specially crafted requests to the Archive API
+    endpoints, potentially leading to remote code execution on vulnerable systems.
+    The rule monitors specific patterns in web server logs related to the queried
+    URI to identify signs of exploitation.
+  Updated-Date: '2024_08_06'
+7195a772-4b3f-43a4-a210-6a003d65caa1:
+  Created-Date: '2024_08_06'
+  Custom-Edited: false
+  Reviewed: false
+  Rule-Body-Hash: f9a1ebcf77bbf0b976c16abf6d2c71d7
+  Ruleset: core
+  Summary: This rule detects suspicious malformed user agent strings in proxy logs
+    that might indicate potential command and control activities. It identifies specific
+    patterns such as unusual or incorrect formats in user agents, typographical errors,
+    and known malicious signatures. The rule analyzes user agent strings that start
+    with, contain, or exactly match certain suspicious values typically associated
+    with malware or attacks. It also accounts for specific false positives, particularly
+    legitimate traffic from Adobe products, to reduce erroneous alerts.
+  Updated-Date: '2024_08_06'
 93199800-b52a-4dec-b762-75212c196542:
   Created-Date: '2024_08_06'
   Custom-Edited: false
@@ -189,6 +242,20 @@
     and can be associated with persistence, defense evasion, and privilege escalation
     tactics.
   Updated-Date: '2024_08_06'
+baca5663-583c-45f9-b5dc-ea96a22ce542:
+  Created-Date: '2024_08_06'
+  Custom-Edited: false
+  Reviewed: false
+  Rule-Body-Hash: 2e9a5ebe139a072d1f1471cdcc27cd84
+  Ruleset: core
+  Summary: This rule detects the usage and installation of a backdoor that exploits
+    the Windows Registry to register a malicious debugger for built-in tools such
+    as sethc.exe, utilman.exe, osk.exe, Magnify.exe, Narrator.exe, DisplaySwitch.exe,
+    atbroker.exe, and HelpPane.exe. This technique allows attackers to create persistence
+    and elevate privileges on a Windows system by manipulating the Image File Execution
+    Options to intercept and replace legitimate executables with malicious ones, especially
+    those accessible from the login screen.
+  Updated-Date: '2024_08_06'
 c0c67b21-eb8a-4c84-a395-40473ec3b482:
   Created-Date: '2024_08_06'
   Custom-Edited: false
@@ -202,6 +269,19 @@ c0c67b21-eb8a-4c84-a395-40473ec3b482:
     details containing ':\WINDOWS\system32\rundll32.exe', '.wll', and '#1'. The Kapeka
     backdoor is recognized for its persistence mechanisms that exploit autorun functionalities
     to maintain access and control over infected machines.
+  Updated-Date: '2024_08_06'
+c5a178bf-9cfb-4340-b584-e4df39b6a3e7:
+  Created-Date: '2024_08_06'
+  Custom-Edited: false
+  Reviewed: false
+  Rule-Body-Hash: febec7e77e3cbc9e50b2c7df40077d4a
+  Ruleset: emerging-threats
+  Summary: This rule detects the deactivation and disabling of the scheduled defragmentation
+    task in Windows systems, an activity associated with the Slingshot APT group.
+    This involves monitoring for specific security event logs where the Event ID is
+    4701 and the TaskName corresponds to '\Microsoft\Windows\Defrag\ScheduledDefrag'.
+    The rule aims to identify potential attempts to maintain persistence or impede
+    system performance by preventing regular disk defragmentation operations.
   Updated-Date: '2024_08_06'
 cf879ffb-793a-4753-9a14-bc8f37cc90df:
   Created-Date: '2024_08_06'
@@ -233,6 +313,22 @@ d047726b-c71c-4048-a99b-2e2f50dc107d:
     commands. This rule specifically looks for command lines containing 'run run-cmd'
     and excludes legitimate instances where the parent processes are either 'cleanapi.exe'
     or 'kavremover.exe'.
+  Updated-Date: '2024_08_06'
+e0552b19-5a83-4222-b141-b36184bb8d79:
+  Created-Date: '2024_08_06'
+  Custom-Edited: false
+  Reviewed: false
+  Rule-Body-Hash: 6f81b7feb865109181fb30eda628ff2f
+  Ruleset: core
+  Summary: "This rule detects potential command line obfuscation using Unicode characters.\
+    \ Adversaries may attempt to make an executable or file difficult to discover\
+    \ or analyze by obfuscating its contents. It focuses on identifying specific Unicode\
+    \ characters used as spacing modifiers, forward slash alternatives, hyphen alternatives,\
+    \ and other special characters within command lines in the Windows operating system.\
+    \ Examples of such characters include '\u02E3' (U+02E3), '\u2215' (U+22FF), '\u2014\
+    ' (U+2014), '\xE2', '\u20AC', '\xA3', and others. This approach leverages the\
+    \ presence of these characters to uncover obfuscation efforts that aim to evade\
+    \ detection."
   Updated-Date: '2024_08_06'
 e31033fc-33f0-4020-9a16-faf9b31cbf08:
   Created-Date: '2024_08_06'
@@ -301,6 +397,20 @@ eafb8bd5-7605-4bfe-a9ec-0442bc151f15:
     value featuring an uncommon character. This combination of request characteristics
     suggests an attempt to exploit this specific vulnerability.
   Updated-Date: '2024_08_06'
+edadb1e5-5919-4e4c-8462-a9e643b02c4b:
+  Created-Date: '2024_08_06'
+  Custom-Edited: false
+  Reviewed: false
+  Rule-Body-Hash: 1ce8b5f33e64318dd689db17f646b552
+  Ruleset: core
+  Summary: This rule detects the use of the Microsoft Windows Resource Leak Diagnostic
+    tool "rdrleakdiag.exe" being utilized to dump process memory, including the presence
+    of specific command-line arguments that indicate memory dump activities. The detection
+    focuses on identifying instances where the `rdrleakdiag.exe` program is executed
+    with arguments such as `fullmemdmp`, `memdmp`, and options for specifying output
+    or process targets, signaling potential credential access and abuse through memory
+    dumping techniques.
+  Updated-Date: '2024_08_06'
 f1b3a22a-45e6-4004-afb5-4291f9c21166:
   Created-Date: '2024_08_06'
   Custom-Edited: false
@@ -315,6 +425,37 @@ f1b3a22a-45e6-4004-afb5-4291f9c21166:
     activities like lateral movement within a network. By identifying the presence
     of paths and filenames typically associated with PsExec and excluding known legitimate
     service names, this rule helps to pinpoint suspicious activities.
+  Updated-Date: '2024_08_06'
+f376c8a7-a2d0-4ddc-aa0c-16c17236d962:
+  Created-Date: '2024_08_06'
+  Custom-Edited: false
+  Reviewed: false
+  Rule-Body-Hash: fd9a00c40c168cda6637d808b73934c0
+  Ruleset: core
+  Summary: This rule detects command line parameters associated with the execution
+    of Bloodhound and Sharphound hack tools. Bloodhound and Sharphound are used to
+    discover and map Active Directory relationships and permissions. The rule identifies
+    specific indicators such as references to SharpHound in product descriptions,
+    company associations with SpecterOps or evil corp, and executable file names like
+    Bloodhound.exe and SharpHound.exe. It also looks for command line arguments used
+    by these tools, including various collection methods, looping and port scan options,
+    and specific commands such as Invoke-Bloodhound and Get-BloodHoundData. Additionally,
+    the rule triggers on command lines that include setting JSON folders, ZIP file
+    names, and specific configurations like DCOnly and NoSaveCache.
+  Updated-Date: '2024_08_06'
+fa5b1358-b040-4403-9868-15f7d9ab6329:
+  Created-Date: '2024_08_06'
+  Custom-Edited: false
+  Reviewed: false
+  Rule-Body-Hash: 9a0f35bf5246d44fdd5e0fa81dbd92b8
+  Ruleset: core
+  Summary: This rule detects initiated network connections to various crypto mining
+    pools, specifically targeting destinations such as 'alimabi.cn', 'luckpool.net',
+    'minexmr.com', and many others. These connections can indicate the presence of
+    unauthorized crypto mining activities, which involve the use of cryptographic
+    calculations to mine digital currencies. Monitoring these connections is crucial
+    as crypto mining can lead to resource exhaustion and other security implications
+    on the affected systems.
   Updated-Date: '2024_08_06'
 fcbb4a77-f368-4945-b046-4499a1da69d1:
   Created-Date: '2024_08_06'
