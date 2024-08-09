@@ -1,6 +1,6 @@
 # Security Onion - Resources
 
-This repo contains the following resources:
+This branch contains the following resources:
 
-- Security Onion specific Sigma Rules
+- Security Onion - Detections' Summaries
 
