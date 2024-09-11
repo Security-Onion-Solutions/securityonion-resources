@@ -1,7 +1,7 @@
-title: The Security Onion grid has nodes that require reboot
-id: 4186440c-ce77-46e6-991f-e26198389514
+title: The Security Onion Detections engine has entered a failure state
+id: 40cfc50a-7105-40ee-a95d-520c39b790c5
 status: experimental
-description: The Security Onion grid has nodes that require reboot.
+description: The Security Onion Detections engine has entered a failure state.
 license: Elastic-2.0
 author: 'Security Onion Solutions'
 date: 2024/09/12
@@ -15,7 +15,7 @@ logsource:
     service: health
 detection:
     selection:
-        event.action: 'Grid nodes are awaiting reboot'
+        event.action: 'Detection engine has entered a failure state'
         event.dataset: soc.server
     condition: selection
-level: info
+level: medium

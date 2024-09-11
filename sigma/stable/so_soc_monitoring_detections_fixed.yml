@@ -1,7 +1,7 @@
-title: The Security Onion grid has nodes that require reboot
-id: 4186440c-ce77-46e6-991f-e26198389514
+title: The Security Onion Detections engine has returned to a healthy state
+id: d43a269f-0fc3-4316-bbdd-ac371f3ace51
 status: experimental
-description: The Security Onion grid has nodes that require reboot.
+description: The Security Onion Detections engine has returned to a healthy state.
 license: Elastic-2.0
 author: 'Security Onion Solutions'
 date: 2024/09/12
@@ -15,7 +15,7 @@ logsource:
     service: health
 detection:
     selection:
-        event.action: 'Grid nodes are awaiting reboot'
+        event.action: 'Detection engine has returned to a healthy state'
         event.dataset: soc.server
     condition: selection
-level: info
+level: medium
