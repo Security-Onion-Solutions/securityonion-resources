@@ -1,0 +1,14 @@
+title: 'Image is C:\Windows\System32\WUDFHost.exe'
+id: 'B0DC0AA6-18C7-45E0-8BC5-939E2F6FC3B3'
+description: 'Windows: Windows User-Mode Driver Framework Host. Safe as long as in the correct path.'
+references: 'https://github.com/Neo23x0/sysmon-config'
+author: 'SecurityOnionSolutions'
+date: '09/20/24'
+event_type: 'file_create'
+filter_type: 'exclude'
+filter:
+  selection_1:
+    TargetField: 'Image'
+    Condition: 'is'
+    Pattern: 'C:\Windows\System32\WUDFHost.exe'
+operating_system: 'windows'

@@ -1,0 +1,14 @@
+title: 'TargetObject begin with HKLM\Software\Microsoft\Windows\CurrentVersion\Installer\UserData\S-1-5-18\'
+id: '0E92D75A-6576-41EB-B1E1-CD461479E609'
+description: 'Windows: Remove noise monitoring installations run as system'
+references: 'https://github.com/Neo23x0/sysmon-config'
+author: 'SecurityOnionSolutions'
+date: '09/20/24'
+event_type: 'registry_event'
+filter_type: 'exclude'
+filter:
+  selection_1:
+    TargetField: 'TargetObject'
+    Condition: 'begin with'
+    Pattern: 'HKLM\Software\Microsoft\Windows\CurrentVersion\Installer\UserData\S-1-5-18\'
+operating_system: 'windows'

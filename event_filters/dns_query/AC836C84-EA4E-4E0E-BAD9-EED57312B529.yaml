@@ -1,0 +1,14 @@
+title: 'QueryName end with .msocdn.com'
+id: 'AC836C84-EA4E-4E0E-BAD9-EED57312B529'
+description: 'Microsoft'
+references: 'https://github.com/Neo23x0/sysmon-config'
+author: 'SecurityOnionSolutions'
+date: '09/20/24'
+event_type: 'dns_query'
+filter_type: 'exclude'
+filter:
+  selection_1:
+    TargetField: 'QueryName'
+    Condition: 'end with'
+    Pattern: '.msocdn.com'
+operating_system: 'windows'

@@ -1,0 +1,14 @@
+title: 'QueryName is l.google.com'
+id: '0A2489EB-3AD5-4C21-96E6-D924553A945C'
+description: 'Google'
+references: 'https://github.com/Neo23x0/sysmon-config'
+author: 'SecurityOnionSolutions'
+date: '09/20/24'
+event_type: 'dns_query'
+filter_type: 'exclude'
+filter:
+  selection_1:
+    TargetField: 'QueryName'
+    Condition: 'is'
+    Pattern: 'l.google.com'
+operating_system: 'windows'

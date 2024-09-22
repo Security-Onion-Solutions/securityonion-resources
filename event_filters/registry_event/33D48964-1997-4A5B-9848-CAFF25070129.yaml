@@ -1,0 +1,14 @@
+title: 'TargetObject end with }\PreviousPolicyAreas'
+id: '33D48964-1997-4A5B-9848-CAFF25070129'
+description: 'Windows: Remove noise from \Winlogon\GPExtensions by svchost.exe'
+references: 'https://github.com/Neo23x0/sysmon-config'
+author: 'SecurityOnionSolutions'
+date: '09/20/24'
+event_type: 'registry_event'
+filter_type: 'exclude'
+filter:
+  selection_1:
+    TargetField: 'TargetObject'
+    Condition: 'end with'
+    Pattern: '}\PreviousPolicyAreas'
+operating_system: 'windows'

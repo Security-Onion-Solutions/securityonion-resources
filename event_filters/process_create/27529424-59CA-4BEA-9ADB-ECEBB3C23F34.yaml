@@ -1,0 +1,14 @@
+title: 'CommandLine is C:\Windows\system32\svchost.exe -k networkService -s LanmanWorkstation'
+id: '27529424-59CA-4BEA-9ADB-ECEBB3C23F34'
+description: 'Windows:Network: "Workstation" service, used for SMB file-sharing connections and RDP'
+references: 'https://github.com/Neo23x0/sysmon-config'
+author: 'SecurityOnionSolutions'
+date: '09/20/24'
+event_type: 'process_create'
+filter_type: 'exclude'
+filter:
+  selection_1:
+    TargetField: 'CommandLine'
+    Condition: 'is'
+    Pattern: 'C:\Windows\system32\svchost.exe -k networkService -s LanmanWorkstation'
+operating_system: 'windows'

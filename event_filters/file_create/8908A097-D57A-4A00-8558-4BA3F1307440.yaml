@@ -1,0 +1,14 @@
+title: 'TargetFilename begin with C:\$WINDOWS.'
+id: '8908A097-D57A-4A00-8558-4BA3F1307440'
+description: 'BT\Sources\'
+references: 'https://github.com/Neo23x0/sysmon-config'
+author: 'SecurityOnionSolutions'
+date: '09/20/24'
+event_type: 'file_create'
+filter_type: 'exclude'
+filter:
+  selection_1:
+    TargetField: 'TargetFilename'
+    Condition: 'begin with'
+    Pattern: 'C:\$WINDOWS.'
+operating_system: 'windows'

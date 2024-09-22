@@ -1,0 +1,14 @@
+title: 'CommandLine is C:\Windows\system32\svchost.exe -k localSystemNetworkRestricted -s WdiSystemHost'
+id: '26E40E09-A73D-4C8D-8E3A-CDE0B6E5BF93'
+description: 'Windows: Diagnostic System Host [ http://www.blackviper.com/windows-services/diagnostic-system-host/ ]'
+references: 'https://github.com/Neo23x0/sysmon-config'
+author: 'SecurityOnionSolutions'
+date: '09/20/24'
+event_type: 'process_create'
+filter_type: 'exclude'
+filter:
+  selection_1:
+    TargetField: 'CommandLine'
+    Condition: 'is'
+    Pattern: 'C:\Windows\system32\svchost.exe -k localSystemNetworkRestricted -s WdiSystemHost'
+operating_system: 'windows'

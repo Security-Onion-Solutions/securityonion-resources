@@ -1,0 +1,14 @@
+title: 'DestinationHostname end with go.microsoft.com'
+id: '8AD78A6B-F1BC-46A7-B6CE-579FDC61A902'
+description: ''
+references: 'https://github.com/olafhartong/sysmon-modular'
+author: 'SecurityOnionSolutions'
+date: '09/20/24'
+event_type: 'network_connection'
+filter_type: 'exclude'
+filter:
+  selection_1:
+    TargetField: 'DestinationHostname'
+    Condition: 'end with'
+    Pattern: 'go.microsoft.com'
+operating_system: 'windows'

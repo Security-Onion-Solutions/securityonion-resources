@@ -1,0 +1,14 @@
+title: 'QueryName end with .openx.net'
+id: '5F7CC410-F5B6-4937-8C8F-D7FE67A099DB'
+description: 'Ads'
+references: 'https://github.com/Neo23x0/sysmon-config'
+author: 'SecurityOnionSolutions'
+date: '09/20/24'
+event_type: 'dns_query'
+filter_type: 'exclude'
+filter:
+  selection_1:
+    TargetField: 'QueryName'
+    Condition: 'end with'
+    Pattern: '.openx.net'
+operating_system: 'windows'

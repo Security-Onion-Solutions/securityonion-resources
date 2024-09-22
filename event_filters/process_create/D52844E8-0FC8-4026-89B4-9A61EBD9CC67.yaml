@@ -1,0 +1,14 @@
+title: 'CommandLine is C:\Windows\system32\svchost.exe -k networkServiceNetworkRestricted'
+id: 'D52844E8-0FC8-4026-89B4-9A61EBD9CC67'
+description: 'Windows: Network services'
+references: 'https://github.com/Neo23x0/sysmon-config'
+author: 'SecurityOnionSolutions'
+date: '09/20/24'
+event_type: 'process_create'
+filter_type: 'exclude'
+filter:
+  selection_1:
+    TargetField: 'CommandLine'
+    Condition: 'is'
+    Pattern: 'C:\Windows\system32\svchost.exe -k networkServiceNetworkRestricted'
+operating_system: 'windows'

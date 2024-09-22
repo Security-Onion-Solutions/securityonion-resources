@@ -1,0 +1,14 @@
+title: 'CommandLine is C:\Windows\system32\svchost.exe -k networkService -s NlaSvc'
+id: 'A7915F02-C0BD-447D-B3BB-C018DFDB4177'
+description: 'Windows:Network: Network Location Awareness'
+references: 'https://github.com/Neo23x0/sysmon-config'
+author: 'SecurityOnionSolutions'
+date: '09/20/24'
+event_type: 'process_create'
+filter_type: 'exclude'
+filter:
+  selection_1:
+    TargetField: 'CommandLine'
+    Condition: 'is'
+    Pattern: 'C:\Windows\system32\svchost.exe -k networkService -s NlaSvc'
+operating_system: 'windows'

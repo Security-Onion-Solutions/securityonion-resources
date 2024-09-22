@@ -1,0 +1,14 @@
+title: 'Image is C:\Windows\system32\conhost.exe'
+id: '262FF412-09B8-4908-A435-4588C1130FDE'
+description: 'Windows: Command line interface host process'
+references: 'https://github.com/Neo23x0/sysmon-config'
+author: 'SecurityOnionSolutions'
+date: '09/20/24'
+event_type: 'process_create'
+filter_type: 'exclude'
+filter:
+  selection_1:
+    TargetField: 'Image'
+    Condition: 'is'
+    Pattern: 'C:\Windows\system32\conhost.exe'
+operating_system: 'windows'

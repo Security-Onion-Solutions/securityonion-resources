@@ -1,0 +1,14 @@
+title: 'ParentImage end with :\Program Files\Splunk\bin\splunkd.exe'
+id: '20D97686-BE91-4EF2-B24F-9A780A70F89F'
+description: 'Splunk: Very noisy if using Universal Forwarders'
+references: 'https://github.com/Neo23x0/sysmon-config'
+author: 'SecurityOnionSolutions'
+date: '09/20/24'
+event_type: 'process_create'
+filter_type: 'exclude'
+filter:
+  selection_1:
+    TargetField: 'ParentImage'
+    Condition: 'end with'
+    Pattern: ':\Program Files\Splunk\bin\splunkd.exe'
+operating_system: 'windows'

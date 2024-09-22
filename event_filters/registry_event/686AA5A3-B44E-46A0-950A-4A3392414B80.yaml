@@ -1,0 +1,14 @@
+title: 'TargetObject end with HKLM\SYSTEM\CurrentControlSet\Services\UsoSvc\Start'
+id: '686AA5A3-B44E-46A0-950A-4A3392414B80'
+description: 'Windows: Remove noise from monitoring "\Start"'
+references: 'https://github.com/Neo23x0/sysmon-config'
+author: 'SecurityOnionSolutions'
+date: '09/20/24'
+event_type: 'registry_event'
+filter_type: 'exclude'
+filter:
+  selection_1:
+    TargetField: 'TargetObject'
+    Condition: 'end with'
+    Pattern: 'HKLM\SYSTEM\CurrentControlSet\Services\UsoSvc\Start'
+operating_system: 'windows'

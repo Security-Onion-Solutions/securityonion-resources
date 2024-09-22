@@ -1,0 +1,14 @@
+title: 'TargetObject end with HKLM\SYSTEM\CurrentControlSet\Control\Lsa\LsaPid'
+id: '4C4B8D26-4CEC-46D0-B257-4D5CC9C7FF23'
+description: 'Windows:lsass.exe: Boot noise'
+references: 'https://github.com/Neo23x0/sysmon-config'
+author: 'SecurityOnionSolutions'
+date: '09/20/24'
+event_type: 'registry_event'
+filter_type: 'exclude'
+filter:
+  selection_1:
+    TargetField: 'TargetObject'
+    Condition: 'end with'
+    Pattern: 'HKLM\SYSTEM\CurrentControlSet\Control\Lsa\LsaPid'
+operating_system: 'windows'

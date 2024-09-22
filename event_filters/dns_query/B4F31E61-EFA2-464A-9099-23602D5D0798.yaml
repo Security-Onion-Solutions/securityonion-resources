@@ -1,0 +1,14 @@
+title: 'QueryName end with .advertising.com'
+id: 'B4F31E61-EFA2-464A-9099-23602D5D0798'
+description: 'Ads | Microsoft default exclusion'
+references: 'https://github.com/Neo23x0/sysmon-config'
+author: 'SecurityOnionSolutions'
+date: '09/20/24'
+event_type: 'dns_query'
+filter_type: 'exclude'
+filter:
+  selection_1:
+    TargetField: 'QueryName'
+    Condition: 'end with'
+    Pattern: '.advertising.com'
+operating_system: 'windows'

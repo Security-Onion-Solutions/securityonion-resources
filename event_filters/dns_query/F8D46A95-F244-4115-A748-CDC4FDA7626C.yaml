@@ -1,0 +1,14 @@
+title: 'QueryName end with .googlesyndication.com'
+id: 'F8D46A95-F244-4115-A748-CDC4FDA7626C'
+description: 'Ads:Google, sometimes called during malicious ads, but not directly responsible | Microsoft default exclusion [ https://www.hackread.com/wp-content/uploads/2018/06/Bitdefender-Whitepaper-Zacinlo.pdf ]'
+references: 'https://github.com/Neo23x0/sysmon-config'
+author: 'SecurityOnionSolutions'
+date: '09/20/24'
+event_type: 'dns_query'
+filter_type: 'exclude'
+filter:
+  selection_1:
+    TargetField: 'QueryName'
+    Condition: 'end with'
+    Pattern: '.googlesyndication.com'
+operating_system: 'windows'

@@ -1,0 +1,14 @@
+title: 'QueryName end with .quantserve.com'
+id: 'CEC467C2-FA9C-4C6E-AC02-D5B32A8B2366'
+description: ''
+references: 'https://github.com/Neo23x0/sysmon-config'
+author: 'SecurityOnionSolutions'
+date: '09/20/24'
+event_type: 'dns_query'
+filter_type: 'exclude'
+filter:
+  selection_1:
+    TargetField: 'QueryName'
+    Condition: 'end with'
+    Pattern: '.quantserve.com'
+operating_system: 'windows'

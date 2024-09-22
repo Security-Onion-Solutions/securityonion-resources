@@ -1,0 +1,14 @@
+title: 'ParentCommandLine is C:\Windows\system32\svchost.exe -k localSystemNetworkRestricted'
+id: '7B7F47FA-8A31-4431-B89A-F2B571DB3AB1'
+description: 'Windows'
+references: 'https://github.com/Neo23x0/sysmon-config'
+author: 'SecurityOnionSolutions'
+date: '09/20/24'
+event_type: 'process_create'
+filter_type: 'exclude'
+filter:
+  selection_1:
+    TargetField: 'ParentCommandLine'
+    Condition: 'is'
+    Pattern: 'C:\Windows\system32\svchost.exe -k localSystemNetworkRestricted'
+operating_system: 'windows'

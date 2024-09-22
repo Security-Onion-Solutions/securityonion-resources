@@ -1,0 +1,14 @@
+title: 'TargetObject end with \CurrentVersion\App Paths'
+id: 'B86FB416-606A-445C-9F16-2B562ECA2C15'
+description: ''
+references: 'https://github.com/olafhartong/sysmon-modular'
+author: 'SecurityOnionSolutions'
+date: '09/20/24'
+event_type: 'registry_event'
+filter_type: 'exclude'
+filter:
+  selection_1:
+    TargetField: 'TargetObject'
+    Condition: 'end with'
+    Pattern: '\CurrentVersion\App Paths'
+operating_system: 'windows'

@@ -1,0 +1,14 @@
+title: 'CommandLine contains \Machine\Scripts\Startup\ipamprovisioning.ps1'
+id: '4D314941-8876-4F19-BC90-4B64A27DC139'
+description: ' Windows IP Address Management (IPAM)'
+references: 'https://github.com/Neo23x0/sysmon-config'
+author: 'SecurityOnionSolutions'
+date: '09/20/24'
+event_type: 'process_create'
+filter_type: 'exclude'
+filter:
+  selection_1:
+    TargetField: 'CommandLine'
+    Condition: 'contains'
+    Pattern: '\Machine\Scripts\Startup\ipamprovisioning.ps1'
+operating_system: 'windows'

@@ -1,0 +1,14 @@
+title: 'TargetObject end with Toolbar\WebBrowser'
+id: '8900E1D5-E54B-4F4F-BC77-737824FD526F'
+description: 'Microsoft:IE: Extraneous activity'
+references: 'https://github.com/Neo23x0/sysmon-config'
+author: 'SecurityOnionSolutions'
+date: '09/20/24'
+event_type: 'registry_event'
+filter_type: 'exclude'
+filter:
+  selection_1:
+    TargetField: 'TargetObject'
+    Condition: 'end with'
+    Pattern: 'Toolbar\WebBrowser'
+operating_system: 'windows'

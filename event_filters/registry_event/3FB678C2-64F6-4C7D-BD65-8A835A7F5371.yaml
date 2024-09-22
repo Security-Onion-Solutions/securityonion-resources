@@ -1,0 +1,14 @@
+title: 'TargetObject end with Browser\ITBar7Layout'
+id: '3FB678C2-64F6-4C7D-BD65-8A835A7F5371'
+description: 'Microsoft:IE: Extraneous activity'
+references: 'https://github.com/Neo23x0/sysmon-config'
+author: 'SecurityOnionSolutions'
+date: '09/20/24'
+event_type: 'registry_event'
+filter_type: 'exclude'
+filter:
+  selection_1:
+    TargetField: 'TargetObject'
+    Condition: 'end with'
+    Pattern: 'Browser\ITBar7Layout'
+operating_system: 'windows'

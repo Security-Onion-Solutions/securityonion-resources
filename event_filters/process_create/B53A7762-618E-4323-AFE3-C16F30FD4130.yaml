@@ -1,0 +1,14 @@
+title: 'CommandLine is C:\Windows\system32\svchost.exe -k localServiceNetworkRestricted -p -s NgcCtnrSvc'
+id: 'B53A7762-618E-4323-AFE3-C16F30FD4130'
+description: 'Microsoft:Passport Container'
+references: 'https://github.com/Neo23x0/sysmon-config'
+author: 'SecurityOnionSolutions'
+date: '09/20/24'
+event_type: 'process_create'
+filter_type: 'exclude'
+filter:
+  selection_1:
+    TargetField: 'CommandLine'
+    Condition: 'is'
+    Pattern: 'C:\Windows\system32\svchost.exe -k localServiceNetworkRestricted -p -s NgcCtnrSvc'
+operating_system: 'windows'

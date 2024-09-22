@@ -1,0 +1,14 @@
+title: 'CommandLine begin with "C:\Program Files\Google\Chrome\Application\chrome.exe" --type='
+id: '749F6BD4-7F76-45EC-A1ED-6EAC7AF58252'
+description: 'Google:Chrome: massive command-line arguments'
+references: 'https://github.com/Neo23x0/sysmon-config'
+author: 'SecurityOnionSolutions'
+date: '09/20/24'
+event_type: 'process_create'
+filter_type: 'exclude'
+filter:
+  selection_1:
+    TargetField: 'CommandLine'
+    Condition: 'begin with'
+    Pattern: '"C:\Program Files\Google\Chrome\Application\chrome.exe" --type='
+operating_system: 'windows'

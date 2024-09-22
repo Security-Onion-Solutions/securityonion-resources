@@ -1,0 +1,14 @@
+title: 'QueryName is play.google.com'
+id: '68D12ED6-0405-4917-9F15-79175F8E78B2'
+description: ''
+references: 'https://github.com/Neo23x0/sysmon-config'
+author: 'SecurityOnionSolutions'
+date: '09/20/24'
+event_type: 'dns_query'
+filter_type: 'exclude'
+filter:
+  selection_1:
+    TargetField: 'QueryName'
+    Condition: 'is'
+    Pattern: 'play.google.com'
+operating_system: 'windows'

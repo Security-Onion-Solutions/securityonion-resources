@@ -1,0 +1,14 @@
+title: 'ParentImage is C:\Program Files\Microsoft Monitoring Agent\Agent\HealthService.exe'
+id: 'B3A658FA-4E64-4296-B7D5-4DC1428435A1'
+description: ''
+references: 'https://github.com/Neo23x0/sysmon-config'
+author: 'SecurityOnionSolutions'
+date: '09/20/24'
+event_type: 'process_create'
+filter_type: 'exclude'
+filter:
+  selection_1:
+    TargetField: 'ParentImage'
+    Condition: 'is'
+    Pattern: 'C:\Program Files\Microsoft Monitoring Agent\Agent\HealthService.exe'
+operating_system: 'windows'

@@ -1,0 +1,14 @@
+title: 'Image is System'
+id: '35F95216-D237-48D1-83A7-DA21F7018446'
+description: ''
+references: 'https://github.com/olafhartong/sysmon-modular'
+author: 'SecurityOnionSolutions'
+date: '09/20/24'
+event_type: 'registry_event'
+filter_type: 'exclude'
+filter:
+  selection_1:
+    TargetField: 'Image'
+    Condition: 'is'
+    Pattern: 'System'
+operating_system: 'windows'

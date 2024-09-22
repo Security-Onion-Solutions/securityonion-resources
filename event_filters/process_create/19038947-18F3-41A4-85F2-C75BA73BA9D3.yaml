@@ -1,0 +1,14 @@
+title: 'ParentCommandLine begin with C:\Windows\Microsoft.NET\Framework64\v4.0.30319\ngentask.exe'
+id: '19038947-18F3-41A4-85F2-C75BA73BA9D3'
+description: ''
+references: 'https://github.com/Neo23x0/sysmon-config'
+author: 'SecurityOnionSolutions'
+date: '09/20/24'
+event_type: 'process_create'
+filter_type: 'exclude'
+filter:
+  selection_1:
+    TargetField: 'ParentCommandLine'
+    Condition: 'begin with'
+    Pattern: 'C:\Windows\Microsoft.NET\Framework64\v4.0.30319\ngentask.exe'
+operating_system: 'windows'

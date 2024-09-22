@@ -1,0 +1,14 @@
+title: 'ParentImage is C:\Program Files\Common Files\Microsoft Shared\ClickToRun\OfficeClickToRun.exe'
+id: '4A928BAE-6B54-4640-AFA4-517F3A2851E9'
+description: 'Microsoft:Office: Background process'
+references: 'https://github.com/Neo23x0/sysmon-config'
+author: 'SecurityOnionSolutions'
+date: '09/20/24'
+event_type: 'process_create'
+filter_type: 'exclude'
+filter:
+  selection_1:
+    TargetField: 'ParentImage'
+    Condition: 'is'
+    Pattern: 'C:\Program Files\Common Files\Microsoft Shared\ClickToRun\OfficeClickToRun.exe'
+operating_system: 'windows'

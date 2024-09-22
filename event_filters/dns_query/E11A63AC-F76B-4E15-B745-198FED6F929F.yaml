@@ -1,0 +1,14 @@
+title: 'QueryName end with .adsafeprotected.com'
+id: 'E11A63AC-F76B-4E15-B745-198FED6F929F'
+description: 'Ads'
+references: 'https://github.com/Neo23x0/sysmon-config'
+author: 'SecurityOnionSolutions'
+date: '09/20/24'
+event_type: 'dns_query'
+filter_type: 'exclude'
+filter:
+  selection_1:
+    TargetField: 'QueryName'
+    Condition: 'end with'
+    Pattern: '.adsafeprotected.com'
+operating_system: 'windows'

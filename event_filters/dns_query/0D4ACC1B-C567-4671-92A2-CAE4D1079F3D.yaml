@@ -1,0 +1,14 @@
+title: 'QueryName end with -pushp.svc.ms'
+id: '0D4ACC1B-C567-4671-92A2-CAE4D1079F3D'
+description: 'Microsoft: Doesnt appear to host customer content or subdomains'
+references: 'https://github.com/Neo23x0/sysmon-config'
+author: 'SecurityOnionSolutions'
+date: '09/20/24'
+event_type: 'dns_query'
+filter_type: 'exclude'
+filter:
+  selection_1:
+    TargetField: 'QueryName'
+    Condition: 'end with'
+    Pattern: '-pushp.svc.ms'
+operating_system: 'windows'

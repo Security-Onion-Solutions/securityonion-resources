@@ -1,0 +1,14 @@
+title: 'TargetObject contains _Classes\AppX'
+id: '0E4E040E-473B-44AF-9C23-131CE874B335'
+description: 'Windows: Remove noise monitoring "Shell\open\command"--> <!--Win8+'
+references: 'https://github.com/Neo23x0/sysmon-config'
+author: 'SecurityOnionSolutions'
+date: '09/20/24'
+event_type: 'registry_event'
+filter_type: 'exclude'
+filter:
+  selection_1:
+    TargetField: 'TargetObject'
+    Condition: 'contains'
+    Pattern: '_Classes\AppX'
+operating_system: 'windows'

@@ -1,0 +1,14 @@
+title: 'DestinationHostname end with microsoft.com.nsatc.net'
+id: '881F4405-3490-44B8-A426-914A139CEDF7'
+description: 'Microsoft:Update delivery'
+references: 'https://github.com/Neo23x0/sysmon-config'
+author: 'SecurityOnionSolutions'
+date: '09/20/24'
+event_type: 'network_connection'
+filter_type: 'exclude'
+filter:
+  selection_1:
+    TargetField: 'DestinationHostname'
+    Condition: 'end with'
+    Pattern: 'microsoft.com.nsatc.net'
+operating_system: 'windows'

@@ -1,0 +1,14 @@
+title: 'QueryName is subca.ocsp-certum.com'
+id: 'CA822F3E-1E5A-462A-98EB-615CC52D9CC2'
+description: ''
+references: 'https://github.com/olafhartong/sysmon-modular'
+author: 'SecurityOnionSolutions'
+date: '09/20/24'
+event_type: 'dns_query'
+filter_type: 'exclude'
+filter:
+  selection_1:
+    TargetField: 'QueryName'
+    Condition: 'is'
+    Pattern: 'subca.ocsp-certum.com'
+operating_system: 'windows'

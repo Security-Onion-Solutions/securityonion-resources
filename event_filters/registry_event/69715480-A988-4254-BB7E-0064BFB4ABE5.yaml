@@ -1,0 +1,14 @@
+title: 'TargetObject begin with HKLM\Software\Microsoft\Windows\CurrentVersion\AppModel\StateRepository\Cache'
+id: '69715480-A988-4254-BB7E-0064BFB4ABE5'
+description: ''
+references: 'https://github.com/Neo23x0/sysmon-config'
+author: 'SecurityOnionSolutions'
+date: '09/20/24'
+event_type: 'registry_event'
+filter_type: 'exclude'
+filter:
+  selection_1:
+    TargetField: 'TargetObject'
+    Condition: 'begin with'
+    Pattern: 'HKLM\Software\Microsoft\Windows\CurrentVersion\AppModel\StateRepository\Cache'
+operating_system: 'windows'

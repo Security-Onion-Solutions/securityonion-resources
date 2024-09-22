@@ -1,0 +1,14 @@
+title: 'TargetObject contains \safer\codeidentifiers\0\HASHES\{'
+id: '659F7412-9680-42BF-BBB8-49B3DBCC44CB'
+description: 'Windows: Software Restriction Policies. Can be used to disable security tools, but very noisy to monitor if you use it'
+references: 'https://github.com/Neo23x0/sysmon-config'
+author: 'SecurityOnionSolutions'
+date: '09/20/24'
+event_type: 'registry_event'
+filter_type: 'exclude'
+filter:
+  selection_1:
+    TargetField: 'TargetObject'
+    Condition: 'contains'
+    Pattern: '\safer\codeidentifiers\0\HASHES\{'
+operating_system: 'windows'

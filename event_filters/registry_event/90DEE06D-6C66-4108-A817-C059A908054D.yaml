@@ -1,0 +1,14 @@
+title: 'TargetObject end with \services\clr_optimization_v2.0.50727_64\Start'
+id: '90DEE06D-6C66-4108-A817-C059A908054D'
+description: 'Microsoft:dotNet: Windows 7'
+references: 'https://github.com/Neo23x0/sysmon-config'
+author: 'SecurityOnionSolutions'
+date: '09/20/24'
+event_type: 'registry_event'
+filter_type: 'exclude'
+filter:
+  selection_1:
+    TargetField: 'TargetObject'
+    Condition: 'end with'
+    Pattern: '\services\clr_optimization_v2.0.50727_64\Start'
+operating_system: 'windows'

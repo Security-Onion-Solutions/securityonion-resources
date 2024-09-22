@@ -1,0 +1,14 @@
+title: 'Image is C:\Windows\system32\SppExtComObj.Exe'
+id: '05E4413F-5656-442C-A0AE-FE921A78064B'
+description: 'Windows: KMS activation'
+references: 'https://github.com/Neo23x0/sysmon-config'
+author: 'SecurityOnionSolutions'
+date: '09/20/24'
+event_type: 'process_create'
+filter_type: 'exclude'
+filter:
+  selection_1:
+    TargetField: 'Image'
+    Condition: 'is'
+    Pattern: 'C:\Windows\system32\SppExtComObj.Exe'
+operating_system: 'windows'

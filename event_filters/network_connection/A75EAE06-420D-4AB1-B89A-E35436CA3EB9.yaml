@@ -1,0 +1,14 @@
+title: 'Image begin with C:\Program Files\OMS Gateway\'
+id: 'A75EAE06-420D-4AB1-B89A-E35436CA3EB9'
+description: ''
+references: 'https://github.com/Neo23x0/sysmon-config'
+author: 'SecurityOnionSolutions'
+date: '09/20/24'
+event_type: 'network_connection'
+filter_type: 'exclude'
+filter:
+  selection_1:
+    TargetField: 'Image'
+    Condition: 'begin with'
+    Pattern: 'C:\Program Files\OMS Gateway\'
+operating_system: 'windows'

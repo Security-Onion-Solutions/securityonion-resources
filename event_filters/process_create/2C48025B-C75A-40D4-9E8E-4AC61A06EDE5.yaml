@@ -1,0 +1,14 @@
+title: 'Image is C:\Program Files\Common Files\Microsoft Shared\ClickToRun\OfficeC2RClient.exe'
+id: '2C48025B-C75A-40D4-9E8E-4AC61A06EDE5'
+description: 'Microsoft:Office: Background process'
+references: 'https://github.com/Neo23x0/sysmon-config'
+author: 'SecurityOnionSolutions'
+date: '09/20/24'
+event_type: 'process_create'
+filter_type: 'exclude'
+filter:
+  selection_1:
+    TargetField: 'Image'
+    Condition: 'is'
+    Pattern: 'C:\Program Files\Common Files\Microsoft Shared\ClickToRun\OfficeC2RClient.exe'
+operating_system: 'windows'

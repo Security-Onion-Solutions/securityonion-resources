@@ -1,0 +1,14 @@
+title: 'ParentCommandLine begin with %%SystemRoot%%\system32\csrss.exe ObjectDirectory=\Windows'
+id: '4DDC5FDE-C3CF-44FC-A074-B8F575D86065'
+description: 'Windows:CommandShell: Triggered when programs use the command shell, but doesnt provide attribution for what caused it'
+references: 'https://github.com/Neo23x0/sysmon-config'
+author: 'SecurityOnionSolutions'
+date: '09/20/24'
+event_type: 'process_create'
+filter_type: 'exclude'
+filter:
+  selection_1:
+    TargetField: 'ParentCommandLine'
+    Condition: 'begin with'
+    Pattern: '%%SystemRoot%%\system32\csrss.exe ObjectDirectory=\Windows'
+operating_system: 'windows'

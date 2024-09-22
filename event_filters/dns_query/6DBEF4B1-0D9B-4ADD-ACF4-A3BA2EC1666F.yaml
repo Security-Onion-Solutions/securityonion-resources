@@ -1,0 +1,14 @@
+title: 'QueryName end with .w55c.net'
+id: '6DBEF4B1-0D9B-4ADD-ACF4-A3BA2EC1666F'
+description: 'Ads:dataxu'
+references: 'https://github.com/Neo23x0/sysmon-config'
+author: 'SecurityOnionSolutions'
+date: '09/20/24'
+event_type: 'dns_query'
+filter_type: 'exclude'
+filter:
+  selection_1:
+    TargetField: 'QueryName'
+    Condition: 'end with'
+    Pattern: '.w55c.net'
+operating_system: 'windows'

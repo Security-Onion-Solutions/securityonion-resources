@@ -1,0 +1,14 @@
+title: 'QueryName is ..localmachine'
+id: '9109D43B-D873-490C-947F-055FD316A2C2'
+description: ''
+references: 'https://github.com/Neo23x0/sysmon-config'
+author: 'SecurityOnionSolutions'
+date: '09/20/24'
+event_type: 'dns_query'
+filter_type: 'exclude'
+filter:
+  selection_1:
+    TargetField: 'QueryName'
+    Condition: 'is'
+    Pattern: '..localmachine'
+operating_system: 'windows'

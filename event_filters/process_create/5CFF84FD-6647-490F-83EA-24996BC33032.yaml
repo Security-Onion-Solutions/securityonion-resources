@@ -1,0 +1,14 @@
+title: 'Image is C:\Windows\System32\wifitask.exe'
+id: '5CFF84FD-6647-490F-83EA-24996BC33032'
+description: 'Windows: Wireless Background Task'
+references: 'https://github.com/Neo23x0/sysmon-config'
+author: 'SecurityOnionSolutions'
+date: '09/20/24'
+event_type: 'process_create'
+filter_type: 'exclude'
+filter:
+  selection_1:
+    TargetField: 'Image'
+    Condition: 'is'
+    Pattern: 'C:\Windows\System32\wifitask.exe'
+operating_system: 'windows'

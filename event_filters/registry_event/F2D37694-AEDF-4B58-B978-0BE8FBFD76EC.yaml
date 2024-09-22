@@ -1,0 +1,14 @@
+title: 'TargetObject contains VirtualStore\MACHINE\SOFTWARE\Microsoft\Office\ClickToRun\'
+id: 'F2D37694-AEDF-4B58-B978-0BE8FBFD76EC'
+description: 'Microsoft: SearchProtocolHost writes to OfficeC2R registry for Outlook, seemingly regarding mail indexing'
+references: 'https://github.com/Neo23x0/sysmon-config'
+author: 'SecurityOnionSolutions'
+date: '09/20/24'
+event_type: 'registry_event'
+filter_type: 'exclude'
+filter:
+  selection_1:
+    TargetField: 'TargetObject'
+    Condition: 'contains'
+    Pattern: 'VirtualStore\MACHINE\SOFTWARE\Microsoft\Office\ClickToRun\'
+operating_system: 'windows'

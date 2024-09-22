@@ -1,0 +1,14 @@
+title: 'TargetObject end with \services\tunnel\Start'
+id: '435941D9-F538-4531-B452-FC00C56F4053'
+description: 'Windows: Remove noise from monitoring "\Start"'
+references: 'https://github.com/Neo23x0/sysmon-config'
+author: 'SecurityOnionSolutions'
+date: '09/20/24'
+event_type: 'registry_event'
+filter_type: 'exclude'
+filter:
+  selection_1:
+    TargetField: 'TargetObject'
+    Condition: 'end with'
+    Pattern: '\services\tunnel\Start'
+operating_system: 'windows'

@@ -1,0 +1,14 @@
+title: 'ParentImage is C:\Windows\Microsoft.NET\Framework\v4.0.30319\ngentask.exe'
+id: '19BD7953-CBEA-4987-94EF-3F5A0B68AB3A'
+description: 'Microsoft:DotNet: Spawns thousands of ngen.exe processes'
+references: 'https://github.com/Neo23x0/sysmon-config'
+author: 'SecurityOnionSolutions'
+date: '09/20/24'
+event_type: 'process_create'
+filter_type: 'exclude'
+filter:
+  selection_1:
+    TargetField: 'ParentImage'
+    Condition: 'is'
+    Pattern: 'C:\Windows\Microsoft.NET\Framework\v4.0.30319\ngentask.exe'
+operating_system: 'windows'

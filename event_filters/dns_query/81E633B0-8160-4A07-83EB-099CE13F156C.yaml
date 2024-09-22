@@ -1,0 +1,14 @@
+title: 'QueryName end with .phx.gbl'
+id: '81E633B0-8160-4A07-83EB-099CE13F156C'
+description: 'Ads | Microsoft default exclusion'
+references: 'https://github.com/Neo23x0/sysmon-config'
+author: 'SecurityOnionSolutions'
+date: '09/20/24'
+event_type: 'dns_query'
+filter_type: 'exclude'
+filter:
+  selection_1:
+    TargetField: 'QueryName'
+    Condition: 'end with'
+    Pattern: '.phx.gbl'
+operating_system: 'windows'

@@ -1,0 +1,14 @@
+title: 'TargetObject begin with HKCR\VLC.'
+id: 'DECBD19F-2300-417B-97F5-5DB0789F39C5'
+description: 'VLC update noise'
+references: 'https://github.com/Neo23x0/sysmon-config'
+author: 'SecurityOnionSolutions'
+date: '09/20/24'
+event_type: 'registry_event'
+filter_type: 'exclude'
+filter:
+  selection_1:
+    TargetField: 'TargetObject'
+    Condition: 'begin with'
+    Pattern: 'HKCR\VLC.'
+operating_system: 'windows'

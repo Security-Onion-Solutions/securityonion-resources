@@ -1,0 +1,14 @@
+title: 'Image is C:\Windows\system32\powercfg.exe'
+id: 'BF7B169A-0E03-41EF-B90F-90B3BBB58864'
+description: 'Microsoft:Power configuration management'
+references: 'https://github.com/Neo23x0/sysmon-config'
+author: 'SecurityOnionSolutions'
+date: '09/20/24'
+event_type: 'process_create'
+filter_type: 'exclude'
+filter:
+  selection_1:
+    TargetField: 'Image'
+    Condition: 'is'
+    Pattern: 'C:\Windows\system32\powercfg.exe'
+operating_system: 'windows'

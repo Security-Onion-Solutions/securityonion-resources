@@ -1,0 +1,14 @@
+title: 'DestinationHostname end with .windowsupdate.microsoft.com'
+id: 'E93F22DC-CBCE-4438-BDAC-5B203AA0F2CD'
+description: ''
+references: 'https://github.com/olafhartong/sysmon-modular'
+author: 'SecurityOnionSolutions'
+date: '09/20/24'
+event_type: 'network_connection'
+filter_type: 'exclude'
+filter:
+  selection_1:
+    TargetField: 'DestinationHostname'
+    Condition: 'end with'
+    Pattern: '.windowsupdate.microsoft.com'
+operating_system: 'windows'

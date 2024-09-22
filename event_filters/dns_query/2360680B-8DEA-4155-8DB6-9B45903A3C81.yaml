@@ -1,0 +1,14 @@
+title: 'QueryName is amazontrust.com'
+id: '2360680B-8DEA-4155-8DB6-9B45903A3C81'
+description: ''
+references: 'https://github.com/Neo23x0/sysmon-config'
+author: 'SecurityOnionSolutions'
+date: '09/20/24'
+event_type: 'dns_query'
+filter_type: 'exclude'
+filter:
+  selection_1:
+    TargetField: 'QueryName'
+    Condition: 'is'
+    Pattern: 'amazontrust.com'
+operating_system: 'windows'

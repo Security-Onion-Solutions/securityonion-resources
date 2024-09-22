@@ -1,0 +1,14 @@
+title: 'ParentImage is C:\Program Files\Microsoft Monitoring Agent\MonitoringHost.exe'
+id: '2A9ED1B6-7CD5-4EDF-AD2D-8DDB32E98317'
+description: ''
+references: 'https://github.com/Neo23x0/sysmon-config'
+author: 'SecurityOnionSolutions'
+date: '09/20/24'
+event_type: 'process_create'
+filter_type: 'exclude'
+filter:
+  selection_1:
+    TargetField: 'ParentImage'
+    Condition: 'is'
+    Pattern: 'C:\Program Files\Microsoft Monitoring Agent\MonitoringHost.exe'
+operating_system: 'windows'

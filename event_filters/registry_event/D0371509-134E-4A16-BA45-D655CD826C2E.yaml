@@ -1,0 +1,14 @@
+title: 'TargetObject end with SOFTWARE\Microsoft\Windows\CurrentVersion\Group Policy\Scripts\Startup\0\0\IsPowershell'
+id: 'D0371509-134E-4A16-BA45-D655CD826C2E'
+description: 'Windows:Group Policy: Noise below the actual key while building'
+references: 'https://github.com/Neo23x0/sysmon-config'
+author: 'SecurityOnionSolutions'
+date: '09/20/24'
+event_type: 'registry_event'
+filter_type: 'exclude'
+filter:
+  selection_1:
+    TargetField: 'TargetObject'
+    Condition: 'end with'
+    Pattern: 'SOFTWARE\Microsoft\Windows\CurrentVersion\Group Policy\Scripts\Startup\0\0\IsPowershell'
+operating_system: 'windows'

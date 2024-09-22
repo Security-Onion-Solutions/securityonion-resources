@@ -1,0 +1,14 @@
+title: 'Image is C:\Program Files (x86)\RES Software\Workspace Manager\pfwsmgr.exe'
+id: 'CB5B1E0D-FF53-4C46-B40C-18BF010ED31C'
+description: ''
+references: 'https://github.com/olafhartong/sysmon-modular'
+author: 'SecurityOnionSolutions'
+date: '09/20/24'
+event_type: 'file_create'
+filter_type: 'exclude'
+filter:
+  selection_1:
+    TargetField: 'Image'
+    Condition: 'is'
+    Pattern: 'C:\Program Files (x86)\RES Software\Workspace Manager\pfwsmgr.exe'
+operating_system: 'windows'

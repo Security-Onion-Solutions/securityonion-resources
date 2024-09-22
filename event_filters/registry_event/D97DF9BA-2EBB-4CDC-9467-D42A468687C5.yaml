@@ -1,0 +1,14 @@
+title: 'TargetObject end with \UserChoice\Hash'
+id: 'D97DF9BA-2EBB-4CDC-9467-D42A468687C5'
+description: 'Windows: Remove noise from monitoring "FileExts"--> <!--Win8+'
+references: 'https://github.com/Neo23x0/sysmon-config'
+author: 'SecurityOnionSolutions'
+date: '09/20/24'
+event_type: 'registry_event'
+filter_type: 'exclude'
+filter:
+  selection_1:
+    TargetField: 'TargetObject'
+    Condition: 'end with'
+    Pattern: '\UserChoice\Hash'
+operating_system: 'windows'

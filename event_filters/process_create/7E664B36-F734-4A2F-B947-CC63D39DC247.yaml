@@ -1,0 +1,14 @@
+title: 'Image begin with C:\Program Files\Microsoft Monitoring Agent\'
+id: '7E664B36-F734-4A2F-B947-CC63D39DC247'
+description: ''
+references: 'https://github.com/Neo23x0/sysmon-config'
+author: 'SecurityOnionSolutions'
+date: '09/20/24'
+event_type: 'process_create'
+filter_type: 'exclude'
+filter:
+  selection_1:
+    TargetField: 'Image'
+    Condition: 'begin with'
+    Pattern: 'C:\Program Files\Microsoft Monitoring Agent\'
+operating_system: 'windows'

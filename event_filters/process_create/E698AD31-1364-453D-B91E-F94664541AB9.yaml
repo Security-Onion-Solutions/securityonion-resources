@@ -1,0 +1,14 @@
+title: 'Image is C:\Windows\Microsoft.Net\Framework64\v3.0\WPF\PresentationFontCache.exe'
+id: 'E698AD31-1364-453D-B91E-F94664541AB9'
+description: 'Windows: Font cache service'
+references: 'https://github.com/Neo23x0/sysmon-config'
+author: 'SecurityOnionSolutions'
+date: '09/20/24'
+event_type: 'process_create'
+filter_type: 'exclude'
+filter:
+  selection_1:
+    TargetField: 'Image'
+    Condition: 'is'
+    Pattern: 'C:\Windows\Microsoft.Net\Framework64\v3.0\WPF\PresentationFontCache.exe'
+operating_system: 'windows'

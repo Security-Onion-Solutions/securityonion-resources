@@ -1,0 +1,14 @@
+title: 'TargetObject end with HKLM\SYSTEM\CurrentControlSet\Control\Lsa\Kerberos\Domains'
+id: '6A75783F-346B-4865-B837-F9A991445021'
+description: 'Windows:lsass.exe: Boot noise--> <!--Win8+'
+references: 'https://github.com/Neo23x0/sysmon-config'
+author: 'SecurityOnionSolutions'
+date: '09/20/24'
+event_type: 'registry_event'
+filter_type: 'exclude'
+filter:
+  selection_1:
+    TargetField: 'TargetObject'
+    Condition: 'end with'
+    Pattern: 'HKLM\SYSTEM\CurrentControlSet\Control\Lsa\Kerberos\Domains'
+operating_system: 'windows'

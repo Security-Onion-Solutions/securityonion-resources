@@ -1,0 +1,14 @@
+title: 'TargetObject begin with HKLM\SOFTWARE\Microsoft\Office\ClickToRun\'
+id: '25388DC3-307E-4856-8DD1-57660715342C'
+description: 'Microsoft: Virtual registry for Office'
+references: 'https://github.com/Neo23x0/sysmon-config'
+author: 'SecurityOnionSolutions'
+date: '09/20/24'
+event_type: 'registry_event'
+filter_type: 'exclude'
+filter:
+  selection_1:
+    TargetField: 'TargetObject'
+    Condition: 'begin with'
+    Pattern: 'HKLM\SOFTWARE\Microsoft\Office\ClickToRun\'
+operating_system: 'windows'

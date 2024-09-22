@@ -1,0 +1,14 @@
+title: 'Image end with \AppData\Local\Microsoft\OneDrive\OneDrive.exe'
+id: 'C5206351-EE5D-45FB-BA6C-59AAECA7D9A3'
+description: 'Microsoft: OneDrive'
+references: 'https://github.com/Neo23x0/sysmon-config'
+author: 'SecurityOnionSolutions'
+date: '09/20/24'
+event_type: 'network_connection'
+filter_type: 'exclude'
+filter:
+  selection_1:
+    TargetField: 'Image'
+    Condition: 'end with'
+    Pattern: '\AppData\Local\Microsoft\OneDrive\OneDrive.exe'
+operating_system: 'windows'

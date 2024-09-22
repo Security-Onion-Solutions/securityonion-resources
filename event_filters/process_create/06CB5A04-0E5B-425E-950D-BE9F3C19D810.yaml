@@ -1,0 +1,14 @@
+title: 'Image is C:\Program Files\Windows Media Player\wmpnscfg.exe'
+id: '06CB5A04-0E5B-425E-950D-BE9F3C19D810'
+description: 'Windows: Windows Media Player Network Sharing Service Configuration Application'
+references: 'https://github.com/Neo23x0/sysmon-config'
+author: 'SecurityOnionSolutions'
+date: '09/20/24'
+event_type: 'process_create'
+filter_type: 'exclude'
+filter:
+  selection_1:
+    TargetField: 'Image'
+    Condition: 'is'
+    Pattern: 'C:\Program Files\Windows Media Player\wmpnscfg.exe'
+operating_system: 'windows'

@@ -1,0 +1,14 @@
+title: 'QueryName end with .webex.com'
+id: '808BB7A0-6DDC-429E-9006-4818B940D13D'
+description: 'Webex'
+references: 'https://github.com/Neo23x0/sysmon-config'
+author: 'SecurityOnionSolutions'
+date: '09/20/24'
+event_type: 'dns_query'
+filter_type: 'exclude'
+filter:
+  selection_1:
+    TargetField: 'QueryName'
+    Condition: 'end with'
+    Pattern: '.webex.com'
+operating_system: 'windows'

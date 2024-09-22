@@ -1,0 +1,14 @@
+title: 'Image begin with C:\ProgramData\Microsoft\Windows Defender\Platform\'
+id: 'C40ED724-FBA6-4203-ACBA-1E756BFE8382'
+description: 'Microsoft: https://docs.microsoft.com/en-us/windows/security/threat-protection/microsoft-defender-atp/network-protection'
+references: 'https://github.com/Neo23x0/sysmon-config'
+author: 'SecurityOnionSolutions'
+date: '09/20/24'
+event_type: 'dns_query'
+filter_type: 'exclude'
+filter:
+  selection_1:
+    TargetField: 'Image'
+    Condition: 'begin with'
+    Pattern: 'C:\ProgramData\Microsoft\Windows Defender\Platform\'
+operating_system: 'windows'

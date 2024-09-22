@@ -1,0 +1,14 @@
+title: 'QueryName is aspnetcdn.com'
+id: '27677A60-DEA1-4535-AA49-E3BD3940C2F3'
+description: 'Microsoft [ https://docs.microsoft.com/en-us/aspnet/ajax/cdn/overview ]'
+references: 'https://github.com/Neo23x0/sysmon-config'
+author: 'SecurityOnionSolutions'
+date: '09/20/24'
+event_type: 'dns_query'
+filter_type: 'exclude'
+filter:
+  selection_1:
+    TargetField: 'QueryName'
+    Condition: 'is'
+    Pattern: 'aspnetcdn.com'
+operating_system: 'windows'

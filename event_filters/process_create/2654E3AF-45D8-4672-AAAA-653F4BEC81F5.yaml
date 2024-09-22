@@ -1,0 +1,14 @@
+title: 'Image is C:\Windows\system32\musNotificationUx.exe'
+id: '2654E3AF-45D8-4672-AAAA-653F4BEC81F5'
+description: 'Windows: Update pop-ups'
+references: 'https://github.com/Neo23x0/sysmon-config'
+author: 'SecurityOnionSolutions'
+date: '09/20/24'
+event_type: 'process_create'
+filter_type: 'exclude'
+filter:
+  selection_1:
+    TargetField: 'Image'
+    Condition: 'is'
+    Pattern: 'C:\Windows\system32\musNotificationUx.exe'
+operating_system: 'windows'

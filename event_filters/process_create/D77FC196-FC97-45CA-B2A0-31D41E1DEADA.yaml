@@ -1,0 +1,14 @@
+title: 'ParentImage is C:\Windows\system32\SearchIndexer.exe'
+id: 'D77FC196-FC97-45CA-B2A0-31D41E1DEADA'
+description: 'Windows:Search: Launches many uninteresting sub-processes'
+references: 'https://github.com/Neo23x0/sysmon-config'
+author: 'SecurityOnionSolutions'
+date: '09/20/24'
+event_type: 'process_create'
+filter_type: 'exclude'
+filter:
+  selection_1:
+    TargetField: 'ParentImage'
+    Condition: 'is'
+    Pattern: 'C:\Windows\system32\SearchIndexer.exe'
+operating_system: 'windows'

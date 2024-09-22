@@ -1,0 +1,14 @@
+title: 'Image is C:\Program Files (x86)\Microsoft Office\Office16\MSOSYNC.EXE'
+id: '1C349602-6A7F-4A4A-8997-CA41DDA91136'
+description: 'Microsoft:Office: Background process for SharePoint/Office365 connectivity'
+references: 'https://github.com/Neo23x0/sysmon-config'
+author: 'SecurityOnionSolutions'
+date: '09/20/24'
+event_type: 'process_create'
+filter_type: 'exclude'
+filter:
+  selection_1:
+    TargetField: 'Image'
+    Condition: 'is'
+    Pattern: 'C:\Program Files (x86)\Microsoft Office\Office16\MSOSYNC.EXE'
+operating_system: 'windows'

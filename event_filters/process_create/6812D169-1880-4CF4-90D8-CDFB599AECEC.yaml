@@ -1,0 +1,14 @@
+title: 'CommandLine begin with "C:\Windows\system32\wermgr.exe" "-queuereporting_svc" '
+id: '6812D169-1880-4CF4-90D8-CDFB599AECEC'
+description: 'Windows:Windows error reporting/telemetry'
+references: 'https://github.com/Neo23x0/sysmon-config'
+author: 'SecurityOnionSolutions'
+date: '09/20/24'
+event_type: 'process_create'
+filter_type: 'exclude'
+filter:
+  selection_1:
+    TargetField: 'CommandLine'
+    Condition: 'begin with'
+    Pattern: '"C:\Windows\system32\wermgr.exe" "-queuereporting_svc" '
+operating_system: 'windows'

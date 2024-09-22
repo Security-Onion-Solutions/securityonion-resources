@@ -1,0 +1,14 @@
+title: 'TargetObject end with \services\deviceAssociationService\Start'
+id: 'A4A344EF-03DD-436F-B4A0-F38627D9F934'
+description: 'Windows: Remove noise from monitoring "\Start"'
+references: 'https://github.com/Neo23x0/sysmon-config'
+author: 'SecurityOnionSolutions'
+date: '09/20/24'
+event_type: 'registry_event'
+filter_type: 'exclude'
+filter:
+  selection_1:
+    TargetField: 'TargetObject'
+    Condition: 'end with'
+    Pattern: '\services\deviceAssociationService\Start'
+operating_system: 'windows'

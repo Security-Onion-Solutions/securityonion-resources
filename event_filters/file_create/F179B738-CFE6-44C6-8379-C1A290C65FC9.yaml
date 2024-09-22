@@ -1,0 +1,14 @@
+title: 'Image begin with C:\Windows\winsxs\amd64_microsoft-windows'
+id: 'F179B738-CFE6-44C6-8379-C1A290C65FC9'
+description: ' Windows: Windows update'
+references: 'https://github.com/Neo23x0/sysmon-config'
+author: 'SecurityOnionSolutions'
+date: '09/20/24'
+event_type: 'file_create'
+filter_type: 'exclude'
+filter:
+  selection_1:
+    TargetField: 'Image'
+    Condition: 'begin with'
+    Pattern: 'C:\Windows\winsxs\amd64_microsoft-windows'
+operating_system: 'windows'

@@ -1,0 +1,14 @@
+title: 'TargetObject end with \services\trustedInstaller\Start'
+id: '89F27F59-5637-43AD-8FEC-B69FC2845B68'
+description: 'Windows: Remove noise from monitoring "\Start"'
+references: 'https://github.com/Neo23x0/sysmon-config'
+author: 'SecurityOnionSolutions'
+date: '09/20/24'
+event_type: 'registry_event'
+filter_type: 'exclude'
+filter:
+  selection_1:
+    TargetField: 'TargetObject'
+    Condition: 'end with'
+    Pattern: '\services\trustedInstaller\Start'
+operating_system: 'windows'

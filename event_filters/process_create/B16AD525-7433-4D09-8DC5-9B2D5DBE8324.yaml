@@ -1,0 +1,14 @@
+title: 'Image is C:\Windows\system32\audiodg.exe'
+id: 'B16AD525-7433-4D09-8DC5-9B2D5DBE8324'
+description: 'Windows: Launched constantly'
+references: 'https://github.com/Neo23x0/sysmon-config'
+author: 'SecurityOnionSolutions'
+date: '09/20/24'
+event_type: 'process_create'
+filter_type: 'exclude'
+filter:
+  selection_1:
+    TargetField: 'Image'
+    Condition: 'is'
+    Pattern: 'C:\Windows\system32\audiodg.exe'
+operating_system: 'windows'

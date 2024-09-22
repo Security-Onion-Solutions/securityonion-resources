@@ -1,0 +1,14 @@
+title: 'DestinationIp is 72.21.91.29'
+id: '8BCB593F-B56E-4807-BAF3-8080AF53CA81'
+description: 'Digicert [ https://otx.alienvault.com/indicator/ip/72.21.91.29 ]'
+references: 'https://github.com/Neo23x0/sysmon-config'
+author: 'SecurityOnionSolutions'
+date: '09/20/24'
+event_type: 'network_connection'
+filter_type: 'exclude'
+filter:
+  selection_1:
+    TargetField: 'DestinationIp'
+    Condition: 'is'
+    Pattern: '72.21.91.29'
+operating_system: 'windows'

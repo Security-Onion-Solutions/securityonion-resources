@@ -1,0 +1,14 @@
+title: 'Image begin with C:\WINDOWS\winsxs\amd64_microsoft-windows'
+id: '5A01B070-1416-4990-84F7-D0F856EDC42D'
+description: ''
+references: 'https://github.com/olafhartong/sysmon-modular'
+author: 'SecurityOnionSolutions'
+date: '09/20/24'
+event_type: 'file_create'
+filter_type: 'exclude'
+filter:
+  selection_1:
+    TargetField: 'Image'
+    Condition: 'begin with'
+    Pattern: 'C:\WINDOWS\winsxs\amd64_microsoft-windows'
+operating_system: 'windows'

@@ -1,0 +1,14 @@
+title: 'TargetObject end with \Services\BITS\Start'
+id: '61387B86-A369-4C9D-8D0A-39B77A313BE2'
+description: 'Windows: Remove noise from monitoring "\Start"'
+references: 'https://github.com/Neo23x0/sysmon-config'
+author: 'SecurityOnionSolutions'
+date: '09/20/24'
+event_type: 'registry_event'
+filter_type: 'exclude'
+filter:
+  selection_1:
+    TargetField: 'TargetObject'
+    Condition: 'end with'
+    Pattern: '\Services\BITS\Start'
+operating_system: 'windows'

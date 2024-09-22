@@ -1,0 +1,14 @@
+title: 'TargetObject end with HKLM\SYSTEM\CurrentControlSet\Control\Lsa\SspiCache'
+id: 'E930177A-9FAE-4FAF-BE0F-FBC049DEC0AC'
+description: 'Windows:lsass.exe: Boot noise--> <!--Win8+'
+references: 'https://github.com/Neo23x0/sysmon-config'
+author: 'SecurityOnionSolutions'
+date: '09/20/24'
+event_type: 'registry_event'
+filter_type: 'exclude'
+filter:
+  selection_1:
+    TargetField: 'TargetObject'
+    Condition: 'end with'
+    Pattern: 'HKLM\SYSTEM\CurrentControlSet\Control\Lsa\SspiCache'
+operating_system: 'windows'

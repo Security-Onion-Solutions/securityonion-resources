@@ -1,0 +1,14 @@
+title: 'Image is C:\Windows\system32\PrintIsolationHost.exe'
+id: 'AB992CD2-6FB6-4FB1-874A-FBE9C4F9782A'
+description: 'Windows: Printing'
+references: 'https://github.com/Neo23x0/sysmon-config'
+author: 'SecurityOnionSolutions'
+date: '09/20/24'
+event_type: 'process_create'
+filter_type: 'exclude'
+filter:
+  selection_1:
+    TargetField: 'Image'
+    Condition: 'is'
+    Pattern: 'C:\Windows\system32\PrintIsolationHost.exe'
+operating_system: 'windows'

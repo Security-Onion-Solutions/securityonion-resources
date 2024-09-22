@@ -1,0 +1,14 @@
+title: 'DestinationIp is 127.0.0.1'
+id: '2AB52EF9-132F-40BE-917C-A41CC072D57C'
+description: 'Credit @ITProPaul'
+references: 'https://github.com/Neo23x0/sysmon-config'
+author: 'SecurityOnionSolutions'
+date: '09/20/24'
+event_type: 'network_connection'
+filter_type: 'exclude'
+filter:
+  selection_1:
+    TargetField: 'DestinationIp'
+    Condition: 'is'
+    Pattern: '127.0.0.1'
+operating_system: 'windows'
