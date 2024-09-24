@@ -1,0 +1,21 @@
+title: The Security Onion grid has nodes that require reboot
+id: 4186440c-ce77-46e6-991f-e26198389514
+status: experimental
+description: The Security Onion grid has nodes that require reboot.
+license: Elastic-2.0
+author: 'Security Onion Solutions'
+date: 2024/09/12
+references:
+    - https://docs.securityonion.net/en/2.4/soc.html
+tags:
+    - grid.alerts
+    - so.notification
+logsource:
+    product: SOC
+    service: health
+detection:
+    selection:
+        event.action: 'Grid nodes are awaiting reboot'
+        event.dataset: soc.server
+    condition: selection
+level: info

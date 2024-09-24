@@ -1,0 +1,21 @@
+title: The Security Onion grid has entered an unhealthy state
+id: 363bae16-f888-4f89-aad3-68fa5b4e77f1
+status: 'experimental'
+description: The Security Onion grid has entered an unhealthy state. Please check the Security Onion Console (SOC).
+license: Elastic-2.0
+author: 'Security Onion Solutions'
+date: 2024/09/12
+references:
+    - https://docs.securityonion.net/en/2.4/soc.html
+tags:
+    - grid.alerts
+    - so.notification
+logsource:
+    product: SOC
+    service: health
+detection:
+    selection:
+        event.action: 'Grid has entered an unhealthy state'
+        event.dataset: soc.server
+    condition: selection
+level: medium

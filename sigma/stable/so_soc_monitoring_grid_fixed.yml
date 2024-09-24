@@ -1,0 +1,21 @@
+title: The Security Onion grid has returned to a healthy state
+id: bba1a299-eff6-4ca6-bc9e-f858c785c89f
+status: experimental
+description: The Security Onion grid has returned to a healthy state.
+license: Elastic-2.0
+author: 'Security Onion Solutions'
+date: 2024/09/12
+references:
+    - https://docs.securityonion.net/en/2.4/soc.html
+tags:
+    - grid.alerts
+    - so.notification
+logsource:
+    product: SOC
+    service: health
+detection:
+    selection:
+        event.action: 'Grid has returned to a healthy state'
+        event.dataset: soc.server
+    condition: selection
+level: medium
