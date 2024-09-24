@@ -1,0 +1,14 @@
+title: 'DestinationHostname is microsoft.com'
+id: 'EFAB0BD1-4B83-4043-AA77-9F1AF18AEF55'
+description: 'Microsoft:Update delivery'
+references: 'https://github.com/Neo23x0/sysmon-config'
+author: 'SecurityOnionSolutions'
+date: '09/20/24'
+event_type: 'network_connection'
+filter_type: 'exclude'
+filter:
+  selection_1:
+    TargetField: 'DestinationHostname'
+    Condition: 'is'
+    Pattern: 'microsoft.com'
+operating_system: 'windows'

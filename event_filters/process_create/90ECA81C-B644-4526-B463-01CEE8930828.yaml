@@ -1,0 +1,14 @@
+title: 'Image contains :\Program Files\SplunkUniversalForwarder\bin\'
+id: '90ECA81C-B644-4526-B463-01CEE8930828'
+description: 'Splunk: Very noisy if using Universal Forwarders'
+references: 'https://github.com/Neo23x0/sysmon-config'
+author: 'SecurityOnionSolutions'
+date: '09/20/24'
+event_type: 'process_create'
+filter_type: 'exclude'
+filter:
+  selection_1:
+    TargetField: 'Image'
+    Condition: 'contains'
+    Pattern: ':\Program Files\SplunkUniversalForwarder\bin\'
+operating_system: 'windows'

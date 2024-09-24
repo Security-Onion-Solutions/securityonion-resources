@@ -1,0 +1,14 @@
+title: 'TargetObject begin with HKCR\iTunes.'
+id: '50458B9A-E771-49ED-AA75-B74E34D34576'
+description: 'Apple: iTunes update noise'
+references: 'https://github.com/Neo23x0/sysmon-config'
+author: 'SecurityOnionSolutions'
+date: '09/20/24'
+event_type: 'registry_event'
+filter_type: 'exclude'
+filter:
+  selection_1:
+    TargetField: 'TargetObject'
+    Condition: 'begin with'
+    Pattern: 'HKCR\iTunes.'
+operating_system: 'windows'

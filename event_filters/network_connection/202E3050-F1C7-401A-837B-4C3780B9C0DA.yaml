@@ -1,0 +1,14 @@
+title: 'DestinationIp is 23.4.43.27'
+id: '202E3050-F1C7-401A-837B-4C3780B9C0DA'
+description: 'Digicert [ https://otx.alienvault.com/indicator/ip/23.4.43.27 ]'
+references: 'https://github.com/Neo23x0/sysmon-config'
+author: 'SecurityOnionSolutions'
+date: '09/20/24'
+event_type: 'network_connection'
+filter_type: 'exclude'
+filter:
+  selection_1:
+    TargetField: 'DestinationIp'
+    Condition: 'is'
+    Pattern: '23.4.43.27'
+operating_system: 'windows'

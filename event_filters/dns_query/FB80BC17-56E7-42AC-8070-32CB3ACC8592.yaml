@@ -1,0 +1,14 @@
+title: 'QueryName end with .windows.com'
+id: 'FB80BC17-56E7-42AC-8070-32CB3ACC8592'
+description: 'Microsoft'
+references: 'https://github.com/Neo23x0/sysmon-config'
+author: 'SecurityOnionSolutions'
+date: '09/20/24'
+event_type: 'dns_query'
+filter_type: 'exclude'
+filter:
+  selection_1:
+    TargetField: 'QueryName'
+    Condition: 'end with'
+    Pattern: '.windows.com'
+operating_system: 'windows'

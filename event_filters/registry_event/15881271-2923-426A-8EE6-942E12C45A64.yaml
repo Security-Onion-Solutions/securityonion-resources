@@ -1,0 +1,14 @@
+title: 'TargetObject end with \OpenWithList\MRUList'
+id: '15881271-2923-426A-8EE6-942E12C45A64'
+description: 'Windows: Remove noise from monitoring "FileExts"'
+references: 'https://github.com/Neo23x0/sysmon-config'
+author: 'SecurityOnionSolutions'
+date: '09/20/24'
+event_type: 'registry_event'
+filter_type: 'exclude'
+filter:
+  selection_1:
+    TargetField: 'TargetObject'
+    Condition: 'end with'
+    Pattern: '\OpenWithList\MRUList'
+operating_system: 'windows'

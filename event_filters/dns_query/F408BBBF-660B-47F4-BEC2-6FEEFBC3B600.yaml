@@ -1,0 +1,14 @@
+title: 'QueryName end with .microsoftonline.com'
+id: 'F408BBBF-660B-47F4-BEC2-6FEEFBC3B600'
+description: 'Microsoft | Microsoft default exclusion'
+references: 'https://github.com/Neo23x0/sysmon-config'
+author: 'SecurityOnionSolutions'
+date: '09/20/24'
+event_type: 'dns_query'
+filter_type: 'exclude'
+filter:
+  selection_1:
+    TargetField: 'QueryName'
+    Condition: 'end with'
+    Pattern: '.microsoftonline.com'
+operating_system: 'windows'

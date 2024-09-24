@@ -1,0 +1,14 @@
+title: 'TargetObject contains \Control\WMI\Autologger\'
+id: '44B7F085-D223-4F6F-903E-03272BDAD316'
+description: 'Windows: Remove noise from monitoring "\Start"'
+references: 'https://github.com/Neo23x0/sysmon-config'
+author: 'SecurityOnionSolutions'
+date: '09/20/24'
+event_type: 'registry_event'
+filter_type: 'exclude'
+filter:
+  selection_1:
+    TargetField: 'TargetObject'
+    Condition: 'contains'
+    Pattern: '\Control\WMI\Autologger\'
+operating_system: 'windows'

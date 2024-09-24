@@ -1,0 +1,14 @@
+title: 'Image is C:\Windows\System32\plasrv.exe'
+id: '9CC353CB-6BD9-46CA-BBF2-F9F3F253FAAF'
+description: 'Windows: Performance Logs and Alerts DCOM Server'
+references: 'https://github.com/Neo23x0/sysmon-config'
+author: 'SecurityOnionSolutions'
+date: '09/20/24'
+event_type: 'process_create'
+filter_type: 'exclude'
+filter:
+  selection_1:
+    TargetField: 'Image'
+    Condition: 'is'
+    Pattern: 'C:\Windows\System32\plasrv.exe'
+operating_system: 'windows'

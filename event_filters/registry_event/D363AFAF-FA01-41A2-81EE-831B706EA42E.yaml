@@ -1,0 +1,14 @@
+title: 'TargetObject end with \CurrentVersion\Shell Extensions\Cached'
+id: 'D363AFAF-FA01-41A2-81EE-831B706EA42E'
+description: ''
+references: 'https://github.com/olafhartong/sysmon-modular'
+author: 'SecurityOnionSolutions'
+date: '09/20/24'
+event_type: 'registry_event'
+filter_type: 'exclude'
+filter:
+  selection_1:
+    TargetField: 'TargetObject'
+    Condition: 'end with'
+    Pattern: '\CurrentVersion\Shell Extensions\Cached'
+operating_system: 'windows'

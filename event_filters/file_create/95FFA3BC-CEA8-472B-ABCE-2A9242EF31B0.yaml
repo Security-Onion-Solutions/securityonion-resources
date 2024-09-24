@@ -1,0 +1,14 @@
+title: 'Image is C:\Program Files (x86)\EMET 5.5\EMET_Service.exe'
+id: '95FFA3BC-CEA8-472B-ABCE-2A9242EF31B0'
+description: 'Microsoft:EMET: Writes to C:\Windows\AppPatch\'
+references: 'https://github.com/Neo23x0/sysmon-config'
+author: 'SecurityOnionSolutions'
+date: '09/20/24'
+event_type: 'file_create'
+filter_type: 'exclude'
+filter:
+  selection_1:
+    TargetField: 'Image'
+    Condition: 'is'
+    Pattern: 'C:\Program Files (x86)\EMET 5.5\EMET_Service.exe'
+operating_system: 'windows'

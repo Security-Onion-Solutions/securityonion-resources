@@ -1,0 +1,14 @@
+title: 'Image is C:\Program Files\Windows Defender Advanced Threat Protection\MsSense.exe'
+id: '3C4828BD-D620-41AB-B051-2F4D050E3786'
+description: ''
+references: 'https://github.com/olafhartong/sysmon-modular'
+author: 'SecurityOnionSolutions'
+date: '09/20/24'
+event_type: 'registry_event'
+filter_type: 'exclude'
+filter:
+  selection_1:
+    TargetField: 'Image'
+    Condition: 'is'
+    Pattern: 'C:\Program Files\Windows Defender Advanced Threat Protection\MsSense.exe'
+operating_system: 'windows'

@@ -1,0 +1,14 @@
+title: 'QueryName end with .skype.net'
+id: '14ABC18C-1DC1-44A2-99B3-BB59B18C9F0F'
+description: 'Microsoft | Microsoft default exclusion'
+references: 'https://github.com/Neo23x0/sysmon-config'
+author: 'SecurityOnionSolutions'
+date: '09/20/24'
+event_type: 'dns_query'
+filter_type: 'exclude'
+filter:
+  selection_1:
+    TargetField: 'QueryName'
+    Condition: 'end with'
+    Pattern: '.skype.net'
+operating_system: 'windows'

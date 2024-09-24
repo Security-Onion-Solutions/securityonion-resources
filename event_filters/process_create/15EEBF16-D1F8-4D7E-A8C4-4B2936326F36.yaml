@@ -1,0 +1,14 @@
+title: 'Image is C:\Windows\system32\sndVol.exe'
+id: '15EEBF16-D1F8-4D7E-A8C4-4B2936326F36'
+description: 'Windows: Volume control'
+references: 'https://github.com/Neo23x0/sysmon-config'
+author: 'SecurityOnionSolutions'
+date: '09/20/24'
+event_type: 'process_create'
+filter_type: 'exclude'
+filter:
+  selection_1:
+    TargetField: 'Image'
+    Condition: 'is'
+    Pattern: 'C:\Windows\system32\sndVol.exe'
+operating_system: 'windows'

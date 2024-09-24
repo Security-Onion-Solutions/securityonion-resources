@@ -1,0 +1,14 @@
+title: 'TargetObject begin with HKLM\COMPONENTS'
+id: '58DEA4C1-0B7F-49E4-8206-6B49C85D51C4'
+description: ''
+references: 'https://github.com/Neo23x0/sysmon-config'
+author: 'SecurityOnionSolutions'
+date: '09/20/24'
+event_type: 'registry_event'
+filter_type: 'exclude'
+filter:
+  selection_1:
+    TargetField: 'TargetObject'
+    Condition: 'begin with'
+    Pattern: 'HKLM\COMPONENTS'
+operating_system: 'windows'

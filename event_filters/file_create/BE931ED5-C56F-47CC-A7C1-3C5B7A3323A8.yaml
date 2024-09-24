@@ -1,0 +1,14 @@
+title: 'TargetFilename begin with C:\Windows\system32\DriverStore\Temp\'
+id: 'BE931ED5-C56F-47CC-A7C1-3C5B7A3323A8'
+description: ' Windows: Temp files by DrvInst.exe'
+references: 'https://github.com/Neo23x0/sysmon-config'
+author: 'SecurityOnionSolutions'
+date: '09/20/24'
+event_type: 'file_create'
+filter_type: 'exclude'
+filter:
+  selection_1:
+    TargetField: 'TargetFilename'
+    Condition: 'begin with'
+    Pattern: 'C:\Windows\system32\DriverStore\Temp\'
+operating_system: 'windows'

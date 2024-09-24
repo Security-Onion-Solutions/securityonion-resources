@@ -1,0 +1,14 @@
+title: 'QueryName is portal.azure.com'
+id: '0EE49454-72DE-4FBE-AE10-40EECE4EBCD8'
+description: 'Microsoft: AzureAD/InTune'
+references: 'https://github.com/Neo23x0/sysmon-config'
+author: 'SecurityOnionSolutions'
+date: '09/20/24'
+event_type: 'dns_query'
+filter_type: 'exclude'
+filter:
+  selection_1:
+    TargetField: 'QueryName'
+    Condition: 'is'
+    Pattern: 'portal.azure.com'
+operating_system: 'windows'

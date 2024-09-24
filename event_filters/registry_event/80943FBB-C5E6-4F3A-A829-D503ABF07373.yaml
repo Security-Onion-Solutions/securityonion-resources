@@ -1,0 +1,14 @@
+title: 'TargetObject end with \services\fhsvc\Start'
+id: '80943FBB-C5E6-4F3A-A829-D503ABF07373'
+description: 'Windows: File History Service'
+references: 'https://github.com/Neo23x0/sysmon-config'
+author: 'SecurityOnionSolutions'
+date: '09/20/24'
+event_type: 'registry_event'
+filter_type: 'exclude'
+filter:
+  selection_1:
+    TargetField: 'TargetObject'
+    Condition: 'end with'
+    Pattern: '\services\fhsvc\Start'
+operating_system: 'windows'

@@ -1,0 +1,14 @@
+title: 'QueryName is msocsp.com'
+id: '4A7D9DC9-08A9-4A75-A1BC-52783B289D45'
+description: 'Microsoft:OCSP'
+references: 'https://github.com/Neo23x0/sysmon-config'
+author: 'SecurityOnionSolutions'
+date: '09/20/24'
+event_type: 'dns_query'
+filter_type: 'exclude'
+filter:
+  selection_1:
+    TargetField: 'QueryName'
+    Condition: 'is'
+    Pattern: 'msocsp.com'
+operating_system: 'windows'

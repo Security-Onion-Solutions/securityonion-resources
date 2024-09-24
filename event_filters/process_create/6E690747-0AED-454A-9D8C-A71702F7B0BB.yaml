@@ -1,0 +1,14 @@
+title: 'ParentCommandLine is C:\windows\system32\wermgr.exe -queuereporting'
+id: '6E690747-0AED-454A-9D8C-A71702F7B0BB'
+description: 'Windows:Windows error reporting/telemetry'
+references: 'https://github.com/Neo23x0/sysmon-config'
+author: 'SecurityOnionSolutions'
+date: '09/20/24'
+event_type: 'process_create'
+filter_type: 'exclude'
+filter:
+  selection_1:
+    TargetField: 'ParentCommandLine'
+    Condition: 'is'
+    Pattern: 'C:\windows\system32\wermgr.exe -queuereporting'
+operating_system: 'windows'

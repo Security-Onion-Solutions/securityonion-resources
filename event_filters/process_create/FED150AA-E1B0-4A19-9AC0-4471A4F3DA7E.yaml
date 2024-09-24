@@ -1,0 +1,14 @@
+title: 'CommandLine is C:\Windows\system32\svchost.exe -k localSystemNetworkRestricted -p -s WPDBusEnum'
+id: 'FED150AA-E1B0-4A19-9AC0-4471A4F3DA7E'
+description: ''
+references: 'https://github.com/Neo23x0/sysmon-config'
+author: 'SecurityOnionSolutions'
+date: '09/20/24'
+event_type: 'process_create'
+filter_type: 'exclude'
+filter:
+  selection_1:
+    TargetField: 'CommandLine'
+    Condition: 'is'
+    Pattern: 'C:\Windows\system32\svchost.exe -k localSystemNetworkRestricted -p -s WPDBusEnum'
+operating_system: 'windows'

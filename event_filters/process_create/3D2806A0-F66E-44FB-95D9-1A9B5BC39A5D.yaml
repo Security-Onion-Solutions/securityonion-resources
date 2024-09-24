@@ -1,0 +1,14 @@
+title: 'CommandLine is C:\Windows\system32\svchost.exe -k wsappx -s ClipSVC'
+id: '3D2806A0-F66E-44FB-95D9-1A9B5BC39A5D'
+description: 'Windows:Apps: Client License Service'
+references: 'https://github.com/Neo23x0/sysmon-config'
+author: 'SecurityOnionSolutions'
+date: '09/20/24'
+event_type: 'process_create'
+filter_type: 'exclude'
+filter:
+  selection_1:
+    TargetField: 'CommandLine'
+    Condition: 'is'
+    Pattern: 'C:\Windows\system32\svchost.exe -k wsappx -s ClipSVC'
+operating_system: 'windows'

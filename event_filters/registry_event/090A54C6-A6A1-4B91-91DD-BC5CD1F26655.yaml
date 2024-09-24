@@ -1,0 +1,14 @@
+title: 'TargetObject end with HKLM\System\CurrentControlSet\Control\Lsa\Audit\SpecialGroups'
+id: '090A54C6-A6A1-4B91-91DD-BC5CD1F26655'
+description: 'Windows: Routinely set through Group Policy, not especially important to log'
+references: 'https://github.com/Neo23x0/sysmon-config'
+author: 'SecurityOnionSolutions'
+date: '09/20/24'
+event_type: 'registry_event'
+filter_type: 'exclude'
+filter:
+  selection_1:
+    TargetField: 'TargetObject'
+    Condition: 'end with'
+    Pattern: 'HKLM\System\CurrentControlSet\Control\Lsa\Audit\SpecialGroups'
+operating_system: 'windows'

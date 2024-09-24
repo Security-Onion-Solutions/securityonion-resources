@@ -1,0 +1,14 @@
+title: 'TargetObject end with Internet Explorer\Toolbar\Locked'
+id: '6887128C-4479-4DE2-BB7E-7CB58D4427EF'
+description: 'Windows:Explorer: Extraneous activity'
+references: 'https://github.com/Neo23x0/sysmon-config'
+author: 'SecurityOnionSolutions'
+date: '09/20/24'
+event_type: 'registry_event'
+filter_type: 'exclude'
+filter:
+  selection_1:
+    TargetField: 'TargetObject'
+    Condition: 'end with'
+    Pattern: 'Internet Explorer\Toolbar\Locked'
+operating_system: 'windows'

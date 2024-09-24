@@ -1,0 +1,14 @@
+title: 'QueryName end with .addthis.com'
+id: '4D3BD926-9AB3-473C-AAC6-B1064F46BF3F'
+description: 'Ads:Oracle | Microsoft default exclusion [ https://en.wikipedia.org/wiki/AddThis ]'
+references: 'https://github.com/Neo23x0/sysmon-config'
+author: 'SecurityOnionSolutions'
+date: '09/20/24'
+event_type: 'dns_query'
+filter_type: 'exclude'
+filter:
+  selection_1:
+    TargetField: 'QueryName'
+    Condition: 'end with'
+    Pattern: '.addthis.com'
+operating_system: 'windows'

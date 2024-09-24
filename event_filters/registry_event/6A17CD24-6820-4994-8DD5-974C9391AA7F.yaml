@@ -1,0 +1,14 @@
+title: 'TargetObject end with SOFTWARE\Microsoft\Windows\CurrentVersion\Group Policy\Scripts\Shutdown\0\PSScriptOrder'
+id: '6A17CD24-6820-4994-8DD5-974C9391AA7F'
+description: 'Windows:Group Policy: Noise below the actual key while building'
+references: 'https://github.com/Neo23x0/sysmon-config'
+author: 'SecurityOnionSolutions'
+date: '09/20/24'
+event_type: 'registry_event'
+filter_type: 'exclude'
+filter:
+  selection_1:
+    TargetField: 'TargetObject'
+    Condition: 'end with'
+    Pattern: 'SOFTWARE\Microsoft\Windows\CurrentVersion\Group Policy\Scripts\Shutdown\0\PSScriptOrder'
+operating_system: 'windows'

@@ -1,0 +1,14 @@
+title: 'ParentCommandLine is C:\Windows\system32\svchost.exe -k netsvcs'
+id: '39AEDAB1-4CBB-444A-AF84-0C14C43810AB'
+description: 'Windows: Network services: Spawns Consent.exe'
+references: 'https://github.com/Neo23x0/sysmon-config'
+author: 'SecurityOnionSolutions'
+date: '09/20/24'
+event_type: 'process_create'
+filter_type: 'exclude'
+filter:
+  selection_1:
+    TargetField: 'ParentCommandLine'
+    Condition: 'is'
+    Pattern: 'C:\Windows\system32\svchost.exe -k netsvcs'
+operating_system: 'windows'

@@ -1,0 +1,14 @@
+title: 'TargetObject end with HKLM\SYSTEM\CurrentControlSet\Control\Lsa\Audit\PerUserAuditing\System'
+id: 'D48DE06E-9DB9-4D7F-8EC1-D6EAEB52FA4E'
+description: ''
+references: 'https://github.com/olafhartong/sysmon-modular'
+author: 'SecurityOnionSolutions'
+date: '09/20/24'
+event_type: 'registry_event'
+filter_type: 'exclude'
+filter:
+  selection_1:
+    TargetField: 'TargetObject'
+    Condition: 'end with'
+    Pattern: 'HKLM\SYSTEM\CurrentControlSet\Control\Lsa\Audit\PerUserAuditing\System'
+operating_system: 'windows'

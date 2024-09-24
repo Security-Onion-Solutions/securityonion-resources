@@ -1,0 +1,14 @@
+title: 'Image is C:\Windows\system32\wbem\WmiApSrv.exe'
+id: 'F9E49559-3CBC-40B3-9AA2-FA4B1CF52E92'
+description: 'Windows: WMI performance adapter host process'
+references: 'https://github.com/Neo23x0/sysmon-config'
+author: 'SecurityOnionSolutions'
+date: '09/20/24'
+event_type: 'process_create'
+filter_type: 'exclude'
+filter:
+  selection_1:
+    TargetField: 'Image'
+    Condition: 'is'
+    Pattern: 'C:\Windows\system32\wbem\WmiApSrv.exe'
+operating_system: 'windows'

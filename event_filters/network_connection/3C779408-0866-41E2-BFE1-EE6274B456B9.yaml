@@ -1,0 +1,14 @@
+title: 'DestinationHostname end with microsoft.com.akadns.net'
+id: '3C779408-0866-41E2-BFE1-EE6274B456B9'
+description: 'Microsoft:Update delivery'
+references: 'https://github.com/Neo23x0/sysmon-config'
+author: 'SecurityOnionSolutions'
+date: '09/20/24'
+event_type: 'network_connection'
+filter_type: 'exclude'
+filter:
+  selection_1:
+    TargetField: 'DestinationHostname'
+    Condition: 'end with'
+    Pattern: 'microsoft.com.akadns.net'
+operating_system: 'windows'

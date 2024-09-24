@@ -1,0 +1,14 @@
+title: 'DestinationHostname end with .microsoft.com'
+id: '8081B458-4F66-4C2F-8E79-A2A7A1DFDF12'
+description: 'Microsoft:Update delivery'
+references: 'https://github.com/Neo23x0/sysmon-config'
+author: 'SecurityOnionSolutions'
+date: '09/20/24'
+event_type: 'network_connection'
+filter_type: 'exclude'
+filter:
+  selection_1:
+    TargetField: 'DestinationHostname'
+    Condition: 'end with'
+    Pattern: '.microsoft.com'
+operating_system: 'windows'

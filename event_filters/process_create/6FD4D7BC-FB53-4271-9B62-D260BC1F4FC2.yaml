@@ -1,0 +1,14 @@
+title: 'Image is C:\Windows\System32\TokenBrokerCookies.exe'
+id: '6FD4D7BC-FB53-4271-9B62-D260BC1F4FC2'
+description: 'Windows: SSO sign-in assistant for MicrosoftOnline.com'
+references: 'https://github.com/Neo23x0/sysmon-config'
+author: 'SecurityOnionSolutions'
+date: '09/20/24'
+event_type: 'process_create'
+filter_type: 'exclude'
+filter:
+  selection_1:
+    TargetField: 'Image'
+    Condition: 'is'
+    Pattern: 'C:\Windows\System32\TokenBrokerCookies.exe'
+operating_system: 'windows'

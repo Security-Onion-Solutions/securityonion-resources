@@ -1,0 +1,14 @@
+title: 'Image is C:\Windows\system32\sppsvc.exe'
+id: 'D2149E04-B02F-48C0-981D-45E09753EC52'
+description: 'Windows: Software Protection Service'
+references: 'https://github.com/Neo23x0/sysmon-config'
+author: 'SecurityOnionSolutions'
+date: '09/20/24'
+event_type: 'process_create'
+filter_type: 'exclude'
+filter:
+  selection_1:
+    TargetField: 'Image'
+    Condition: 'is'
+    Pattern: 'C:\Windows\system32\sppsvc.exe'
+operating_system: 'windows'

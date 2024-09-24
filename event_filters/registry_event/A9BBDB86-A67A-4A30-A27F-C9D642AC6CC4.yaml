@@ -1,0 +1,14 @@
+title: 'Image end with Office\root\integration\integrator.exe'
+id: 'A9BBDB86-A67A-4A30-A27F-C9D642AC6CC4'
+description: ''
+references: 'https://github.com/olafhartong/sysmon-modular'
+author: 'SecurityOnionSolutions'
+date: '09/20/24'
+event_type: 'registry_event'
+filter_type: 'exclude'
+filter:
+  selection_1:
+    TargetField: 'Image'
+    Condition: 'end with'
+    Pattern: 'Office\root\integration\integrator.exe'
+operating_system: 'windows'

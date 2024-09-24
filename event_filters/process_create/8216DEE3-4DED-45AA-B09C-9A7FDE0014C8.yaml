@@ -1,0 +1,14 @@
+title: 'CommandLine is C:\Windows\system32\svchost.exe -k netsvcs -p -s wlidsvc'
+id: '8216DEE3-4DED-45AA-B09C-9A7FDE0014C8'
+description: 'Windows: Windows Live Sign-In Assistant [ https://www.howtogeek.com/howto/30348/what-are-wlidsvc.exe-and-wlidsvcm.exe-and-why-are-they-running/ ]'
+references: 'https://github.com/Neo23x0/sysmon-config'
+author: 'SecurityOnionSolutions'
+date: '09/20/24'
+event_type: 'process_create'
+filter_type: 'exclude'
+filter:
+  selection_1:
+    TargetField: 'CommandLine'
+    Condition: 'is'
+    Pattern: 'C:\Windows\system32\svchost.exe -k netsvcs -p -s wlidsvc'
+operating_system: 'windows'

@@ -1,0 +1,14 @@
+title: 'QueryName is outlook.office365.com'
+id: '025E3988-3D19-4D15-BA12-3CB219F333D2'
+description: 'Microsoft: Protected by HSTS'
+references: 'https://github.com/Neo23x0/sysmon-config'
+author: 'SecurityOnionSolutions'
+date: '09/20/24'
+event_type: 'dns_query'
+filter_type: 'exclude'
+filter:
+  selection_1:
+    TargetField: 'QueryName'
+    Condition: 'is'
+    Pattern: 'outlook.office365.com'
+operating_system: 'windows'

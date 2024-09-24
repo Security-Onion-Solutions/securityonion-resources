@@ -1,0 +1,14 @@
+title: 'TargetFilename begin with C:\Windows\System32\DriverStore\Temp\'
+id: 'A71FD664-4017-48A1-A594-4A1628C48333'
+description: ''
+references: 'https://github.com/olafhartong/sysmon-modular'
+author: 'SecurityOnionSolutions'
+date: '09/20/24'
+event_type: 'file_create'
+filter_type: 'exclude'
+filter:
+  selection_1:
+    TargetField: 'TargetFilename'
+    Condition: 'begin with'
+    Pattern: 'C:\Windows\System32\DriverStore\Temp\'
+operating_system: 'windows'

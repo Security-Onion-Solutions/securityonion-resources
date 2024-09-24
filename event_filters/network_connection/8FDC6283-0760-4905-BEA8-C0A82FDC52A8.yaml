@@ -1,0 +1,14 @@
+title: 'Image end with \AppData\Local\Microsoft\Teams\current\Teams.exe'
+id: '8FDC6283-0760-4905-BEA8-C0A82FDC52A8'
+description: 'Microsoft: Teams'
+references: 'https://github.com/Neo23x0/sysmon-config'
+author: 'SecurityOnionSolutions'
+date: '09/20/24'
+event_type: 'network_connection'
+filter_type: 'exclude'
+filter:
+  selection_1:
+    TargetField: 'Image'
+    Condition: 'end with'
+    Pattern: '\AppData\Local\Microsoft\Teams\current\Teams.exe'
+operating_system: 'windows'

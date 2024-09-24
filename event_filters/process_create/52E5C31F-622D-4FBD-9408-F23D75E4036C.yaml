@@ -1,0 +1,14 @@
+title: 'ParentImage is C:\Program Files\Common Files\Microsoft Shared\ClickToRun\OfficeC2RClient.exe'
+id: '52E5C31F-622D-4FBD-9408-F23D75E4036C'
+description: 'Microsoft:Office: Background process'
+references: 'https://github.com/Neo23x0/sysmon-config'
+author: 'SecurityOnionSolutions'
+date: '09/20/24'
+event_type: 'process_create'
+filter_type: 'exclude'
+filter:
+  selection_1:
+    TargetField: 'ParentImage'
+    Condition: 'is'
+    Pattern: 'C:\Program Files\Common Files\Microsoft Shared\ClickToRun\OfficeC2RClient.exe'
+operating_system: 'windows'

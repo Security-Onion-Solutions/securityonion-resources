@@ -1,0 +1,14 @@
+title: 'Image is C:\Windows\Microsoft.NET\Framework\v4.0.30319\mscorsvw.exe'
+id: 'F212D853-0F96-4C7D-BBF7-13202AEC4C13'
+description: 'Microsoft:DotNet'
+references: 'https://github.com/Neo23x0/sysmon-config'
+author: 'SecurityOnionSolutions'
+date: '09/20/24'
+event_type: 'process_create'
+filter_type: 'exclude'
+filter:
+  selection_1:
+    TargetField: 'Image'
+    Condition: 'is'
+    Pattern: 'C:\Windows\Microsoft.NET\Framework\v4.0.30319\mscorsvw.exe'
+operating_system: 'windows'

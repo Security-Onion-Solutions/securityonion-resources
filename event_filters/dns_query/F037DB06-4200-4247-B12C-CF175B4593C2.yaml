@@ -1,0 +1,14 @@
+title: 'QueryName is acdc-direct.office.com'
+id: 'F037DB06-4200-4247-B12C-CF175B4593C2'
+description: 'Microsoft: Office'
+references: 'https://github.com/Neo23x0/sysmon-config'
+author: 'SecurityOnionSolutions'
+date: '09/20/24'
+event_type: 'dns_query'
+filter_type: 'exclude'
+filter:
+  selection_1:
+    TargetField: 'QueryName'
+    Condition: 'is'
+    Pattern: 'acdc-direct.office.com'
+operating_system: 'windows'

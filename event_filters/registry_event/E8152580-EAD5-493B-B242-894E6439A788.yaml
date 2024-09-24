@@ -1,0 +1,14 @@
+title: 'TargetObject end with } 0xFFFF'
+id: 'E8152580-EAD5-493B-B242-894E6439A788'
+description: ''
+references: 'https://github.com/olafhartong/sysmon-modular'
+author: 'SecurityOnionSolutions'
+date: '09/20/24'
+event_type: 'registry_event'
+filter_type: 'exclude'
+filter:
+  selection_1:
+    TargetField: 'TargetObject'
+    Condition: 'end with'
+    Pattern: '} 0xFFFF'
+operating_system: 'windows'

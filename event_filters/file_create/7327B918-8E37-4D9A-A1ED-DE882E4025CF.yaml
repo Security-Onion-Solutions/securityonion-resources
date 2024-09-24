@@ -1,0 +1,14 @@
+title: 'Image is C:\Windows\system32\smss.exe'
+id: '7327B918-8E37-4D9A-A1ED-DE882E4025CF'
+description: ' Windows: Session Manager SubSystem: Creates swapfile.sys,pagefile.sys,hiberfile.sys'
+references: 'https://github.com/Neo23x0/sysmon-config'
+author: 'SecurityOnionSolutions'
+date: '09/20/24'
+event_type: 'file_create'
+filter_type: 'exclude'
+filter:
+  selection_1:
+    TargetField: 'Image'
+    Condition: 'is'
+    Pattern: 'C:\Windows\system32\smss.exe'
+operating_system: 'windows'

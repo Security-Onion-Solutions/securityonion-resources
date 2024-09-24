@@ -1,0 +1,14 @@
+title: 'CommandLine begin with C:\Windows\system32\wbem\wmiprvse.exe -secured -Embedding'
+id: '7EDCF8F1-A753-41D6-A385-75D27A7F0B5E'
+description: 'Windows: WMI provider host'
+references: 'https://github.com/Neo23x0/sysmon-config'
+author: 'SecurityOnionSolutions'
+date: '09/20/24'
+event_type: 'process_create'
+filter_type: 'exclude'
+filter:
+  selection_1:
+    TargetField: 'CommandLine'
+    Condition: 'begin with'
+    Pattern: 'C:\Windows\system32\wbem\wmiprvse.exe -secured -Embedding'
+operating_system: 'windows'

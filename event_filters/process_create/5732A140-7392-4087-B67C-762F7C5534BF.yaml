@@ -1,0 +1,14 @@
+title: 'CommandLine is C:\windows\system32\wermgr.exe -queuereporting'
+id: '5732A140-7392-4087-B67C-762F7C5534BF'
+description: 'Windows:Windows error reporting/telemetry'
+references: 'https://github.com/Neo23x0/sysmon-config'
+author: 'SecurityOnionSolutions'
+date: '09/20/24'
+event_type: 'process_create'
+filter_type: 'exclude'
+filter:
+  selection_1:
+    TargetField: 'CommandLine'
+    Condition: 'is'
+    Pattern: 'C:\windows\system32\wermgr.exe -queuereporting'
+operating_system: 'windows'

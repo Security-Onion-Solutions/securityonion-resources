@@ -1,0 +1,14 @@
+title: 'QueryName end with .office.net'
+id: 'C230A94C-079D-43D7-B3C6-CE7DE8895981'
+description: 'Microsoft: Office'
+references: 'https://github.com/Neo23x0/sysmon-config'
+author: 'SecurityOnionSolutions'
+date: '09/20/24'
+event_type: 'dns_query'
+filter_type: 'exclude'
+filter:
+  selection_1:
+    TargetField: 'QueryName'
+    Condition: 'end with'
+    Pattern: '.office.net'
+operating_system: 'windows'

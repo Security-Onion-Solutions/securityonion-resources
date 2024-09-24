@@ -1,0 +1,14 @@
+title: 'TargetObject begin with HKLM\Software\Microsoft\Windows\CurrentVersion\WINEVT\Publishers\'
+id: '4B259CD6-3B65-4618-8C6D-D33FFA63CBC7'
+description: 'Windows: SvcHost Noise'
+references: 'https://github.com/Neo23x0/sysmon-config'
+author: 'SecurityOnionSolutions'
+date: '09/20/24'
+event_type: 'registry_event'
+filter_type: 'exclude'
+filter:
+  selection_1:
+    TargetField: 'TargetObject'
+    Condition: 'begin with'
+    Pattern: 'HKLM\Software\Microsoft\Windows\CurrentVersion\WINEVT\Publishers\'
+operating_system: 'windows'

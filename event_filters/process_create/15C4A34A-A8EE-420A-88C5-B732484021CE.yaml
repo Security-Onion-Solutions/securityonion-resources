@@ -1,0 +1,14 @@
+title: 'CommandLine is C:\Windows\system32\svchost.exe -k netsvcs -s SessionEnv'
+id: '15C4A34A-A8EE-420A-88C5-B732484021CE'
+description: 'Windows: Network services'
+references: 'https://github.com/Neo23x0/sysmon-config'
+author: 'SecurityOnionSolutions'
+date: '09/20/24'
+event_type: 'process_create'
+filter_type: 'exclude'
+filter:
+  selection_1:
+    TargetField: 'CommandLine'
+    Condition: 'is'
+    Pattern: 'C:\Windows\system32\svchost.exe -k netsvcs -s SessionEnv'
+operating_system: 'windows'

@@ -1,0 +1,14 @@
+title: 'QueryName is adservice.google.com'
+id: '59274762-E4B4-4892-AB53-6955EE457740'
+description: 'Google'
+references: 'https://github.com/Neo23x0/sysmon-config'
+author: 'SecurityOnionSolutions'
+date: '09/20/24'
+event_type: 'dns_query'
+filter_type: 'exclude'
+filter:
+  selection_1:
+    TargetField: 'QueryName'
+    Condition: 'is'
+    Pattern: 'adservice.google.com'
+operating_system: 'windows'

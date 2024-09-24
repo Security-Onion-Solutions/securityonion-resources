@@ -1,0 +1,14 @@
+title: 'CommandLine is C:\Windows\system32\svchost.exe -k localService -s EventSystem'
+id: '0B8D3863-0DAD-4B42-8259-57AE7AF5E980'
+description: ''
+references: 'https://github.com/Neo23x0/sysmon-config'
+author: 'SecurityOnionSolutions'
+date: '09/20/24'
+event_type: 'process_create'
+filter_type: 'exclude'
+filter:
+  selection_1:
+    TargetField: 'CommandLine'
+    Condition: 'is'
+    Pattern: 'C:\Windows\system32\svchost.exe -k localService -s EventSystem'
+operating_system: 'windows'

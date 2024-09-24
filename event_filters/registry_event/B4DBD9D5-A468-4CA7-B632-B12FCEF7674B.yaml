@@ -1,0 +1,14 @@
+title: 'TargetObject contains \{CAFEEFAC-'
+id: 'B4DBD9D5-A468-4CA7-B632-B12FCEF7674B'
+description: ''
+references: 'https://github.com/Neo23x0/sysmon-config'
+author: 'SecurityOnionSolutions'
+date: '09/20/24'
+event_type: 'registry_event'
+filter_type: 'exclude'
+filter:
+  selection_1:
+    TargetField: 'TargetObject'
+    Condition: 'contains'
+    Pattern: '\{CAFEEFAC-'
+operating_system: 'windows'

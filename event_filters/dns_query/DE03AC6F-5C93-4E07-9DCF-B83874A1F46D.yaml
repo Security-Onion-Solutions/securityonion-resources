@@ -1,0 +1,14 @@
+title: 'QueryName end with .msedge.net'
+id: 'DE03AC6F-5C93-4E07-9DCF-B83874A1F46D'
+description: 'Microsoft: Doesnt appear to host customer content or subdomains'
+references: 'https://github.com/Neo23x0/sysmon-config'
+author: 'SecurityOnionSolutions'
+date: '09/20/24'
+event_type: 'dns_query'
+filter_type: 'exclude'
+filter:
+  selection_1:
+    TargetField: 'QueryName'
+    Condition: 'end with'
+    Pattern: '.msedge.net'
+operating_system: 'windows'

@@ -1,0 +1,14 @@
+title: 'ParentImage is C:\Windows\Microsoft.NET\Framework\v4.0.30319\mscorsvw.exe'
+id: '7763D5C9-986F-409C-B0AC-3BDF54B70BC0'
+description: 'Microsoft:DotNet'
+references: 'https://github.com/Neo23x0/sysmon-config'
+author: 'SecurityOnionSolutions'
+date: '09/20/24'
+event_type: 'process_create'
+filter_type: 'exclude'
+filter:
+  selection_1:
+    TargetField: 'ParentImage'
+    Condition: 'is'
+    Pattern: 'C:\Windows\Microsoft.NET\Framework\v4.0.30319\mscorsvw.exe'
+operating_system: 'windows'

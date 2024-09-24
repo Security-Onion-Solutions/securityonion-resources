@@ -1,0 +1,14 @@
+title: 'CommandLine begin with C:\Windows\Microsoft.NET\Framework\v4.0.30319\ngen.exe'
+id: '90394F46-DEB8-434C-85EC-06B47D6BD08F'
+description: 'Microsoft:DotNet'
+references: 'https://github.com/Neo23x0/sysmon-config'
+author: 'SecurityOnionSolutions'
+date: '09/20/24'
+event_type: 'process_create'
+filter_type: 'exclude'
+filter:
+  selection_1:
+    TargetField: 'CommandLine'
+    Condition: 'begin with'
+    Pattern: 'C:\Windows\Microsoft.NET\Framework\v4.0.30319\ngen.exe'
+operating_system: 'windows'

@@ -1,0 +1,14 @@
+title: 'TargetFilename begin with C:\Windows\system32\wbem\Performance\'
+id: 'E4E7FD7E-7FEA-4F1E-BE29-70A8F6C66AFA'
+description: ' Windows: Created in wbem by WMIADAP.exe'
+references: 'https://github.com/Neo23x0/sysmon-config'
+author: 'SecurityOnionSolutions'
+date: '09/20/24'
+event_type: 'file_create'
+filter_type: 'exclude'
+filter:
+  selection_1:
+    TargetField: 'TargetFilename'
+    Condition: 'begin with'
+    Pattern: 'C:\Windows\system32\wbem\Performance\'
+operating_system: 'windows'

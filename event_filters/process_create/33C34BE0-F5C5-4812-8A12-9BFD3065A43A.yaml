@@ -1,0 +1,14 @@
+title: 'Image is C:\Program Files (x86)\Common Files\microsoft shared\ink\TabTip32.exe'
+id: '33C34BE0-F5C5-4812-8A12-9BFD3065A43A'
+description: 'Windows: Touch Keyboard and Handwriting Panel Helper'
+references: 'https://github.com/Neo23x0/sysmon-config'
+author: 'SecurityOnionSolutions'
+date: '09/20/24'
+event_type: 'process_create'
+filter_type: 'exclude'
+filter:
+  selection_1:
+    TargetField: 'Image'
+    Condition: 'is'
+    Pattern: 'C:\Program Files (x86)\Common Files\microsoft shared\ink\TabTip32.exe'
+operating_system: 'windows'

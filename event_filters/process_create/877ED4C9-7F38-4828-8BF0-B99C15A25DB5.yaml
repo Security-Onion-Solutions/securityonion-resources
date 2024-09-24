@@ -1,0 +1,14 @@
+title: 'CommandLine is C:\Windows\System32\svchost.exe -k LocalSystemNetworkRestricted -p -s NcbService'
+id: '877ED4C9-7F38-4828-8BF0-B99C15A25DB5'
+description: 'Win10:1903:Network Connection Broker'
+references: 'https://github.com/Neo23x0/sysmon-config'
+author: 'SecurityOnionSolutions'
+date: '09/20/24'
+event_type: 'process_create'
+filter_type: 'exclude'
+filter:
+  selection_1:
+    TargetField: 'CommandLine'
+    Condition: 'is'
+    Pattern: 'C:\Windows\System32\svchost.exe -k LocalSystemNetworkRestricted -p -s NcbService'
+operating_system: 'windows'

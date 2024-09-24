@@ -1,0 +1,14 @@
+title: 'Image is C:\Windows\system32\CompatTelRunner.exe'
+id: '873B7244-5F55-4CD3-AAB8-A1F865C3FE52'
+description: ' Windows: Windows 10 app, creates tons of cache files'
+references: 'https://github.com/Neo23x0/sysmon-config'
+author: 'SecurityOnionSolutions'
+date: '09/20/24'
+event_type: 'file_create'
+filter_type: 'exclude'
+filter:
+  selection_1:
+    TargetField: 'Image'
+    Condition: 'is'
+    Pattern: 'C:\Windows\system32\CompatTelRunner.exe'
+operating_system: 'windows'

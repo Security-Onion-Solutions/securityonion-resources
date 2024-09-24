@@ -1,0 +1,14 @@
+title: 'Image is C:\Program Files\Common Files\Microsoft Shared\ClickToRun\OfficeC2RClient.exe'
+id: 'D6337799-0631-4341-BE66-5B2C1F192A71'
+description: ' Microsoft:Office Click2Run'
+references: 'https://github.com/Neo23x0/sysmon-config'
+author: 'SecurityOnionSolutions'
+date: '09/20/24'
+event_type: 'file_create'
+filter_type: 'exclude'
+filter:
+  selection_1:
+    TargetField: 'Image'
+    Condition: 'is'
+    Pattern: 'C:\Program Files\Common Files\Microsoft Shared\ClickToRun\OfficeC2RClient.exe'
+operating_system: 'windows'

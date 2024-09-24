@@ -1,0 +1,14 @@
+title: 'QueryName end with .exelator.com'
+id: 'D5F64C4E-DA2C-42DB-B26E-11D08FE6E486'
+description: 'Ads:Nielson Marketing Cloud'
+references: 'https://github.com/Neo23x0/sysmon-config'
+author: 'SecurityOnionSolutions'
+date: '09/20/24'
+event_type: 'dns_query'
+filter_type: 'exclude'
+filter:
+  selection_1:
+    TargetField: 'QueryName'
+    Condition: 'end with'
+    Pattern: '.exelator.com'
+operating_system: 'windows'

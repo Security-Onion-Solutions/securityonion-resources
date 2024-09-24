@@ -1,0 +1,14 @@
+title: 'TargetObject end with Toolbar\WebBrowser\{47833539-D0C5-4125-9FA8-0819E2EAAC93}'
+id: '2A4A2BB7-4CB8-4781-9695-4173C1D3E2E5'
+description: 'Windows:Explorer: Extraneous activity'
+references: 'https://github.com/Neo23x0/sysmon-config'
+author: 'SecurityOnionSolutions'
+date: '09/20/24'
+event_type: 'registry_event'
+filter_type: 'exclude'
+filter:
+  selection_1:
+    TargetField: 'TargetObject'
+    Condition: 'end with'
+    Pattern: 'Toolbar\WebBrowser\{47833539-D0C5-4125-9FA8-0819E2EAAC93}'
+operating_system: 'windows'

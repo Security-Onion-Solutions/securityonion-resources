@@ -1,0 +1,14 @@
+title: 'QueryName end with .gstatic.com'
+id: 'FF8081F5-B852-4A09-B67D-CB0E1533B089'
+description: 'Google | Microsoft default exclusion'
+references: 'https://github.com/Neo23x0/sysmon-config'
+author: 'SecurityOnionSolutions'
+date: '09/20/24'
+event_type: 'dns_query'
+filter_type: 'exclude'
+filter:
+  selection_1:
+    TargetField: 'QueryName'
+    Condition: 'end with'
+    Pattern: '.gstatic.com'
+operating_system: 'windows'

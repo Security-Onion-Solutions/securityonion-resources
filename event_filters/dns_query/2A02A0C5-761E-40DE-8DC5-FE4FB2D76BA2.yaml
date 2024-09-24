@@ -1,0 +1,14 @@
+title: 'QueryName end with .spotxchange.com'
+id: '2A02A0C5-761E-40DE-8DC5-FE4FB2D76BA2'
+description: 'Ads'
+references: 'https://github.com/Neo23x0/sysmon-config'
+author: 'SecurityOnionSolutions'
+date: '09/20/24'
+event_type: 'dns_query'
+filter_type: 'exclude'
+filter:
+  selection_1:
+    TargetField: 'QueryName'
+    Condition: 'end with'
+    Pattern: '.spotxchange.com'
+operating_system: 'windows'

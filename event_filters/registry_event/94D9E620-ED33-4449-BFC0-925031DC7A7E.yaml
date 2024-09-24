@@ -1,0 +1,14 @@
+title: 'TargetObject is HKLM\Software\Microsoft\Windows\CurrentVersion\WINEVT\Publishers\{945a8954-c147-4acd-923f-40c45405a658}'
+id: '94D9E620-ED33-4449-BFC0-925031DC7A7E'
+description: 'Windows update'
+references: 'https://github.com/Neo23x0/sysmon-config'
+author: 'SecurityOnionSolutions'
+date: '09/20/24'
+event_type: 'registry_event'
+filter_type: 'exclude'
+filter:
+  selection_1:
+    TargetField: 'TargetObject'
+    Condition: 'is'
+    Pattern: 'HKLM\Software\Microsoft\Windows\CurrentVersion\WINEVT\Publishers\{945a8954-c147-4acd-923f-40c45405a658}'
+operating_system: 'windows'

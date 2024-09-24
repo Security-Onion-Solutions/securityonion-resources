@@ -1,0 +1,14 @@
+title: 'Image is C:\Program Files\Microsoft Office\Office16\msoia.exe'
+id: '183261B6-33D7-4688-A6AB-A282ECA84FFE'
+description: 'Microsoft:Office: Telemetry collector'
+references: 'https://github.com/Neo23x0/sysmon-config'
+author: 'SecurityOnionSolutions'
+date: '09/20/24'
+event_type: 'process_create'
+filter_type: 'exclude'
+filter:
+  selection_1:
+    TargetField: 'Image'
+    Condition: 'is'
+    Pattern: 'C:\Program Files\Microsoft Office\Office16\msoia.exe'
+operating_system: 'windows'

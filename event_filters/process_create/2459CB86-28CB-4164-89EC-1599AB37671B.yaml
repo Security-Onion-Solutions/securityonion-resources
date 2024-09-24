@@ -1,0 +1,14 @@
+title: 'Image is C:\Program Files (x86)\Microsoft Office\root\Office16\officebackgroundtaskhandler.exe'
+id: '2459CB86-28CB-4164-89EC-1599AB37671B'
+description: ''
+references: 'https://github.com/Neo23x0/sysmon-config'
+author: 'SecurityOnionSolutions'
+date: '09/20/24'
+event_type: 'process_create'
+filter_type: 'exclude'
+filter:
+  selection_1:
+    TargetField: 'Image'
+    Condition: 'is'
+    Pattern: 'C:\Program Files (x86)\Microsoft Office\root\Office16\officebackgroundtaskhandler.exe'
+operating_system: 'windows'

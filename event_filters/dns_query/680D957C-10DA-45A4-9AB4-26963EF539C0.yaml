@@ -1,0 +1,14 @@
+title: 'QueryName end with .activedirectory.windowsazure.com'
+id: '680D957C-10DA-45A4-9AB4-26963EF539C0'
+description: 'Microsoft: AzureAD'
+references: 'https://github.com/Neo23x0/sysmon-config'
+author: 'SecurityOnionSolutions'
+date: '09/20/24'
+event_type: 'dns_query'
+filter_type: 'exclude'
+filter:
+  selection_1:
+    TargetField: 'QueryName'
+    Condition: 'end with'
+    Pattern: '.activedirectory.windowsazure.com'
+operating_system: 'windows'

@@ -1,0 +1,14 @@
+title: 'QueryName end with .globalsign.com'
+id: 'EE550707-59D7-4EC7-A15E-252704DBFD3D'
+description: ''
+references: 'https://github.com/Neo23x0/sysmon-config'
+author: 'SecurityOnionSolutions'
+date: '09/20/24'
+event_type: 'dns_query'
+filter_type: 'exclude'
+filter:
+  selection_1:
+    TargetField: 'QueryName'
+    Condition: 'end with'
+    Pattern: '.globalsign.com'
+operating_system: 'windows'

@@ -1,0 +1,14 @@
+title: 'Image is C:\Program Files\Common Files\McAfee\Engine\AMCoreUpdater\amupdate.exe'
+id: '510963E1-7FC1-41D4-8D18-935EE7196152'
+description: ''
+references: 'https://github.com/olafhartong/sysmon-modular'
+author: 'SecurityOnionSolutions'
+date: '09/20/24'
+event_type: 'registry_event'
+filter_type: 'exclude'
+filter:
+  selection_1:
+    TargetField: 'Image'
+    Condition: 'is'
+    Pattern: 'C:\Program Files\Common Files\McAfee\Engine\AMCoreUpdater\amupdate.exe'
+operating_system: 'windows'

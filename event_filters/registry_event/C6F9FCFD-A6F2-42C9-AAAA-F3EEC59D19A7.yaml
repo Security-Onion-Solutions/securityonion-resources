@@ -1,0 +1,14 @@
+title: 'Image is C:\Program Files\WIDCOMM\Bluetooth Software\btwdins.exe'
+id: 'C6F9FCFD-A6F2-42C9-AAAA-F3EEC59D19A7'
+description: 'Constantly writes to HKLM'
+references: 'https://github.com/Neo23x0/sysmon-config'
+author: 'SecurityOnionSolutions'
+date: '09/20/24'
+event_type: 'registry_event'
+filter_type: 'exclude'
+filter:
+  selection_1:
+    TargetField: 'Image'
+    Condition: 'is'
+    Pattern: 'C:\Program Files\WIDCOMM\Bluetooth Software\btwdins.exe'
+operating_system: 'windows'

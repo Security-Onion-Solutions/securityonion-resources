@@ -1,0 +1,14 @@
+title: 'TargetObject end with \Lsa\OfflineJoin\CurrentValue'
+id: 'A6E982A4-EF13-4044-93DA-B865C6A388DA'
+description: 'Windows: Sensitive value during domain join'
+references: 'https://github.com/Neo23x0/sysmon-config'
+author: 'SecurityOnionSolutions'
+date: '09/20/24'
+event_type: 'registry_event'
+filter_type: 'exclude'
+filter:
+  selection_1:
+    TargetField: 'TargetObject'
+    Condition: 'end with'
+    Pattern: '\Lsa\OfflineJoin\CurrentValue'
+operating_system: 'windows'

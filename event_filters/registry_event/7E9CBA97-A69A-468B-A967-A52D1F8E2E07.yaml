@@ -1,0 +1,14 @@
+title: 'TargetObject end with SOFTWARE\Microsoft\Windows\CurrentVersion\Group Policy\Scripts\Startup\0\GPO-ID'
+id: '7E9CBA97-A69A-468B-A967-A52D1F8E2E07'
+description: 'Windows:Group Policy: Noise below the actual key while building'
+references: 'https://github.com/Neo23x0/sysmon-config'
+author: 'SecurityOnionSolutions'
+date: '09/20/24'
+event_type: 'registry_event'
+filter_type: 'exclude'
+filter:
+  selection_1:
+    TargetField: 'TargetObject'
+    Condition: 'end with'
+    Pattern: 'SOFTWARE\Microsoft\Windows\CurrentVersion\Group Policy\Scripts\Startup\0\GPO-ID'
+operating_system: 'windows'

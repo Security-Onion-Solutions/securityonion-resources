@@ -1,0 +1,14 @@
+title: 'Image is C:\Windows\system32\igfxCUIService.exe'
+id: 'C4E312F9-BA63-4137-9DBA-5431AD3C3D1E'
+description: ''
+references: 'https://github.com/olafhartong/sysmon-modular'
+author: 'SecurityOnionSolutions'
+date: '09/20/24'
+event_type: 'file_create'
+filter_type: 'exclude'
+filter:
+  selection_1:
+    TargetField: 'Image'
+    Condition: 'is'
+    Pattern: 'C:\Windows\system32\igfxCUIService.exe'
+operating_system: 'windows'

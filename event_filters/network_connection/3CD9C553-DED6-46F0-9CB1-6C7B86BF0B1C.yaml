@@ -1,0 +1,14 @@
+title: 'Image begin with C:\ProgramData\Microsoft\Windows Defender\Platform\'
+id: '3CD9C553-DED6-46F0-9CB1-6C7B86BF0B1C'
+description: ''
+references: 'https://github.com/Neo23x0/sysmon-config'
+author: 'SecurityOnionSolutions'
+date: '09/20/24'
+event_type: 'network_connection'
+filter_type: 'exclude'
+filter:
+  selection_1:
+    TargetField: 'Image'
+    Condition: 'begin with'
+    Pattern: 'C:\ProgramData\Microsoft\Windows Defender\Platform\'
+operating_system: 'windows'
