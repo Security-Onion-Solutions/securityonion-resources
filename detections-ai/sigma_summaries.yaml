@@ -8638,6 +8638,17 @@
     bitwise XOR operations. These indicators suggest malicious actions aimed at evading
     defenses and establishing unauthorized remote access.
   Updated-Date: '2024_09_03'
+363bae16-f888-4f89-aad3-68fa5b4e77f1:
+  Created-Date: '2024_09_25'
+  Custom-Edited: false
+  Reviewed: false
+  Rule-Body-Hash: ad79c081ae66a672ea5cdbf469e7be50
+  Ruleset: securityonion-resources
+  Summary: This rule detects when the Security Onion grid has entered an unhealthy
+    state. Monitoring such events is critical, as they suggest issues within the Security
+    Onion infrastructure. Users are advised to check the Security Onion Console (SOC)
+    for further details and troubleshooting.
+  Updated-Date: '2024_09_25'
 363eccc0-279a-4ccf-a3ab-24c2e63b11fb:
   Created-Date: '2024_09_04'
   Custom-Edited: false
@@ -10107,6 +10118,19 @@
     \ This indicates an attempt to access the honeypot\u2019s FTP service, potentially\
     \ signaling unauthorized or suspicious activity."
   Updated-Date: '2024_08_07'
+40cfc50a-7105-40ee-a95d-520c39b790c5:
+  Created-Date: '2024_09_25'
+  Custom-Edited: false
+  Reviewed: false
+  Rule-Body-Hash: 6c401004a0a201e585b8248bf08d125b
+  Ruleset: securityonion-resources
+  Summary: This rule detects when the Security Onion Detections engine has entered
+    a failure state. It specifically monitors for events where the action indicates
+    that the detection engine has failed, in the context of the SOC server's health
+    status. This condition alerts system administrators to potential issues within
+    the Security Onion detection capabilities, enabling prompt troubleshooting and
+    maintenance to ensure continued operational integrity.
+  Updated-Date: '2024_09_25'
 40f9af16-589d-4984-b78d-8c2aec023197:
   Created-Date: '2024_09_04'
   Custom-Edited: false
@@ -10223,6 +10247,16 @@
     Base64 encoding in DNS queries can be indicative of attempts at data exfiltration
     or command-and-control communication.
   Updated-Date: '2024_09_04'
+4186440c-ce77-46e6-991f-e26198389514:
+  Created-Date: '2024_09_25'
+  Custom-Edited: false
+  Reviewed: false
+  Rule-Body-Hash: 722ea349f052d107663f164f7f6f7473
+  Ruleset: securityonion-resources
+  Summary: This rule detects when nodes within the Security Onion grid require a reboot.
+    The detection is based on specific events indicating that grid nodes are awaiting
+    a reboot, as reported by the SOC server health service.
+  Updated-Date: '2024_09_25'
 418dc89a-9808-4b87-b1d7-e5ae0cb6effc:
   Created-Date: '2024_08_07'
   Custom-Edited: false
@@ -30447,6 +30481,18 @@ bb780e0c-16cf-4383-8383-1e5471db6cf9:
     encoding in PowerShell commands could be an attempt by attackers to evade defenses
     and execute malicious scripts covertly.
   Updated-Date: '2024_09_04'
+bba1a299-eff6-4ca6-bc9e-f858c785c89f:
+  Created-Date: '2024_09_25'
+  Custom-Edited: false
+  Reviewed: false
+  Rule-Body-Hash: d1686c4e604bf805ac2d326f445a42ca
+  Ruleset: securityonion-resources
+  Summary: This rule detects when the Security Onion grid has returned to a healthy
+    state, signifying that the system has recovered from any previous issues and is
+    functioning correctly. This notification helps administrators confirm the operational
+    status of the Security Onion grid, ensuring that all components are running as
+    expected and the environment is secure and stable.
+  Updated-Date: '2024_09_25'
 bbb2dedd-a0e3-46ab-ba6c-6c82ae7a9aa7:
   Created-Date: '2024_08_07'
   Custom-Edited: false
@@ -34220,6 +34266,18 @@ d3f90469-fb05-42ce-b67d-0fded91bbef3:
     potential unauthorized access attempts. However, it may produce false positives
     from legitimate users entering incorrect passwords.
   Updated-Date: '2024_09_04'
+d43a269f-0fc3-4316-bbdd-ac371f3ace51:
+  Created-Date: '2024_09_25'
+  Custom-Edited: false
+  Reviewed: false
+  Rule-Body-Hash: 728100546a408198791339fb1f77597a
+  Ruleset: securityonion-resources
+  Summary: This rule detects when the Security Onion Detections engine has returned
+    to a healthy state. It monitors events within a Security Operations Center (SOC)
+    environment, focusing specifically on events where the detection engine's status
+    changes back to healthy. This can be critical for maintaining the efficacy of
+    security monitoring operations.
+  Updated-Date: '2024_09_25'
 d443095b-a221-4957-a2c4-cd1756c9b747:
   Created-Date: '2024_09_04'
   Custom-Edited: false
