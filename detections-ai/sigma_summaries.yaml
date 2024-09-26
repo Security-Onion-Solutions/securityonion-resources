@@ -8638,17 +8638,6 @@
     bitwise XOR operations. These indicators suggest malicious actions aimed at evading
     defenses and establishing unauthorized remote access.
   Updated-Date: '2024_09_03'
-363bae16-f888-4f89-aad3-68fa5b4e77f1:
-  Created-Date: '2024_09_25'
-  Custom-Edited: false
-  Reviewed: true
-  Rule-Body-Hash: ad79c081ae66a672ea5cdbf469e7be50
-  Ruleset: securityonion-resources
-  Summary: This rule detects when the Security Onion grid has entered an unhealthy
-    state. Monitoring such events is critical, as they suggest issues within the Security
-    Onion infrastructure. Users are advised to check the Security Onion Console (SOC)
-    for further details and troubleshooting.
-  Updated-Date: '2024_09_25'
 363eccc0-279a-4ccf-a3ab-24c2e63b11fb:
   Created-Date: '2024_09_04'
   Custom-Edited: false
@@ -8754,16 +8743,6 @@
     DNS query activities associated with Regsvr32.exe can help in identifying potential
     misuse or suspicious behavior indicative of malicious activity.
   Updated-Date: '2024_09_04'
-36e35854-a11d-408d-a918-9d0fe7567766:
-  Created-Date: '2024_08_07'
-  Custom-Edited: false
-  Reviewed: true
-  Rule-Body-Hash: 0b065fd97d6bfed72e1b7ece203b6f2b
-  Ruleset: securityonion-resources
-  Summary: This rule detects when a login attempt is made on the Telnet service of
-    a Security Onion Intrusion Detection Honeypot (IDH) node, an action typically
-    indicating potential unauthorized access attempts.
-  Updated-Date: '2024_08_07'
 36fbec91-fa1b-4d5d-8df1-8d8edcb632ad:
   Created-Date: '2024_08_07'
   Custom-Edited: false
@@ -8809,18 +8788,6 @@
     Potential false positives might occur if the DLL is loaded from custom installation
     paths, thus additional context-specific filters might be required.
   Updated-Date: '2024_09_04'
-37379ef6-95e7-4025-bd19-f751e9e41e06:
-  Created-Date: '2024_08_07'
-  Custom-Edited: false
-  Reviewed: true
-  Rule-Body-Hash: 8bc5210f41af91e7f77a36133e9d6e49
-  Ruleset: securityonion-resources
-  Summary: This rule detects when a user fails to login to a grid node via the console
-    on a Linux system. It specifically monitors authentication logs for failed login
-    attempts where the process name is 'login' and associates these events with grid
-    nodes by checking for specific tags. This detection helps identify possible unauthorized
-    access attempts and ensures security monitoring for grid node logins.
-  Updated-Date: '2024_08_07'
 37651c2a-42cd-4a69-ae0d-22a4349aa04a:
   Created-Date: '2024_09_04'
   Custom-Edited: false
@@ -9192,18 +9159,6 @@
     via "csc.exe" on behalf of MOVEit, especially incidents post-May 27th, indicating
     potential exploitation of the vulnerability.
   Updated-Date: '2024_09_03'
-39ae3791-133c-4beb-bdf7-559e7a4cd428:
-  Created-Date: '2024_08_07'
-  Custom-Edited: false
-  Reviewed: true
-  Rule-Body-Hash: ed944d7f7bd56b6ea7c50dea2ba5f83f
-  Ruleset: securityonion-resources
-  Summary: This rule detects instances where an attempt is made to execute an action
-    command on a REDIS service running on an OpenCanary node. OpenCanary is a honeypot
-    framework designed to emulate various network services for intrusion detection
-    purposes. The rule identifies such attempts by monitoring specific log types generated
-    by OpenCanary.
-  Updated-Date: '2024_08_07'
 39b31e81-5f5f-4898-9c0e-2160cfc0f9bf:
   Created-Date: '2024_08_07'
   Custom-Edited: false
@@ -10106,31 +10061,6 @@
     Technology Preview. This rule can identify both csi.exe and rcsi.exe usage, and
     its legitimate use is usually by software developers.
   Updated-Date: '2024_09_04'
-40b9afdf-4322-433b-b812-b6f6751c4868:
-  Created-Date: '2024_08_07'
-  Custom-Edited: false
-  Reviewed: true
-  Rule-Body-Hash: 111113dc448851cb6f0851afbf0be454
-  Ruleset: securityonion-resources
-  Summary: "This rule detects when there is a login attempt on the FTP service of\
-    \ a Security Onion Intrusion Detection Honeypot (IDH) node. The rule monitors\
-    \ logs from the opencanary product specifically for events matching log type 2000.\
-    \ This indicates an attempt to access the honeypot\u2019s FTP service, potentially\
-    \ signaling unauthorized or suspicious activity."
-  Updated-Date: '2024_08_07'
-40cfc50a-7105-40ee-a95d-520c39b790c5:
-  Created-Date: '2024_09_25'
-  Custom-Edited: false
-  Reviewed: true
-  Rule-Body-Hash: 6c401004a0a201e585b8248bf08d125b
-  Ruleset: securityonion-resources
-  Summary: This rule detects when the Security Onion Detections engine has entered
-    a failure state. It specifically monitors for events where the action indicates
-    that the detection engine has failed, in the context of the SOC server's health
-    status. This condition alerts system administrators to potential issues within
-    the Security Onion detection capabilities, enabling prompt troubleshooting and
-    maintenance to ensure continued operational integrity.
-  Updated-Date: '2024_09_25'
 40f9af16-589d-4984-b78d-8c2aec023197:
   Created-Date: '2024_09_04'
   Custom-Edited: false
@@ -10247,16 +10177,6 @@
     Base64 encoding in DNS queries can be indicative of attempts at data exfiltration
     or command-and-control communication.
   Updated-Date: '2024_09_04'
-4186440c-ce77-46e6-991f-e26198389514:
-  Created-Date: '2024_09_25'
-  Custom-Edited: false
-  Reviewed: true
-  Rule-Body-Hash: 722ea349f052d107663f164f7f6f7473
-  Ruleset: securityonion-resources
-  Summary: This rule detects when nodes within the Security Onion grid require a reboot.
-    The detection is based on specific events indicating that grid nodes are awaiting
-    a reboot, as reported by the SOC server health service.
-  Updated-Date: '2024_09_25'
 418dc89a-9808-4b87-b1d7-e5ae0cb6effc:
   Created-Date: '2024_08_07'
   Custom-Edited: false
@@ -12668,16 +12588,6 @@
     the GIT service, which can indicate efforts to collect or exfiltrate sensitive
     data.
   Updated-Date: '2024_09_04'
-500b9d62-4bb8-43db-9e50-08438c3a3a07:
-  Created-Date: '2024_08_07'
-  Custom-Edited: false
-  Reviewed: true
-  Rule-Body-Hash: 1d6c730947e54510de15843966dc287f
-  Ruleset: securityonion-resources
-  Summary: This rule detects when a Git service on a Security Onion Intrusion Detection
-    Honeypot (IDH) node receives a git clone request, which could indicate suspicious
-    activities targeting the honeypot's Git repositories.
-  Updated-Date: '2024_08_07'
 503d581c-7df0-4bbe-b9be-5840c0ecc1fc:
   Created-Date: '2024_08_07'
   Custom-Edited: false
@@ -14295,17 +14205,6 @@
     query patterns, like 'Orion/Skipi18n/Profiler/'. This detection is crucial for
     identifying unauthorized access attempts leveraging the mentioned vulnerability.
   Updated-Date: '2024_09_03'
-5a365a62-7d5a-4d80-8435-488380dec0e2:
-  Created-Date: '2024_08_07'
-  Custom-Edited: false
-  Reviewed: true
-  Rule-Body-Hash: 575e448126ad19899e02a7dcd0c1fcc6
-  Ruleset: securityonion-resources
-  Summary: This rule detects an attempt to log in via an HTTP Proxy on a Security
-    Onion Intrusion Detection Honeypot (IDH) node. The detection focuses on a specific
-    log type indicating a proxy login attempt, which can help identify unauthorized
-    access or potential malicious activity targeting the proxy service.
-  Updated-Date: '2024_08_07'
 5a44727c-3b85-4713-8c44-4401d5499629:
   Created-Date: '2024_08_07'
   Custom-Edited: false
@@ -14731,15 +14630,6 @@
     command with options for editing operations, username specifications, user type,
     and targeting the admin group.
   Updated-Date: '2024_09_04'
-5d52bf82-19f8-4f18-9bc6-e1d6bdc1872f:
-  Created-Date: '2024_08_07'
-  Custom-Edited: false
-  Reviewed: true
-  Rule-Body-Hash: 95fd5c28055cda0676625e6bc48fc173
-  Ruleset: securityonion-resources
-  Summary: This rule detects when there is a login attempt to the VNC service on a
-    Security Onion Intrusion Detection Honeypot (IDH) node.
-  Updated-Date: '2024_08_07'
 5d756aee-ad3e-4306-ad95-cb1abec48de2:
   Created-Date: '2024_09_04'
   Custom-Edited: false
@@ -15338,19 +15228,6 @@
     paths indicating irregular or temporary file locations. This may indicate potential
     unauthorized or malicious use of these devices.
   Updated-Date: '2024_09_03'
-62a3b85c-2923-4af3-8827-0c35e0d303da:
-  Created-Date: '2024_08_07'
-  Custom-Edited: false
-  Reviewed: true
-  Rule-Body-Hash: d948b54dbd33c0613612e58dd1a159ea
-  Ruleset: securityonion-resources
-  Summary: This rule detects actions sent to the Redis service on a Security Onion
-    Intrusion Detection Honeypot (IDH) node, which is used to monitor and log potential
-    security threats. The detection is based on logs generated by the opencanary tool,
-    specifically focusing on log type 17001. This aids in identifying unauthorized
-    or suspicious access to the Redis service, which is crucial for maintaining the
-    integrity and security of the honeypot environment.
-  Updated-Date: '2024_08_07'
 62b20d44-1546-4e61-afce-8e175eb9473c:
   Created-Date: '2024_09_04'
   Custom-Edited: false
@@ -18957,20 +18834,6 @@
     modified or deleted. The specific events monitored are those indicating an update
     or deletion in the application's lifecycle.
   Updated-Date: '2024_09_04'
-789d4e19-6d07-4be9-9587-0e5a6b460f6d:
-  Created-Date: '2024_08_07'
-  Custom-Edited: false
-  Reviewed: true
-  Rule-Body-Hash: 93d394ab9071d4ae2fd50d085d3e23bf
-  Ruleset: securityonion-resources
-  Summary: This rule detects when the SMB service on a Security Onion Intrusion Detection
-    Honeypot (IDH) node has been accessed. SMB (Server Message Block) is a network
-    file sharing protocol, and monitoring its activity can identify potential unauthorized
-    access or malicious activity. The detection relies on logs specific to the OpenCanary
-    honeypot framework, which allows the simulation of various services for monitoring
-    and threat intelligence purposes. This type of access could indicate an attempt
-    to exploit vulnerabilities or gather information from the honeypot system.
-  Updated-Date: '2024_08_07'
 78a34b67-3c39-4886-8fb4-61c46dc18ecd:
   Created-Date: '2024_09_04'
   Custom-Edited: false
@@ -23118,19 +22981,6 @@
     database. ADExplorer is a tool used for browsing Active Directory, and using the
     "-snapshot" flag could suggest unauthorized access or data exfiltration activities.
   Updated-Date: '2024_09_04'
-923421c7-9b1e-45d4-80cc-e21d060c8723:
-  Created-Date: '2024_08_07'
-  Custom-Edited: false
-  Reviewed: true
-  Rule-Body-Hash: 7483b9ee691d120f020522a6ab7da17e
-  Ruleset: securityonion-resources
-  Summary: This rule detects failed login attempts to a grid node via SSH on Linux
-    systems. It identifies unsuccessful authentication events originating from the
-    'sshd' process and specifically targets instances tagged with 'so-grid-node'.
-    The rule helps in reviewing associated logs for details about the username and
-    source IP causing the failed attempts, aiding in security monitoring and incident
-    response.
-  Updated-Date: '2024_08_07'
 92389a99-5215-43b0-a09f-e334453b2ed3:
   Created-Date: '2024_08_07'
   Custom-Edited: false
@@ -25488,19 +25338,6 @@
     \ References highlight how this technique is implemented and discussed within\
     \ the cybersecurity community."
   Updated-Date: '2024_09_03'
-9ee1021c-be7f-453d-81e8-8539403a2c5d:
-  Created-Date: '2024_08_07'
-  Custom-Edited: false
-  Reviewed: true
-  Rule-Body-Hash: 93fbd660a3c705ece23738fb940575d6
-  Ruleset: securityonion-resources
-  Summary: This rule detects attempted login activities to the MySQL service on a
-    Security Onion Intrusion Detection Honeypot (IDH) node through a proxy. Identifying
-    such attempts is crucial for recognizing unauthorized access or potential threats
-    targeting the MySQL service within a honeypot environment. The detection mechanism
-    leverages specific log entries associated with MySQL login attempts, ensuring
-    precise identification of the events.
-  Updated-Date: '2024_08_07'
 9ef27c24-4903-4192-881a-3adde7ff92a5:
   Created-Date: '2024_09_04'
   Custom-Edited: false
@@ -25800,16 +25637,6 @@ a01b8329-5953-4f73-ae2d-aa01e1f35f00:
     within the specified file paths, which include both 32-bit and 64-bit versions
     of the .NET Framework.
   Updated-Date: '2024_09_04'
-a02961c9-4e4b-4421-a04d-2ad753d6b06a:
-  Created-Date: '2024_08_07'
-  Custom-Edited: false
-  Reviewed: true
-  Rule-Body-Hash: 3af597eac61529ff43951519d383d14c
-  Ruleset: securityonion-resources
-  Summary: This rule detects when the HTTP service on a Security Onion Intrusion Detection
-    Honeypot (IDH) node has received a GET request, indicating potential unauthorized
-    or malicious web access attempts.
-  Updated-Date: '2024_08_07'
 a0413867-daf3-43dd-9245-734b3a787942:
   Created-Date: '2024_09_04'
   Custom-Edited: false
@@ -27103,16 +26930,6 @@ a7ee1722-c3c5-aeff-3212-c777e4733217:
     malware, including ransomware like WastedLocker, to prevent detection and ensure
     persistence on compromised systems.
   Updated-Date: '2024_09_03'
-a803dec9-d49f-4987-a7f5-e2148fcc460d:
-  Created-Date: '2024_08_07'
-  Custom-Edited: false
-  Reviewed: true
-  Rule-Body-Hash: 6ce58176f0b2e4ace315cca271be3fcd
-  Ruleset: securityonion-resources
-  Summary: This rule detects requests made to the Trivial File Transfer Protocol (TFTP)
-    service on a Security Onion Intrusion Detection Honeypot (IDH) node, leveraging
-    opencanary logs.
-  Updated-Date: '2024_08_07'
 a80d927d-ac6e-443f-a867-e8d6e3897318:
   Created-Date: '2024_09_04'
   Custom-Edited: false
@@ -30481,18 +30298,6 @@ bb780e0c-16cf-4383-8383-1e5471db6cf9:
     encoding in PowerShell commands could be an attempt by attackers to evade defenses
     and execute malicious scripts covertly.
   Updated-Date: '2024_09_04'
-bba1a299-eff6-4ca6-bc9e-f858c785c89f:
-  Created-Date: '2024_09_25'
-  Custom-Edited: false
-  Reviewed: true
-  Rule-Body-Hash: d1686c4e604bf805ac2d326f445a42ca
-  Ruleset: securityonion-resources
-  Summary: This rule detects when the Security Onion grid has returned to a healthy
-    state, signifying that the system has recovered from any previous issues and is
-    functioning correctly. This notification helps administrators confirm the operational
-    status of the Security Onion grid, ensuring that all components are running as
-    expected and the environment is secure and stable.
-  Updated-Date: '2024_09_25'
 bbb2dedd-a0e3-46ab-ba6c-6c82ae7a9aa7:
   Created-Date: '2024_08_07'
   Custom-Edited: false
@@ -31066,18 +30871,6 @@ bf72941a-cba0-41ea-b18c-9aca3925690d:
     cybercriminal group FIN7. The detection is based on identifying specific function
     names and the default report file name within PowerShell script block text.
   Updated-Date: '2024_09_03'
-bf86ef21-41e6-417b-9a05-b9ea6bf28a38:
-  Created-Date: '2024_08_07'
-  Custom-Edited: false
-  Reviewed: true
-  Rule-Body-Hash: 0815f5760168818beec03f061397542e
-  Ruleset: securityonion-resources
-  Summary: This rule detects when a user fails to login to the Security Onion Console
-    (Web UI). It identifies login errors by monitoring audit logs from the Kratos
-    service for messages indicating a self-service login error. Further investigation
-    should include reviewing associated logs to identify the target username and the
-    source IP involved in the failed login attempt.
-  Updated-Date: '2024_08_07'
 bf906d7b-7070-4642-8383-e404cf26eba5:
   Created-Date: '2024_08_07'
   Custom-Edited: false
@@ -33840,15 +33633,6 @@ d0b65ad3-e945-435e-a7a9-438e62dd48e9:
     a loaded DLL matches the specified SHA256, SHA1, or MD5 hash values. This helps
     in identifying potential defense evasion and emerging threats within Windows environments.
   Updated-Date: '2024_09_03'
-d0ba1b93-968a-401c-94fb-c8db49ff3f1a:
-  Created-Date: '2024_08_07'
-  Custom-Edited: false
-  Reviewed: true
-  Rule-Body-Hash: c6095712b7758054fb698ea173c94648
-  Ruleset: securityonion-resources
-  Summary: This rule detects when there is a login attempt to the HTTP service on
-    a Security Onion Intrusion Detection Honeypot (IDH) node.
-  Updated-Date: '2024_08_07'
 d0d2f720-d14f-448d-8242-51ff396a334e:
   Created-Date: '2024_09_04'
   Custom-Edited: false
@@ -34266,18 +34050,6 @@ d3f90469-fb05-42ce-b67d-0fded91bbef3:
     potential unauthorized access attempts. However, it may produce false positives
     from legitimate users entering incorrect passwords.
   Updated-Date: '2024_09_04'
-d43a269f-0fc3-4316-bbdd-ac371f3ace51:
-  Created-Date: '2024_09_25'
-  Custom-Edited: false
-  Reviewed: true
-  Rule-Body-Hash: 728100546a408198791339fb1f77597a
-  Ruleset: securityonion-resources
-  Summary: This rule detects when the Security Onion Detections engine has returned
-    to a healthy state. It monitors events within a Security Operations Center (SOC)
-    environment, focusing specifically on events where the detection engine's status
-    changes back to healthy. This can be critical for maintaining the efficacy of
-    security monitoring operations.
-  Updated-Date: '2024_09_25'
 d443095b-a221-4957-a2c4-cd1756c9b747:
   Created-Date: '2024_09_04'
   Custom-Edited: false
@@ -35422,16 +35194,6 @@ dcdbc940-0bff-46b2-95f3-2d73f848e33b:
     of privilege escalation or remote code execution attempts linked to the print
     spool service's operations.
   Updated-Date: '2024_09_03'
-dce29957-6cb5-4fcf-9497-0e50d6372357:
-  Created-Date: '2024_08_07'
-  Custom-Edited: false
-  Reviewed: true
-  Rule-Body-Hash: fe023acb4d751eef0f2b1b80311484e4
-  Ruleset: securityonion-resources
-  Summary: This rule detects when the Simple Network Management Protocol (SNMP) service
-    on a Security Onion Intrusion Detection Honeypot (IDH) node receives an Object
-    Identifier (OID) request.
-  Updated-Date: '2024_08_07'
 dcf2db1f-f091-425b-a821-c05875b8925a:
   Created-Date: '2024_08_07'
   Custom-Edited: false
@@ -36684,19 +36446,6 @@ e4a6b256-3e47-40fc-89d2-7a477edd6915:
     or malware activity, such as actions by the Lazarus Group utilizing executables
     like `dfrgui.exe` and `wsmprovhost.exe`.
   Updated-Date: '2024_09_04'
-e4bbc094-ad58-4879-bec7-0ccc60a99a5b:
-  Created-Date: '2024_08_07'
-  Custom-Edited: false
-  Reviewed: true
-  Rule-Body-Hash: b4eb4f72d1cf7ba90a4e253a35377b3f
-  Ruleset: securityonion-resources
-  Summary: This rule detects when a Session Initiation Protocol (SIP) service on a
-    Security Onion Intrusion Detection Honeypot (IDH) node receives a SIP request.
-    SIP is commonly used for initiating, maintaining, and terminating real-time communication
-    sessions such as voice and video calls. The IDH node, acting as a honeypot, is
-    designed to attract and monitor such activity for security analysis and intrusion
-    detection purposes.
-  Updated-Date: '2024_08_07'
 e4be5675-4a53-426a-8c81-a8bb2387e947:
   Created-Date: '2024_08_07'
   Custom-Edited: false
@@ -36725,15 +36474,6 @@ e4d22291-f3d5-4b78-9a0c-a1fbaf32a6a4:
     The rule aims to identify potentially malicious persistence mechanisms that leverage
     ODBC driver registration in unusual or high-risk locations.
   Updated-Date: '2024_09_03'
-e4eaf701-c8ed-4801-ba78-883c1856b298:
-  Created-Date: '2024_08_07'
-  Custom-Edited: false
-  Reviewed: true
-  Rule-Body-Hash: dbf98b5969c2e7f888aab7ffaaf28624
-  Ruleset: securityonion-resources
-  Summary: This rule detects attempted proxy logins to the Microsoft SQL service on
-    a Security Onion Intrusion Detection Honeypot (IDH) node.
-  Updated-Date: '2024_08_07'
 e4ed6030-ffe5-4e6a-8a8a-ab3c1ab9d94e:
   Created-Date: '2024_08_07'
   Custom-Edited: false
@@ -40562,17 +40302,6 @@ fcf1101d-07c9-49b2-ad81-7e421ff96d80:
     access without needing to authenticate. The detection mechanism checks for specific
     patterns in the URI query string that indicate an exploit attempt.
   Updated-Date: '2024_09_03'
-fcf94210-f188-4363-a707-a1a410ebec03:
-  Created-Date: '2024_08_07'
-  Custom-Edited: false
-  Reviewed: true
-  Rule-Body-Hash: 960643a10b8580b4664a6b5e09b2bb07
-  Ruleset: securityonion-resources
-  Summary: This rule detects new SSH connections and login attempts on a Security
-    Onion Intrusion Detection Honeypot (IDH) node. The monitoring specifically identifies
-    log entries with types 4000, 4001, and 4002, which correspond to new connections
-    and login attempts.
-  Updated-Date: '2024_08_07'
 fd0f5778-d3cb-4c9a-9695-66759d04702a:
   Created-Date: '2024_08_07'
   Custom-Edited: false
