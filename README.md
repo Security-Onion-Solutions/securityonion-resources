@@ -5,9 +5,9 @@ This repository contains the following resources:
 
 ## Security Onion specific Sigma Rules
   - Location: `main` branch, sigma folder
-  - License: Elastic-2.0
+  - License: Elastic-2.0 -- https://securityonionsolutions.com/license
     
-This Sigma ruleset is maintained by Security Onion and is loaded by default into the Security Onion Detections' module.
+This Sigma ruleset is maintained by Security Onion and is loaded by default into the Security Onion Detections module.
 
   
 ## Event Filters
@@ -21,6 +21,6 @@ Originally sourced from https://github.com/Neo23x0/sysmon-config and https://git
 
 ## AI-Generated Detection Summaries
   - Location: `generated-summaries-published` branch, detections-ai folder
-  - License: Elastic-2.0
+  - License: Elastic-2.0 -- https://securityonionsolutions.com/license
 
-Summaries created by an LLM for Suricata, Sigma and YARA rules. Used by Security Onion in the Detections' module.
+Summaries created by an LLM for Suricata, Sigma and YARA rules. Used by Security Onion in the Detections module.
