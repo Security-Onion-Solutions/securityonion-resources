@@ -5626,10 +5626,10 @@ CN_Honker_Webshell_Tuoku_script_mysql:
   Created-Date: '2024_08_07'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: 1d4025b83ddb000bde118cb091b4914f
+  Rule-Body-Hash: 18643ea5303f95e882dd5f48eaebdd39
   Ruleset: securityonion-yara
-  Summary: This rule detects a specific webshell file named `mysql.aspx` from the CN Honker Pentest Toolset. The webshell contains particular string patterns associated with attributes and connection strings that are characteristic of this toolset. These patterns include the addition of an "onkeydown" attribute to a password input field for form submission, and the formatting of a connection string for database access. The rule applies to files smaller than 202KB and triggers if all defined patterns are present.
-  Updated-Date: '2024_08_07'
+  Summary: This rule detects a specific webshell script associated with the CN Honker Pentest Toolset, particularly targeting a file named "mysql.aspx". It identifies the presence of this webshell by searching for distinctive patterns, such as certain login functionalities and database connection strings, indicative of potentially malicious activities used for unauthorized access or control.
+  Updated-Date: '2025_03_13'
 CN_Honker_Webshell_Tuoku_script_oracle:
   Created-Date: '2024_08_07'
   Custom-Edited: false
