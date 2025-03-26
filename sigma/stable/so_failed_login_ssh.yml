@@ -3,7 +3,7 @@ id: 923421c7-9b1e-45d4-80cc-e21d060c8723
 status: experimental
 description: Detects when a user fails to login to a grid node via SSH. Review associated logs for username and source IP.
 license: Elastic-2.0
-author: Security Onion Solutions
+author: 'Security Onion Solutions'
 date: 2024/08/05
 updated: 2025/03/26
 logsource:
@@ -11,11 +11,10 @@ logsource:
     service: auth
 detection:
     selection:
-        event.outcome: failure
-        event.action: ssh_login
-        tags|contains: so-grid-node  # Only generate alerts for Grid Nodes
+        event.outcome: 'failure'
+        event.action: 'ssh_login'
+        tags|contains: 'so-grid-node'  # Only generate alerts for Grid Nodes
     condition: selection
 falsepositives:
     - none
 level: high
-license: Elastic-2.0
