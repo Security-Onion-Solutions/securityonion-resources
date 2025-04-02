@@ -1,0 +1,32 @@
+name: Baseline Playbook - Sigma
+id: a56356b1-eba8-4e32-adc6-a8639d1ef781
+description: |
+    This is the baseline playbook for Sigma detections.
+type: detection
+detection_id: ''
+detection_category: ''
+detection_type: sigma
+contributors:
+  - 'SecurityOnionSolutions'
+created: 3/28/2025
+questions:
+
+  - question: 'Are there any other alerts associated with the internal system?'
+    context: 'Identifying related alerts can help determine if the internal system is experiencing a broader issue.'
+    answer_sources:
+        - alert
+    range: -1d
+    query: |
+        aggregation: true
+        logsource:
+          category: alert
+        detection:
+            selection:
+                - src_ip|expand: '%PRIVATE_IP%'
+                - dst_ip|expand: '%PRIVATE_IP%'
+                - hostname|expand: '%hostname%'
+            condition: selection
+        fields:
+            - rule.type
+            - rule.name
+  
