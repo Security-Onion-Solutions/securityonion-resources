@@ -1,0 +1,65 @@
+name: Baseline Playbook - NIDS
+id: 1dfe7517-f105-454f-ae96-f2280c09e4b2
+description: |
+    This is the baseline playbook for NIDS detections.
+type: detection
+detection_id: ''
+detection_category: ''
+detection_type: nids
+contributors:
+  - SecurityOnionSolutions
+created: 3/12/2025
+modified: 3/13/2025
+questions:
+  - question: 'What internal system is involved?'
+    context: 'Gaining a clear understanding of the services provided by the internal system helps assess potential risks more effectively.'
+    answer_sources:
+        - alert
+    query: |
+        aggregation: false
+        logsource:
+          category: alert
+          product: suricata
+        detection:
+            selection:
+                document_id|expand: '%document_id%'
+            condition: selection
+        fields:
+            - src_ip
+            - dst_ip
+            - hostname
+  - question: 'Are there any other alerts associated with the internal system?'
+    context: 'Identifying related alerts can help determine if the internal system is experiencing a broader issue.'
+    answer_sources:
+        - alert
+    range: -3d
+    query: |
+        aggregation: true
+        logsource:
+          category: alert
+        detection:
+            selection:
+                - src_ip|expand: '%private_ip%'
+                - dst_ip|expand: '%private_ip%'
+            condition: selection
+        fields:
+            - rule.type
+            - rule.name
+  - question: 'What processes are associated with the public IP?'
+    context: 'Correlating process execution to the network connection can give further indication of intent.'
+    answer_sources:
+        - process_creation
+    range: -7d
+    query: |
+        aggregation: false
+        logsource:
+          category: process_creation
+        detection:
+            selection:
+                - src_ip|expand: '%public_ip%'
+                - dst_ip|expand: '%public_ip%'
+            condition: selection
+        fields:
+            - hostname
+            - Image
+            - CmdLine
