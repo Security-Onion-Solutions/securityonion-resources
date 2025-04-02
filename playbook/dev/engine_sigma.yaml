@@ -22,8 +22,8 @@ questions:
           category: alert
         detection:
             selection:
-                - src_ip|expand: '%PRIVATE_IP%'
-                - dst_ip|expand: '%PRIVATE_IP%'
+                - src_ip|expand: '%private_ip%'
+                - dst_ip|expand: '%private_ip%'
                 - hostname|expand: '%hostname%'
             condition: selection
         fields:
