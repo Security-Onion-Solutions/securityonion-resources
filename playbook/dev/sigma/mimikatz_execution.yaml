@@ -1,7 +1,7 @@
 name: HackTool - Mimikatz Execution Investigation
 id: 4c8d2f3a-b6e7-4f1d-9e8c-a642964e-bead
 description: |
-    Investigation playbook for detecting and analyzing potential Mimikatz execution, focusing on credential dumping and related malicious activities.
+    Investigation playbook for detecting and analyzing potential Mimikatz execution.
 type: detection
 detection_id: 'a642964e-bead-4bed-8910-1bb4d63e3b4d'
 detection_category: ''
