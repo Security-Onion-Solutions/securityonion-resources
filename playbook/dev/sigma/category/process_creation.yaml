@@ -1,0 +1,144 @@
+name: Sigma - Category - Process Creation
+id: 4f1db62f-cb41-41fb-8af3-11a67585b5db
+description: |
+    Base Playbook for investigating process_creation-based alerts.
+type: detection
+detection_id: ''
+detection_category: 'process_creation'
+detection_type: 'sigma'
+contributors:
+  - 'SecurityOnionSolutions'
+date: 2025-04-04
+questions:
+  - question: 'What was the exact process execution that triggered the alert?'
+    context: 'Understanding the complete command line and process details provides crucial context about the activity.'
+    answer_sources:
+        - process_creation
+    query: |
+        aggregation: false
+        logsource:
+          category: process_creation
+          product: windows
+        detection:
+            selection:
+               ProcessGuid|expand: '%ProcessGuid%'
+            condition: selection
+        fields:
+            - User
+            - Image
+            - CommandLine
+
+  - question: 'What is the process lineage (parent process chain)?'
+    context: 'The process creation chain helps understand how the process was spawned and identify potential abuse of legitimate processes.'
+    answer_sources:
+        - process_creation
+    query: |
+        aggregation: false
+        logsource:
+          category: process_creation
+          product: windows
+        detection:
+            selection:
+               ProcessGuid|expand: '%ParentProcessGuid%'
+            condition: selection
+        fields:
+            - User
+            - ParentImage
+            - Image
+            - CommandLine
+
+  - question: 'What child processes were spawned?'
+    context: 'Child processes can indicate the full scope of the activity and subsequent actions taken.'
+    range: +5m
+    answer_sources:
+        - process_creation
+    query: |
+        aggregation: false
+        logsource:
+          category: process_creation
+          product: windows
+        detection:
+            selection:
+                ParentProcessGuid|expand: '%ProcessGuid%'
+            condition: selection
+        fields:
+            - Image
+            - CommandLine
+
+  - question: 'What files were accessed by the process?'
+    context: 'File interactions can reveal what data or systems were targeted.'
+    range: +/-5m
+    answer_sources:
+        - file_event
+    query: |
+        aggregation: false
+        logsource:
+          category: file_event
+          product: windows
+        detection:
+            selection:
+                ProcessGuid|expand: '%ProcessGuid%'
+            condition: selection
+        fields:
+            - Image
+            - TargetFilename
+
+  - question: 'What network connections were established by the process?'
+    context: 'Network connections can indicate command and control activity or other malicious activity.'
+    range: +/-15m
+    answer_sources:
+        - network_connection
+    query: |
+        aggregation: false
+        logsource:
+          category: network_connection
+          product: windows
+        detection:
+            selection:
+                ProcessGuid|expand: '%ProcessGuid%'
+            condition: selection
+        fields:
+            - Image
+            - DestinationIp
+            - DestinationPort
+
+  - question: 'Has this process executed on this host before?'
+    context: 'Historical execution patterns help establish if this is normal behavior for this system.'
+    range: -30d
+    answer_sources:
+        - process_creation
+    query: |
+        aggregation: false
+        logsource:
+          category: process_creation
+          product: windows
+        detection:
+            selection:
+                Image|endswith|expand: '%Image%'
+                hostname|expand: '%hostname%'
+            condition: selection
+        fields:
+            - User
+            - ParentImage
+            - Image
+            - CommandLine
+
+  - question: 'What other processes were running around the same time?'
+    context: 'Understanding the broader process execution context can reveal related suspicious activity.'
+    range: +/-10m
+    answer_sources:
+        - process_creation
+    query: |
+        aggregation: false
+        logsource:
+          category: process_creation
+          product: windows
+        detection:
+            selection:
+                hostname|expand: '%hostname%'
+            condition: selection
+        fields:
+            - User
+            - ParentImage
+            - Image
+            - CommandLine
