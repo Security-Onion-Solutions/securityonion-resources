@@ -58,7 +58,7 @@ questions:
                 User|expand: '%User%'
             condition: selection
         fields:
-            - source.ip
+            - source.ip.keyword
             - event.outcome
     example_query_output: '2 | 192.168.55.6 | failed'
   - question: "Are there any other failed SSH logins on any Grid Nodes?"
@@ -80,7 +80,7 @@ questions:
                 User|expand: '%User%'
             condition: selection and not filter
         fields:
-            - source.ip
+            - source.ip.keyword
             - User
             - host.name
     example_query_output: '1 | 192.168.55.6 | sysadmin2 | sa-sensor02'
