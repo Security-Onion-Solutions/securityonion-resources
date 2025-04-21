@@ -1,0 +1,129 @@
+name: History File Deletion
+id: 6F64990A-ACDA-40B6-AB71-134C073013B5
+description: |
+    Detects events in which a history file gets deleted, e.g. the ~/bash_history to remove traces of malicious activity
+type: detection
+detection_id: '1182f3b3-e716-4efa-99ab-d2685d04360f'
+detection_category: ''
+detection_type: 'sigma'
+contributors:
+  - 'SecurityOnionSolutions'
+date: 2025-04-21
+modified: 2025-04-21
+questions:
+  - question: 'What was the full command line that triggered the alert?'
+    context: 'The full command line provides critical context about which history file was deleted and how it was deleted.'
+    range: ''
+    answer_sources:
+        - process_creation
+    query: |
+        aggregation: false
+        logsource:
+          category: process_creation
+          product: linux
+        detection:
+            selection:
+               ProcessGuid|expand: '%ProcessGuid%'
+            condition: selection
+        fields:
+            - CommandLine
+  - question: 'Who was the user that executed the history file deletion command?'
+    context: 'Understanding which user deleted the history file helps determine if this was a privileged user (like root) or if a user account may have been compromised.'
+    range: ''
+    answer_sources:
+        - process_creation
+    query: |
+        aggregation: false
+        logsource:
+          category: process_creation
+          product: linux
+        detection:
+            selection:
+               ProcessGuid|expand: '%ProcessGuid%'
+            condition: selection
+        fields:
+            - User
+            - CommandLine
+  - question: 'What was the parent process that initiated the history file deletion?'
+    context: 'The parent process helps identify how the deletion command was initiated, which could indicate if this was part of a script or interactive shell session.'
+    range: ''
+    answer_sources:
+        - process_creation
+    query: |
+        aggregation: false
+        logsource:
+          category: process_creation
+          product: linux
+        detection:
+            selection:
+               ProcessGuid|expand: '%ProcessGuid%'
+            condition: selection
+        fields:
+            - User
+            - ParentImage
+            - ParentCommandLine
+  - question: 'What other commands were executed by the same user within 30 minutes before and after the history file deletion?'
+    context: 'Examining the commands executed before and after the deletion can reveal the attackers activities that they were trying to hide.'
+    range: +/-30m
+    answer_sources:
+        - process_creation
+    query: |
+        aggregation: true
+        logsource:
+          category: process_creation
+          product: linux
+        detection:
+            selection:
+                User|expand: '%User%'
+            filter:
+                hostname|expand: '%hostname%'
+            condition: selection and filter
+        fields:
+            - Image
+            - CommandLine
+  - question: 'Was the history file accessed or modified before being deleted?'
+    context: 'Attackers might view or modify history files before deleting them to understand previous commands or implant false information.'
+    range: -30m
+    answer_sources:
+        - file_event
+    query: |
+        aggregation: false
+        logsource:
+          category: file_event
+          product: linux
+        detection:
+            selection:
+                TargetFilename|contains:
+                    - '.bash_history'
+                    - '.zsh_history'
+                    - '_history'
+                    - '.history'
+                    - 'zhistory'
+            filter:
+                hostname|expand: '%hostname%'
+            condition: selection and filter
+        fields:
+            - User
+            - Image
+            - CommandLine
+            - TargetFilename
+  - question: 'Were any suspicious files created or modified by the user who deleted the history file?'
+    context: 'File creation/modification by the user could indicate persistence mechanisms or other malicious tools being deployed.'
+    range: +/-30m
+    answer_sources:
+        - file_event
+    query: |
+        aggregation: false
+        logsource:
+          category: file_event
+          product: linux
+        detection:
+            selection:
+                User|expand: '%User%'
+            filter:
+                hostname|expand: '%hostname%'
+            condition: selection and filter
+        fields:
+            - Image
+            - CommandLine
+            - TargetFilename
