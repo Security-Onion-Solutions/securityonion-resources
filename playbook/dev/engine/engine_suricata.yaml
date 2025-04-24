@@ -72,7 +72,7 @@ questions:
           category: network_connection
         detection:
             selection:
-                - related.ip|expand: %public_ip%
+                - related_ip|expand: %public_ip%
             condition: selection
         fields:
             - hostname
