@@ -22,7 +22,7 @@ questions:
           category: alert
         detection:
             selection:
-                - related.ip|expand: '%related_ip%'
+                - related.ip: '%related_ip%'
             condition: selection
         fields:
             - rule.type
