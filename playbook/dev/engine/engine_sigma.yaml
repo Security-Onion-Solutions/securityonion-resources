@@ -9,8 +9,8 @@ detection_type: sigma
 contributors:
   - 'SecurityOnionSolutions'
 created: 3/28/2025
+modified: 4/23/2024
 questions:
-
   - question: 'Are there any other alerts associated with the internal system?'
     context: 'Identifying related alerts can help determine if the internal system is experiencing a broader issue.'
     answer_sources:
@@ -22,11 +22,8 @@ questions:
           category: alert
         detection:
             selection:
-                - src_ip|expand: '%private_ip%'
-                - dst_ip|expand: '%private_ip%'
-                - hostname|expand: '%hostname%'
+                - related.ip|expand: '%related.ip%'
             condition: selection
         fields:
             - rule.type
             - rule.name
-  
