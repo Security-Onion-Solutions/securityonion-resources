@@ -46,4 +46,36 @@ questions:
         fields:
             - rule.type
             - rule.name
-  
+  - question: 'What process is associated with this specific network connection?'
+    context: 'Correlating process execution to the network connection can give further indication of intent.'
+    answer_sources:
+        - community_id
+    query: |
+        aggregation: false
+        logsource:
+          category: community_id
+        detection:
+            selection:
+                - community_id|expand: '%community_id%'
+            condition: selection
+        fields:
+            - hostname
+            - Image
+            - CmdLine
+  - question: 'What processes are associated with the public IP?'
+    context: 'Correlating process execution to the network connection can give further indication of intent.'
+    answer_sources:
+        - process_creation
+    range: -7d
+    query: |
+        aggregation: false
+        logsource:
+          category: network_connection
+        detection:
+            selection:
+                - related.ip|expand: %public_ip%
+            condition: selection
+        fields:
+            - hostname
+            - Image
+            - CmdLine
