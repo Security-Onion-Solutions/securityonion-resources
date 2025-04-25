@@ -56,7 +56,7 @@ questions:
         detection:
             selection:
                 community_id|expand: '%community_id%'
-                event.dataset:"endpoint.events.network"
+                event_dataset: 'endpoint.events.network'
             filter:
                 document_id|expand: '%document_id%'
             condition: selection and not filter
