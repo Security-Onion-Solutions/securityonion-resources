@@ -56,7 +56,9 @@ questions:
         detection:
             selection:
                 - community_id|expand: '%community_id%'
-            condition: selection
+            filter:
+                document_id|expand: '%document_id%'
+            condition: selection and not filter
         fields:
             - hostname
             - Image
@@ -73,7 +75,9 @@ questions:
         detection:
             selection:
                 - related_ip|expand: '%public_ip%'
-            condition: selection
+            filter:
+                document_id|expand: '%document_id%'
+            condition: selection and not filter
         fields:
             - hostname
             - Image
