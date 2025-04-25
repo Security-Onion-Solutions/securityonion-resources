@@ -26,8 +26,9 @@ questions:
             condition: selection
         fields:
             - src_ip
+            - src_port
             - dst_ip
-            - hostname
+            - dst_port
   - question: 'Are there any other alerts associated with the internal system?'
     context: 'Identifying related alerts can help determine if the internal system is experiencing a broader issue.'
     answer_sources:
