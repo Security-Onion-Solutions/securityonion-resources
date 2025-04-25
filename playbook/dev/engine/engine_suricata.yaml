@@ -60,7 +60,7 @@ questions:
         fields:
             - hostname
             - Image
-            - CmdLine
+            - CommandLine
   - question: 'What processes are associated with the public IP?'
     context: 'Correlating process execution to the network connection can give further indication of intent.'
     answer_sources:
@@ -72,9 +72,9 @@ questions:
           category: network_connection
         detection:
             selection:
-                - related_ip|expand: %public_ip%
+                - related_ip|expand: '%public_ip%'
             condition: selection
         fields:
             - hostname
             - Image
-            - CmdLine
+            - CommandLine
