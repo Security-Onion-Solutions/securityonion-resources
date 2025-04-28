@@ -1,0 +1,52 @@
+name: Replace Sigma Placeholders
+
+on:
+  push:
+    branches: [dev]
+  workflow_dispatch:
+
+jobs:
+  transform_and_push:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout dev branch
+        uses: actions/checkout@v3
+        with:
+          ref: dev
+          fetch-depth: 0
+
+      - name: Set up Git identity
+        run: |
+          git config user.name "github-actions"
+          git config user.email "github-actions@users.noreply.github.com"
+
+      - name: Transform YAML files
+        run: |
+          mkdir transformed
+          find playbook/dev -type f -name '*.yaml' | while read file; do
+            dest="transformed/${file#playbook/dev/}"
+            mkdir -p "$(dirname "$dest")"
+            sed -f patterns.sed "$file" > "$dest"
+          done
+
+      - name: Checkout playbook-stable branch
+        run: |
+          git fetch origin playbook-stable:playbook-stable || git checkout -b playbook-stable
+          git checkout playbook-stable
+
+      - name: Replace YAML files with transformed versions
+        run: |
+          cp -r transformed/* playbook/dev/
+
+      - name: Commit and push if there are changes
+        run: |
+          rm -rf transformed/
+          if [[ -n "$(git status --porcelain)" ]]; then
+            git add playbook/dev/*.yaml
+            git commit -m "Update transformed YAML files from dev"
+            git push origin playbook-stable
+          else
+            echo "No changes to commit."
+            exit 0
+          fi
