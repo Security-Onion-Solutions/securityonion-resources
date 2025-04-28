@@ -22,7 +22,7 @@ questions:
           category: alert
         detection:
             selection:
-                - related.ip: '%related_ip%'
+                - related.ip: '{event_data.related.ip}'
             condition: selection
         fields:
             - rule.type

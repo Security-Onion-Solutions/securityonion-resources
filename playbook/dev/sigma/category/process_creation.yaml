@@ -21,7 +21,7 @@ questions:
           product: windows
         detection:
             selection:
-               ProcessGuid|expand: '%ProcessGuid%'
+               ProcessGuid: '{event_data.process.entity_id}'
             condition: selection
         fields:
             - User
@@ -39,7 +39,7 @@ questions:
           product: windows
         detection:
             selection:
-               ProcessGuid|expand: '%ParentProcessGuid%'
+               ProcessGuid: '{ParentProcessGuid}'
             condition: selection
         fields:
             - User
@@ -59,7 +59,7 @@ questions:
           product: windows
         detection:
             selection:
-                ParentProcessGuid|expand: '%ProcessGuid%'
+                ParentProcessGuid: '{event_data.process.entity_id}'
             condition: selection
         fields:
             - Image
@@ -77,7 +77,7 @@ questions:
           product: windows
         detection:
             selection:
-                ProcessGuid|expand: '%ProcessGuid%'
+                ProcessGuid: '{event_data.process.entity_id}'
             condition: selection
         fields:
             - Image
@@ -95,7 +95,7 @@ questions:
           product: windows
         detection:
             selection:
-                ProcessGuid|expand: '%ProcessGuid%'
+                ProcessGuid: '{event_data.process.entity_id}'
             condition: selection
         fields:
             - Image
@@ -114,8 +114,8 @@ questions:
           product: windows
         detection:
             selection:
-                Image|endswith|expand: '%Image%'
-                hostname|expand: '%hostname%'
+                Image|endswith: ''{process.executable}''
+                hostname: '{event_data.host.name}'
             condition: selection
         fields:
             - User
@@ -135,7 +135,7 @@ questions:
           product: windows
         detection:
             selection:
-                hostname|expand: '%hostname%'
+                hostname: '{event_data.host.name}'
             condition: selection
         fields:
             - User

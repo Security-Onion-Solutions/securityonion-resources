@@ -22,7 +22,7 @@ questions:
           product: windows
         detection:
             selection:
-               ProcessGuid|expand: '%ProcessGuid%'
+               ProcessGuid: '{event_data.process.entity_id}'
             condition: selection
         fields:
             - User
@@ -41,7 +41,7 @@ questions:
           product: windows
         detection:
             selection:
-                ParentProcessGuid|expand: '% ProcessGuid %'
+                ParentProcessGuid: '% ProcessGuid %'
             condition: selection
         fields:
             - Image
@@ -61,7 +61,7 @@ questions:
                 - Image|endswith: 'WMIC.exe'
                 - OriginalFileName: 'wmic.exe'
             filter:
-                hostname|expand: '%hostname%'
+                hostname: '{event_data.host.name}'
             condition: selection and filter
         fields:
             - User
@@ -80,7 +80,7 @@ questions:
           product: windows
         detection:
             selection:
-                hostname|expand: '%hostname%'
+                hostname: '{event_data.host.name}'
             condition: selection
         fields:
             - User
@@ -108,7 +108,7 @@ questions:
                 - Image|endswith: 'WMIC.exe'
                 - OriginalFileName: 'wmic.exe'
             filter:
-                hostname|expand: '%hostname%'
+                hostname: '{event_data.host.name}'
             condition: selection and filter
         fields:
             - User
@@ -131,7 +131,7 @@ questions:
                 - Image|endswith: 'WMIC.exe'
                 - OriginalFileName: 'wmic.exe'
             filter:
-                hostname|expand: '%hostname%'
+                hostname: '{event_data.host.name}'
             condition: selection and not filter
         fields:
             - hostname
@@ -153,7 +153,7 @@ questions:
                 - Image|endswith: 'WMIC.exe'
                 - OriginalFileName: 'wmic.exe'
             filter:
-                hostname|expand: '%hostname%'
+                hostname: '{event_data.host.name}'
             condition: selection and not filter
         fields:
             - hostname

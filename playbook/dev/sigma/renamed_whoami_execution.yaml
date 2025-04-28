@@ -21,7 +21,7 @@ questions:
           product: windows
         detection:
             selection:
-               ProcessGuid|expand: '%ProcessGuid%'
+               ProcessGuid: '{event_data.process.entity_id}'
             condition: selection
         fields:
             - Image
@@ -38,7 +38,7 @@ questions:
           product: windows
         detection:
             selection:
-               ProcessGuid|expand: '%ProcessGuid%'
+               ProcessGuid: '{event_data.process.entity_id}'
             condition: selection
         fields:
             - User
@@ -54,7 +54,7 @@ questions:
           product: windows
         detection:
             selection:
-                ParentProcessGuid|expand: '%ProcessGuid%'
+                ParentProcessGuid: '{event_data.process.entity_id}'
             condition: selection
         fields:
             - Image
@@ -72,7 +72,7 @@ questions:
           product: windows
         detection:
             selection:
-                hostname|expand: '%hostname%'
+                hostname: '{event_data.host.name}'
             condition: selection
         fields:
             - Image
@@ -90,7 +90,7 @@ questions:
           product: windows
         detection:
             selection:
-                hostname|expand: '%hostname%'
+                hostname: '{event_data.host.name}'
             condition: selection
         fields:
             - User
@@ -108,7 +108,7 @@ questions:
           product: windows
         detection:
             selection:
-                FilePath|contains|expand: '%CurrentDirectory%'
+                FilePath|contains: '{event_data.process.working_directory}'
             condition: selection
         fields:
             - User

@@ -22,7 +22,7 @@ questions:
           product: suricata
         detection:
             selection:
-                document_id|expand: '%document_id%'
+                document_id: '{soc_id}'
             condition: selection
         fields:
             - src_ip
@@ -40,8 +40,8 @@ questions:
           category: alert
         detection:
             selection:
-                - src_ip|expand: '%private_ip%'
-                - dst_ip|expand: '%private_ip%'
+                - src_ip: '{network.private.ip}'
+                - dst_ip: '{network.private.ip}'
             condition: selection
         fields:
             - rule.type
@@ -56,7 +56,7 @@ questions:
           category: community_id
         detection:
             selection:
-                community_id|expand: '%community_id%'
+                community_id: '{network.community_id}'
                 event_dataset: 'endpoint.events.network'
             condition: selection
         fields:
@@ -74,7 +74,7 @@ questions:
           category: network_connection
         detection:
             selection:
-                related_ip|expand: '%public_ip%'
+                related_ip: '{network.public.ip}'
             condition: selection
         fields:
             - hostname

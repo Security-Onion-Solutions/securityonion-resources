@@ -21,7 +21,7 @@ questions:
             product: alert
         detection:
             selection:
-                document_id|expand: '%document_id%'
+                document_id: '{soc_id}'
             condition: selection
         fields:
             - event_data.user.name
@@ -36,7 +36,7 @@ questions:
             product: alert
         detection:
             selection:
-                document_id|expand: '%document_id%'
+                document_id: '{soc_id}'
             condition: selection
         fields:
             - event_data.source.ip
@@ -55,7 +55,7 @@ questions:
             selection:
                 event.action: ssh_login
                 tags|contains: so-grid-node
-                User|expand: '%User%'
+                User: '{user.name}'
             condition: selection
         fields:
             - source.ip.keyword
@@ -77,7 +77,7 @@ questions:
                 event.outcome: failure
                 tags|contains: so-grid-node
             filter:
-                User|expand: '%User%'
+                User: '{user.name}'
             condition: selection and not filter
         fields:
             - source.ip.keyword

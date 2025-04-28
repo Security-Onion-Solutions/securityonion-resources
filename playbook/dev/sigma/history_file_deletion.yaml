@@ -23,7 +23,7 @@ questions:
           product: linux
         detection:
             selection:
-               ProcessGuid|expand: '%ProcessGuid%'
+               ProcessGuid: '{event_data.process.entity_id}'
             condition: selection
         fields:
             - CommandLine
@@ -39,7 +39,7 @@ questions:
           product: linux
         detection:
             selection:
-               ProcessGuid|expand: '%ProcessGuid%'
+               ProcessGuid: '{event_data.process.entity_id}'
             condition: selection
         fields:
             - User
@@ -56,7 +56,7 @@ questions:
           product: linux
         detection:
             selection:
-               ProcessGuid|expand: '%ProcessGuid%'
+               ProcessGuid: '{event_data.process.entity_id}'
             condition: selection
         fields:
             - User
@@ -74,9 +74,9 @@ questions:
           product: linux
         detection:
             selection:
-                User|expand: '%User%'
+                User: '{user.name}'
             filter:
-                hostname|expand: '%hostname%'
+                hostname: '{event_data.host.name}'
             condition: selection and filter
         fields:
             - Image
@@ -100,7 +100,7 @@ questions:
                     - '.history'
                     - 'zhistory'
             filter:
-                hostname|expand: '%hostname%'
+                hostname: '{event_data.host.name}'
             condition: selection and filter
         fields:
             - User
@@ -119,9 +119,9 @@ questions:
           product: linux
         detection:
             selection:
-                User|expand: '%User%'
+                User: '{user.name}'
             filter:
-                hostname|expand: '%hostname%'
+                hostname: '{event_data.host.name}'
             condition: selection and filter
         fields:
             - Image
