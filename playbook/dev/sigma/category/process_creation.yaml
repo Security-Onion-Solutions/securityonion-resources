@@ -114,7 +114,7 @@ questions:
           product: windows
         detection:
             selection:
-                Image|endswith: ''{process.executable}''
+                Image|endswith: '{process.executable}'
                 hostname: '{event_data.host.name}'
             condition: selection
         fields:
