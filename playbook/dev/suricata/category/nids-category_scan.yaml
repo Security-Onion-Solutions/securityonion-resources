@@ -3,8 +3,8 @@ id: 2f8a9b3c-e7d4-4f1a-b8c9-12345678abcd
 description: |
     This playbook is designed to help investigate alerts from the ET SCAN category, which includes various types of network scanning activities such as port scans, service enumeration, vulnerability scanning, and brute force attempts.
 type: detection
-detection_id: ''
-detection_category: 'ET SCAN'
+detection_id: '2003068'
+detection_category: ''
 detection_type: nids
 contributors:
   - SecurityOnionSolutions
