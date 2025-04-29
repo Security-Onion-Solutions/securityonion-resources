@@ -3,7 +3,6 @@ s|%community_id%|{network.community_id}|g
 s|%CurrentDirectory%|{event_data.process.working_directory}|g
 s|%document_id%|{soc_id}|g
 s|%hostname%|{event_data.host.name}|g
-s|%Image%|'{process.executable}'|g
 s|%Image%|{process.executable}|g
 s|%ImageLoaded%|{dll.name}|g
 s|%ParentImage%|{process.parent.executable}|g
