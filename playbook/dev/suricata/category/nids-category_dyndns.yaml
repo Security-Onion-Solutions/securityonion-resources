@@ -1,7 +1,7 @@
 name: "ET DYN_DNS Category Playbook"
 id: 8f4e2d1c-b9a3-4f7d-9e5c-987654321abc
 description: |
-    This playbook is designed to help investigate alerts from the ET DYN_DNS category, which focuses on detecting the use of Dynamic DNS services. These services (including No-IP, DynDNS, and others) allow users to map domains to changing IP addresses. While they have legitimate uses such as hosting game servers, remote access solutions, and home labs, they are frequently abused by threat actors for malicious purposes including C2 infrastructure, phishing sites, and malware distribution. The rules in this category detect both DNS queries and HTTP requests to known Dynamic DNS providers, as well as specific client software associated with these services.
+    This playbook is designed to help investigate alerts from the ET DYN_DNS category, which focuses on detecting the use of dynamic DNS services. These services (including No-IP, DynDNS, and others) allow users to map domains to changing IP addresses. While they have legitimate uses such as hosting game servers, remote access solutions, and home labs, they are frequently abused by threat actors for malicious purposes including C2 infrastructure, phishing sites, and malware distribution. The rules in this category detect both DNS queries and HTTP requests to known dynamic DNS providers, as well as specific client software associated with these services.
 type: detection
 detection_id: ''
 detection_category: 'ET DYN_DNS'
@@ -11,8 +11,8 @@ contributors:
 created: 2025-04-30
 modified: 2025-04-30
 questions:
-  - question: 'Is this Dynamic DNS domain associated with any known threat intelligence?'
-    context: 'Dynamic DNS domains used for malicious purposes are often tracked in threat intelligence feeds.'
+  - question: 'Is this dynamic DNS domain associated with any known threat intelligence?'
+    context: 'dynamic DNS domains used for malicious purposes are often tracked in threat intelligence feeds.'
     answer_sources:
         - threatintel
     query: |
@@ -48,8 +48,8 @@ questions:
             - dns.query.name
             - dns.answers.name
 
-  - question: 'What internal systems have contacted this Dynamic DNS domain?'
-    context: 'Multiple systems contacting the same suspicious Dynamic DNS domain may indicate lateral movement or widespread compromise.'
+  - question: 'What internal systems have contacted this dynamic DNS domain?'
+    context: 'Multiple systems contacting the same suspicious dynamic DNS domain may indicate lateral movement or widespread compromise.'
     answer_sources:
         - dns
     range: -24h
@@ -85,7 +85,7 @@ questions:
             - CommandLine
 
   - question: 'What type of network traffic follows the DNS resolution?'
-    context: 'Understanding the subsequent network connections can reveal the purpose of the Dynamic DNS usage.'
+    context: 'Understanding the subsequent network connections can reveal the purpose of the dynamic DNS usage.'
     answer_sources:
         - zeek.conn
     range: +10m
@@ -107,8 +107,8 @@ questions:
             - connection.state
             - connection.history
 
-  - question: 'Are there any file downloads associated with this Dynamic DNS domain?'
-    context: 'Malware distribution often involves file downloads from Dynamic DNS domains.'
+  - question: 'Are there any file downloads associated with this dynamic DNS domain?'
+    context: 'Malware distribution often involves file downloads from dynamic DNS domains.'
     answer_sources:
         - zeek.files
     range: -1h
@@ -128,7 +128,7 @@ questions:
             - sha256
             - source
 
-  - question: 'Has this Dynamic DNS domain been seen in any other security alerts?'
+  - question: 'Has this dynamic DNS domain been seen in any other security alerts?'
     context: 'Correlating with other alerts can provide additional context about potential malicious activity.'
     answer_sources:
         - alert
@@ -147,8 +147,8 @@ questions:
             - src_ip
             - timestamp
 
-  - question: 'Is this domain using multiple Dynamic DNS providers?'
-    context: 'Use of multiple Dynamic DNS providers for the same domain can indicate attempts to maintain persistence and avoid detection.'
+  - question: 'Is this domain using multiple dynamic DNS providers?'
+    context: 'Use of multiple dynamic DNS providers for the same domain can indicate attempts to maintain persistence and avoid detection.'
     answer_sources:
         - dns
     range: -30d
