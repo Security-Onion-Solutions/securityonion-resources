@@ -61,7 +61,7 @@ questions:
           product: suricata
         detection:
             selection:
-                src_ip: '%src_ip%'
+                src_ip: '{source.ip}'
                 rule.category: 'scan'
             condition: selection
         fields:
@@ -81,7 +81,7 @@ questions:
           service: conn
         detection:
             selection:
-                src_ip: '%src_ip%'
+                src_ip: '{source.ip}'
             condition: selection
         fields:
             - src_ip
@@ -120,7 +120,7 @@ questions:
           service: conn
         detection:
             selection:
-                src_ip: '%src_ip%'
+                src_ip: '{source.ip}'
                 connection.state: 'SF'
             condition: selection
         fields:
@@ -161,8 +161,8 @@ questions:
           category: alert
         detection:
             selection:
-                - src_ip: '%src_ip%'
-                - dst_ip: '%dst_ip%'
+                - src_ip: '{source.ip}'
+                - dst_ip: '{destination.ip}'
             condition: selection
         fields:
             - rule.type
@@ -180,7 +180,7 @@ questions:
           category: threatintel
         detection:
             selection:
-                indicator: '%src_ip%'
+                indicator: '{source.ip}'
             condition: selection
         fields:
             - indicator
@@ -199,7 +199,7 @@ questions:
           category: dns
         detection:
             selection:
-                src_ip: '%src_ip%'
+                src_ip: '{source.ip}'
             condition: selection
         fields:
             - dns.query.name
