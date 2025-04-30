@@ -1,7 +1,14 @@
 name: "ET SCAN Category Playbook"
 id: 2f8a9b3c-e7d4-4f1a-b8c9-12345678abcd
 description: |
-    This playbook is designed to help investigate alerts from the ET SCAN category, which includes various types of network scanning activities such as port scans, service enumeration, vulnerability scanning, and brute force attempts.
+    This playbook is designed to help investigate alerts from the ET SCAN category, which detects various types of network reconnaissance and scanning activities including:
+    - Network mapping tools (e.g., Nmap TCP SYN/ACK/FIN scans)
+    - Service-specific scanners (e.g., SIPVicious for VoIP, DavTest for WebDAV)
+    - Vulnerability assessment tools (e.g., Amap service detection)
+    - Brute force attempts (SSH, FTP, etc.)
+    - OS fingerprinting attempts (e.g., Xprobe2)
+    - Protocol-specific enumeration (UPNP, DCERPC, H.323)
+    These rules help identify both targeted reconnaissance and broader network scanning campaigns that could indicate preparation for more focused attacks.
 type: detection
 detection_id: '2003068'
 detection_category: ''
