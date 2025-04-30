@@ -62,7 +62,7 @@ questions:
         detection:
             selection:
                 src_ip: '{source.ip}'
-                rule.category: 'scan'
+                rule.name|contains: 'scan'
             condition: selection
         fields:
             - rule.name
@@ -72,7 +72,7 @@ questions:
   - question: 'What is the scanning pattern and frequency?'
     context: 'Understanding the scan pattern (sequential, random, targeted) and frequency helps determine if this is automated or manual scanning.'
     answer_sources:
-        - zeek.conn
+        - network.connections
     range: -10m
     query: |
         aggregation: false
