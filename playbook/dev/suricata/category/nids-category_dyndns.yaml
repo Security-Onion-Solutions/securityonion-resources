@@ -21,7 +21,7 @@ questions:
           category: threatintel
         detection:
             selection:
-                indicator|contains|expand: '%dns.query%'
+                indicator|contains|expand: '%dns.query.name%'
             condition: selection
         fields:
             - indicator
@@ -41,13 +41,12 @@ questions:
           service: dns
         detection:
             selection:
-                dns.query.name|contains|expand: '%dns.query%'
+                dns.query.name|contains|expand: '%dns.query.name%'
             condition: selection
         fields:
             - src_ip
             - dns.query.name
             - dns.answers.name
-            - dns.answers.data
 
   - question: 'What internal systems have contacted this Dynamic DNS domain?'
     context: 'Multiple systems contacting the same suspicious Dynamic DNS domain may indicate lateral movement or widespread compromise.'
@@ -61,11 +60,10 @@ questions:
           service: dns
         detection:
             selection:
-                dns.query.name|contains|expand: '%dns.query%'
+                dns.query.name|contains|expand: '%dns.query.name%'
             condition: selection
         fields:
             - src_ip
-            - hostname
 
   - question: 'What processes are making these DNS queries?'
     context: 'Identifying the processes making these DNS queries can help determine if they are legitimate or potentially malicious.'
@@ -77,7 +75,7 @@ questions:
           category: process_creation
         detection:
             selection:
-                dns.query.name|contains|expand: '%dns.query%'
+                dns.query.name|contains|expand: '%dns.query.name%'
             condition: selection
         fields:
             - User
@@ -98,7 +96,7 @@ questions:
           service: connection
         detection:
             selection:
-                dst_ip|contains|expand: '%dns.answers.data%'
+                dst_ip|expand: '%dns.answers.name%'
             condition: selection
         fields:
             - src_ip
@@ -121,7 +119,7 @@ questions:
           service: file
         detection:
             selection:
-                host|contains|expand: '%dns.query%'
+                host|contains|expand: '%dns.query.name%'
             condition: selection
         fields:
             - filename
@@ -141,7 +139,7 @@ questions:
           category: alert
         detection:
             selection:
-                dns.query|contains|expand: '%dns.query%'
+                dns.query|contains|expand: '%dns.query.name%'
             condition: selection
         fields:
             - rule.category
@@ -161,7 +159,7 @@ questions:
           service: dns
         detection:
             selection:
-                dns.query.name|contains|expand: '%dns.query%'
+                dns.query.name|contains|expand: '%dns.query.name%'
             condition: selection
         fields:
             - dns.authoritative_nameservers
