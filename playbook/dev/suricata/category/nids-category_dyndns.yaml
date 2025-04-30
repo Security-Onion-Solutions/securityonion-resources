@@ -21,7 +21,7 @@ questions:
           category: threatintel
         detection:
             selection:
-                indicator|expand: '%dns.query%'
+                indicator|contains|expand: '%dns.query%'
             condition: selection
         fields:
             - indicator
@@ -41,7 +41,7 @@ questions:
           service: dns
         detection:
             selection:
-                dns.query.name|expand: '%dns.query%'
+                dns.query.name|contains|expand: '%dns.query%'
             condition: selection
         fields:
             - src_ip
@@ -61,7 +61,7 @@ questions:
           service: dns
         detection:
             selection:
-                dns.query.name|expand: '%dns.query%'
+                dns.query.name|contains|expand: '%dns.query%'
             condition: selection
         fields:
             - src_ip
@@ -77,7 +77,7 @@ questions:
           category: process_creation
         detection:
             selection:
-                dns.query.name|expand: '%dns.query%'
+                dns.query.name|contains|expand: '%dns.query%'
             condition: selection
         fields:
             - User
@@ -98,7 +98,7 @@ questions:
           service: connection
         detection:
             selection:
-                dst_ip|expand: '%dns.answers.data%'
+                dst_ip|contains|expand: '%dns.answers.data%'
             condition: selection
         fields:
             - src_ip
@@ -121,7 +121,7 @@ questions:
           service: file
         detection:
             selection:
-                host|expand: '%dns.query%'
+                host|contains|expand: '%dns.query%'
             condition: selection
         fields:
             - filename
@@ -141,7 +141,7 @@ questions:
           category: alert
         detection:
             selection:
-                dns.query|expand: '%dns.query%'
+                dns.query|contains|expand: '%dns.query%'
             condition: selection
         fields:
             - rule.category
