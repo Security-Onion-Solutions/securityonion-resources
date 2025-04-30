@@ -3,7 +3,6 @@ s|%community_id%|{network.community_id}|g
 s|%CurrentDirectory%|{event_data.process.working_directory}|g
 s|%document_id%|{soc_id}|g
 s|%hostname%|{event_data.host.name}|g
-s|%Image%|'{process.executable}'|g
 s|%Image%|{process.executable}|g
 s|%ImageLoaded%|{dll.name}|g
 s|%ParentImage%|{process.parent.executable}|g
@@ -13,5 +12,7 @@ s|%ProcessGuid%|{event_data.process.entity_id}|g
 s|%public_ip%|{network.public.ip}|g
 s|%related.hosts%|{event_data.related.hosts}|g
 s|%related_ip%|{event_data.related.ip}|g
+s|%src_ip%|{source.ip}|g
+s|%dst_ip%|{destination.ip}|g
 s|%User%|{user.name}|g
 s/|expand:/:/g
