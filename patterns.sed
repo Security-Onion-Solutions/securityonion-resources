@@ -2,6 +2,7 @@ s|%CommandLine%|{process.command_line}|g
 s|%community_id%|{network.community_id}|g
 s|%CurrentDirectory%|{event_data.process.working_directory}|g
 s|%document_id%|{soc_id}|g
+s|%dns.query.name%|{dns.query.name}|g
 s|%hostname%|{event_data.host.name}|g
 s|%Image%|{process.executable}|g
 s|%ImageLoaded%|{dll.name}|g
