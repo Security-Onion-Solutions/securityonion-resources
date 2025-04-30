@@ -82,7 +82,9 @@ questions:
         detection:
             selection:
                 src_ip: '{source.ip}'
-            condition: selection
+            filter:
+                connection.state: 'SF'
+            condition: selection and not filter
         fields:
             - src_ip
             - dst_ip
