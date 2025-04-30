@@ -62,7 +62,7 @@ questions:
         detection:
             selection:
                 src_ip|expand: '%src_ip%'
-                rule.name|contains: 'scan'
+                rule.name|contains: 'SCAN'
             condition: selection
         fields:
             - rule.name
@@ -89,27 +89,13 @@ questions:
             - dst_port
             - network.protocol
             - event.duration
-            - source.ip_bytes
-            - destination.ip_bytes
+            - client.ip_bytes
+            - server.ip_bytes
+            - connection.state_description
 
   - question: 'Are there any successful connections following the scan?'
     context: |
         Successful connections after scanning could indicate that vulnerabilities were found and potentially exploited.
-        history:
-            - s: a SYN w/o the ACK bit set
-            - h: a SYN+ACK ("handshake")
-            - a: a pure ACK
-            - d: packet with payload ("data")
-            - f: packet with FIN bit set
-            - r: packet with RST bit set
-            - c: packet with a bad checksum (applies to UDP too)
-            - g: a content gap
-            - t: packet with retransmitted payload
-            - w: packet with a zero window advertisement
-            - i: inconsistent packet (e.g. FIN+RST bits set)
-            - q: multi-flag packet (SYN+FIN or SYN+RST bits set)
-            - ^: connection direction was flipped by Zeek's heuristic
-            - x: connection analysis partial (e.g. limits exceeded)
     answer_sources:
         - zeek.conn
     range: +5m
