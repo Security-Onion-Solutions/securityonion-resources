@@ -30,7 +30,7 @@ questions:
             - src_ip
 
   - question: 'What type of scan is being detected?'
-    context: 'Different scan types (e.g., port scan, service enumeration, vulnerability scan) require different response strategies. Understanding the scan type helps prioritize the response.'
+    context: 'Different scan types (e.g., service enumeration, vulnerability scan, reconnaissance) give context to the type of activity being detected.'
     answer_sources:
         - alert
     query: |
@@ -77,8 +77,8 @@ questions:
     query: |
         aggregation: false
         logsource:
-          product: zeek
-          service: conn
+          category: network
+          service: connection
         detection:
             selection:
                 src_ip|expand: '%src_ip%'
@@ -116,8 +116,8 @@ questions:
     query: |
         aggregation: false
         logsource:
-          product: zeek
-          service: conn
+          category: network
+          service: connection
         detection:
             selection:
                 src_ip|expand: '%src_ip%'
@@ -196,7 +196,8 @@ questions:
     query: |
         aggregation: false
         logsource:
-          category: dns
+          category: network
+          service: dns
         detection:
             selection:
                 src_ip|expand: '%src_ip%'
