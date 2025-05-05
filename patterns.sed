@@ -13,6 +13,7 @@ s|%ProcessGuid%|{event_data.process.entity_id}|g
 s|%public_ip%|{network.public.ip}|g
 s|%related.hosts%|{event_data.related.hosts}|g
 s|%related_ip%|{event_data.related.ip}|g
+s|%rule.name%|{rule.name}|g
 s|%src_ip%|{source.ip}|g
 s|%dst_ip%|{destination.ip}|g
 s|%User%|{user.name}|g
