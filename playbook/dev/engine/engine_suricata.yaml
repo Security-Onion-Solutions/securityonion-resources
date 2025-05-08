@@ -115,8 +115,8 @@ questions:
           service: connection
         detection:
             selection:
-                src_ip: '{network.public.ip}'
-                dst_ip: '{network.public.ip}'
+                - src_ip: '{network.public.ip}'
+                - dst_ip: '{network.public.ip}'
             condition: selection
         fields:
             - src_ip
@@ -131,12 +131,13 @@ questions:
   - question: 'Are there any file transfers associated with this alert?'
     context: 'Identifying file transfers can help detect malicious file sharing or data exfiltration.'
     answer_sources:
-        - fileinfo
+        - network.file
     range: +/-5m
     query: |
         aggregation: false
         logsource:
-          category: fileinfo
+          category: network
+          service: file
         detection:
             selection:
                 - src_ip: '{network.public.ip}'
