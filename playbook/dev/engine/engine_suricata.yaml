@@ -11,6 +11,21 @@ contributors:
 created: 3/12/2025
 modified: 3/13/2025
 questions:
+  - question: 'What specifically does the alert describe?'
+    context: 'Review the Detection description and signature to understand what the detection is trying to expose.'
+    answer_sources:
+        - alert
+    query: |
+        aggregation: false
+        logsource:
+          category: alert
+        detection:
+            selection:
+                document_id: '{soc_id}'
+            condition: selection
+        fields:
+            - rule.name
+
   - question: 'What internal system is involved?'
     context: 'Gaining a clear understanding of the services provided by the internal system helps assess potential risks more effectively.'
     answer_sources:
@@ -29,6 +44,7 @@ questions:
             - src_port
             - dst_ip
             - dst_port
+
   - question: 'Are there any other alerts associated with the internal system?'
     context: 'Identifying related alerts can help determine if the internal system is experiencing a broader issue.'
     answer_sources:
@@ -46,10 +62,12 @@ questions:
         fields:
             - rule.type
             - rule.name
+
   - question: 'What process is associated with this specific network connection?'
     context: 'Correlating process execution to the network connection can give further indication of intent.'
     answer_sources:
         - community_id
+    range: +/-15m
     query: |
         aggregation: false
         logsource:
@@ -63,6 +81,7 @@ questions:
             - hostname
             - Image
             - CommandLine
+
   - question: 'What processes are associated with the public IP?'
     context: 'Correlating process execution to the network connection can give further indication of intent.'
     answer_sources:
@@ -80,3 +99,84 @@ questions:
             - hostname
             - Image
             - CommandLine
+
+  - question: 'What is the historical network traffic pattern for this IP?'
+    context: 'Understanding historical traffic patterns can help identify anomalous behavior.'
+    answer_sources:
+        - alert
+    range: -30d
+    query: |
+        aggregation: true
+        logsource:
+          category: alert
+          product: suricata
+        detection:
+            selection:
+                - src_ip: '{network.public.ip}'
+                - dst_ip: '{network.public.ip}'
+            condition: selection
+        fields:
+            - timestamp
+            - rule.category
+            - alert.severity
+
+  - question: 'Are there any file transfers associated with this alert?'
+    context: 'Identifying file transfers can help detect malicious file sharing or data exfiltration.'
+    answer_sources:
+        - fileinfo
+    range: +/-5m
+    query: |
+        aggregation: false
+        logsource:
+          category: fileinfo
+        detection:
+            selection:
+                - src_ip: '{source.ip}'
+                - dst_ip: '{destination.ip}'
+            condition: selection
+        fields:
+            - filename
+            - filesize
+            - file_state
+            - magic
+
+  - question: 'Are there any DNS queries associated with the external domains/IPs?'
+    context: 'DNS queries can reveal additional infrastructure or C2 channels.'
+    answer_sources:
+        - dns
+    range: +/-1h
+    query: |
+        aggregation: false
+        logsource:
+          category: network
+          service: dns
+        detection:
+            selection:
+               - dns.query.name: '%domain%'
+               - dns.answers.name: '{network.public.ip}'
+            condition: selection
+        fields:
+            - dns.query.name
+            - dns.query.type_name
+            - dns.answers.name
+            - dns.response.code_name
+
+  - question: 'Are there any TLS certificates associated with this connection?'
+    context: 'TLS certificate information can help identify malicious infrastructure or validate legitimate services.'
+    answer_sources:
+        - network.tls
+    range: +/-5m
+    query: |
+        aggregation: false
+        logsource:
+          category: network
+          service: tls
+        detection:
+            selection:
+                - src_ip: '{source.ip}'
+                - dst_ip: '{destination.ip}'
+            condition: selection
+        fields:
+            - ssl.server_name
+            - ssl.version
+            - ssl.cipher
