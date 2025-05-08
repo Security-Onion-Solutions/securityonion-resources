@@ -100,25 +100,30 @@ questions:
             - Image
             - CommandLine
 
-  - question: 'What is the historical network traffic pattern for this IP?'
+  - question: 'What is the historical network traffic pattern for the public IP?'
     context: 'Understanding historical traffic patterns can help identify anomalous behavior.'
     answer_sources:
         - alert
     range: -30d
     query: |
-        aggregation: true
+        aggregation: false
         logsource:
-          category: alert
-          product: suricata
+          category: network
+          service: connection
         detection:
             selection:
-                - src_ip|expand: '%public_ip%'
-                - dst_ip|expand: '%public_ip%'
+                src_ip|expand: '%public_ip%'
+                dst_ip|expand: '%public_ip%'
             condition: selection
         fields:
-            - timestamp
-            - rule.category
-            - alert.severity
+            - src_ip
+            - dst_ip
+            - dst_port
+            - network.protocol
+            - event.duration
+            - client.ip_bytes
+            - server.ip_bytes
+            - connection.state_description
 
   - question: 'Are there any file transfers associated with this alert?'
     context: 'Identifying file transfers can help detect malicious file sharing or data exfiltration.'
@@ -131,8 +136,8 @@ questions:
           category: fileinfo
         detection:
             selection:
-                - src_ip|expand: '%src_ip%'
-                - dst_ip|expand: '%dst_ip%'
+                - src_ip|expand: '%public_ip%'
+                - dst_ip|expand: '%public_ip%'
             condition: selection
         fields:
             - filename
