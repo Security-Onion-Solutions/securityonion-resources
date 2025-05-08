@@ -25,9 +25,11 @@ questions:
             condition: selection
         fields:
             - rule.name
+            - rule.category
+            - network.data.decoded
 
   - question: 'What internal system is involved?'
-    context: 'Gaining a clear understanding of the services provided by the internal system helps assess potential risks more effectively.'
+    context: 'Gaining a clear understanding of the services provided by the internal system helps assess potential risks more effectively. Refer to your asset inventory for additional information about the internal host.'
     answer_sources:
         - alert
     query: |
@@ -62,6 +64,7 @@ questions:
         fields:
             - rule.type
             - rule.name
+            - rule.category
 
   - question: 'What process is associated with this specific network connection?'
     context: 'Correlating process execution to the network connection can give further indication of intent.'
@@ -83,7 +86,7 @@ questions:
             - CommandLine
 
   - question: 'What processes are associated with the public IP?'
-    context: 'Correlating process execution to the network connection can give further indication of intent.'
+    context: 'Correlating process execution with the public IP will give additional context outside of this specific alert.'
     answer_sources:
         - process_creation
     range: -7d
