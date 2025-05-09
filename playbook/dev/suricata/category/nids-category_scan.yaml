@@ -33,7 +33,6 @@ questions:
                 document_id|expand: '%document_id%'
             condition: selection
         fields:
-            - host.name
             - src_ip
 
   - question: 'What type of scan is being detected?'
@@ -60,7 +59,7 @@ questions:
     context: 'Multiple scan attempts from the same source across different targets or services may indicate a systematic reconnaissance effort.'
     answer_sources:
         - alert
-    range: -1h
+    range: -6h
     query: |
         aggregation: true
         logsource:
@@ -79,8 +78,8 @@ questions:
   - question: 'What is the scanning pattern and frequency?'
     context: 'Understanding the scan pattern (sequential, random, targeted) and frequency helps determine if this is automated or manual scanning.'
     answer_sources:
-        - network.connections
-    range: -10m
+        - network.connection
+    range: -6h
     query: |
         aggregation: false
         logsource:
@@ -106,8 +105,8 @@ questions:
     context: |
         Successful connections after scanning could indicate that vulnerabilities were found and potentially exploited.
     answer_sources:
-        - zeek.conn
-    range: +5m
+        - network.connection
+    range: +15m
     query: |
         aggregation: false
         logsource:
@@ -126,11 +125,11 @@ questions:
             - event.duration
             - connection.history
 
-
   - question: 'What process is associated with this specific network connection?'
     context: 'Correlating process execution to the network connection can give further indication of intent.'
     answer_sources:
-        - community_id
+        - network.community_id
+    range: +/-1h
     query: |
         aggregation: false
         logsource:
@@ -163,8 +162,6 @@ questions:
             - rule.type
             - rule.name
 
-
-
   - question: 'Is the scanning source associated with known threat intelligence?'
     context: 'Known malicious sources may require immediate blocking or escalation.'
     answer_sources:
@@ -186,7 +183,7 @@ questions:
   - question: 'Are there any associated DNS queries from the scanning source?'
     context: 'DNS queries before or during scanning may reveal reconnaissance patterns or C2 communication.'
     answer_sources:
-        - dns
+        - network.dns
     range: -30m
     query: |
         aggregation: false
