@@ -131,6 +131,7 @@ questions:
             - server.ip_bytes
             - connection.state_description
 
+#TODO - Change this to community_id
   - question: 'Are there any file transfers associated with this alert?'
     context: 'Identifying file transfers can help detect malicious file sharing or data exfiltration.'
     answer_sources:
@@ -151,6 +152,7 @@ questions:
             - file.mime_type
             - file.bytes.total
 
+# TODO: Extract pattern from Suricata rules
   - question: 'Are there any DNS queries associated with the external domains/IPs?'
     context: 'DNS queries can reveal additional infrastructure or C2 channels.'
     answer_sources:
@@ -163,31 +165,34 @@ questions:
           service: dns
         detection:
             selection:
-               - dns.query.name|expand: '%domain%'
-               - dns.answers.name|expand: '%public_ip%'
+               - dns.query.name|contains|expand: '%dns.query.name%'
+               - dns.resolved.ip|expand: '%public_ip%'
             condition: selection
         fields:
             - dns.query.name
             - dns.query.type_name
-            - dns.answers.name
+            - dns.resolved.ip
             - dns.response.code_name
 
+#TODO: Setup for Community ID
   - question: 'Are there any TLS certificates associated with this connection?'
     context: 'TLS certificate information can help identify malicious infrastructure or validate legitimate services.'
     answer_sources:
-        - network.tls
+        - network.x509
     range: +/-5m
     query: |
         aggregation: false
         logsource:
           category: network
-          service: tls
+          service: x509
         detection:
             selection:
                 - src_ip|expand: '%src_ip%'
                 - dst_ip|expand: '%dst_ip%'
             condition: selection
         fields:
-            - ssl.server_name
-            - ssl.version
-            - ssl.cipher
+            - x509.certificate.subject
+            - x509.certificate.issuer
+            - x509.certificate.serial_number
+            - x509.certificate.not_before
+            - x509.certificate.not_after
