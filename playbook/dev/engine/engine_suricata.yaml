@@ -69,16 +69,15 @@ questions:
   - question: 'What process is associated with this specific network connection?'
     context: 'Correlating process execution to the network connection can give further indication of intent.'
     answer_sources:
-        - community_id
+        - process_creation
     range: +/-15m
     query: |
         aggregation: false
         logsource:
-          category: community_id
+          category: process_creation
         detection:
             selection:
                 community_id: '{network.community_id}'
-                event_dataset: 'endpoint.events.network'
             condition: selection
         fields:
             - hostname
@@ -93,7 +92,7 @@ questions:
     query: |
         aggregation: false
         logsource:
-          category: network_connection
+          category: process_creation
         detection:
             selection:
                 related_ip: '{network.public.ip}'
@@ -106,7 +105,7 @@ questions:
   - question: 'What is the historical network traffic pattern for the public IP?'
     context: 'Understanding historical traffic patterns can help identify anomalous behavior.'
     answer_sources:
-        - alert
+        - network.connection
     range: -30d
     query: |
         aggregation: false
