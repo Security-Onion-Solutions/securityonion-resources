@@ -79,7 +79,7 @@ questions:
             selection:
                 community_id|expand: '%community_id%'
             filter:
-                image|exists: true
+                Image|exists: true
             condition: selection and filter
         fields:
             - hostname
@@ -99,7 +99,7 @@ questions:
             selection:
                 related_ip|expand: '%public_ip%'
             filter:
-                image|exists: true
+                Image|exists: true
             condition: selection and filter
         fields:
             - hostname
