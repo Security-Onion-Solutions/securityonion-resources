@@ -147,15 +147,14 @@ questions:
                 - dst_ip|expand: '%public_ip%'
             condition: selection
         fields:
-            - filename
-            - filesize
-            - file_state
-            - magic
+            - file.source
+            - file.mime_type
+            - file.bytes.total
 
   - question: 'Are there any DNS queries associated with the external domains/IPs?'
     context: 'DNS queries can reveal additional infrastructure or C2 channels.'
     answer_sources:
-        - dns
+        - network.dns
     range: +/-1h
     query: |
         aggregation: false
