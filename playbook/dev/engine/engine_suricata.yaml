@@ -190,5 +190,6 @@ questions:
         fields:
             - ssl.version
             - ssl.server_name
-            - ssl.ja3
-            - ssl.ja3s
+            - ssl.established
+            - hash.ja3
+            - hash.ja3s
