@@ -69,12 +69,12 @@ questions:
   - question: 'What process is associated with this specific network connection?'
     context: 'Correlating process execution to the network connection can give further indication of intent.'
     answer_sources:
-        - network.connection
+        - network
     range: +/-15m
     query: |
         aggregation: false
         logsource:
-          category: network_connection
+          category: network
         detection:
             selection:
                 community_id: '{network.community_id}'
@@ -89,12 +89,12 @@ questions:
   - question: 'What processes are associated with the public IP?'
     context: 'Correlating process execution with the public IP will give additional context outside of this specific alert.'
     answer_sources:
-        - network.connection
+        - network
     range: -7d
     query: |
         aggregation: false
         logsource:
-          category: network_connection
+          category: network
         detection:
             selection:
                 related_ip: '{network.public.ip}'
