@@ -130,8 +130,7 @@ questions:
             - client.ip_bytes
             - server.ip_bytes
             - connection.state_description
-
-#TODO - Change this to community_id
+            
   - question: 'Are there any file transfers associated with this alert?'
     context: 'Identifying file transfers can help detect malicious file sharing or data exfiltration.'
     answer_sources:
@@ -174,25 +173,22 @@ questions:
             - dns.resolved.ip
             - dns.response.code_name
 
-#TODO: Setup for Community ID
   - question: 'Are there any TLS certificates associated with this connection?'
     context: 'TLS certificate information can help identify malicious infrastructure or validate legitimate services.'
     answer_sources:
-        - network.x509
+        - network.ssl
     range: +/-5m
     query: |
         aggregation: false
         logsource:
           category: network
-          service: x509
+          service: ssl
         detection:
             selection:
-                - src_ip|expand: '%src_ip%'
-                - dst_ip|expand: '%dst_ip%'
+                document_id|expand: '%document_id%'
             condition: selection
         fields:
-            - x509.certificate.subject
-            - x509.certificate.issuer
-            - x509.certificate.serial_number
-            - x509.certificate.not_before
-            - x509.certificate.not_after
+            - ssl.version
+            - ssl.server_name
+            - ssl.ja3
+            - ssl.ja3s
