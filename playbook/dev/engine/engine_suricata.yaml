@@ -130,7 +130,7 @@ questions:
             - client.ip_bytes
             - server.ip_bytes
             - connection.state_description
-            
+
   - question: 'Are there any file transfers associated with this alert?'
     context: 'Identifying file transfers can help detect malicious file sharing or data exfiltration.'
     answer_sources:
@@ -185,7 +185,7 @@ questions:
           service: ssl
         detection:
             selection:
-                document_id|expand: '%document_id%'
+                community_id|expand: '%community_id%'
             condition: selection
         fields:
             - ssl.version
