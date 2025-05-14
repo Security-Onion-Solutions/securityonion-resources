@@ -135,7 +135,7 @@ questions:
     context: 'Identifying file transfers can help detect malicious file sharing or data exfiltration.'
     answer_sources:
         - network.file
-    range: +/-5m
+    range: +/-60m
     query: |
         aggregation: false
         logsource:
@@ -143,8 +143,7 @@ questions:
           service: file
         detection:
             selection:
-                - src_ip|expand: '%public_ip%'
-                - dst_ip|expand: '%public_ip%'
+                community_id|expand: '%community_id%'
             condition: selection
         fields:
             - file.source
