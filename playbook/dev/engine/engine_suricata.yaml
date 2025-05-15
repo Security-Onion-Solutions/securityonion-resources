@@ -164,12 +164,12 @@ questions:
         detection:
             selection:
                - dns.query.name|contains: '{dns.query_name}'
-               - dns.resolved.ip: '{network.public.ip}'
+               - dns.resolved_ip: '{network.public.ip}'
             condition: selection
         fields:
             - dns.query.name
             - dns.query.type_name
-            - dns.resolved.ip
+            - dns.resolved_ip
             - dns.response.code_name
 
   - question: 'Are there any TLS certificates associated with this connection?'
