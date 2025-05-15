@@ -15,7 +15,7 @@ detection_category: 'ET SCAN'
 detection_type: nids
 contributors:
   - SecurityOnionSolutions
-created: 2025-04-28
+date: 2025-04-28
 modified: 2025-04-28
 questions:
 

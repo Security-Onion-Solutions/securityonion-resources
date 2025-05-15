@@ -8,8 +8,8 @@ detection_category: ''
 detection_type: 'sigma'
 contributors:
   - 'SecurityOnionSolutions, Chris Sanders'
-created: 3/12/2025
-modified: 3/13/2025
+date: 3-12-2025
+modified: 3-13-2025
 questions:
   - question: 'What was the full WMIC command used on the host?'
     context: 'The full command line can provide insight into what specific activity was being performed.'
