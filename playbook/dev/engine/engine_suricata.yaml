@@ -8,8 +8,8 @@ detection_category: ''
 detection_type: nids
 contributors:
   - SecurityOnionSolutions
-date: 3-12-2025
-modified: 3-13-2025
+date: 2025-03-12
+modified: 2025-03-13
 questions:
   - question: 'What specifically does the alert describe?'
     context: 'Review the Detection description and signature to understand what the detection is trying to expose.'
