@@ -8,8 +8,8 @@ detection_category: ''
 detection_type: 'sigma'
 contributors:
   - 'SecurityOnionSolutions'
-date: 3-24-2025
-modified: 3-25-2025
+date: 2025-03-24
+modified: 2025-03-25
 questions:
   - question: "What user failed to login?"
     context: "This is the username that attempted and failed to authenticate via SSH to the grid node. Is it a known user?"
