@@ -150,7 +150,6 @@ questions:
             - file.mime_type
             - file.bytes.total
 
-# TODO: Extract pattern from Suricata rules
   - question: 'Are there any DNS queries associated with the external domains/IPs?'
     context: 'DNS queries can reveal additional infrastructure or C2 channels.'
     answer_sources:

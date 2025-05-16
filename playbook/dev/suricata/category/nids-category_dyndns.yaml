@@ -100,7 +100,7 @@ questions:
           service: connection
         detection:
             selection:
-                dst_ip: '%dns.resolved_ip%'
+                dst_ip: '{dns.resolved_ip}'
             condition: selection
         fields:
             - src_ip
@@ -166,4 +166,4 @@ questions:
                 dns.query.name|contains: '{dns.query_name}'
             condition: selection
         fields:
-            - dns.authoritative_nameservers
+            - dns.authoritative
