@@ -88,7 +88,7 @@ questions:
         detection:
             selection:
                 src_ip: '{source.ip}'
-                dst_port: '%dst_port%'
+                dst_port: '{destination.port}'
             filter:
                 connection.state: 'SF'
             condition: selection and not filter
