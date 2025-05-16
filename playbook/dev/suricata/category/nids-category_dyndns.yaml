@@ -46,10 +46,10 @@ questions:
         fields:
             - src_ip
             - dns.query.name
-            - dns.answers.name
+            - dns.resolved_ip
 
-  - question: 'What internal systems have contacted this dynamic DNS domain?'
-    context: 'Multiple systems contacting the same suspicious dynamic DNS domain may indicate lateral movement or widespread compromise.'
+  - question: 'What internal systems have attempted to resolve this dynamic DNS domain?'
+    context: 'Multiple systems resolving the same suspicious dynamic DNS domain may indicate lateral movement or widespread compromise.'
     answer_sources:
         - dns
     range: -24h
@@ -64,19 +64,23 @@ questions:
             condition: selection
         fields:
             - src_ip
+            - dns.query.name
 
   - question: 'What processes are making these DNS queries?'
     context: 'Identifying the processes making these DNS queries can help determine if they are legitimate or potentially malicious.'
     answer_sources:
-        - process_creation
+        - network
     query: |
         aggregation: false
         logsource:
-          category: process_creation
+          category: network
         detection:
             selection:
-                dns.query.name|contains: '{dns.query_name}'
-            condition: selection
+                - dns.query.name|contains: '{dns.query_name}'
+                - community_id: '{network.community_id}'
+            filter:
+                Image|exists: true
+            condition: selection and filter
         fields:
             - User
             - hostname
@@ -96,7 +100,7 @@ questions:
           service: connection
         detection:
             selection:
-                dst_ip: '%dns.answers.name%'
+                dst_ip: '%dns.resolved_ip%'
             condition: selection
         fields:
             - src_ip
