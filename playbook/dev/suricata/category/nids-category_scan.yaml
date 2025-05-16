@@ -88,11 +88,13 @@ questions:
         detection:
             selection:
                 src_ip|expand: '%src_ip%'
+                dst_port|expand: '%dst_port%'
             filter:
                 connection.state: 'SF'
             condition: selection and not filter
         fields:
             - src_ip
+            - src_port
             - dst_ip
             - dst_port
             - network.protocol
@@ -115,6 +117,7 @@ questions:
         detection:
             selection:
                 src_ip|expand: '%src_ip%'
+                dst_ip|expand: '%dst_ip%'
                 connection.state: 'SF'
             condition: selection
         fields:
@@ -129,16 +132,17 @@ questions:
     context: 'Correlating process execution to the network connection can give further indication of intent.'
     answer_sources:
         - network.community_id
-    range: +/-1h
+    range: +/-15m
     query: |
         aggregation: false
         logsource:
-          category: community_id
+          category: network
         detection:
             selection:
                 community_id|expand: '%community_id%'
-                event_dataset: 'endpoint.events.network'
-            condition: selection
+            filter:
+                Image|exists: true
+            condition: selection and filter
         fields:
             - hostname
             - Image
@@ -156,29 +160,11 @@ questions:
         detection:
             selection:
                 - src_ip|expand: '%src_ip%'
-                - dst_ip|expand: '%dst_ip%'
+                - dst_ip|expand: '%src_ip%'
             condition: selection
         fields:
             - rule.type
             - rule.name
-
-  - question: 'Is the scanning source associated with known threat intelligence?'
-    context: 'Known malicious sources may require immediate blocking or escalation.'
-    answer_sources:
-        - threatintel
-    query: |
-        aggregation: false
-        logsource:
-          category: threatintel
-        detection:
-            selection:
-                indicator|expand: '%src_ip%'
-            condition: selection
-        fields:
-            - indicator
-            - threat_type
-            - confidence
-            - source
 
   - question: 'Are there any associated DNS queries from the scanning source?'
     context: 'DNS queries before or during scanning may reveal reconnaissance patterns or C2 communication.'
