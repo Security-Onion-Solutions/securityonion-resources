@@ -4,6 +4,7 @@ s|%CurrentDirectory%|{event_data.process.working_directory}|g
 s|%document_id%|{soc_id}|g
 s|%dst_port%|{destination.port}|g
 s|%dns.query.name%|{dns.query_name}|g
+s|%dns.resolved_ip%|{dns.resolved_ip}|g
 s|%hostname%|{event_data.host.name}|g
 s|%Image%|{process.executable}|g
 s|%ImageLoaded%|{dll.name}|g
