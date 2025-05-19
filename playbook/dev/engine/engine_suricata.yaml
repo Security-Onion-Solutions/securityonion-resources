@@ -58,8 +58,8 @@ questions:
           category: alert
         detection:
             selection:
-                - src_ip: '{network.private.ip}'
-                - dst_ip: '{network.private.ip}'
+                - src_ip: '{network.private_ip}'
+                - dst_ip: '{network.private_ip}'
             condition: selection
         fields:
             - rule.type
@@ -97,7 +97,7 @@ questions:
           category: network
         detection:
             selection:
-                related_ip: '{network.public.ip}'
+                related_ip: '{network.public_ip}'
             filter:
                 Image|exists: true
             condition: selection and filter
@@ -118,8 +118,8 @@ questions:
           service: connection
         detection:
             selection:
-                - src_ip: '{network.public.ip}'
-                - dst_ip: '{network.public.ip}'
+                - src_ip: '{network.public_ip}'
+                - dst_ip: '{network.public_ip}'
             condition: selection
         fields:
             - src_ip
@@ -163,7 +163,7 @@ questions:
         detection:
             selection:
                - dns.query.name|contains: '{dns.query_name}'
-               - dns.resolved_ip: '{network.public.ip}'
+               - dns.resolved_ip: '{network.public_ip}'
             condition: selection
         fields:
             - dns.query.name
