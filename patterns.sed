@@ -10,9 +10,9 @@ s|%Image%|{process.executable}|g
 s|%ImageLoaded%|{dll.name}|g
 s|%ParentImage%|{process.parent.executable}|g
 s|%ParentProcessGuid%|{ParentProcessGuid}|g
-s|%private_ip%|{network.private.ip}|g
+s|%private_ip%|{network.private_ip}|g
 s|%ProcessGuid%|{event_data.process.entity_id}|g
-s|%public_ip%|{network.public.ip}|g
+s|%public_ip%|{network.public_ip}|g
 s|%related.hosts%|{event_data.related.hosts}|g
 s|%related_ip%|{related.ip}|g
 s|%rule.name%|{rule.name}|g
