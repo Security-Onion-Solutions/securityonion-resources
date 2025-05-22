@@ -9,9 +9,11 @@ detection_type: 'sigma'
 contributors:
   - 'SecurityOnionSolutions'
 date: 2025-04-03
+
 questions:
   - question: 'What is the full path and name of the renamed whoami executable?'
     context: 'Understanding the renamed executable location and name can help identify the method of deployment and potential related malware.'
+    range: -5m
     answer_sources:
         - process_creation
     query: |
@@ -27,8 +29,10 @@ questions:
             - Image
             - CommandLine
             - CurrentDirectory
+            
   - question: 'What user account executed the renamed whoami process?'
     context: 'This can give perspective on legitimate executions - for example, some software runs whoami as part of its startup initialization.'
+    range: -5m
     answer_sources:
         - process_creation
     query: |
@@ -109,6 +113,7 @@ questions:
         detection:
             selection:
                 FilePath|contains|expand: '%CurrentDirectory%'
+                hostname|expand: '%hostname%'
             condition: selection
         fields:
             - User
