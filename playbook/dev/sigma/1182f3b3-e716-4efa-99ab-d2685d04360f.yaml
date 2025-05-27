@@ -20,8 +20,7 @@ questions:
     query: |
       aggregation: false
       logsource:
-        category: process_creation
-        product: linux
+        category: alert
       detection:
         selection:
           document_id|expand: '%document_id%'
@@ -42,8 +41,7 @@ questions:
     query: |
       aggregation: false
       logsource:
-        category: process_creation
-        product: linux
+        category: alert
       detection:
         selection:
           document_id|expand: '%document_id%'
