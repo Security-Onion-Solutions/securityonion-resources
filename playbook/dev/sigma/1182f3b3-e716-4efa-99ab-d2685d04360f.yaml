@@ -33,7 +33,6 @@ questions:
           document_id|expand: '%document_id%'
         condition: selection
       fields:
-        - CreationUtcTime
         - hostname
         - User
         - Image
@@ -74,7 +73,6 @@ questions:
               - 'zhistory'
         condition: all of selection*
       fields:
-        - CreationUtcTime
         - CommandLine
 
   - question: Does the timing align with legitimate maintenance windows?
@@ -107,7 +105,6 @@ questions:
               - 'zhistory'
         condition: all of selection*
       fields:
-        - CreationUtcTime
         - User
         - CommandLine
 
@@ -129,7 +126,6 @@ questions:
           ParentProcessGuid|expand: '%ParentProcessGuid%'
         condition: selection
       fields:
-        - CreationUtcTime
         - Image
         - CommandLine
         - User
@@ -156,7 +152,6 @@ questions:
           User|expand: '%User%'
         condition: selection
       fields:
-        - CreationUtcTime
         - Image
         - CommandLine
         - ParentImage
@@ -191,7 +186,6 @@ questions:
             - '.zsh_'
         condition: all of selection*
       fields:
-        - CreationUtcTime
         - CommandLine
         - Image
 
@@ -222,7 +216,6 @@ questions:
             - 'systemd'
         condition: selection
       fields:
-        - CreationUtcTime
         - Image
         - CommandLine
         - ParentImage
@@ -246,7 +239,6 @@ questions:
           User|expand: '%User%'
         condition: selection
       fields:
-        - CreationUtcTime
         - Image
         - CommandLine
         - ParentImage
@@ -306,7 +298,6 @@ questions:
             - 'config'
         condition: all of selection*
       fields:
-        - CreationUtcTime
         - TargetFilename
         - Image
 
@@ -341,7 +332,6 @@ questions:
         condition: all of selection*
       fields:
         - hostname
-        - CreationUtcTime
 
   # Thread 4: Investigative Deep-Dive (3 questions)
   # Detailed investigation if earlier threads show risk
@@ -378,7 +368,6 @@ questions:
               - 'utmpdump'
         condition: all of selection*
       fields:
-        - CreationUtcTime
         - Image
         - CommandLine
 
@@ -414,7 +403,6 @@ questions:
               - 'exploit'
         condition: all of selection*
       fields:
-        - CreationUtcTime
         - Image
         - CommandLine
         - User
