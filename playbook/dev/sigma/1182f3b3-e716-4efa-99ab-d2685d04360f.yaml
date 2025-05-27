@@ -24,7 +24,7 @@ questions:
         product: linux
       detection:
         selection:
-          ProcessGuid|expand: '%ProcessGuid%'
+          document_id|expand: '%document_id%'
         condition: selection
       fields:
         - CommandLine
@@ -46,7 +46,7 @@ questions:
         product: linux
       detection:
         selection:
-          ProcessGuid|expand: '%ProcessGuid%'
+          document_id|expand: '%document_id%'
         condition: selection
       fields:
         - User
