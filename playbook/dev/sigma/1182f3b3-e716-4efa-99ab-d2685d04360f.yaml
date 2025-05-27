@@ -1,44 +1,31 @@
-name: Linux History File Deletion Investigation
-id: a7f8c4e2-9b3d-4e56-8f2a-1c5b7d9e3f4a
+name: History File Deletion Investigation
+id: a9f8c4e2-9b3d-4e56-8f2a-1c5b7d9e3f4b
 description: |
-  This playbook guides the investigation of Linux history file deletion events, which are commonly used by attackers to remove traces of their malicious activities. History file deletion is a critical anti-forensics technique that can indicate post-exploitation activity, covering tracks after unauthorized access, or preparation for malicious actions.
+  Investigates deletion of shell history files (bash_history, zsh_history, etc).
+  History deletion can be legitimate system maintenance or malicious anti-forensics.
+  This playbook helps determine intent and scope of the activity.
 type: detection
 detection_id: 1182f3b3-e716-4efa-99ab-d2685d04360f
 detection_type: sigma
 contributors:
   - SecurityOnionSolutions
-date: 2025-01-27
-modified: 2025-01-27
-questions:
-  # Phase 1: Alert Context (Required)
-  - question: What exact command triggered the history file deletion alert?
-    context: |
-      The full command line provides details about which history file was deleted, the method used (rm, unlink, shred), and any command flags that might indicate the attacker's intent or sophistication level.
-    range: ''
-    answer_sources:
-      - process_creation
-    query: |
-      aggregation: false
-      logsource:
-        category: alert
-      detection:
-        selection:
-          document_id: '{soc_id}'
-        condition: selection
-      fields:
-        - CommandLine
-        - Image
-        - User
-        - CurrentDirectory
-        - CreationUtcTime
+date: 2024-01-10
+modified: 2024-01-10
 
-  - question: What user and parent process was involved in the history deletion?
+questions:
+  # Thread 1: Legitimacy Assessment (4 questions)
+  # Determine if this is normal/authorized activity
+  
+  - question: What are the full details of this history deletion event?
     context: |
-      Understanding the user context and parent process helps determine if this was a privileged escalation attack, a compromised user account, or potentially legitimate administrative activity. The parent process reveals how the deletion was initiated.
-    range: ''
+      Examines the alert details to understand exactly what occurred.
+      Shows the specific command, user, and process information.
     answer_sources:
-      - process_creation
+      - alert
     query: |
+      # LOGSOURCE CHECK: alert (pulling from alert document)
+      # RANGE CHECK: none (alert document access)
+      # FIELD CHECK: All alert fields available
       aggregation: false
       logsource:
         category: alert
@@ -47,321 +34,412 @@ questions:
           document_id: '{soc_id}'
         condition: selection
       fields:
+        - CreationUtcTime
+        - hostname
         - User
+        - Image
+        - CommandLine
         - ParentImage
         - ParentCommandLine
+        - ParentUser
+        - ProcessGuid
         - ParentProcessGuid
-        - IntegrityLevel
 
-  # Phase 2: Tool-Specific Analysis (Evasion/Anti-Forensics Category)
-  - question: What other anti-forensics or log tampering activities occurred around this event?
+  - question: Is history deletion normal for this user?
     context: |
-      Attackers often combine history deletion with other anti-forensics techniques like log clearing, timestamp manipulation, or security tool tampering. This query identifies related evasion activities.
-    range: +/-15m
+      Checks if this user has deleted history files before.
+      Regular history cleanup may indicate maintenance scripts or privacy practices.
+      First-time deletion could be more suspicious.
+    range: -30d
     answer_sources:
       - process_creation
     query: |
+      # LOGSOURCE CHECK: process_creation
+      # RANGE CHECK: -30d (historical baseline)
+      # FIELD CHECK: User, Image, CommandLine exist in process_creation
       aggregation: true
       logsource:
         category: process_creation
       detection:
         selection:
-          hostname: '{event_data.host.name}'
-          CommandLine|contains:
-            - '/var/log/'
-            - 'journalctl'
-            - 'dmesg -c'
-            - 'echo > '
-            - 'truncate -s'
-            - 'history -c'
-            - 'export HISTFILE'
-            - 'unset HISTFILE'
-            - 'HISTSIZE=0'
-            - 'shred'
-            - 'wipe'
-            - 'secure-delete'
-        condition: selection
-      fields:
-        - User
-        - Image
-        - CommandLine
-        - ParentImage
-
-  - question: Were any shell configuration files modified to disable history logging?
-    context: |
-      Sophisticated attackers may modify shell configuration files (.bashrc, .bash_profile, .zshrc) to disable history logging before conducting malicious activities, preventing future command logging.
-    range: +/-30m
-    answer_sources:
-      - file_event
-    query: |
-      aggregation: false
-      logsource:
-        category: file_event
-      detection:
-        selection:
-          hostname: '{event_data.host.name}'
-          TargetFilename|endswith:
-            - '.bashrc'
-            - '.bash_profile'
-            - '.bash_logout'
-            - '.zshrc'
-            - '.zsh_profile'
-            - '.profile'
-            - '/etc/profile'
-            - '/etc/bash.bashrc'
-        condition: selection
-      fields:
-        - User
-        - Image
-        - TargetFilename
-        - CreationUtcTime
-
-  # Phase 3: Process Analysis (Required)
-  - question: What child processes were spawned by the history deletion process?
-    context: |
-      Child processes can reveal if the history deletion was part of a larger script or if additional cleanup activities were performed after the deletion.
-    range: +5m
-    answer_sources:
-      - process_creation
-    query: |
-      aggregation: false
-      logsource:
-        category: process_creation
-      detection:
-        selection:
-          ParentProcessGuid: '{event_data.process.entity_id}'
-        condition: selection
-      fields:
-        - User
-        - Image
-        - CommandLine
-        - IntegrityLevel
-        - CreationUtcTime
-
-  - question: What other suspicious processes executed around the time of history deletion?
-    context: |
-      Examining processes before and after history deletion can reveal the malicious activities the attacker was trying to hide, including reconnaissance, exploitation, or data exfiltration commands.
-    range: +/-10m
-    answer_sources:
-      - process_creation
-    query: |
-      aggregation: true
-      logsource:
-        category: process_creation
-      detection:
-        selection:
-          hostname: '{event_data.host.name}'
-        filter_suspicious:
-          - Image|endswith:
-              - '/wget'
-              - '/curl'
-              - '/nc'
-              - '/netcat'
-              - '/nmap'
-              - '/tcpdump'
-              - '/ssh'
-              - '/scp'
-              - '/rsync'
+          User: '{user.name}'
+          Image|endswith:
+            - '/rm'
+            - '/unlink'
+            - '/shred'
+        selection_history:
           - CommandLine|contains:
-              - '/dev/tcp/'
-              - 'bash -i'
-              - 'sh -i'
-              - 'mkfifo'
-              - 'base64'
-              - 'python -c'
-              - 'perl -e'
-              - 'ruby -e'
-        condition: selection and filter_suspicious
+              - '/.bash_history'
+              - '/.zsh_history'
+          - CommandLine|endswith:
+              - '_history'
+              - '.history'
+              - 'zhistory'
+        condition: all of selection*
       fields:
+        - CreationUtcTime
+        - CommandLine
+
+  - question: Does the timing align with legitimate maintenance windows?
+    context: |
+      History deletion during business hours by regular users is more suspicious.
+      After-hours deletion by admins may be routine maintenance.
+      Check if this aligns with known maintenance schedules.
+    range: -7d
+    answer_sources:
+      - process_creation
+    query: |
+      # LOGSOURCE CHECK: process_creation
+      # RANGE CHECK: -7d (recent patterns)
+      # FIELD CHECK: hostname, Image, CommandLine exist in process_creation
+      aggregation: true
+      logsource:
+        category: process_creation
+      detection:
+        selection:
+          hostname: '{event_data.host.name}'
+          Image|endswith:
+            - '/rm'
+            - '/unlink'
+            - '/shred'
+        selection_history:
+          - CommandLine|contains:
+              - '/.bash_history'
+              - '/.zsh_history'
+          - CommandLine|endswith:
+              - '_history'
+              - '.history'
+              - 'zhistory'
+        condition: all of selection*
+      fields:
+        - CreationUtcTime
         - User
-        - ParentImage
+        - CommandLine
+
+  - question: Is this part of a system cleanup script or tool?
+    context: |
+      Some legitimate tools and scripts routinely clean history files.
+      Configuration management, privacy tools, or cleanup utilities may do this.
+      Check parent process to identify automated vs manual deletion.
+    range: -1h
+    answer_sources:
+      - process_creation
+    query: |
+      # LOGSOURCE CHECK: process_creation
+      # RANGE CHECK: -1h (recent context)
+      # FIELD CHECK: ParentProcessGuid, ParentImage exist in process_creation
+      aggregation: false
+      logsource:
+        category: process_creation
+      detection:
+        selection:
+          ParentProcessGuid: '{ParentProcessGuid}'
+        condition: selection
+      fields:
+        - CreationUtcTime
         - Image
         - CommandLine
-        - CreationUtcTime
+        - User
 
-  # Phase 4: System Context (Required)
-  - question: What network connections were established around the history deletion?
+  # Thread 2: Activity Context (4 questions)
+  # Understand what happened without assuming malice
+
+  - question: What other commands did this user run before the deletion?
     context: |
-      Network connections can indicate command and control communications, data exfiltration, or lateral movement activities that the attacker was attempting to hide by deleting history files.
-    range: +/-10m
+      Shows user activity leading up to history deletion.
+      Suspicious commands followed by deletion suggest covering tracks.
+      Normal work followed by deletion may be routine cleanup.
+    range: -30m
+    answer_sources:
+      - process_creation
+    query: |
+      # LOGSOURCE CHECK: process_creation
+      # RANGE CHECK: -30m (pre-event activity)
+      # FIELD CHECK: hostname, User exist in process_creation
+      aggregation: false
+      logsource:
+        category: process_creation
+      detection:
+        selection:
+          hostname: '{event_data.host.name}'
+          User: '{user.name}'
+        condition: selection
+      fields:
+        - CreationUtcTime
+        - Image
+        - CommandLine
+        - ParentImage
+
+  - question: Were multiple history files or other logs deleted?
+    context: |
+      Deletion of multiple history/log files indicates thorough cleanup.
+      Single file deletion may be accidental or targeted.
+      Multiple deletions across different shells suggests anti-forensics.
+    range: -15m/+15m
+    answer_sources:
+      - process_creation
+    query: |
+      # LOGSOURCE CHECK: process_creation
+      # RANGE CHECK: +/-15m (correlation window)
+      # FIELD CHECK: hostname, User, Image exist in process_creation
+      aggregation: false
+      logsource:
+        category: process_creation
+      detection:
+        selection:
+          hostname: '{event_data.host.name}'
+          User: '{user.name}'
+          Image|endswith:
+            - '/rm'
+            - '/unlink'
+            - '/shred'
+        selection_targets:
+          CommandLine|contains:
+            - 'history'
+            - '.log'
+            - '/var/log/'
+            - '.bash_'
+            - '.zsh_'
+        condition: all of selection*
+      fields:
+        - CreationUtcTime
+        - CommandLine
+        - Image
+
+  - question: How did the user gain access to this system?
+    context: |
+      Understanding the authentication source helps assess legitimacy.
+      Local console vs remote access has different risk profiles.
+      Unusual access methods before deletion increase suspicion.
+    range: -2h
+    answer_sources:
+      - process_creation
+    query: |
+      # LOGSOURCE CHECK: process_creation
+      # RANGE CHECK: -2h (session context)
+      # FIELD CHECK: hostname, User, Image exist in process_creation
+      aggregation: false
+      logsource:
+        category: process_creation
+      detection:
+        selection:
+          hostname: '{event_data.host.name}'
+          User: '{user.name}'
+          Image|contains:
+            - 'sshd'
+            - 'login'
+            - 'su'
+            - 'sudo'
+            - 'gdm'
+            - 'kdm'
+            - 'systemd'
+        condition: selection
+      fields:
+        - CreationUtcTime
+        - Image
+        - CommandLine
+        - ParentImage
+
+  - question: What file operations occurred after the deletion?
+    context: |
+      Activity after deletion reveals intent.
+      Immediate logout suggests quick cleanup.
+      Continued suspicious activity indicates ongoing compromise.
+    range: +30m
+    answer_sources:
+      - process_creation
+    query: |
+      # LOGSOURCE CHECK: process_creation
+      # RANGE CHECK: +30m (post-event activity)
+      # FIELD CHECK: hostname, User exist in process_creation
+      aggregation: false
+      logsource:
+        category: process_creation
+      detection:
+        selection:
+          hostname: '{event_data.host.name}'
+          User: '{user.name}'
+        condition: selection
+      fields:
+        - CreationUtcTime
+        - Image
+        - CommandLine
+        - ParentImage
+
+  # Thread 3: Impact Assessment (3 questions)
+  # Determine scope and risk if unauthorized
+
+  - question: Were any network connections made around this time?
+    context: |
+      Network activity near history deletion may indicate data exfiltration.
+      Connections to external IPs are particularly concerning.
+      Internal connections might show lateral movement.
+    range: -30m/+30m
     answer_sources:
       - network_connection
     query: |
+      # LOGSOURCE CHECK: network_connection
+      # RANGE CHECK: +/-30m (correlation window)
+      # FIELD CHECK: hostname, User exist in network_connection
       aggregation: true
       logsource:
         category: network_connection
       detection:
         selection:
           hostname: '{event_data.host.name}'
-        filter_external:
-          DestinationIp|startswith:
-            - '10.'
-            - '172.16.'
-            - '172.17.'
-            - '172.18.'
-            - '172.19.'
-            - '172.20.'
-            - '172.21.'
-            - '172.22.'
-            - '172.23.'
-            - '172.24.'
-            - '172.25.'
-            - '172.26.'
-            - '172.27.'
-            - '172.28.'
-            - '172.29.'
-            - '172.30.'
-            - '172.31.'
-            - '192.168.'
-            - '127.'
-        condition: selection and not filter_external
+          User: '{user.name}'
+        condition: selection
       fields:
-        - Image
-        - User
         - DestinationIp
         - DestinationPort
-        - Protocol
+        - Image
 
-  - question: What files were created, modified, or accessed in suspicious locations?
+  - question: Were sensitive files accessed before the deletion?
     context: |
-      File system activity can reveal persistence mechanisms, malware deployment, or sensitive data access that occurred before the attacker attempted to cover their tracks.
-    range: +/-10m
+      File access before history deletion may indicate data theft.
+      Access to passwords, keys, or confidential data increases risk.
+      Pattern helps determine if deletion was to hide specific activity.
+    range: -1h
     answer_sources:
       - file_event
     query: |
-      aggregation: true
+      # LOGSOURCE CHECK: file_event
+      # RANGE CHECK: -1h (pre-deletion activity)
+      # FIELD CHECK: hostname, User exist in file_event
+      aggregation: false
       logsource:
         category: file_event
       detection:
         selection:
           hostname: '{event_data.host.name}'
-        filter_suspicious:
+          User: '{user.name}'
+        selection_sensitive:
           TargetFilename|contains:
-            - '/tmp/'
-            - '/dev/shm/'
-            - '/var/tmp/'
-            - '/etc/cron'
-            - '/etc/systemd/system/'
-            - '/.ssh/'
-            - '/root/'
-            - '.sh'
-            - '.py'
-            - '.pl'
-            - '.rb'
-        condition: selection and filter_suspicious
+            - '.ssh/'
+            - '.aws/'
+            - 'passwd'
+            - 'shadow'
+            - '.key'
+            - '.pem'
+            - 'credentials'
+            - 'config'
+        condition: all of selection*
       fields:
-        - Image
-        - User
+        - CreationUtcTime
         - TargetFilename
-        - CreationUtcTime
+        - Image
 
-  # Phase 5: Historical Analysis (Required)
-  - question: Has this specific tool been executed on this host before?
+  - question: Has this deletion pattern occurred on other systems?
     context: |
-      Historical patterns can reveal if this is a repeated attack pattern, ongoing campaign, or if the system has been previously compromised. This helps assess the scope and timeline of potential compromise.
-    range: -90d
+      Similar deletions across multiple systems suggest campaign activity.
+      Isolated deletion may be single compromised account.
+      Pattern analysis helps scope the incident.
+    range: -24h
     answer_sources:
       - process_creation
     query: |
-      # Detection ID: 1182f3b3-e716-4efa-99ab-d2685d04360f
-      # Efficient pattern: Using exact Image from alert instead of recreating detection logic
+      # LOGSOURCE CHECK: process_creation
+      # RANGE CHECK: -24h (campaign window)
+      # FIELD CHECK: User, Image, CommandLine exist in process_creation
       aggregation: true
       logsource:
         category: process_creation
       detection:
         selection:
-          hostname: '{event_data.host.name}'
-          Image: '{process.executable}'  # Use the exact Image that triggered the alert
-        condition: selection
-      fields:
-        - User
-        - ParentImage
-        - CommandLine
-        - CreationUtcTime
-
-  - question: Is this specific tool being executed on other hosts in the environment?
-    context: |
-      Similar activity across multiple hosts can indicate lateral movement, widespread compromise, or an active attack campaign targeting the organization.
-    range: -7d
-    answer_sources:
-      - process_creation
-    query: |
-      # Detection ID: 1182f3b3-e716-4efa-99ab-d2685d04360f
-      # Efficient pattern: Using exact Image from alert instead of recreating detection logic
-      aggregation: true
-      logsource:
-        category: process_creation
-      detection:
-        selection:
-          Image: '{process.executable}'  # Use the exact Image that triggered the alert
-        filter:
-          hostname: '{event_data.host.name}'
-        condition: selection and not filter
+          User: '{user.name}'
+          Image|endswith:
+            - '/rm'
+            - '/unlink'
+            - '/shred'
+        selection_history:
+          - CommandLine|contains:
+              - '/.bash_history'
+              - '/.zsh_history'
+          - CommandLine|endswith:
+              - '_history'
+              - '.history'
+              - 'zhistory'
+        condition: all of selection*
       fields:
         - hostname
-        - User
-        - ParentImage
-        - CommandLine
         - CreationUtcTime
 
-  # Phase 6: Threat Intelligence & Impact Assessment (Optional)
-  - question: What is the baseline behavior for history-related commands on this host?
-    context: |
-      Understanding normal history file operations helps distinguish between legitimate administrative tasks and malicious activity. Some systems may have automated cleanup scripts that legitimately manage history files.
-    range: -30d
-    answer_sources:
-      - process_creation
-    query: |
-      aggregation: true
-      logsource:
-        category: process_creation
-      detection:
-        selection:
-          hostname: '{event_data.host.name}'
-          CommandLine|contains:
-            - 'history'
-            - 'HISTFILE'
-            - 'HISTSIZE'
-        condition: selection
-      fields:
-        - User
-        - Image
-        - CommandLine
-        - ParentImage
-        - count() as frequency
+  # Thread 4: Investigative Deep-Dive (3 questions)
+  # Detailed investigation if earlier threads show risk
 
-  - question: Were any tools or scripts downloaded before the history deletion?
+  - question: Were any anti-forensics tools or techniques used?
     context: |
-      Attackers often download and execute tools before attempting to cover their tracks. Identifying downloaded content can reveal attack tools, scripts, or malware that was deployed.
-    range: -1h
+      Sophisticated attackers use multiple anti-forensics techniques.
+      Look for secure deletion tools, timestamp manipulation, or log tampering.
+      These activities together with history deletion indicate advanced threats.
+    range: -2h/+2h
     answer_sources:
       - process_creation
     query: |
+      # LOGSOURCE CHECK: process_creation
+      # RANGE CHECK: +/-2h (extended correlation)
+      # FIELD CHECK: hostname, User exist in process_creation
       aggregation: false
       logsource:
         category: process_creation
       detection:
         selection:
           hostname: '{event_data.host.name}'
-        download_tools:
-          Image|endswith:
-            - '/wget'
-            - '/curl'
-            - '/git'
-        download_commands:
-          CommandLine|contains:
-            - 'http://'
-            - 'https://'
-            - 'ftp://'
-            - '.sh'
-            - '.py'
-            - '.pl'
-            - 'github.com'
-            - 'pastebin'
-            - 'raw.githubusercontent'
-        condition: selection and (download_tools or download_commands)
+          User: '{user.name}'
+        selection_tools:
+          - Image|endswith:
+              - '/shred'
+              - '/wipe'
+              - '/secure-delete'
+              - '/srm'
+              - '/dd'
+          - CommandLine|contains:
+              - 'timestomp'
+              - '/dev/null'
+              - '/dev/zero'
+              - 'touch -t'
+              - 'utmpdump'
+        condition: all of selection*
       fields:
-        - User
+        - CreationUtcTime
         - Image
         - CommandLine
+
+  - question: Were any privilege escalation attempts made?
+    context: |
+      Attackers often escalate privileges before covering tracks.
+      History deletion by newly privileged accounts is highly suspicious.
+      Check for sudo usage, setuid binaries, or kernel exploits.
+    range: -4h
+    answer_sources:
+      - process_creation
+    query: |
+      # LOGSOURCE CHECK: process_creation
+      # RANGE CHECK: -4h (privilege escalation window)
+      # FIELD CHECK: hostname, User exist in process_creation
+      aggregation: false
+      logsource:
+        category: process_creation
+      detection:
+        selection:
+          hostname: '{event_data.host.name}'
+          User: '{user.name}'
+        selection_privesc:
+          - Image|contains:
+              - 'sudo'
+              - 'su'
+              - 'pkexec'
+              - 'doas'
+          - CommandLine|contains:
+              - 'setuid'
+              - 'chmod +s'
+              - '/etc/passwd'
+              - '/etc/shadow'
+              - 'kernel'
+              - 'exploit'
+        condition: all of selection*
+      fields:
         - CreationUtcTime
+        - Image
+        - CommandLine
+        - User
