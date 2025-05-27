@@ -1,0 +1,419 @@
+name: Linux Crypto Mining Investigation
+id: b8f7d2a1-4c6e-5f9a-8e3b-1d7c9a2f5b4e
+description: |
+  Investigates potential cryptocurrency mining activity on Linux systems.
+  Crypto miners can be legitimate tools or unauthorized resource abuse.
+  This playbook helps determine intent and impact of the mining activity.
+type: detection
+detection_id: 9069ea3c-b213-4c52-be13-86506a227ab1
+detection_type: sigma
+contributors:
+  - SecurityOnionSolutions
+date: 2024-01-10
+modified: 2024-01-10
+
+questions:
+  # Thread 1: Legitimacy Assessment (4 questions)
+  # Determine if this is normal/authorized activity
+  
+  - question: What are the details of this crypto mining activity?
+    context: |
+      Review the command line to identify the specific mining software and configuration. Pool addresses and algorithms provide important context.
+    answer_sources:
+      - alert
+    query: |
+      # LOGSOURCE CHECK: alert (pulling from alert document)
+      # RANGE CHECK: none (alert document access)
+      # FIELD CHECK: All alert fields available
+      aggregation: false
+      logsource:
+        category: alert
+      detection:
+        selection:
+          document_id|expand: '%document_id%'
+        condition: selection
+      fields:
+        - User
+        - Image
+        - CommandLine
+        - ParentImage
+
+  - question: Is crypto mining authorized on this system?
+    context: |
+      Check if this user has run mining software before. Some organizations allow mining during off-hours or on specific systems.
+    range: -30d
+    answer_sources:
+      - process_creation
+    query: |
+      # LOGSOURCE CHECK: process_creation
+      # RANGE CHECK: -30d (historical baseline)
+      # FIELD CHECK: hostname, User, CommandLine exist in process_creation
+      aggregation: true
+      logsource:
+        category: process_creation
+      detection:
+        selection_host:
+          hostname|expand: '%hostname%'
+        selection_mining:
+          CommandLine|contains:
+            - 'xmrig'
+            - 'minerd'
+            - 'ethminer'
+            - 'stratum'
+            - '--algo='
+            - '--donate-level'
+            - 'pool.'
+        condition: all of selection*
+      fields:
+        - User
+        - Image
+
+  - question: Is this user associated with authorized mining activity?
+    context: |
+      Some users may be authorized for computational research or legitimate mining. Check this user's typical activity patterns.
+    range: -7d
+    answer_sources:
+      - process_creation
+    query: |
+      # LOGSOURCE CHECK: process_creation
+      # RANGE CHECK: -7d (recent patterns)
+      # FIELD CHECK: User, Image exist in process_creation
+      aggregation: true
+      logsource:
+        category: process_creation
+      detection:
+        selection:
+          User|expand: '%User%'
+        selection_compute:
+          Image|contains:
+            - 'python'
+            - 'jupyter'
+            - 'matlab'
+            - 'R'
+            - 'gcc'
+            - 'make'
+        condition: all of selection*
+      fields:
+        - Image
+        - CommandLine
+
+  - question: When does this mining activity typically occur?
+    context: |
+      Mining during business hours impacts productivity. Off-hours mining might be authorized or indicate compromise.
+    range: -14d
+    answer_sources:
+      - process_creation
+    query: |
+      # LOGSOURCE CHECK: process_creation
+      # RANGE CHECK: -14d (timing patterns)
+      # FIELD CHECK: hostname, CommandLine exist in process_creation
+      aggregation: true
+      logsource:
+        category: process_creation
+      detection:
+        selection:
+          hostname|expand: '%hostname%'
+          CommandLine|contains:
+            - 'stratum'
+            - '--algo='
+            - '--donate-level'
+            - 'xmrig'
+            - 'minerd'
+        condition: selection
+      fields:
+        - User
+
+  # Thread 2: Activity Context (4 questions)
+  # Understand what happened without assuming malice
+
+  - question: How was the mining software installed or executed?
+    context: |
+      Check the parent process to understand if this was manual execution, scheduled task, or part of an exploitation chain.
+    range: -1h
+    answer_sources:
+      - process_creation
+    query: |
+      # LOGSOURCE CHECK: process_creation
+      # RANGE CHECK: -1h (recent context)
+      # FIELD CHECK: ParentProcessGuid exist in process_creation
+      aggregation: false
+      logsource:
+        category: process_creation
+      detection:
+        selection:
+          ParentProcessGuid|expand: '%ParentProcessGuid%'
+        condition: selection
+      fields:
+        - ParentImage
+        - ParentCommandLine
+        - User
+
+  - question: What other processes did this user start around this time?
+    context: |
+      Look for download activity, compilation, or configuration changes that might indicate how the miner was deployed.
+    range: -2h/+30m
+    answer_sources:
+      - process_creation
+    query: |
+      # LOGSOURCE CHECK: process_creation
+      # RANGE CHECK: +/-2h (deployment window)
+      # FIELD CHECK: hostname, User exist in process_creation
+      aggregation: false
+      logsource:
+        category: process_creation
+      detection:
+        selection:
+          hostname|expand: '%hostname%'
+          User|expand: '%User%'
+        condition: selection
+      fields:
+        - Image
+        - CommandLine
+
+  - question: Are there signs of persistence mechanisms?
+    context: |
+      Miners often establish persistence through cron jobs, systemd services, or startup scripts.
+    range: -6h/+1h
+    answer_sources:
+      - process_creation
+    query: |
+      # LOGSOURCE CHECK: process_creation
+      # RANGE CHECK: +/-6h (persistence window)
+      # FIELD CHECK: hostname, User exist in process_creation
+      aggregation: false
+      logsource:
+        category: process_creation
+      detection:
+        selection:
+          hostname|expand: '%hostname%'
+          User|expand: '%User%'
+        selection_persistence:
+          CommandLine|contains:
+            - 'crontab'
+            - 'systemctl'
+            - '.bashrc'
+            - '.profile'
+            - '/etc/rc'
+            - '@reboot'
+            - 'update-rc.d'
+        condition: all of selection*
+      fields:
+        - CommandLine
+        - Image
+
+  - question: What network connections are associated with this mining?
+    context: |
+      Mining pools require network connectivity. Identify if connections go to known mining pools or suspicious IPs.
+    range: -30m/+30m
+    answer_sources:
+      - network_connection
+    query: |
+      # LOGSOURCE CHECK: network_connection
+      # RANGE CHECK: +/-30m (mining connections)
+      # FIELD CHECK: hostname, User exist in network_connection
+      aggregation: true
+      logsource:
+        category: network_connection
+      detection:
+        selection:
+          hostname|expand: '%hostname%'
+          User|expand: '%User%'
+        selection_ports:
+          DestinationPort:
+            - 3333
+            - 4444
+            - 5555
+            - 8333
+            - 9999
+            - 14444
+            - 45700
+        condition: all of selection*
+      fields:
+        - DestinationIp
+        - DestinationPort
+
+  # Thread 3: Impact Assessment (3 questions)
+  # Determine scope and risk if unauthorized
+
+  - question: How much system resources is the miner consuming?
+    context: |
+      High CPU usage impacts system performance and legitimate workloads. Multiple mining processes indicate aggressive resource abuse.
+    range: -1h/+1h
+    answer_sources:
+      - process_creation
+    query: |
+      # LOGSOURCE CHECK: process_creation
+      # RANGE CHECK: +/-1h (resource usage window)
+      # FIELD CHECK: hostname exist in process_creation
+      aggregation: true
+      logsource:
+        category: process_creation
+      detection:
+        selection:
+          hostname|expand: '%hostname%'
+        selection_resource:
+          CommandLine|contains:
+            - '--cpu-priority'
+            - '--threads='
+            - '--cpu-affinity'
+            - 'nice -n'
+        condition: all of selection*
+      fields:
+        - CommandLine
+        - User
+
+  - question: Are other systems in the environment running miners?
+    context: |
+      Widespread mining across multiple systems indicates either authorized deployment or broad compromise.
+    range: -24h
+    answer_sources:
+      - process_creation
+    query: |
+      # LOGSOURCE CHECK: process_creation
+      # RANGE CHECK: -24h (environment-wide check)
+      # FIELD CHECK: CommandLine exist in process_creation
+      aggregation: true
+      logsource:
+        category: process_creation
+      detection:
+        selection:
+          CommandLine|contains:
+            - 'stratum+tcp://'
+            - 'stratum+udp://'
+            - '--donate-level='
+            - ' -o pool.'
+            - 'xmrig'
+            - 'minerd'
+        condition: selection
+      fields:
+        - hostname
+        - User
+
+  - question: What files were created or modified for mining operations?
+    context: |
+      Miners create configuration files, download additional payloads, and may modify system files for persistence.
+    range: -2h/+1h
+    answer_sources:
+      - file_event
+    query: |
+      # LOGSOURCE CHECK: file_event
+      # RANGE CHECK: +/-2h (file activity window)
+      # FIELD CHECK: hostname, User exist in file_event
+      aggregation: false
+      logsource:
+        category: file_event
+      detection:
+        selection:
+          hostname|expand: '%hostname%'
+          User|expand: '%User%'
+        selection_files:
+          TargetFilename|contains:
+            - 'xmrig'
+            - 'minerd'
+            - 'config.json'
+            - '.minergate'
+            - 'pool_wallet'
+            - 'ethminer'
+        condition: all of selection*
+      fields:
+        - TargetFilename
+        - Image
+
+  # Thread 4: Investigative Deep-Dive (3 questions)
+  # Detailed investigation if earlier threads show risk
+
+  - question: How did the attacker gain initial access?
+    context: |
+      If mining is unauthorized, understanding the entry point helps prevent future compromises.
+    range: -24h
+    answer_sources:
+      - process_creation
+    query: |
+      # LOGSOURCE CHECK: process_creation
+      # RANGE CHECK: -24h (initial access window)
+      # FIELD CHECK: hostname exist in process_creation
+      aggregation: false
+      logsource:
+        category: process_creation
+      detection:
+        selection:
+          hostname|expand: '%hostname%'
+        selection_suspicious:
+          - Image|contains:
+              - '/tmp/'
+              - '/dev/shm/'
+              - '/var/tmp/'
+          - CommandLine|contains:
+              - 'wget'
+              - 'curl'
+              - 'base64 -d'
+              - 'python -c'
+              - 'perl -e'
+              - 'sh -c'
+        condition: all of selection*
+      fields:
+        - User
+        - Image
+        - CommandLine
+        - ParentImage
+
+  - question: Are there indicators of lateral movement?
+    context: |
+      Attackers may spread miners across the network after initial compromise.
+    range: -6h/+6h
+    answer_sources:
+      - network_connection
+    query: |
+      # LOGSOURCE CHECK: network_connection
+      # RANGE CHECK: +/-6h (lateral movement window)
+      # FIELD CHECK: hostname, User exist in network_connection
+      aggregation: true
+      logsource:
+        category: network_connection
+      detection:
+        selection:
+          hostname|expand: '%hostname%'
+          User|expand: '%User%'
+        selection_lateral:
+          DestinationPort:
+            - 22
+            - 23
+            - 445
+            - 3389
+            - 5985
+            - 5986
+        condition: all of selection*
+      fields:
+        - DestinationIp
+        - DestinationPort
+        - Image
+
+  - question: What cleanup or anti-forensics activities occurred?
+    context: |
+      Sophisticated miners may attempt to hide their presence through log deletion or process hiding.
+    range: -12h/+6h
+    answer_sources:
+      - process_creation
+    query: |
+      # LOGSOURCE CHECK: process_creation
+      # RANGE CHECK: +/-12h (anti-forensics window)
+      # FIELD CHECK: hostname exist in process_creation
+      aggregation: false
+      logsource:
+        category: process_creation
+      detection:
+        selection:
+          hostname|expand: '%hostname%'
+        selection_cleanup:
+          CommandLine|contains:
+            - 'history -c'
+            - 'rm -rf /var/log'
+            - 'echo > '
+            - 'kill -9'
+            - 'pkill'
+            - 'systemctl stop'
+            - 'service stop'
+        condition: all of selection*
+      fields:
+        - User
+        - CommandLine
