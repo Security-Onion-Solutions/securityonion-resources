@@ -1,4 +1,4 @@
-s|%CommandLine%|{event_data.process.command_line}|g
+s|%CommandLine%|{process.command_line}|g
 s|%community_id%|{network.community_id}|g
 s|%CurrentDirectory%|{event_data.process.working_directory}|g
 s|%document_id%|{soc_id}|g
@@ -6,10 +6,10 @@ s|%dst_port%|{destination.port}|g
 s|%dns.query.name%|{dns.query_name}|g
 s|%dns.resolved_ip%|{dns.resolved_ip}|g
 s|%hostname%|{event_data.host.name}|g
-s|%Image%|{event_data.process.executable}|g
+s|%Image%|{process.executable}|g
 s|%ImageLoaded%|{dll.name}|g
-s|%ParentImage%|{event_data.process.parent.executable}|g
-s|%ParentProcessGuid%|{event_data.process.parent.entity_id}|g
+s|%ParentImage%|{process.parent.executable}|g
+s|%ParentProcessGuid%|{ParentProcessGuid}|g
 s|%private_ip%|{network.private_ip}|g
 s|%ProcessGuid%|{event_data.process.entity_id}|g
 s|%public_ip%|{network.public_ip}|g
@@ -18,5 +18,5 @@ s|%related_ip%|{related.ip}|g
 s|%rule.name%|{rule.name}|g
 s|%src_ip%|{source.ip}|g
 s|%dst_ip%|{destination.ip}|g
-s|%User%|{event_data.user.name}|g
+s|%User%|{user.name}|g
 s/|expand:/:/g
