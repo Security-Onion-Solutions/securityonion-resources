@@ -64,7 +64,6 @@ questions:
       aggregation: true
       logsource:
         category: process_creation
-        product: linux
       detection:
         selection:
           hostname: '{event_data.host.name}'
@@ -98,7 +97,6 @@ questions:
       aggregation: false
       logsource:
         category: file_event
-        product: linux
       detection:
         selection:
           hostname: '{event_data.host.name}'
@@ -129,7 +127,6 @@ questions:
       aggregation: false
       logsource:
         category: process_creation
-        product: linux
       detection:
         selection:
           ParentProcessGuid: '{event_data.process.entity_id}'
@@ -151,7 +148,6 @@ questions:
       aggregation: true
       logsource:
         category: process_creation
-        product: linux
       detection:
         selection:
           hostname: '{event_data.host.name}'
@@ -194,7 +190,6 @@ questions:
       aggregation: true
       logsource:
         category: network_connection
-        product: linux
       detection:
         selection:
           hostname: '{event_data.host.name}'
@@ -237,7 +232,6 @@ questions:
       aggregation: true
       logsource:
         category: file_event
-        product: linux
       detection:
         selection:
           hostname: '{event_data.host.name}'
@@ -274,7 +268,6 @@ questions:
       aggregation: true
       logsource:
         category: process_creation
-        product: linux
       detection:
         selection:
           hostname: '{event_data.host.name}'
@@ -298,7 +291,6 @@ questions:
       aggregation: true
       logsource:
         category: process_creation
-        product: linux
       detection:
         selection:
           Image: '{process.executable}'  # Use the exact Image that triggered the alert
@@ -323,7 +315,6 @@ questions:
       aggregation: true
       logsource:
         category: process_creation
-        product: linux
       detection:
         selection:
           hostname: '{event_data.host.name}'
@@ -349,7 +340,6 @@ questions:
       aggregation: false
       logsource:
         category: process_creation
-        product: linux
       detection:
         selection:
           hostname: '{event_data.host.name}'
