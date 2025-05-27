@@ -39,7 +39,7 @@ questions:
           product: windows
         detection:
             selection:
-               ProcessGuid: '{ParentProcessGuid}'
+               ProcessGuid: '{event_data.process.parent.entity_id}'
             condition: selection
         fields:
             - User
@@ -114,7 +114,7 @@ questions:
           product: windows
         detection:
             selection:
-                Image|endswith: '{process.executable}'
+                Image|endswith: '{event_data.process.executable}'
                 hostname: '{event_data.host.name}'
             condition: selection
         fields:

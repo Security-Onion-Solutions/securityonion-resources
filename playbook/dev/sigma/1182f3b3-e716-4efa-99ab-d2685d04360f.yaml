@@ -53,7 +53,7 @@ questions:
         category: process_creation
       detection:
         selection:
-          User: '{user.name}'
+          User: '{event_data.user.name}'
           Image|endswith:
             - '/rm'
             - '/unlink'
@@ -117,7 +117,7 @@ questions:
         category: process_creation
       detection:
         selection:
-          ParentProcessGuid: '{ParentProcessGuid}'
+          ParentProcessGuid: '{event_data.process.parent.entity_id}'
         condition: selection
       fields:
         - ParentImage
@@ -144,7 +144,7 @@ questions:
       detection:
         selection:
           hostname: '{event_data.host.name}'
-          User: '{user.name}'
+          User: '{event_data.user.name}'
         condition: selection
       fields:
         - Image
@@ -166,7 +166,7 @@ questions:
       detection:
         selection:
           hostname: '{event_data.host.name}'
-          User: '{user.name}'
+          User: '{event_data.user.name}'
           Image|endswith:
             - '/rm'
             - '/unlink'
@@ -198,7 +198,7 @@ questions:
       detection:
         selection:
           hostname: '{event_data.host.name}'
-          User: '{user.name}'
+          User: '{event_data.user.name}'
           Image|contains:
             - 'sshd'
             - 'login'
@@ -228,7 +228,7 @@ questions:
       detection:
         selection:
           hostname: '{event_data.host.name}'
-          User: '{user.name}'
+          User: '{event_data.user.name}'
         condition: selection
       fields:
         - Image
@@ -253,7 +253,7 @@ questions:
       detection:
         selection:
           hostname: '{event_data.host.name}'
-          User: '{user.name}'
+          User: '{event_data.user.name}'
         condition: selection
       fields:
         - DestinationIp
@@ -276,7 +276,7 @@ questions:
       detection:
         selection:
           hostname: '{event_data.host.name}'
-          User: '{user.name}'
+          User: '{event_data.user.name}'
         selection_sensitive:
           TargetFilename|contains:
             - '.ssh/'
@@ -306,7 +306,7 @@ questions:
         category: process_creation
       detection:
         selection:
-          User: '{user.name}'
+          User: '{event_data.user.name}'
           Image|endswith:
             - '/rm'
             - '/unlink'
@@ -342,7 +342,7 @@ questions:
       detection:
         selection:
           hostname: '{event_data.host.name}'
-          User: '{user.name}'
+          User: '{event_data.user.name}'
         selection_tools:
           - Image|endswith:
               - '/shred'
@@ -377,7 +377,7 @@ questions:
       detection:
         selection:
           hostname: '{event_data.host.name}'
-          User: '{user.name}'
+          User: '{event_data.user.name}'
         selection_privesc:
           - Image|contains:
               - 'sudo'

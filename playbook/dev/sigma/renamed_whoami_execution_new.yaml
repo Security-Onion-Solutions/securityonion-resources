@@ -66,7 +66,7 @@ questions:
         product: windows
       detection:
         selection:
-          TargetFilename: '{process.executable}'
+          TargetFilename: '{event_data.process.executable}'
         condition: selection
       fields:
         - TargetFilename
@@ -243,7 +243,7 @@ questions:
       detection:
         selection:
           hostname: '{event_data.host.name}'
-          User: '{user.name}'
+          User: '{event_data.user.name}'
         whoami_execution:
           OriginalFileName: 'whoami.exe'
         condition: selection and whoami_execution
