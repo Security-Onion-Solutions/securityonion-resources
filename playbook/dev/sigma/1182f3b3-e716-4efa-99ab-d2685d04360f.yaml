@@ -18,7 +18,7 @@ questions:
   
   - question: What are the full details of this history deletion event?
     context: |
-      Start by understanding exactly what triggered this alert - which history file was deleted, by whom, and how. This helps determine if it's routine maintenance or unauthorized activity. The deletion method (rm vs shred) can indicate intent.
+      Review the alert details to understand which history file was deleted and how. The deletion method (rm vs shred) can indicate intent.
     answer_sources:
       - alert
     query: |
@@ -40,7 +40,7 @@ questions:
 
   - question: Is history deletion normal for this user?
     context: |
-      Historical patterns show whether this is unusual behavior. A developer who regularly cleans history files as part of their workflow differs from a service account suddenly deleting logs. Look for frequency and consistency - is this a monthly habit or a one-time event?
+      Check if this user has deleted history files before to determine if this is normal behavior or unusual activity.
     range: -30d
     answer_sources:
       - process_creation
@@ -72,7 +72,7 @@ questions:
 
   - question: Does the timing align with legitimate maintenance windows?
     context: |
-      Timing helps assess intent. Automated cleanup scripts typically run at consistent times, while manual deletions during odd hours need closer inspection. Consider both the day of week and time of day - weekend maintenance is common, but 3am deletions on a Tuesday might indicate unauthorized access.
+      Automated cleanup typically runs at consistent times while manual deletions during odd hours are more suspicious.
     range: -7d
     answer_sources:
       - process_creation
@@ -104,7 +104,7 @@ questions:
 
   - question: Is this part of a system cleanup script or tool?
     context: |
-      The parent process reveals whether this deletion was automated or manual. Legitimate cleanup often comes from cron jobs, configuration management tools like Ansible, or privacy utilities. Manual deletion from an interactive shell session requires more scrutiny, especially if preceded by suspicious commands.
+      The parent process reveals if this was automated (cron, Ansible) or manual deletion. Manual deletion from a shell requires more scrutiny.
     range: -1h
     answer_sources:
       - process_creation
@@ -130,7 +130,7 @@ questions:
 
   - question: What other commands did this user run before the deletion?
     context: |
-      The commands preceding history deletion often show intent. Look for reconnaissance activities, privilege escalation attempts, or data access that someone might want to hide. Normal development work or system administration tasks followed by cleanup suggests legitimate use.
+      Commands before deletion reveal intent - look for reconnaissance or data access someone might want to hide.
     range: -30m
     answer_sources:
       - process_creation
@@ -152,7 +152,7 @@ questions:
 
   - question: Were multiple history files or other logs deleted?
     context: |
-      The scope of deletion activity is telling. A single .bash_history removal might be accidental or routine, but systematic deletion of multiple history files, auth logs, and system logs indicates deliberate anti-forensics. Watch for patterns like clearing bash, zsh, and fish histories in sequence.
+      Single file deletion may be routine, but systematic deletion of multiple logs indicates deliberate anti-forensics.
     range: -15m/+15m
     answer_sources:
       - process_creation
@@ -184,7 +184,7 @@ questions:
 
   - question: How did the user gain access to this system?
     context: |
-      Authentication context helps establish legitimacy. A user logging in from their usual workstation IP is different from access through a compromised service account or unusual SSH source. Check for authentication anomalies like new source IPs, unusual times, or privilege escalation shortly after login.
+      Check how the user authenticated - unusual sources or times combined with history deletion increase suspicion.
     range: -2h
     answer_sources:
       - process_creation
@@ -214,7 +214,7 @@ questions:
 
   - question: What file operations occurred after the deletion?
     context: |
-      Post-deletion activity reveals whether this was a one-time cleanup or part of ongoing malicious activity. Quick logout after deletion might indicate hit-and-run tactics, while continued reconnaissance or lateral movement suggests active compromise. Normal work resuming after deletion often indicates legitimate use.
+      Activity after deletion shows intent - immediate logout suggests covering tracks while normal work resuming indicates legitimate use.
     range: +30m
     answer_sources:
       - process_creation
@@ -239,7 +239,7 @@ questions:
 
   - question: Were any network connections made around this time?
     context: |
-      Network connections can indicate data exfiltration or command and control activity. External connections to unusual ports or IPs around the time of history deletion suggest someone hiding evidence of data theft. Internal connections might indicate lateral movement attempts after gaining initial access.
+      External connections near history deletion may indicate data exfiltration. Internal connections suggest lateral movement.
     range: -30m/+30m
     answer_sources:
       - network_connection
@@ -262,7 +262,7 @@ questions:
 
   - question: Were sensitive files accessed before the deletion?
     context: |
-      File access patterns before history deletion can show what someone was trying to hide. Check for access to SSH keys, cloud credentials, password files, or business data. Sensitive file access followed by history deletion often indicates malicious activity.
+      Check if sensitive files (SSH keys, credentials, passwords) were accessed before deletion - this combination often indicates malicious activity.
     range: -1h
     answer_sources:
       - file_event
@@ -293,7 +293,7 @@ questions:
 
   - question: Has this deletion pattern occurred on other systems?
     context: |
-      Checking for similar activity across your environment helps determine if you're dealing with an isolated incident or a broader campaign. Attackers often use consistent techniques across multiple compromised systems. Finding the same deletion patterns on other hosts indicates systematic activity requiring immediate response.
+      Similar deletion patterns on multiple systems indicate a campaign rather than an isolated incident.
     range: -24h
     answer_sources:
       - process_creation
@@ -328,7 +328,7 @@ questions:
 
   - question: Were any anti-forensics tools or techniques used?
     context: |
-      Attackers often use multiple anti-forensics techniques to hide their tracks. Beyond simple deletion, look for secure wiping tools like shred or dd, timestamp manipulation to hide file changes, or attempts to clear other system logs. The cleanup methods used can indicate the attacker's skill level.
+      Look for advanced cleanup like shred, timestamp manipulation, or clearing multiple logs - these indicate sophisticated attackers.
     range: -2h/+2h
     answer_sources:
       - process_creation
@@ -363,7 +363,7 @@ questions:
 
   - question: Were any privilege escalation attempts made?
     context: |
-      Privilege escalation often precedes anti-forensics activities since elevated permissions are needed to clear certain logs. Look for sudo commands, exploitation of setuid binaries, or kernel exploits in the hours before history deletion. A regular user suddenly gaining root access and then deleting history files indicates likely compromise.
+      Privilege escalation before history deletion is highly suspicious since elevated permissions are needed to clear certain logs.
     range: -4h
     answer_sources:
       - process_creation
