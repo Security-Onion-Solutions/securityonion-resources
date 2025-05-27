@@ -24,7 +24,7 @@ questions:
         product: linux
       detection:
         selection:
-          ProcessGuid: '{event_data.process.entity_id}'
+          document_id: '{soc_id}'
         condition: selection
       fields:
         - CommandLine
@@ -46,7 +46,7 @@ questions:
         product: linux
       detection:
         selection:
-          ProcessGuid: '{event_data.process.entity_id}'
+          document_id: '{soc_id}'
         condition: selection
       fields:
         - User
