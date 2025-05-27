@@ -33,15 +33,10 @@ questions:
           document_id: '{soc_id}'
         condition: selection
       fields:
-        - hostname
         - User
         - Image
         - CommandLine
         - ParentImage
-        - ParentCommandLine
-        - ParentUser
-        - ProcessGuid
-        - ParentProcessGuid
 
   - question: Is history deletion normal for this user?
     context: |
@@ -106,7 +101,6 @@ questions:
         condition: all of selection*
       fields:
         - User
-        - CommandLine
 
   - question: Is this part of a system cleanup script or tool?
     context: |
@@ -126,9 +120,10 @@ questions:
           ParentProcessGuid: '{ParentProcessGuid}'
         condition: selection
       fields:
+        - ParentImage
+        - ParentCommandLine
         - Image
         - CommandLine
-        - User
 
   # Thread 2: Activity Context (4 questions)
   # Understand what happened without assuming malice
@@ -154,7 +149,6 @@ questions:
       fields:
         - Image
         - CommandLine
-        - ParentImage
 
   - question: Were multiple history files or other logs deleted?
     context: |
@@ -187,7 +181,6 @@ questions:
         condition: all of selection*
       fields:
         - CommandLine
-        - Image
 
   - question: How did the user gain access to this system?
     context: |
@@ -217,8 +210,7 @@ questions:
         condition: selection
       fields:
         - Image
-        - CommandLine
-        - ParentImage
+        - User
 
   - question: What file operations occurred after the deletion?
     context: |
@@ -241,7 +233,6 @@ questions:
       fields:
         - Image
         - CommandLine
-        - ParentImage
 
   # Thread 3: Impact Assessment (3 questions)
   # Determine scope and risk if unauthorized
@@ -299,7 +290,6 @@ questions:
         condition: all of selection*
       fields:
         - TargetFilename
-        - Image
 
   - question: Has this deletion pattern occurred on other systems?
     context: |
