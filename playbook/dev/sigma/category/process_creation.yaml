@@ -48,6 +48,7 @@ questions:
         selection:
           hostname|expand: '%hostname%'
           Image|expand: '%Image%'
+          User|expand: '%User%'
         condition: selection
       fields:
         - User
@@ -140,12 +141,13 @@ questions:
         - source.port
         - destination.ip
         - destination.port
-        - initiated
+        - network.initiated
 
   - question: What registry changes did this process make?
     context: |
-      On Windows systems, registry activity can reveal further intent. The query looks for registry changes made by both the process and its parent.
-    range: +30m
+      On Windows systems, registry activity can reveal further intent. 
+      The query looks for registry changes made by both the process and its parent.
+    range: +/-15m
     answer_sources:
       - registry_event
     query: |
