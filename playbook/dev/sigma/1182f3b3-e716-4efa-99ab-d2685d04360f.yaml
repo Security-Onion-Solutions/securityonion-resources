@@ -5,7 +5,7 @@ description: |
   While sometimes legitimate for privacy or maintenance, this is commonly used 
   by attackers to hide their activities.
 type: detection
-detection_id: 1182f3b3-e716-4efa-99ab-d2685d04360f
+detection_id: 1282f3b3-e716-4efa-99ab-d2685d04360f
 detection_type: sigma
 contributors:
   - SecurityOnionSolutions
