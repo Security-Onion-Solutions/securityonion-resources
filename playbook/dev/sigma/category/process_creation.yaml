@@ -53,6 +53,7 @@ questions:
       fields:
         - User
         - CommandLine
+        - event.action
 
   - question: What is the process execution chain around this event?
     context: |
@@ -99,6 +100,7 @@ questions:
         - ParentImage
         - Image
         - CommandLine
+        - event.action
 
   - question: What files did this process create or modify?
     context: |
@@ -124,7 +126,7 @@ questions:
     context: |
       Network activity can reveal command and control, data exfiltration, or lateral
       movement attempts.
-    range: +30m
+    range: +/-15m
     answer_sources:
       - network_connection
     query: |
