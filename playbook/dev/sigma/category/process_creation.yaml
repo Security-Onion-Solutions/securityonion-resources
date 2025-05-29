@@ -4,8 +4,10 @@ description: |
   Baseline Playbook for process creation events, OS agnostic. This playbook helps analysts investigate
   any suspicious process execution by examining context, legitimacy, impact, and threat indicators.
   Process creation alerts can range from legitimate administrative tools to known malware execution.
-type: sigma
-category: process_creation
+type: detection
+detection_id: ''
+detection_category: process_creation
+detection_type: sigma
 contributors:
   - SecurityOnionSolutions
 date: 2025-05-29
