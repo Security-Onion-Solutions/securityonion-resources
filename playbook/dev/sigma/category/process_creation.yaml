@@ -138,7 +138,7 @@ questions:
       fields:
         - source.ip
         - source.port
-        destination.ip
+        - destination.ip
         - destination.port
         - initiated
 
