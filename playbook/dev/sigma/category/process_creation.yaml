@@ -73,13 +73,12 @@ questions:
           ParentProcessGuid: '{event_data.process.entity_id}'
         condition: parent_activity or child_activity
       fields:
-        - CreationUtcTime
-        - Image
-        - CommandLine
         - User
         - ParentImage
+        - Image
+        - CommandLine
 
-  - question: What other processes did this user execute recently?
+  - question: What other processes on this system did this user execute recently?
     context: |
       Understanding the user's recent activity helps establish intent and identify
       suspicious behavior or legitimate workflows.
@@ -96,10 +95,9 @@ questions:
           User: '{event_data.user.name}'
         condition: selection
       fields:
-        - CreationUtcTime
+        - ParentImage
         - Image
         - CommandLine
-        - ParentImage
 
   - question: What files did this process create or modify?
     context: |
@@ -138,9 +136,11 @@ questions:
           ProcessGuid: '{event_data.process.entity_id}'
         condition: selection
       fields:
-        - DestinationIp
-        - DestinationPort
-        - Initiated
+        - source.ip
+        - source.port
+        destination.ip
+        - destination.port
+        - initiated
 
   - question: What registry changes did this process make?
     context: |
