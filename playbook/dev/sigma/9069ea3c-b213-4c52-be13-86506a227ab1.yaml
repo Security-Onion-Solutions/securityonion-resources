@@ -5,7 +5,7 @@ description: |
   While crypto mining itself is not inherently malicious, unauthorized mining 
   can indicate compromise or resource abuse.
 type: detection
-detection_id: 9069ea3c-b213-4c52-be13-86506a227ab1
+detection_id: 9169ea3c-b213-4c52-be13-86506a227ab1
 detection_type: sigma
 contributors:
   - SecurityOnionSolutions
