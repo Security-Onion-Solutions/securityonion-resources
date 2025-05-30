@@ -105,8 +105,9 @@ questions:
   - question: What files did this process create or modify?
     context: |
       File creation and modification patterns reveal the process's actual behavior and potential impact.
-      Look for sensitive data access, configuration changes, or payload drops.
-    range: +30m
+      Look for sensitive data access, configuration changes, or payload drops. The query looks for file events
+      made by both the process and its parent.
+    range: +/-15m
     answer_sources:
       - file_event
     query: |
@@ -115,8 +116,8 @@ questions:
         category: file_event
       detection:
         selection:
-          hostname: '{event_data.host.name}'
           ProcessGuid: '{event_data.process.entity_id}'
+          ParentProcessGuid: '{event_data.process.parent.entity_id}'
         condition: selection
       fields:
         - EventType
@@ -125,7 +126,7 @@ questions:
   - question: What network connections did this process make?
     context: |
       Network activity can reveal command and control, data exfiltration, or lateral
-      movement attempts.
+      movement attempts. Pivoting on the Community ID can help identify related network events.
     range: +/-15m
     answer_sources:
       - network_connection
@@ -135,7 +136,6 @@ questions:
         category: network_connection
       detection:
         selection:
-          hostname: '{event_data.host.name}'
           ProcessGuid: '{event_data.process.entity_id}'
         condition: selection
       fields:
@@ -144,11 +144,12 @@ questions:
         - destination.ip
         - destination.port
         - network.initiated
+        - community_id
 
   - question: What registry changes did this process make?
     context: |
       On Windows systems, registry activity can reveal further intent. 
-      The query looks for registry changes made by both the process and its parent.
+      The query looks for registry changes made by the process and its parent.
     range: +/-15m
     answer_sources:
       - registry_event
@@ -158,7 +159,6 @@ questions:
         category: registry_event
       detection:
         selection:
-          hostname: '{event_data.host.name}'
           ProcessGuid: '{event_data.process.entity_id}'
           ParentProcessGuid: '{event_data.process.parent.entity_id}'
         condition: selection
@@ -189,3 +189,4 @@ questions:
         - hostname
         - User
         - Image
+        - CommandLine
