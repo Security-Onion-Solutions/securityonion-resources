@@ -72,7 +72,7 @@ questions:
         condition: selection
       fields:
         - User
-        - CurrentWorkingDirectory
+        - CurrentDirectory
         - Image
         - CommandLine
 
@@ -95,7 +95,6 @@ questions:
       fields:
         - Image
         - CommandLine
-        - event.action
 
   - question: What files did this process create or modify?
     context: |
