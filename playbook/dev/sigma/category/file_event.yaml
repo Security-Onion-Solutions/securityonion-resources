@@ -29,13 +29,13 @@ questions:
       fields:
         - hostname
         - User
-        - TargetFilename
+        - file.path
 
   - question: What process created this file?
     context: |
       Reviewing the process and command line provides additional context. Pivoting off the ProcessGuid
       will show the full process chain leading to the file creation.
-    range: +/-15m
+    range: +/-1h
     answer_sources:
       - process_creation
     query: |

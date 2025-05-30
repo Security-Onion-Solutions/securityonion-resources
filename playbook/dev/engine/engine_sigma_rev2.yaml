@@ -1,0 +1,408 @@
+name: Generic Sigma Detection Investigation
+id: b1c2d3e4-5f6a-7b8c-9d0e-1f2a3b4c5d6e
+description: |
+  Generic investigation playbook for Sigma detections without specific playbooks.
+  Provides a comprehensive investigation framework adaptable to various detection types.
+type: generic
+detection_type: sigma
+contributors:
+  - SecurityOnionSolutions
+date: 2024-01-30
+modified: 2024-01-30
+
+questions:
+  # Thread 1: Alert Context (3 questions)
+  - question: What specific activity triggered this alert?
+    context: |
+      Understanding the exact event that triggered the detection is the first step in any investigation.
+    answer_sources:
+      - alert
+    query: |
+      # LOGSOURCE CHECK: alert (pulling from alert document)
+      # RANGE CHECK: none (alert document access)
+      # FIELD CHECK: All alert fields available
+      aggregation: false
+      logsource:
+        category: alert
+      detection:
+        selection:
+          document_id|expand: '%document_id%'
+        condition: selection
+      fields:
+        - hostname
+        - User
+        - Image
+        - CommandLine
+        - ParentImage
+        - ParentCommandLine
+        - TargetFilename
+        - ImageLoaded
+        - SourceIp
+        - DestinationIp
+        - DestinationPort
+
+  - question: Has this specific pattern been seen before on this system?
+    context: |
+      Historical occurrences help distinguish between recurring legitimate activity and anomalous behavior.
+    range: -30d
+    answer_sources:
+      - alert
+    query: |
+      # LOGSOURCE CHECK: alert
+      # RANGE CHECK: -30d
+      # FIELD CHECK: hostname, rule.name exist in alert
+      aggregation: true
+      logsource:
+        category: alert
+      detection:
+        selection:
+          hostname|expand: '%hostname%'
+          rule.name|expand: '%rule.name%'
+        condition: selection
+      fields:
+        - hostname
+        - User
+
+  - question: Are there other recent alerts on this system?
+    context: |
+      Multiple alerts may indicate broader compromise or legitimate system changes.
+    range: -24h
+    answer_sources:
+      - alert
+    query: |
+      # LOGSOURCE CHECK: alert
+      # RANGE CHECK: -24h
+      # FIELD CHECK: hostname exist in alert
+      aggregation: true
+      logsource:
+        category: alert
+      detection:
+        selection:
+          hostname|expand: '%hostname%'
+        condition: selection
+      fields:
+        - rule.name
+        - rule.level
+
+  # Thread 2: Process Analysis (3 questions)
+  - question: What is the process execution context?
+    context: |
+      Understanding the process chain helps identify legitimate vs suspicious execution patterns.
+    range: +/-10m
+    answer_sources:
+      - process_creation
+    query: |
+      # LOGSOURCE CHECK: process_creation
+      # RANGE CHECK: +/-10m
+      # FIELD CHECK: hostname, ProcessGuid exist in process_creation
+      aggregation: false
+      logsource:
+        category: process_creation
+      detection:
+        selection:
+          hostname|expand: '%hostname%'
+          ProcessGuid|expand: '%ProcessGuid%'
+        condition: selection
+      fields:
+        - User
+        - Image
+        - CommandLine
+        - ParentImage
+        - ParentCommandLine
+        - CurrentDirectory
+
+  - question: What child processes were spawned?
+    context: |
+      Child processes reveal subsequent actions and potential payload execution.
+    range: +30m
+    answer_sources:
+      - process_creation
+    query: |
+      # LOGSOURCE CHECK: process_creation
+      # RANGE CHECK: +30m
+      # FIELD CHECK: hostname, ParentProcessGuid exist in process_creation
+      aggregation: false
+      logsource:
+        category: process_creation
+      detection:
+        selection:
+          hostname|expand: '%hostname%'
+          ParentProcessGuid|expand: '%ProcessGuid%'
+        condition: selection
+      fields:
+        - Image
+        - CommandLine
+        - User
+
+  - question: Is this process commonly seen in the environment?
+    context: |
+      Rare processes or unusual execution patterns warrant deeper investigation.
+    range: -7d
+    answer_sources:
+      - process_creation
+    query: |
+      # LOGSOURCE CHECK: process_creation
+      # RANGE CHECK: -7d
+      # FIELD CHECK: Image exist in process_creation
+      aggregation: true
+      logsource:
+        category: process_creation
+      detection:
+        selection:
+          Image|expand: '%Image%'
+        condition: selection
+      fields:
+        - hostname
+        - User
+
+  # Thread 3: Network Activity (3 questions)
+  - question: What network connections were established?
+    context: |
+      Network activity can reveal command and control, data exfiltration, or legitimate communications.
+    range: +/-15m
+    answer_sources:
+      - network_connection
+    query: |
+      # LOGSOURCE CHECK: network_connection
+      # RANGE CHECK: +/-15m
+      # FIELD CHECK: hostname, ProcessGuid exist in network_connection
+      aggregation: false
+      logsource:
+        category: network_connection
+      detection:
+        selection:
+          hostname|expand: '%hostname%'
+          ProcessGuid|expand: '%ProcessGuid%'
+        condition: selection
+      fields:
+        - Image
+        - DestinationIp
+        - DestinationPort
+        - DestinationHostname
+
+  - question: Are there DNS queries associated with this activity?
+    context: |
+      DNS lookups can reveal malicious domains, DGA activity, or normal application behavior.
+    range: +/-5m
+    answer_sources:
+      - network_connection
+    query: |
+      # LOGSOURCE CHECK: network_connection
+      # RANGE CHECK: +/-5m
+      # FIELD CHECK: hostname exist in network_connection
+      aggregation: false
+      logsource:
+        category: network_connection
+        service: dns
+      detection:
+        selection:
+          hostname|expand: '%hostname%'
+        condition: selection
+      fields:
+        - QueryName
+        - QueryType
+        - QueryResults
+
+  - question: Is external communication occurring?
+    context: |
+      External connections, especially to unusual destinations, may indicate data exfiltration or C2 activity.
+    range: +/-30m
+    answer_sources:
+      - network_connection
+    query: |
+      # LOGSOURCE CHECK: network_connection
+      # RANGE CHECK: +/-30m
+      # FIELD CHECK: hostname exist in network_connection
+      aggregation: true
+      logsource:
+        category: network_connection
+      detection:
+        selection_host:
+          hostname|expand: '%hostname%'
+        selection_external:
+          DestinationIp|startswith:
+            - '1.'
+            - '2.'
+            - '3.'
+            - '4.'
+            - '5.'
+            - '6.'
+            - '7.'
+            - '8.'
+            - '9.'
+        filter_internal:
+          DestinationIp|startswith:
+            - '10.'
+            - '172.16.'
+            - '172.17.'
+            - '172.18.'
+            - '172.19.'
+            - '172.20.'
+            - '172.21.'
+            - '172.22.'
+            - '172.23.'
+            - '172.24.'
+            - '172.25.'
+            - '172.26.'
+            - '172.27.'
+            - '172.28.'
+            - '172.29.'
+            - '172.30.'
+            - '172.31.'
+            - '192.168.'
+        condition: selection_host and selection_external and not filter_internal
+      fields:
+        - DestinationIp
+        - DestinationPort
+        - Image
+
+  # Thread 4: File System Activity (2 questions)
+  - question: What files were created or modified?
+    context: |
+      File operations can reveal persistence mechanisms, data staging, or tool deployment.
+    range: +/-10m
+    answer_sources:
+      - file_event
+    query: |
+      # LOGSOURCE CHECK: file_event
+      # RANGE CHECK: +/-10m
+      # FIELD CHECK: hostname, ProcessGuid exist in file_event
+      aggregation: false
+      logsource:
+        category: file_event
+      detection:
+        selection:
+          hostname|expand: '%hostname%'
+          ProcessGuid|expand: '%ProcessGuid%'
+        condition: selection
+      fields:
+        - TargetFilename
+        - Image
+        - User
+
+  - question: Were any suspicious file locations accessed?
+    context: |
+      Access to system directories, temporary folders, or user profile locations may indicate malicious activity.
+    range: +/-30m
+    answer_sources:
+      - file_event
+    query: |
+      # LOGSOURCE CHECK: file_event
+      # RANGE CHECK: +/-30m
+      # FIELD CHECK: hostname, User exist in file_event
+      aggregation: false
+      logsource:
+        category: file_event
+      detection:
+        selection:
+          hostname|expand: '%hostname%'
+          User|expand: '%User%'
+        condition: selection
+      fields:
+        - TargetFilename
+        - Image
+
+  # Thread 5: User and Authentication (2 questions)
+  - question: What user accounts are involved?
+    context: |
+      Unusual user activity or service account usage outside normal patterns requires investigation.
+    range: +/-1h
+    answer_sources:
+      - process_creation
+    query: |
+      # LOGSOURCE CHECK: process_creation
+      # RANGE CHECK: +/-1h
+      # FIELD CHECK: hostname exist in process_creation
+      aggregation: true
+      logsource:
+        category: process_creation
+      detection:
+        selection:
+          hostname|expand: '%hostname%'
+        condition: selection
+      fields:
+        - User
+        - Image
+
+  - question: Are there authentication anomalies?
+    context: |
+      Failed logins, unusual authentication times, or privilege escalation attempts indicate potential compromise.
+    range: +/-2h
+    answer_sources:
+      - alert
+    query: |
+      # LOGSOURCE CHECK: alert
+      # RANGE CHECK: +/-2h
+      # FIELD CHECK: hostname exist in alert
+      aggregation: true
+      logsource:
+        category: alert
+      detection:
+        selection_host:
+          hostname|expand: '%hostname%'
+        selection_auth:
+          rule.name|contains:
+            - 'auth'
+            - 'login'
+            - 'logon'
+            - 'privilege'
+            - 'credential'
+        condition: all of selection_*
+      fields:
+        - rule.name
+        - User
+
+  # Thread 6: Lateral Movement and Spread (2 questions)
+  - question: Is similar activity occurring on other systems?
+    context: |
+      Coordinated activity across multiple systems suggests lateral movement or widespread deployment.
+    range: +/-1h
+    answer_sources:
+      - alert
+    query: |
+      # LOGSOURCE CHECK: alert
+      # RANGE CHECK: +/-1h
+      # FIELD CHECK: rule.name exist in alert
+      aggregation: true
+      logsource:
+        category: alert
+      detection:
+        selection:
+          rule.name|expand: '%rule.name%'
+        filter:
+          hostname|expand: '%hostname%'
+        condition: selection and not filter
+      fields:
+        - hostname
+        - User
+
+  - question: Are there indicators of persistence or backdoors?
+    context: |
+      Registry modifications, scheduled tasks, or service creation indicate attempts to maintain access.
+    range: +/-30m
+    answer_sources:
+      - process_creation
+    query: |
+      # LOGSOURCE CHECK: process_creation
+      # RANGE CHECK: +/-30m
+      # FIELD CHECK: hostname, CommandLine exist in process_creation
+      aggregation: false
+      logsource:
+        category: process_creation
+      detection:
+        selection_host:
+          hostname|expand: '%hostname%'
+        selection_persistence:
+          CommandLine|contains:
+            - 'schtasks'
+            - 'at.exe'
+            - 'sc.exe create'
+            - 'reg add'
+            - 'New-Service'
+            - 'HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Run'
+            - 'HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Run'
+        condition: all of selection_*
+      fields:
+        - Image
+        - CommandLine
+        - User
