@@ -116,11 +116,12 @@ questions:
         category: file_event
       detection:
         selection:
-          ProcessGuid|expand: '%ProcessGuid%'
-          ParentProcessGuid|expand: '%ParentProcessGuid%'
+          - ProcessGuid|expand: '%ProcessGuid%'
+          - ParentProcessGuid|expand: '%ParentProcessGuid%'
         condition: selection
       fields:
         - EventType
+        - Image
         - TargetFilename
 
   - question: What network connections did this process make?
