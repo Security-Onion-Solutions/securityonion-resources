@@ -1,0 +1,355 @@
+name: Sigma - Category - file_event
+id: f1e2a3b4-5c6d-7e8f-9a0b-1c2d3e4f5a6b
+description: |
+  Generic investigation playbook for file creation, modification, and deletion events.
+  File events can indicate persistence mechanisms, data staging, malware drops, or legitimate software operations.
+type: detection
+detection_id: ''
+detection_category: file_event
+detection_type: sigma
+contributors:
+  - SecurityOnionSolutions
+date: 2025-05-29
+
+questions:
+  # Thread 1: Legitimacy Assessment (3 questions)
+  - question: Is the file location and type expected for this process?
+    context: |
+      Certain processes should only write to specific directories. Unusual locations often indicate malicious activity.
+    range: -7d
+    answer_sources:
+      - file_event
+    query: |
+      aggregation: true
+      logsource:
+        category: file_event
+      detection:
+        selection:
+          hostname: '{event_data.host.name}'
+          Image: '{event_data.process.executable}'
+        condition: selection
+      fields:
+        - TargetFilename
+        - User
+
+  - question: What is the historical pattern of file creation by this process?
+    context: |
+      Understanding normal file creation patterns helps identify anomalous behavior.
+    range: -30d
+    answer_sources:
+      - file_event
+    query: |
+      aggregation: true
+      logsource:
+        category: file_event
+      detection:
+        selection:
+          hostname: '{event_data.host.name}'
+          Image: '{event_data.process.executable}'
+        condition: selection
+      fields:
+        - TargetFilename
+
+  - question: Is this file creation associated with scheduled maintenance or admin tasks?
+    context: |
+      Many file events occur during legitimate maintenance windows or administrative activities.
+    range: -24h
+    answer_sources:
+      - file_event
+    query: |
+      aggregation: true
+      logsource:
+        category: file_event
+      detection:
+        selection:
+          hostname: '{event_data.host.name}'
+          User: '{event_data.user.name}'
+        condition: selection
+      fields:
+        - Image
+        - TargetFilename
+
+  # Thread 2: Activity Context (4 questions)
+  - question: What triggered this file creation event?
+    context: |
+      Understanding the parent process and command line provides crucial context.
+    answer_sources:
+      - alert
+    query: |
+      aggregation: false
+      logsource:
+        category: alert
+      detection:
+        selection:
+          document_id: '{soc_id}'
+        condition: selection
+      fields:
+        - Image
+        - CommandLine
+        - ParentImage
+        - ParentCommandLine
+        - User
+        - TargetFilename
+
+  - question: What other files were created by this process in the same timeframe?
+    context: |
+      Multiple file creations can reveal patterns like data staging, malware installation, or batch operations.
+    range: +/-5m
+    answer_sources:
+      - file_event
+    query: |
+      aggregation: false
+      logsource:
+        category: file_event
+      detection:
+        selection:
+          hostname: '{event_data.host.name}'
+          ProcessGuid: '{event_data.process.entity_id}'
+        condition: selection
+      fields:
+        - TargetFilename
+        - User
+
+  - question: Were any processes spawned from the created file location?
+    context: |
+      Execution from newly created files often indicates malware drops or persistence mechanisms.
+    range: +15m
+    answer_sources:
+      - process_creation
+    query: |
+      aggregation: false
+      logsource:
+        category: process_creation
+      detection:
+        selection:
+          hostname: '{event_data.host.name}'
+          Image|startswith: '%TargetFilename|dirname%'
+        condition: selection
+      fields:
+        - Image
+        - CommandLine
+        - User
+        - ParentImage
+
+  - question: What was the complete process chain leading to this file event?
+    context: |
+      Tracing back through parent processes reveals the full execution chain.
+    range: -10m
+    answer_sources:
+      - process_creation
+    query: |
+      aggregation: false
+      logsource:
+        category: process_creation
+      detection:
+        selection:
+          hostname: '{event_data.host.name}'
+          ProcessGuid: '{event_data.process.parent.entity_id}'
+        condition: selection
+      fields:
+        - Image
+        - CommandLine
+        - User
+        - ProcessGuid
+
+  # Thread 3: Impact Assessment (3 questions)
+  - question: Are other hosts showing similar file creation patterns?
+    context: |
+      Widespread file creation across multiple systems may indicate deployment, malware spread, or policy changes.
+    range: +/-30m
+    answer_sources:
+      - file_event
+    query: |
+      aggregation: true
+      logsource:
+        category: file_event
+      detection:
+        selection:
+          TargetFilename|endswith: '%TargetFilename|basename%'
+        filter:
+          hostname: '{event_data.host.name}'
+        condition: selection and not filter
+      fields:
+        - hostname
+        - Image
+        - TargetFilename
+
+  - question: What file extensions and locations are being targeted?
+    context: |
+      File extensions and paths reveal intent - executables suggest malware, documents suggest data theft.
+    range: +/-10m
+    answer_sources:
+      - file_event
+    query: |
+      aggregation: true
+      logsource:
+        category: file_event
+      detection:
+        selection:
+          hostname: '{event_data.host.name}'
+          User: '{event_data.user.name}'
+        condition: selection
+      fields:
+        - TargetFilename
+
+  - question: Were any sensitive directories accessed?
+    context: |
+      File creation in system directories, credential stores, or data repositories indicates higher risk.
+    range: +/-30m
+    answer_sources:
+      - file_event
+    query: |
+      aggregation: false
+      logsource:
+        category: file_event
+      detection:
+        selection_host:
+          hostname: '{event_data.host.name}'
+        selection_paths:
+          TargetFilename|contains:
+            - '\System32\'
+            - '\SysWOW64\'
+            - '\Program Files\'
+            - '\ProgramData\'
+            - '\Users\Public\'
+            - '/etc/'
+            - '/var/'
+            - '/tmp/'
+        condition: all of selection_*
+      fields:
+        - Image
+        - TargetFilename
+        - User
+
+  # Thread 4: Investigative Deep-Dive (3 questions)
+  - question: Are there any persistence mechanisms being established?
+    context: |
+      File creation in startup folders, scheduled tasks, or service directories indicates persistence attempts.
+    range: +/-30m
+    answer_sources:
+      - file_event
+    query: |
+      aggregation: false
+      logsource:
+        category: file_event
+      detection:
+        selection_host:
+          hostname: '{event_data.host.name}'
+        selection_persistence:
+          TargetFilename|contains:
+            - '\Startup\'
+            - '\Start Menu\'
+            - '\CurrentVersion\Run'
+            - '\Services\'
+            - '\Tasks\'
+            - '/etc/cron'
+            - '/etc/systemd'
+            - '.bashrc'
+            - '.profile'
+        condition: all of selection_*
+      fields:
+        - Image
+        - TargetFilename
+        - User
+
+  - question: Were any anti-forensics techniques observed?
+    context: |
+      File creation followed by deletion, hidden files, or alternate data streams suggest evasion attempts.
+    range: +/-15m
+    answer_sources:
+      - file_event
+    query: |
+      aggregation: false
+      logsource:
+        category: file_event
+      detection:
+        selection_host:
+          hostname: '{event_data.host.name}'
+          ProcessGuid: '{event_data.process.entity_id}'
+        selection_suspicious:
+          TargetFilename|contains:
+            - ':Zone.Identifier'
+            - '$Recycle.Bin'
+            - 'desktop.ini'
+            - 'Thumbs.db'
+        condition: all of selection_*
+      fields:
+        - TargetFilename
+        - Image
+
+  - question: What file hashes were associated with created executables?
+    context: |
+      File hashes allow reputation checking and cross-reference with threat intelligence.
+    range: +/-5m
+    answer_sources:
+      - file_event
+    query: |
+      aggregation: false
+      logsource:
+        category: file_event
+      detection:
+        selection_host:
+          hostname: '{event_data.host.name}'
+        selection_executable:
+          TargetFilename|endswith:
+            - '.exe'
+            - '.dll'
+            - '.scr'
+            - '.com'
+            - '.bat'
+            - '.ps1'
+            - '.vbs'
+            - '.js'
+            - '.elf'
+            - '.so'
+            - '.sh'
+        condition: all of selection_*
+      fields:
+        - TargetFilename
+        - Image
+        - User
+
+  # Thread 5: Enterprise Context (2 questions)
+  - question: Have similar file events been seen historically?
+    context: |
+      Historical patterns help distinguish between new threats and recurring legitimate activity.
+    range: -90d
+    answer_sources:
+      - file_event
+    query: |
+      aggregation: true
+      logsource:
+        category: file_event
+      detection:
+        selection:
+          TargetFilename|contains: '%TargetFilename|basename%'
+        condition: selection
+      fields:
+        - hostname
+        - Image
+        - TargetFilename
+
+  - question: Are there related alerts for file-based attacks?
+    context: |
+      Other file-related alerts may provide additional context about ongoing campaigns.
+    range: -24h
+    answer_sources:
+      - alert
+    query: |
+      aggregation: true
+      logsource:
+        category: alert
+      detection:
+        selection_host:
+          hostname: '{event_data.host.name}'
+        selection_file_alerts:
+          rule.name|contains:
+            - 'file'
+            - 'persistence'
+            - 'drop'
+            - 'stage'
+            - 'exfil'
+        condition: all of selection_*
+      fields:
+        - rule.name
+        - rule.level
