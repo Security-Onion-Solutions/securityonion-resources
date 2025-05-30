@@ -9,6 +9,7 @@ s|%hostname%|{event_data.host.name}|g
 s|%Image%|{event_data.process.executable}|g
 s|%ImageLoaded%|{dll.name}|g
 s|%ParentImage%|{event_data.process.parent.executable}|g
+s|%TargetFilename%|{event_data.file.name}|g
 s|%ParentProcessGuid%|{event_data.process.parent.entity_id}|g
 s|%private_ip%|{network.private_ip}|g
 s|%ProcessGuid%|{event_data.process.entity_id}|g
