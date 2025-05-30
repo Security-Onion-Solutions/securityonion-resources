@@ -12,10 +12,30 @@ contributors:
 date: 2025-05-29
 
 questions:
-  # Thread 1: Legitimacy Assessment (3 questions)
-  - question: Is the file location and type expected for this process?
+
+  - question: What was the exact process execution & file creation that triggered the alert?
     context: |
-      Certain processes should only write to specific directories. Unusual locations often indicate malicious activity.
+      Understanding the process and command line provides crucial context.
+    answer_sources:
+      - alert
+    query: |
+      aggregation: false
+      logsource:
+        category: alert
+      detection:
+        selection:
+          document_id|expand: '%document_id%'
+        condition: selection
+      fields:
+        - hostname
+        - User
+        - Image
+        - CommandLine
+        - TargetFilename
+
+  - question: Is the file location and type expected for the executable?
+    context: |
+      Certain executables should only write to specific directories. Unusual locations can indicate malicious activity.
     range: -7d
     answer_sources:
       - file_event
@@ -29,10 +49,10 @@ questions:
           Image|expand: '%Image%'
         condition: selection
       fields:
+        - Image
         - TargetFilename
-        - User
 
-  - question: What is the historical pattern of file creation by this process?
+  - question: What is the historical pattern of file creation by this executable?
     context: |
       Understanding normal file creation patterns helps identify anomalous behavior.
     range: -30d
@@ -52,7 +72,7 @@ questions:
 
   - question: Is this file creation associated with scheduled maintenance or admin tasks?
     context: |
-      Many file events occur during legitimate maintenance windows or administrative activities.
+      Many file operations occur during legitimate maintenance windows or administrative activities.
     range: -24h
     answer_sources:
       - file_event
@@ -69,28 +89,6 @@ questions:
         - Image
         - TargetFilename
 
-  # Thread 2: Activity Context (4 questions)
-  - question: What triggered this file creation event?
-    context: |
-      Understanding the parent process and command line provides crucial context.
-    answer_sources:
-      - alert
-    query: |
-      aggregation: false
-      logsource:
-        category: alert
-      detection:
-        selection:
-          document_id|expand: '%document_id%'
-        condition: selection
-      fields:
-        - Image
-        - CommandLine
-        - ParentImage
-        - ParentCommandLine
-        - User
-        - TargetFilename
-
   - question: What other files were created by this process in the same timeframe?
     context: |
       Multiple file creations can reveal patterns like data staging, malware installation, or batch operations.
@@ -103,12 +101,10 @@ questions:
         category: file_event
       detection:
         selection:
-          hostname|expand: '%hostname%'
           ProcessGuid|expand: '%ProcessGuid%'
         condition: selection
       fields:
         - TargetFilename
-        - User
 
   - question: Were any processes spawned from the created file location?
     context: |
@@ -123,13 +119,11 @@ questions:
       detection:
         selection:
           hostname|expand: '%hostname%'
-          Image|startswith|expand: '%TargetFilename|dirname%'
+          Image|contains|expand: '%TargetFilename%'
         condition: selection
       fields:
         - Image
         - CommandLine
-        - User
-        - ParentImage
 
   - question: What was the complete process chain leading to this file event?
     context: |
@@ -152,7 +146,6 @@ questions:
         - User
         - ProcessGuid
 
-  # Thread 3: Impact Assessment (3 questions)
   - question: Are other hosts showing similar file creation patterns?
     context: |
       Widespread file creation across multiple systems may indicate deployment, malware spread, or policy changes.
@@ -172,24 +165,6 @@ questions:
       fields:
         - hostname
         - Image
-        - TargetFilename
-
-  - question: What file extensions and locations are being targeted?
-    context: |
-      File extensions and paths reveal intent - executables suggest malware, documents suggest data theft.
-    range: +/-10m
-    answer_sources:
-      - file_event
-    query: |
-      aggregation: true
-      logsource:
-        category: file_event
-      detection:
-        selection:
-          hostname|expand: '%hostname%'
-          User|expand: '%User%'
-        condition: selection
-      fields:
         - TargetFilename
 
   - question: Were any sensitive directories accessed?
@@ -221,7 +196,6 @@ questions:
         - TargetFilename
         - User
 
-  # Thread 4: Investigative Deep-Dive (3 questions)
   - question: Are there any persistence mechanisms being established?
     context: |
       File creation in startup folders, scheduled tasks, or service directories indicates persistence attempts.
@@ -248,69 +222,11 @@ questions:
             - '.profile'
         condition: all of selection_*
       fields:
-        - Image
-        - TargetFilename
         - User
-
-  - question: Were any anti-forensics techniques observed?
-    context: |
-      File creation followed by deletion, hidden files, or alternate data streams suggest evasion attempts.
-    range: +/-15m
-    answer_sources:
-      - file_event
-    query: |
-      aggregation: false
-      logsource:
-        category: file_event
-      detection:
-        selection_host:
-          hostname|expand: '%hostname%'
-          ProcessGuid|expand: '%ProcessGuid%'
-        selection_suspicious:
-          TargetFilename|contains:
-            - ':Zone.Identifier'
-            - '$Recycle.Bin'
-            - 'desktop.ini'
-            - 'Thumbs.db'
-        condition: all of selection_*
-      fields:
-        - TargetFilename
         - Image
-
-  - question: What file hashes were associated with created executables?
-    context: |
-      File hashes allow reputation checking and cross-reference with threat intelligence.
-    range: +/-5m
-    answer_sources:
-      - file_event
-    query: |
-      aggregation: false
-      logsource:
-        category: file_event
-      detection:
-        selection_host:
-          hostname|expand: '%hostname%'
-        selection_executable:
-          TargetFilename|endswith:
-            - '.exe'
-            - '.dll'
-            - '.scr'
-            - '.com'
-            - '.bat'
-            - '.ps1'
-            - '.vbs'
-            - '.js'
-            - '.elf'
-            - '.so'
-            - '.sh'
-        condition: all of selection_*
-      fields:
         - TargetFilename
-        - Image
-        - User
 
-  # Thread 5: Enterprise Context (2 questions)
-  - question: Have similar file events been seen historically?
+  - question: Have similar file operations been seen historically?
     context: |
       Historical patterns help distinguish between new threats and recurring legitimate activity.
     range: -90d
@@ -322,7 +238,7 @@ questions:
         category: file_event
       detection:
         selection:
-          TargetFilename|contains|expand: '%TargetFilename|basename%'
+          TargetFilename|contains|expand: '%TargetFilename%'
         condition: selection
       fields:
         - hostname
