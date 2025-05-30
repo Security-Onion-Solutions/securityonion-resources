@@ -116,11 +116,12 @@ questions:
         category: file_event
       detection:
         selection:
-          ProcessGuid: '{event_data.process.entity_id}'
-          ParentProcessGuid: '{event_data.process.parent.entity_id}'
+          - ProcessGuid: '{event_data.process.entity_id}'
+          - ParentProcessGuid: '{event_data.process.parent.entity_id}'
         condition: selection
       fields:
         - EventType
+        - Image
         - TargetFilename
 
   - question: What network connections did this process make?
