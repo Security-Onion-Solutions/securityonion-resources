@@ -58,8 +58,8 @@ questions:
   - question: What is the process execution chain around this event?
     context: |
       Examine parent process activity, sibling processes, and child processes to understand
-      the complete execution flow and identify the root cause or subsequent actions.
-    range: +/-5m
+      the complete execution flow.
+    range: +/-15m
     answer_sources:
       - process_creation
     query: |
@@ -67,16 +67,12 @@ questions:
       logsource:
         category: process_creation
       detection:
-        parent_activity:
-          hostname|expand: '%hostname%'
+        selection:
           ParentProcessGuid|expand: '%ParentProcessGuid%'
-        child_activity:
-          hostname|expand: '%hostname%'
-          ParentProcessGuid|expand: '%ProcessGuid%'
-        condition: parent_activity or child_activity
+        condition: selection
       fields:
         - User
-        - ParentImage
+        - CurrentWorkingDirectory
         - Image
         - CommandLine
 
@@ -88,7 +84,7 @@ questions:
     answer_sources:
       - process_creation
     query: |
-      aggregation: false
+      aggregation: true
       logsource:
         category: process_creation
       detection:
@@ -97,7 +93,6 @@ questions:
           User|expand: '%User%'
         condition: selection
       fields:
-        - ParentImage
         - Image
         - CommandLine
         - event.action
@@ -106,7 +101,7 @@ questions:
     context: |
       File creation and modification patterns reveal the process's actual behavior and potential impact.
       Look for sensitive data access, configuration changes, or payload drops. The query looks for file events
-      made by both the process and its parent.
+      associated with both the process and its parent.
     range: +/-15m
     answer_sources:
       - file_event
@@ -127,7 +122,7 @@ questions:
   - question: What network connections did this process make?
     context: |
       Network activity can reveal command and control, data exfiltration, or lateral
-      movement attempts. Pivoting on the Community ID can help identify related network events.
+      movement attempts. Pivoting on the Community ID can further identify related network events.
     range: +/-15m
     answer_sources:
       - network_connection
