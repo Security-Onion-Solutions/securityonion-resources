@@ -139,7 +139,7 @@ questions:
       detection:
         selection:
           hostname: '{event_data.host.name}'
-          Image|contains '{event_data.file.name}'
+          Image|contains: '{event_data.file.name}'
         condition: selection
       fields:
         - Image
@@ -157,7 +157,7 @@ questions:
         category: file_event
       detection:
         selection:
-          TargetFilename|contains '{event_data.file.name}'
+          TargetFilename|contains: '{event_data.file.name}'
         filter:
           hostname: '{event_data.host.name}'
         condition: selection and not filter
@@ -237,7 +237,7 @@ questions:
         category: file_event
       detection:
         selection:
-          TargetFilename|contains '{event_data.file.name}'
+          TargetFilename|contains: '{event_data.file.name}'
         condition: selection
       fields:
         - hostname

@@ -41,7 +41,7 @@ questions:
           product: windows
         detection:
             selection:
-                ParentProcessGuid '% ProcessGuid %'
+                ParentProcessGuid: '% ProcessGuid %'
             condition: selection
         fields:
             - Image

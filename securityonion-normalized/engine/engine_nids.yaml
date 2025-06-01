@@ -162,7 +162,7 @@ questions:
           service: dns
         detection:
             selection:
-               - dns.query.name|contains '{dns.query_name}'
+               - dns.query.name|contains: '{dns.query_name}'
                - dns.resolved_ip: '{network.public_ip}'
             condition: selection
         fields:

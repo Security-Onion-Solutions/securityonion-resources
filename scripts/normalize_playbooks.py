@@ -54,28 +54,21 @@ def normalize_file(src_path, dst_path, patterns):
     import re
     with open(src_path, 'r') as f:
         lines = f.readlines()
-    normalized_lines = []
-    # Intercept and transform any |expand: '%Var%' line directly
-    expand_re = re.compile(r"^([ \t\-]*)([\w\.]+)\|expand:\s*['\"]?%([\w\.]+)%['\"]?")
-    for line in lines:
-        m = expand_re.match(line)
-        if m:
-            indent, field, var = m.groups()
-            normalized_lines.append(f"{indent}{field}: '{{{var}}}'\n")
-        else:
-            normalized_lines.append(line)
-    normalized = "".join(normalized_lines)
-    # Now apply patterns as before
+    # Remove all occurrences of '|expand'
+    new_lines = [re.sub(r'\|expand', '', line) for line in lines]
+    normalized = "".join(new_lines)
+    # Apply patterns as before
     normalized = apply_patterns(normalized, patterns)
-    # Replace {var} with the mapping for %var% if it exists in patterns
-    def curly_replace(match):
-        var = match.group(1)
-        key = f"%{var}%"
-        return patterns[key] if key in patterns else match.group(0)
-    normalized = re.sub(r"{([\w\.]+)}", curly_replace, normalized)
-    # Remove any remaining |expand or %...% patterns as a fallback
-    normalized = re.sub(r"\|expand(:[^\s]*)?(['\"]?%?[\w\.]+%?['\"]?)?", "", normalized)
-    normalized = re.sub(r"%[^\s%]+%", "", normalized)
+    # Check for unmapped %...% variables
+    percent_pat = re.compile(r'%[^\s%]+%')
+    errors = []
+    for i, line in enumerate(normalized.splitlines(), 1):
+        for match in percent_pat.finditer(line):
+            errors.append(f"{src_path} Line {i}: Unmapped variable pattern: {match.group(0)} in line: {line.strip()}")
+    if errors:
+        for err in errors:
+            print(f"ERROR: {err}")
+        raise RuntimeError(f"Unmapped variables found in {src_path}, aborting normalization.")
     os.makedirs(dst_path.parent, exist_ok=True)
     with open(dst_path, 'w') as f:
         f.write(normalized)

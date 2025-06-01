@@ -118,12 +118,17 @@ def validate_file(filepath, seen_uuids):
                 if expand_lines:
                     for l in expand_lines:
                         errors.append(f"Contains forbidden '|expand' string: {l.strip()}")
-                # Check for forbidden %...% pattern and print offending lines
+                # Check for unmapped %...% variable patterns and print offending lines
                 percent_pat = re.compile(r'%[^\s%]+%')
-                percent_lines = [line for line in text.splitlines() if percent_pat.search(line)]
-                if percent_lines:
-                    for l in percent_lines:
-                        errors.append(f"Contains forbidden '%...%' pattern: {l.strip()}")
+                for i, line in enumerate(text.splitlines(), 1):
+                    for match in percent_pat.finditer(line):
+                        errors.append(f"Line {i}: Unmapped variable pattern: {match.group(0)} in line: {line.strip()}")
+                # Check for lines that look like a YAML mapping but are missing a colon
+                # e.g., dns.query.name|contains '{dns.query_name}'
+                missing_colon_pat = re.compile(r"^([ \t\-]*)([\w\.]+\|\w+)\s+['\"]?{[\w\.]+}['\"]?")
+                for i, line in enumerate(text.splitlines(), 1):
+                    if missing_colon_pat.match(line):
+                        errors.append(f"Line {i}: Possible missing colon in mapping: {line.strip()}")
     except Exception as e:
         errors.append(f"Error during normalized file checks: {e}")
     return filepath, errors
