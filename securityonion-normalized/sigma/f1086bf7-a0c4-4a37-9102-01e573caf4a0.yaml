@@ -25,7 +25,7 @@ questions:
         product: windows
       detection:
         selection:
-          ProcessGuid|expand: '{event_data.process.entity_id}'
+          ProcessGuid: '{event_data.process.entity_id}'
         condition: selection
       fields:
         - Image
@@ -45,7 +45,7 @@ questions:
         product: windows
       detection:
         selection:
-          ProcessGuid|expand: '{event_data.process.entity_id}'
+          ProcessGuid: '{event_data.process.entity_id}'
         condition: selection
       fields:
         - User
@@ -67,7 +67,7 @@ questions:
         product: windows
       detection:
         selection:
-          TargetFilename|expand: '{event_data.process.executable}'
+          TargetFilename: '{event_data.process.executable}'
         condition: selection
       fields:
         - TargetFilename
@@ -87,7 +87,7 @@ questions:
         product: windows
       detection:
         selection:
-          hostname|expand: '{event_data.host.name}'
+          hostname: '{event_data.host.name}'
         recon_tools:
           Image|endswith:
             - '\net.exe'
@@ -119,7 +119,7 @@ questions:
         product: windows
       detection:
         selection:
-          ParentProcessGuid|expand: '{event_data.process.entity_id}'
+          ParentProcessGuid: '{event_data.process.entity_id}'
         condition: selection
       fields:
         - User
@@ -139,9 +139,9 @@ questions:
         product: windows
       detection:
         selection:
-          hostname|expand: '{event_data.host.name}'
+          hostname: '{event_data.host.name}'
         same_directory:
-          CurrentDirectory|expand: '{event_data.process.working_directory}'
+          CurrentDirectory: '{event_data.process.working_directory}'
         condition: selection and same_directory
       fields:
         - Image
@@ -161,7 +161,7 @@ questions:
         product: windows
       detection:
         selection:
-          hostname|expand: '{event_data.host.name}'
+          hostname: '{event_data.host.name}'
         suspicious_locations:
           TargetFilename|contains:
             - '\AppData\Roaming\'
@@ -193,11 +193,11 @@ questions:
         service: conn
       detection:
         selection:
-          source.ip|expand: '%source_ip%'
+          src_ip: '{source.ip}'
         condition: selection
       fields:
-        - destination.ip
-        - destination.port
+        - dst_ip
+        - dst_port
         - network.protocol
         - network.transport
         - zeek.connection.state
@@ -217,7 +217,7 @@ questions:
         product: windows
       detection:
         selection:
-          hostname|expand: '{event_data.host.name}'
+          hostname: '{event_data.host.name}'
         malware_indicators:
           TargetObject|contains:
             - 'Agent Tesla'
@@ -243,8 +243,8 @@ questions:
         product: windows
       detection:
         selection:
-          hostname|expand: '{event_data.host.name}'
-          User|expand: '{event_data.user.name}'
+          hostname: '{event_data.host.name}'
+          User: '{event_data.user.name}'
         whoami_execution:
           OriginalFileName: 'whoami.exe'
         condition: selection and whoami_execution
@@ -282,7 +282,7 @@ questions:
           - Image|endswith: '\systeminfo.exe'
           - Image|endswith: '\tasklist.exe'
         host_filter:
-          hostname|expand: '{event_data.host.name}'
+          hostname: '{event_data.host.name}'
         condition: selection and not filter and host_filter
       fields:
         - Image
@@ -308,7 +308,7 @@ questions:
         filter:
           Image|endswith: '\whoami.exe'
         host_filter:
-          hostname|expand: '{event_data.host.name}'
+          hostname: '{event_data.host.name}'
         condition: selection and not filter and not host_filter
       fields:
         - hostname

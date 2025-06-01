@@ -106,6 +106,26 @@ def validate_file(filepath, seen_uuids):
         errors.append(f"YAML syntax error: {syntax_err}")
         return filepath, errors
     errors.extend(validate_playbook_fields(filepath, content, seen_uuids))
+    # Additional checks for normalized directory
+    # Use normalized_dir variable from SRC_DIRS
+    normalized_dir = dict(SRC_DIRS)["normalized"]
+    try:
+        if normalized_dir in filepath.parents or filepath.parent == normalized_dir:
+            with open(filepath, "r") as f:
+                text = f.read()
+                # Check for forbidden '|expand' string and print offending lines
+                expand_lines = [line for line in text.splitlines() if "|expand" in line]
+                if expand_lines:
+                    for l in expand_lines:
+                        errors.append(f"Contains forbidden '|expand' string: {l.strip()}")
+                # Check for forbidden %...% pattern and print offending lines
+                percent_pat = re.compile(r'%[^\s%]+%')
+                percent_lines = [line for line in text.splitlines() if percent_pat.search(line)]
+                if percent_lines:
+                    for l in percent_lines:
+                        errors.append(f"Contains forbidden '%...%' pattern: {l.strip()}")
+    except Exception as e:
+        errors.append(f"Error during normalized file checks: {e}")
     return filepath, errors
 
 
@@ -137,10 +157,10 @@ import subprocess
 
 def get_staged_files():
     # Get staged YAML files (added/modified/deleted) in public/ and securityonion-normalized/
+    src_paths = [str(src_dir) for _, src_dir in SRC_DIRS]
     result = subprocess.run(
-        [
-            "git", "diff", "--cached", "--name-status", "--", "public/", "securityonion-normalized/"
-        ], capture_output=True, text=True, check=False
+        ["git", "diff", "--cached", "--name-status", "--", *src_paths],
+        capture_output=True, text=True, check=False
     )
     changed = []
     for line in result.stdout.strip().split("\n"):

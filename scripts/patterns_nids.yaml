@@ -23,4 +23,3 @@
 "%src_ip%": "{source.ip}"
 "%dst_ip%": "{destination.ip}"
 "%User%": "{event_data.user.name}"
-'|expand:|': ":" # special case, replace '|expand:' with ':'

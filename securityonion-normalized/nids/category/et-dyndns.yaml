@@ -21,7 +21,7 @@ questions:
           category: threatintel
         detection:
             selection:
-                indicator|contains|expand: '{dns.query_name}'
+                indicator|contains '{dns.query_name}'
             condition: selection
         fields:
             - indicator
@@ -41,7 +41,7 @@ questions:
           service: dns
         detection:
             selection:
-                dns.query.name|contains|expand: '{dns.query_name}'
+                dns.query.name|contains '{dns.query_name}'
             condition: selection
         fields:
             - src_ip
@@ -60,7 +60,7 @@ questions:
           service: dns
         detection:
             selection:
-                dns.query.name|contains|expand: '{dns.query_name}'
+                dns.query.name|contains '{dns.query_name}'
             condition: selection
         fields:
             - src_ip
@@ -76,8 +76,8 @@ questions:
           category: network
         detection:
             selection:
-                - dns.query.name|contains|expand: '{dns.query_name}'
-                - community_id|expand: '{network.community_id}'
+                - dns.query.name|contains '{dns.query_name}'
+                - community_id: '{network.community_id}'
             filter:
                 Image|exists: true
             condition: selection and filter
@@ -100,7 +100,7 @@ questions:
           service: connection
         detection:
             selection:
-                dst_ip|expand: '{dns.resolved_ip}'
+                dst_ip: '{dns.resolved_ip}'
             condition: selection
         fields:
             - src_ip
@@ -123,7 +123,7 @@ questions:
           service: file
         detection:
             selection:
-                host|contains|expand: '{dns.query_name}'
+                host|contains '{dns.query_name}'
             condition: selection
         fields:
             - filename
@@ -143,7 +143,7 @@ questions:
           category: alert
         detection:
             selection:
-                dns.query|contains|expand: '{dns.query_name}'
+                dns.query|contains '{dns.query_name}'
             condition: selection
         fields:
             - rule.category
@@ -163,7 +163,7 @@ questions:
           service: dns
         detection:
             selection:
-                dns.query.name|contains|expand: '{dns.query_name}'
+                dns.query.name|contains '{dns.query_name}'
             condition: selection
         fields:
             - dns.authoritative

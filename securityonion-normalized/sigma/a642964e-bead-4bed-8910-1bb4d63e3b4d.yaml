@@ -21,7 +21,7 @@ questions:
           product: windows
         detection:
             selection:
-               ProcessGuid|expand: '{event_data.process.entity_id}'
+               ProcessGuid: '{event_data.process.entity_id}'
             condition: selection
         fields:
             - CommandLine
@@ -37,7 +37,7 @@ questions:
           product: windows
         detection:
             selection:
-               ProcessGuid|expand: '{event_data.process.entity_id}'
+               ProcessGuid: '{event_data.process.entity_id}'
             condition: selection
         fields:
             - User
@@ -56,7 +56,7 @@ questions:
           product: windows
         detection:
             selection:
-                ParentProcessGuid|expand: '{event_data.process.entity_id}'
+                ParentProcessGuid: '{event_data.process.entity_id}'
             condition: selection
         fields:
             - User
@@ -76,7 +76,7 @@ questions:
           product: windows
         detection:
             selection:
-                hostname|expand: '{event_data.host.name}'
+                hostname: '{event_data.host.name}'
             condition: selection
         fields:
             - User
@@ -96,7 +96,7 @@ questions:
           product: windows
         detection:
             selection:
-                hostname|expand: '{event_data.host.name}'
+                hostname: '{event_data.host.name}'
             condition: selection
         fields:
             - User
@@ -116,7 +116,7 @@ questions:
           product: windows
         detection:
             selection:
-                hostname|expand: '{event_data.host.name}'
+                hostname: '{event_data.host.name}'
             condition: selection
         fields:
             - Image
@@ -164,7 +164,7 @@ questions:
                     - 'process::'
                     - 'vault::'
             filter:
-                hostname|expand: '{event_data.host.name}'
+                hostname: '{event_data.host.name}'
             condition: 1 of selection_* and filter
         fields:
             - User
@@ -214,7 +214,7 @@ questions:
                     - 'process::'
                     - 'vault::'
             filter:
-                hostname|expand: '{event_data.host.name}'
+                hostname: '{event_data.host.name}'
             condition: 1 of selection_* and not filter
         fields:
             - User

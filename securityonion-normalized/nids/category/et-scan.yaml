@@ -30,7 +30,7 @@ questions:
           product: suricata
         detection:
             selection:
-                document_id|expand: '{soc_id}'
+                document_id: '{soc_id}'
             condition: selection
         fields:
             - src_ip
@@ -46,7 +46,7 @@ questions:
           product: suricata
         detection:
             selection:
-                document_id|expand: '{soc_id}'
+                document_id: '{soc_id}'
             condition: selection
         fields:
             - rule.name
@@ -67,7 +67,7 @@ questions:
           product: suricata
         detection:
             selection:
-                src_ip|expand: '{source.ip}'
+                src_ip: '{source.ip}'
                 rule.name|contains: 'SCAN'
             condition: selection
         fields:
@@ -87,8 +87,8 @@ questions:
           service: connection
         detection:
             selection:
-                src_ip|expand: '{source.ip}'
-                dst_port|expand: '{destination.port}'
+                src_ip: '{source.ip}'
+                dst_port: '{destination.port}'
             filter:
                 connection.state: 'SF'
             condition: selection and not filter
@@ -116,8 +116,8 @@ questions:
           service: connection
         detection:
             selection:
-                src_ip|expand: '{source.ip}'
-                dst_ip|expand: '{destination.ip}'
+                src_ip: '{source.ip}'
+                dst_ip: '{destination.ip}'
                 connection.state: 'SF'
             condition: selection
         fields:
@@ -139,7 +139,7 @@ questions:
           category: network
         detection:
             selection:
-                community_id|expand: '{network.community_id}'
+                community_id: '{network.community_id}'
             filter:
                 Image|exists: true
             condition: selection and filter
@@ -159,8 +159,8 @@ questions:
           category: alert
         detection:
             selection:
-                - src_ip|expand: '{source.ip}'
-                - dst_ip|expand: '{source.ip}'
+                - src_ip: '{source.ip}'
+                - dst_ip: '{source.ip}'
             condition: selection
         fields:
             - rule.type
@@ -178,7 +178,7 @@ questions:
           service: dns
         detection:
             selection:
-                src_ip|expand: '{source.ip}'
+                src_ip: '{source.ip}'
             condition: selection
         fields:
             - dns.query.name

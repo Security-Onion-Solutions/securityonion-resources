@@ -193,11 +193,11 @@ questions:
         service: conn
       detection:
         selection:
-          source.ip|expand: '%source_ip%'
+          src_ip|expand: '%src_ip%'
         condition: selection
       fields:
-        - destination.ip
-        - destination.port
+        - dst_ip
+        - dst_port
         - network.protocol
         - network.transport
         - zeek.connection.state

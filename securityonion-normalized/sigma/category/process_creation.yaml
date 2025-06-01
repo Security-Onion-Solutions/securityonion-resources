@@ -25,7 +25,7 @@ questions:
         category: alert
       detection:
         selection:
-          document_id|expand: '{soc_id}'
+          document_id: '{soc_id}'
         condition: selection
       fields:
         - User
@@ -46,9 +46,9 @@ questions:
         category: process_creation
       detection:
         selection:
-          hostname|expand: '{event_data.host.name}'
-          Image|expand: '{event_data.process.executable}'
-          User|expand: '{event_data.user.name}'
+          hostname: '{event_data.host.name}'
+          Image: '{event_data.process.executable}'
+          User: '{event_data.user.name}'
         condition: selection
       fields:
         - User
@@ -68,7 +68,7 @@ questions:
         category: process_creation
       detection:
         selection:
-          ParentProcessGuid|expand: '{event_data.process.parent.entity_id}'
+          ParentProcessGuid: '{event_data.process.parent.entity_id}'
         condition: selection
       fields:
         - User
@@ -89,8 +89,8 @@ questions:
         category: process_creation
       detection:
         selection:
-          hostname|expand: '{event_data.host.name}'
-          User|expand: '{event_data.user.name}'
+          hostname: '{event_data.host.name}'
+          User: '{event_data.user.name}'
         condition: selection
       fields:
         - Image
@@ -110,8 +110,8 @@ questions:
         category: file_event
       detection:
         selection:
-          - ProcessGuid|expand: '{event_data.process.entity_id}'
-          - ParentProcessGuid|expand: '{event_data.process.parent.entity_id}'
+          - ProcessGuid: '{event_data.process.entity_id}'
+          - ParentProcessGuid: '{event_data.process.parent.entity_id}'
         condition: selection
       fields:
         - EventType
@@ -131,7 +131,7 @@ questions:
         category: network_connection
       detection:
         selection:
-          ProcessGuid|expand: '{event_data.process.entity_id}'
+          ProcessGuid: '{event_data.process.entity_id}'
         condition: selection
       fields:
         - source.ip
@@ -154,8 +154,8 @@ questions:
         category: registry_event
       detection:
         selection:
-          ProcessGuid|expand: '{event_data.process.entity_id}'
-          ParentProcessGuid|expand: '{event_data.process.parent.entity_id}'
+          ProcessGuid: '{event_data.process.entity_id}'
+          ParentProcessGuid: '{event_data.process.parent.entity_id}'
         condition: selection
       fields:
         - EventType
@@ -176,9 +176,9 @@ questions:
         category: process_creation
       detection:
         selection:
-          CommandLine|expand: '{event_data.process.command_line}'
+          CommandLine: '{event_data.process.command_line}'
         filter:
-          hostname|expand: '{event_data.host.name}'
+          hostname: '{event_data.host.name}'
         condition: selection and not filter
       fields:
         - hostname
