@@ -21,6 +21,6 @@ Originally sourced from https://github.com/Neo23x0/sysmon-config and https://git
 
 ## AI-Generated Detection Summaries
   - Location: `generated-summaries-published` branch, detections-ai folder
-  - License: Elastic-2.0 -- https://securityonionsolutions.com/license
+  - License: See LICENSE file in the root of the repo
 
 Summaries created by an LLM for Suricata, Sigma and YARA rules. Used by Security Onion in the Detections module.
