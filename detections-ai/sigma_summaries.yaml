@@ -122,10 +122,10 @@
   Created-Date: '2024_09_04'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: 9ea859ca27264481edb25ce1c8f4bbbd
+  Rule-Body-Hash: 3ff1d271dad6ab6c552d2fb36d58d06d
   Ruleset: sigmahq
-  Summary: This rule detects the execution of specific PowerShell commandlets associated with known PowerShell exploitation frameworks. These commandlets are often employed to execute a variety of malicious activities such as credential theft, persistence, data exfiltration, and privilege escalation within Windows environments. The rule identifies commandlet names, which are typically indicative of attempts to use tools like Mimikatz for credential harvesting, AzureHound for Azure Active Directory reconnaissance, and PowerView for domain enumeration. Additionally, it looks for patterns resembling techniques used by various publicly available offensive security tools and scripts. Each identified commandlet is linked to functionality that could potentially compromise system security or facilitate unauthorized system access.
-  Updated-Date: '2025_07_08'
+  Summary: This rule detects the execution of specific PowerShell commandlets associated with well-known exploitation frameworks and malicious activities on Windows systems. These commandlets are part of a variety of tools used for actions such as credential theft, privilege escalation, persistence, data exfiltration, system reconnaissance, and exploitation of known vulnerabilities. The detection focuses on command lines that include the names of these malicious commandlets, which are often used in cyberattack campaigns and penetration testing operations. By identifying these commandlet executions, the rule aims to highlight potentially harmful activities facilitated by exploitation frameworks, providing early warnings of malicious actions that might compromise system integrity or security.
+  Updated-Date: '2026_01_30'
 021310d9-30a6-480a-84b7-eaa69aeb92bb:
   Created-Date: '2024_08_07'
   Custom-Edited: false
@@ -242,10 +242,10 @@
   Created-Date: '2024_09_04'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: ec4ca8e233b857677e29fa33c53a4dec
+  Rule-Body-Hash: 4e951b8c8cd24859097d3f88eeb390e2
   Ruleset: sigmahq
-  Summary: This rule detects uncommon processes creating remote threads on Windows systems, which can indicate unauthorized activities such as privilege escalation or defense evasion. The detection focuses on processes originating from a set of specific executable files such as `bash.exe`, `excel.exe`, `mshta.exe`, `msbuild.exe`, and others. These executables are monitored for behavior where they may create a thread in another process, which is a technique often used by malware and attackers to inject code, gain higher privileges, or evade detection. The rule applies several filters to exclude known legitimate interactions, such as specific interactions involving `conhost.exe`, `svchost.exe`, `explorer.exe`, and certain Microsoft Office components. This filtering helps reduce false positives by focusing on unusual activities that don't fit normal patterns associated with these known executable interactions.
-  Updated-Date: '2025_10_29'
+  Summary: This rule detects the creation of remote threads by processes that are generally uncommon sources, focusing on Windows operating systems. It is designed to flag potentially malicious activities related to privilege escalation and defense evasion tactics, particularly the use of remote thread creation, a technique identified by the ATT&CK ID T1055. The rule targets specific executables known for carrying out or being involved in likely suspicious activities, such as `bash.exe`, `python.exe`, `cscript.exe`, and others, by examining the source images of processes and excluding known benign behaviors. This approach aims to identify unusual activity patterns or processes that deviate from typical behavior, which could indicate an attack or misuse of system capabilities.
+  Updated-Date: '2026_01_30'
 02e0b2ea-a597-428e-b04a-af6a1a403e5c:
   Created-Date: '2024_08_07'
   Custom-Edited: false
@@ -562,10 +562,10 @@
   Created-Date: '2024_09_04'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: 89f2e75d56175041edc2621bdfa02b74
+  Rule-Body-Hash: 685299d7db295b17bc62a0f1f048e1a5
   Ruleset: sigmahq
-  Summary: This rule detects the execution of WMIC.exe with the "format" flag to potentially load XSL files. Adversaries exploit this functionality to execute arbitrary files, possibly bypassing application whitelisting defenses. Extensible Stylesheet Language (XSL) files are typically used to describe the processing and rendering of data within XML files.
-  Updated-Date: '2024_09_04'
+  Summary: This rule detects the execution of the Windows Management Instrumentation Command-line (WMIC.exe) tool using the "format" flag, which may indicate the loading of local Extensible Stylesheet Language (XSL) files. Adversaries can exploit this capability to execute arbitrary files, potentially circumventing application whitelisting measures. XSL files are typically utilized to define the processing and presentation of data within XML files, but when abused in this manner, they can act as a mechanism for executing malicious code.
+  Updated-Date: '2026_01_30'
 05ebafc8-7aa2-4bcd-a269-2aec93f9e842:
   Created-Date: '2024_09_04'
   Custom-Edited: false
@@ -650,10 +650,10 @@
   Created-Date: '2024_09_04'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: 158062bb936041cda35b692067cb4988
+  Rule-Body-Hash: bdde7f1946aa3a440ad32e1d5dda9bff
   Ruleset: sigmahq
-  Summary: This rule detects the use of the Windows Management Instrumentation Command-line (WMIC) tool to load scripting libraries, specifically by observing the execution of `wmic.exe` and the loading of `jscript.dll` or `vbscript.dll`. Threat actors can employ this technique to proxy execute code and circumvent application controls by leveraging the `/FORMAT` argument switch in WMIC to download and run XSL files containing scripts (e.g., JavaScript, VBScript). These activities can be indicative of attempts to evade defenses and execute unauthorized code on a Windows system.
-  Updated-Date: '2024_09_04'
+  Summary: This rule detects the execution of code by threat actors who use Windows Management Instrumentation Command-line (WMIC) to load scripting libraries. Specifically, it focuses on the usage of the `/FORMAT` argument to download and execute XSL files, which may include scripts written in languages such as JavaScript (js) or VBScript (vbs). This behavior is associated with the SquiblyTwo technique, which leverages WMI for executing malicious code, thereby bypassing application controls and potentially indicating malicious activity.
+  Updated-Date: '2026_01_30'
 06d71506-7beb-4f22-8888-e2e5e2ca7fd8:
   Created-Date: '2024_08_07'
   Custom-Edited: false
@@ -954,10 +954,10 @@
   Created-Date: '2024_09_04'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: daf23f8b2198bf850d6a7ab5bfc2b28a
+  Rule-Body-Hash: ff6f3b782fd4c0281ccb6f66e9dbc3ad
   Ruleset: sigmahq
-  Summary: This rule detects potential installation or installation attempts of known malicious AppX packages on Windows systems. Malicious AppX packages can exploit the Windows 10 apps mechanism, such as the BazarLoader malware that abuses this feature, to deploy malware. The detection is triggered by specific event IDs and known malicious package names. False positives may occur if a malicious package mimics the name and version of legitimate software.
-  Updated-Date: '2024_09_04'
+  Summary: This rule detects potential installation attempts of known malicious AppX packages on Windows systems. It specifically monitors for certain Event IDs related to the AppX Deployment Server service, which are indicative of package installation events. The rule filters logs for specific package names, known to be associated with malicious activity, such as those that have been used in the BazarLoader malware campaign. Certain legitimate applications may occasionally share names with these malicious packages, potentially leading to false positives.
+  Updated-Date: '2026_01_30'
 0a1255c5-d732-4b62-ac02-b5152d34fb83:
   Created-Date: '2025_10_02'
   Custom-Edited: false
@@ -1074,10 +1074,10 @@
   Created-Date: '2024_08_07'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: 77e846c6e819b60a1acc136c0765230d
+  Rule-Body-Hash: 2e123ef30b7ba484db303ca3af650411
   Ruleset: core
-  Summary: This rule detects the execution of renamed Microsoft Office binaries such as Excel, Access, Publisher, OneNote, Outlook, PowerPoint, and Word. It identifies processes where the original file name and description match one of these Office applications but are executed under an unexpected or renamed binary, which could indicate an attempt at defense evasion or malicious activity involving these commonly trusted applications.
-  Updated-Date: '2024_09_03'
+  Summary: This rule detects the execution of Microsoft Office binaries such as Word, Excel, PowerPoint, Outlook, Access, OneNote, and Publisher that have been renamed. Such behavior can indicate an attempt to bypass security mechanisms by disguising executables to avoid detection. This is considered a defense evasion technique where an attacker renames Office applications to execute them stealthily. The rule focuses on identifying discrepancies between the original file names and descriptions of Microsoft Office applications while filtering out legitimate instances of these binaries that end with specific file name patterns.
+  Updated-Date: '2026_01_30'
 0b0ea3cc-99c8-4730-9c53-45deee2a4c86:
   Created-Date: '2024_08_07'
   Custom-Edited: false
@@ -1938,10 +1938,10 @@
   Created-Date: '2024_08_07'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: 0ee1f54684a151adb12470d0cf852250
+  Rule-Body-Hash: ea871572b328ee2e191ef615cf6c06b8
   Ruleset: core
-  Summary: This rule detects the use of the Windows utility certutil.exe to download files from direct IP addresses. The execution of certutil with specific command-line flags such as 'urlcache' or 'verifyctl' is monitored, especially when the command includes URLs starting with '://1' to '://9', indicating direct IP usage. Certutil.exe, typically used for managing certificates, can be exploited for malicious purposes, such as downloading files directly from IP addresses, which may indicate suspicious activity. The rule excludes certain instances to avoid false positives, such as connections associated with the 7-Zip website.
-  Updated-Date: '2025_11_28'
+  Summary: This rule detects the execution of Certutil.exe, a Windows command-line utility, used to download files from direct IP addresses. The detection focuses on specific command-line flags commonly associated with downloading operations, indicating potential misuse of Certutil for malicious activities such as downloading malware or unauthorized files. The rule specifically identifies command lines featuring URLs starting with numbers, which typically signify direct IP downloads, and is configured to exclude certain non-malicious scenarios. Certutil has been observed in attacks involving tools like Agent Tesla, where it is exploited for downloading additional payloads or performing command and control communication.
+  Updated-Date: '2026_01_30'
 13f2d3f5-6497-44a7-bf5f-dc13ffafe5dc:
   Created-Date: '2025_02_04'
   Custom-Edited: false
@@ -2050,10 +2050,10 @@
   Created-Date: '2024_08_07'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: 0a3013b56d9257e6cf8f58f7369b12b5
+  Rule-Body-Hash: 9f7e2cda7821232ac98dfb3cb095aed4
   Ruleset: core
-  Summary: This rule detects manipulation of registry keys associated with shell open commands, specifically targeting the "exefile" and "ms-settings" keys. Such modifications are often used for establishing persistence on a system or bypassing User Account Control (UAC) security mechanisms through known methods involving applications like fodhelper.exe, computerdefaults.exe, and slui.exe. These techniques align with methods documented by tools like UACMe, which demonstrate approaches for privilege escalation and defense evasion in Windows environments.
-  Updated-Date: '2025_10_29'
+  Summary: This rule detects modifications to registry keys associated with shell open commands, specifically targeting Windows settings and executable files for persistence and user account control (UAC) bypass techniques. It focuses on activity involving the manipulation of registry keys such as `exefile` and `ms-settings` to execute unintended programs or scripts. The rule highlights known methods using Windows components like `fodhelper.exe`, `computerdefaults.exe`, and `slui.exe` for privilege escalation. These tactics are often linked with UAC bypass mechanisms, which may be utilized by malware such as UACMe. The rule looks for specific registry value changes and patterns indicative of these manipulation techniques, which could suggest malicious behavior or unintended configuration changes.
+  Updated-Date: '2026_01_30'
 15434e33-5027-4914-88d5-3d4145ec25a9:
   Created-Date: '2024_09_04'
   Custom-Edited: false
@@ -2586,10 +2586,10 @@
   Created-Date: '2024_09_04'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: 50b1d5579f862eaec1722d61bd2cf583
+  Rule-Body-Hash: 7039e9fbffe60e7a491bb565a57fc4f8
   Ruleset: sigmahq
-  Summary: This rule detects the use of the Windows utility certutil.exe when it is executed with specific flags that facilitate the downloading of files. Certutil.exe is a command-line program that is typically used for handling certificates, but it can also be exploited by attackers to download malicious files by using certain flags, such as 'urlcache' and 'verifyctl', and including URLs with 'http'. The rule monitors process creation logs to identify instances where certutil.exe is executed in this suspicious context, potentially indicating an attempt at defense evasion or the execution of unauthorized downloads on a Windows system.
-  Updated-Date: '2025_11_28'
+  Summary: This rule detects the use of certutil.exe on a Windows system to download files via certain command-line flags. Certutil.exe is a command-line tool that is typically part of the Windows operating system, used for managing certificates. However, it can be misused by threat actors to download malicious files by employing specific flags. This behavior is notable for its potential use in evasion tactics and command-and-control operations, as it can facilitate unauthorized file transfers. The detection focuses on identifying command-line executions that include the certutil executable with indicators of URLs, as this may signify an attempt to use the tool in a manner consistent with downloading from remote locations.
+  Updated-Date: '2026_01_30'
 19b3806e-46f2-4b4c-9337-e3d8653245ea:
   Created-Date: '2024_12_20'
   Custom-Edited: false
@@ -2958,6 +2958,14 @@
   Ruleset: core
   Summary: This rule detects potential PetitPotam coerced authentication activities by monitoring for specific patterns in Windows security logs. PetitPotam is a known technique used to coerce a target system into authenticating with an attacker-controlled machine, typically by exploiting certain features or vulnerabilities in the Windows operating system. The rule focuses on Event ID 5145, which logs detailed file share operations, and specifically looks for anonymous logon attempts to the 'lsarpc' file share that use an IPC$ share name pattern. This behavior is indicative of an attack attempt leveraging the PetitPotam method to intercept or manipulate authentication processes.
   Updated-Date: '2024_09_03'
+1cf465a1-2609-4c15-9b66-c32dbe4bfd67:
+  Created-Date: '2026_01_30'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: 564c53d03231c16a36d4367d239209d7
+  Ruleset: sigmahq
+  Summary: This rule detects instances where legitimate applications, often known as Living off the Land Binaries (LOLBins), write files to uncommon or suspicious locations on a Windows system. Such locations are typically not used for application data storage or execution. Adversaries may exploit these applications to drop or download malicious files in these uncommon locations to avoid detection by security systems. Examples of applications that may engage in this activity include Microsoft Office programs like `eqnedt32.exe`, as well as other utilities capable of downloading or manipulating files such as `cmdl32.exe`, `certutil.exe`, `mshta.exe`, and `ftp.exe`. The suspicious file paths include directories like `:\Perflogs`, `:\ProgramData\`, `:\Temp\`, and directories within `\Users\`, amongst others.
+  Updated-Date: '2026_01_30'
 1cf98dc2-fcb0-47c9-8aea-654c9284d1ae:
   Created-Date: '2024_09_04'
   Custom-Edited: false
@@ -3010,10 +3018,10 @@
   Created-Date: '2025_05_27'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: c209d1c74a61a10c9376d22e53e6abde
+  Rule-Body-Hash: af09ebd002ae3d003a6728917d5d6777
   Ruleset: sigmahq
-  Summary: This rule detects suspicious activity related to the creation of Windows Defender Application Control (WDAC) policy files, which can originate from unusual processes. Attackers could exploit this situation to hinder Endpoint Detection and Response (EDR) or Antivirus software components, thereby allowing their malicious code to execute on a compromised system without hindrance. The rule identifies such activity by monitoring file creation events in a specific directory used for code integrity and excludes legitimate processes typically associated with WDAC configuration or management.
-  Updated-Date: '2025_05_27'
+  Summary: This rule detects the creation of potentially suspicious Windows Defender Application Control (WDAC) policy files from unusual processes on Windows systems. Such activity may indicate an attempt by attackers to manipulate the application control policies, potentially to disable Endpoint Detection and Response (EDR) or antivirus components while allowing malicious code to execute. The rule monitors file events, specifically targeting files created under the `\Windows\System32\CodeIntegrity\` directory. It filters out benign processes such as those involving Microsoft Configuration Management, WDAC Wizard, PowerShell executables, and certain system processes to reduce false positives.
+  Updated-Date: '2026_01_30'
 1d61f71d-59d2-479e-9562-4ff5f4ead16b:
   Created-Date: '2024_08_07'
   Custom-Edited: false
@@ -3178,10 +3186,10 @@
   Created-Date: '2025_10_02'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: a9665ff45d2bcd9c98cd0ae545778c09
+  Rule-Body-Hash: da55d5879b717f6896a29d61ea0f1d3b
   Ruleset: sigmahq
-  Summary: 'This rule detects the potential misuse of WerFaultSecure.exe to compromise Protected Process Light (PPL) processes, such as LSASS, or to interrupt the operation of security solutions like Endpoint Detection and Response (EDR) or antivirus software. Tools like EDR-Freeze and WSASS leverage this technique to circumvent PPL protections, gain access to sensitive data, or disable security capabilities. Identification relies on specific command line patterns: the WSASS tool typically exhibits the command pattern "WSASS.exe WerFaultSecure.exe [PID]," while EDR-Freeze usage shows as "EDR-Freeze_[version].exe [PID] [timeout]." Legitimate uses of WerFaultSecure for debugging are uncommon in production environments and should be further investigated.'
-  Updated-Date: '2025_11_28'
+  Summary: This rule detects the potential misuse of WerFaultSecure.exe, a tool intended for handling Windows error reports, to tamper with Protected Process Light (PPL) processes such as LSASS or to disrupt security solutions like Endpoint Detection and Response (EDR) systems and antivirus software. Malicious tools like EDR-Freeze and WSASS exploit this technique by deceiving PPL protections to access sensitive information or disable security services. Specific command line patterns help identify these tools, with WSASS often presenting the command format "WSASS.exe WerFaultSecure.exe [PID]" and EDR-Freeze showing "EDR-Freeze_[version].exe [PID] [timeout]". Since legitimate use of WerFaultSecure.exe for debugging is uncommon in production environments, such activity should raise suspicion and warrant further investigation.
+  Updated-Date: '2026_01_30'
 1f0f6176-6482-4027-b151-00071af39d7e:
   Created-Date: '2024_09_04'
   Custom-Edited: false
@@ -3518,6 +3526,14 @@
   Ruleset: core
   Summary: This rule detects the use of the Windows "schtasks" command with the delete flag accompanied by an asterisk to delete all scheduled tasks on the local computer. This action targets tasks scheduled by any user, representing a broad-impact operation that could disrupt various automated processes.
   Updated-Date: '2024_09_03'
+22154f0e-5132-4a54-aa78-cc62f6def531:
+  Created-Date: '2026_01_30'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: 0f1f98cea5bded313c32e7a3609dca08
+  Ruleset: sigmahq
+  Summary: This rule detects tampering with the Vulnerable Driver Blocklist registry through command-line tools such as PowerShell or REG.EXE on Windows systems. The Vulnerable Driver Blocklist is a security feature aimed at preventing the loading of known vulnerable drivers. Disabling or altering this blocklist via command line may indicate an attempt to bypass security controls, which is often exploited by threat actors to install malicious or vulnerable drivers. This activity is particularly concerning in environments using Endpoint Detection and Response solutions, where maintaining driver integrity is crucial for security.
+  Updated-Date: '2026_01_30'
 221b251a-357a-49a9-920a-271802777cc0:
   Created-Date: '2024_09_04'
   Custom-Edited: false
@@ -3754,10 +3770,10 @@
   Created-Date: '2024_09_04'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: 5c91cb5d26093a12534f1df943b94429
+  Rule-Body-Hash: eb5a64dd6cf6a8732beb24a793666647
   Ruleset: sigmahq
-  Summary: This rule detects the direct modification of autostart extensibility points (ASEP) in the Windows registry using reg.exe, which is indicative of processes aiming for persistence or privilege escalation. It targets specific registry keys associated with automatic startup tasks, such as those under "Run," "RunOnce," "Winlogon," and similar entries that are critical for executing programs at boot or user logon. The use of reg.exe with commands like "add" to modify these keys can signal potential unauthorized or malicious behavior altering system startup processes.
-  Updated-Date: '2025_11_28'
+  Summary: This rule detects the direct modification of autostart extensibility points (ASEPs) in the Windows registry using the reg.exe utility. It focuses on monitoring changes specifically made to registry keys that manage the automatic execution of programs during system or user logon, such as the "Run" keys within the Windows registry. These keys are often targeted by malware to maintain persistence on a system. By identifying commands using reg.exe that add or alter these particular registry settings, the rule aims to uncover unauthorized attempts to misuse these autorun entries, which could indicate privilege escalation or persistence tactics by malicious actors.
+  Updated-Date: '2026_01_30'
 243de76f-4725-4f2e-8225-a8a69b15ad61:
   Created-Date: '2024_09_04'
   Custom-Edited: false
@@ -4030,6 +4046,14 @@
   Ruleset: core
   Summary: This rule detects the execution of the Dumpert process dumper tool, which is used to extract memory from the lsass.exe process. This activity is commonly associated with credential theft, as the Local Security Authority Subsystem Service (lsass.exe) handles security policy and authentication in Windows systems. By analyzing the process creation logs on Windows, this rule identifies signs of Dumpert activity, such as specific file hashes or command line parameters indicating the use of Dumpert.dll. This tool is often leveraged in attacks targeting credential access, and the detection of such behavior is crucial for identifying potential security breaches.
   Updated-Date: '2025_02_04'
+271de298-cc0e-4842-acd8-079a0a99ea65:
+  Created-Date: '2026_01_30'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: e08f8714146748d0f12a69561dafe438
+  Ruleset: sigmahq
+  Summary: This rule detects suspicious child processes initiated by Node.js server processes on Windows, potentially indicating the exploitation of vulnerabilities such as CVE-2025-55182 (React2Shell). Attackers may exploit the Node.js 'child_process' module to execute system commands or scripts using methods like spawn(), exec(), execFile(), fork(), or execSync(). When execSync() or exec() is utilized in the exploit, the command line often displays a shell (e.g., cmd.exe) executing a suspicious command unless other shells are explicitly used. In contrast, for different methods, the spawned process is directly listed in the Image field unless an explicit shell is invoked.
+  Updated-Date: '2026_01_30'
 272e55a4-9e6b-4211-acb6-78f51f0b1b40:
   Created-Date: '2024_08_07'
   Custom-Edited: false
@@ -4178,10 +4202,10 @@
   Created-Date: '2024_08_07'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: 9a11c265d221445289917ec959f954a3
+  Rule-Body-Hash: f3902e3f42f0411f40a5f2c1c6448bb2
   Ruleset: core
-  Summary: This rule detects the creation of files named "WerFault.exe" or "wer.dll" in directories that are atypical for these files, potentially indicating a method of DLL hijacking involving WerFault. Such activity could be associated with attempts at privilege escalation, persistence mechanisms, or evasion of defenses. The rule focuses on identifying these files outside standard system directories, such as the SoftwareDistribution, System32, SysWOW64, and WinSxS folders, to uncover suspicious behavior related to malware tactics exploiting Windows error reporting components.
-  Updated-Date: '2025_10_29'
+  Summary: This rule detects the creation of files named "WerFault.exe" or "wer.dll" in unusual directories, a behavior indicative of potential WerFault DLL hijacking. Such activity could be associated with malicious actors employing methods for privilege escalation, persistence, or defense evasion on Windows operating systems. The detection specifically excludes commonly known system directories where these files typically reside. The presence of these files in non-standard locations may suggest unauthorized and suspicious activity, potentially linked to malware attempting to exploit Windows error handling mechanisms for nefarious purposes.
+  Updated-Date: '2026_01_30'
 28ac00d6-22d9-4a3c-927f-bbd770104573:
   Created-Date: '2024_08_07'
   Custom-Edited: false
@@ -4314,10 +4338,10 @@
   Created-Date: '2024_09_04'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: 04382467af1bf0d48c540b4facfb1df4
+  Rule-Body-Hash: 61e24a88fe6df654bcb309cbd43ce0aa
   Ruleset: sigmahq
-  Summary: This rule detects the creation of files in the Windows startup directory, which may indicate an attempt to establish persistence on a system. It specifically monitors for any files being created in paths that are commonly used for startup processes on Windows, as unauthorized entries in this directory can result in persistent execution of malware or unwanted scripts each time the system boots. The rule filters out certain legitimate processes, such as those related to Windows updates or specific applications like OneNote, to minimize false positives. This detection is useful for identifying potential malicious activities that aim to maintain a foothold on compromised machines through startup folder modifications.
-  Updated-Date: '2025_10_29'
+  Summary: This rule detects the creation of files in the Windows startup directory, which could indicate an attempt to establish persistence on a system. By monitoring file writes to the startup folder, the rule identifies potentially unauthorized changes that may signify privilege escalation or persistence mechanisms. Exceptions are included for legitimate system operations, such as updates managed by system update utilities and the creation of OneNote shortcut links. Any unexpected changes to the startup folder should be scrutinized to ensure they are not malicious, as legitimate applications may also write to this location.
+  Updated-Date: '2026_01_30'
 2aa1440c-9ae9-4d92-84a7-a9e5f5e31695:
   Created-Date: '2024_08_07'
   Custom-Edited: false
@@ -4418,10 +4442,10 @@
   Created-Date: '2024_09_04'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: 5675f7f341d5438309d0ac78c4966ea8
+  Rule-Body-Hash: d3699cf82e74afdd051d81a5a7198c15
   Ruleset: sigmahq
-  Summary: This rule detects the execution of "curl.exe" with the "insecure" flag when it is used over a proxy or DNS-over-HTTPS (DOH) connection on a Windows system. It identifies processes that match the specific image or original filename of "curl.exe" and checks for command-line parameters indicating insecure connections, such as '--doh-insecure' or '--proxy-insecure'. This may indicate potential misuse or vulnerability concerning network communications executed with these flags.
-  Updated-Date: '2024_09_04'
+  Summary: This rule detects the execution of "curl.exe" on Windows systems when used with an "insecure" flag over a proxy or DNS-over-HTTPS (DOH) connection. It identifies when the "curl" command is used with either the "--doh-insecure" or "--proxy-insecure" command-line options, which indicate that curl is directed to ignore certificate warnings, potentially exposing the system to man-in-the-middle attacks. This can point to insecure data transfers or improper configurations that undermine secure communication protocols.
+  Updated-Date: '2026_01_30'
 2c28c248-7f50-417a-9186-a85b223010ee:
   Created-Date: '2024_09_04'
   Custom-Edited: false
@@ -4618,10 +4642,10 @@
   Created-Date: '2024_08_07'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: cc65cfb863f188fa8eda1088743aa3fd
+  Rule-Body-Hash: 5a81e7cac5e1e11b47b956b391e067a4
   Ruleset: core
-  Summary: This rule detects the use of bitsadmin.exe to download a file into suspicious target folders on a Windows system. It monitors process creation logs for any instances where bitsadmin is executed with specific command line flags such as '/transfer', '/create', or '/addfile'. The rule particularly scrutinizes downloads directed to potentially sensitive or unusual directories, including but not limited to '\Perflogs', '\ProgramData\', '\Temp\', '\Users\Public\', '\Windows\', and various paths within the AppData and Desktop folders. This behavior can indicate malicious activity related to defense evasion, persistence, or attack techniques enumerated under identifiers like T1197, S0190, and T1036.003.
-  Updated-Date: '2024_09_03'
+  Summary: This rule detects the use of `bitsadmin.exe` to download files to suspicious target directories in a Windows operating system. `Bitsadmin.exe` is a command-line tool used to create download or upload jobs and monitor their progress. This rule is particularly concerned with detecting potentially malicious activity where `bitsadmin` commands specify file downloads to directories that are generally not used for this purpose, such as those under `:\Perflogs`, `:\ProgramData\`, or `:\Users\Public\`. The presence of this behavior might indicate an attacker attempting to employ `bitsadmin` for illicit transfers, including command-and-control operations, while evading detection through the misuse of legitimate system utilities.
+  Updated-Date: '2026_01_30'
 2e4e488a-6164-4811-9ea1-f960c7359c40:
   Created-Date: '2024_08_06'
   Custom-Edited: false
@@ -5538,10 +5562,10 @@
   Created-Date: '2024_09_04'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: 2e51fa0f39d2a39cf338d8f239b81270
+  Rule-Body-Hash: f1688e24b44e0b0136de1d7690d4e706
   Ruleset: sigmahq
-  Summary: This rule detects attempts to install unsigned AppX packages using the "Add-AppxPackage" or its alias "Add-AppPackage" cmdlets. These activities are identified through commands executed by PowerShell or PowerShell Core, especially when the command line includes the flag '-AllowUnsigned'. Such behavior might indicate persistence or defense evasion techniques on a Windows system. Detection focuses on process creation logs where these specific command lines are found.
-  Updated-Date: '2024_09_04'
+  Summary: This rule detects attempts to install unsigned AppX packages on Windows systems using the "Add-AppxPackage" cmdlet or its alias "Add-AppPackage" through PowerShell. The presence of these commands, especially with the " -AllowUnsigned" flag, indicates the installation of unsigned applications, which might be employed for persistence or defense evasion by attackers. The use of tools such as "powershell.exe" or "pwsh.exe" suggests the potentially unauthorized execution of scripts to deploy applications outside of typical security checks.
+  Updated-Date: '2026_01_30'
 37774c23-25a1-4adb-bb6d-8bb9fd59c0f8:
   Created-Date: '2024_08_07'
   Custom-Edited: false
@@ -5630,6 +5654,14 @@
   Ruleset: core
   Summary: This rule detects the execution of the reconnaissance tool Seatbelt by analyzing process creation logs on Windows systems for specific command line parameters and metadata associated with the Seatbelt executable. Seatbelt is commonly used for system information gathering, focusing on elements like DPAPI master keys, interesting running processes and files, certificate thumbprints, browsing history in Chromium and Firefox, cloud credentials, and process creation events. The rule is designed to identify the presence of Seatbelt through specific command line groups and output file parameters to minimize false positives.
   Updated-Date: '2024_09_03'
+387df17d-3b04-448f-8669-9e7fd5e5fd8c:
+  Created-Date: '2026_01_30'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: cb5eb7ef60997745c54504b6d6099e04
+  Ruleset: sigmahq
+  Summary: This rule detects process access events where WerFaultSecure.exe interacts with MsMpEng.exe, identified by the presence of dbgcore.dll or dbghelp.dll in the call trace. This activity suggests the use of EDR freeze techniques. WerFaultSecure.exe, operating with Protected Process Light (PPL) status and WinTCB protection level, can use this method to invoke MiniDumpWriteDump, thereby suspending endpoint detection and response (EDR) or antivirus processes. This suspension potentially allows malicious activities to occur without detection during the inactivity period of the security processes.
+  Updated-Date: '2026_01_30'
 38825179-3c78-4fed-b222-2e2166b926b1:
   Created-Date: '2024_08_07'
   Custom-Edited: false
@@ -5674,10 +5706,10 @@
   Created-Date: '2024_09_04'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: 13dca8deee00232c0e65e07f6b7194e6
+  Rule-Body-Hash: 4bc01b85ffdd642a341792df29931eb4
   Ruleset: sigmahq
-  Summary: This rule detects the successful execution of commands against an instance using AWS System Manager via the CloudTrail service. It checks for events where the `SendCommand` action is initiated by `ssm.amazonaws.com` and results in a successful command status. While there are legitimate uses for sending commands to EC2 instances using System Manager, such actions can also indicate initial access or privilege escalation attempts by attackers. Therefore, this rule aims to identify potential malicious activity that leverages System Manager to gain unauthorized access or escalate privileges within a cloud environment.
-  Updated-Date: '2025_07_08'
+  Summary: This rule detects the potential malicious usage of AWS CloudTrail System Manager by identifying successful execution of commands against an instance. It focuses on instances where the command is sent through the AWS Systems Manager (SSM) with a successful outcome marked by either a "Success" error code or no error code at all. While AWS SSM is a legitimate tool used for operations like updating or maintaining cloud-based machines, the rule highlights potential security threats associated with unauthorized or suspicious use of command executions, indicating possible privilege escalation or initial access attacks.
+  Updated-Date: '2026_01_30'
 38eb1dbb-011f-40b1-a126-cf03a0210563:
   Created-Date: '2024_09_04'
   Custom-Edited: false
@@ -6266,10 +6298,10 @@
   Created-Date: '2024_09_04'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: 24bc4079fd3c1e063b125bd17c5e604e
+  Rule-Body-Hash: 09d1a80af5537070e508d381c79ae1cd
   Ruleset: sigmahq
-  Summary: This rule detects events where files were not allowed to run on Windows systems using Applocker. Applocker is a security feature that assists in preventing unauthorized applications and files from executing, particularly useful in environments like terminal servers where users may not have full privileges. The detection is triggered by specific event IDs that indicate blocked execution attempts, highlighting the importance of configuring Applocker properly and ensuring event logging is set up to capture these incidents.
-  Updated-Date: '2025_11_28'
+  Summary: This rule detects when AppLocker, a security feature in Windows, prevents the execution of an application, DLL, script, MSI, or packaged app. AppLocker is designed to help administrators control which applications and files can run in their system, enhancing security by blocking unauthorized or potentially harmful software from executing. The detection is triggered by specific event IDs that indicate the type of execution or deployment that was blocked, providing insight into activities that may require attention or further investigation.
+  Updated-Date: '2026_01_30'
 402e1e1d-ad59-47b6-bf80-1ee44985b3a7:
   Created-Date: '2024_08_07'
   Custom-Edited: false
@@ -6354,10 +6386,10 @@
   Created-Date: '2024_08_07'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: 3ad6d7d9260913b6e4cecd85b1c2d999
+  Rule-Body-Hash: 1dedf7d3d8d94c0e17b319ef868ade52
   Ruleset: core
-  Summary: This rule detects the execution of malicious PowerShell scripts associated with offensive security tools or malware exploitation activities. These scripts are commonly used for reconnaissance, privilege escalation, persistence, or exploitation on systems running Windows. The detection focuses on the presence and execution of specific PowerShell script filenames, such as those from well-known offensive projects like PowerSploit, PowerUpSQL, and Invoke-ZeroLogon. The rule targets various script functionalities, including credential dumping, system information gathering, accessing network resources, and bypassing security controls. It aims to identify script execution indicative of attempts to perform unauthorized actions or gather sensitive information, which are common symptoms of targeted attacks or exploitation campaigns.
-  Updated-Date: '2025_07_08'
+  Summary: This rule detects the execution of known offensive PowerShell scripts that are used for exploitation or reconnaissance. It identifies scripts from sources such as PowerSploit, PowerUpSQL, Invoke-ZeroLogon, and many others. These scripts are typically associated with activities such as credential dumping, password spraying, backdoor installation, privilege escalation, network scanning, and communication via DNS or HTTP. The scripts can facilitate unauthorized access and manipulation of system settings or application data. By monitoring the execution of these scripts, the rule assists in identifying potential malicious actions and helps in bolstering security measures against such threats on Windows systems.
+  Updated-Date: '2026_01_30'
 4109cb6a-a4af-438a-9f0c-056abba41c6f:
   Created-Date: '2024_08_07'
   Custom-Edited: false
@@ -6414,6 +6446,14 @@
   Ruleset: sigmahq
   Summary: This rule detects suspicious DNS queries that contain base64 encoded strings. Base64 encoding in DNS queries can be indicative of attempts at data exfiltration or command-and-control communication.
   Updated-Date: '2024_09_04'
+416bc4a2-7217-4519-8dc7-c3271817f1d5:
+  Created-Date: '2026_01_30'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: 2e3313b90d7bd3a6779c1199b15fadd6
+  Ruleset: sigmahq
+  Summary: This rule detects the suspicious loading of the `dbgcore.dll` or `dbghelp.dll` files from uncommon directories, such as user-related folders on Windows systems. These DLLs are used in processes that, if loaded from unexpected locations, might indicate an attempt to perform credential dumping or evade security tools like Endpoint Detection and Response (EDR) and antivirus software. The activity involves leveraging the MiniDumpWriteDump function found in these DLLs, which can be maliciously utilized to suspend target processes and potentially extract sensitive information. This can also serve as a method for defense evasion.
+  Updated-Date: '2026_01_30'
 418dc89a-9808-4b87-b1d7-e5ae0cb6effc:
   Created-Date: '2024_08_07'
   Custom-Edited: false
@@ -6530,10 +6570,10 @@
   Created-Date: '2024_09_04'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: a09ab67c1c7ad1bb6c60703f994d1b36
+  Rule-Body-Hash: f7d2d6b37d178bbb4766329003f5ab34
   Ruleset: sigmahq
-  Summary: This rule detects the use of the Windows utility certutil.exe for downloading files from specific file-sharing websites. It monitors processes where certutil.exe is executed with specific command line arguments used for downloading, such as 'urlcache' or 'verifyctl'. The rule triggers upon detecting URLs from well-known file-sharing and hosting services like GitHub, Dropbox, and MediaFire in the command line, indicating potential misuse of certutil for downloading files, which may be associated with malicious activity or unauthorized data transfers.
-  Updated-Date: '2025_11_28'
+  Summary: This rule detects the use of the Windows utility `certutil.exe` to download files from various file-sharing websites. `Certutil` is a command-line program that is often used for certificate services, but it can also be exploited by attackers to transfer malicious files. This detection focuses on command lines associated with `certutil` that include specific flags and URLs commonly used by attackers to download or verify files from sites like GitHub, Dropbox, MediaFire, and Pastebin, among others. The rule alerts on instances where `certutil.exe` is used in a potentially suspicious manner, particularly when it interacts with known file-sharing domains that are often linked with cyber threats and illicit data transfer.
+  Updated-Date: '2026_01_30'
 42a993dd-bb3e-48c8-b372-4d6684c4106c:
   Created-Date: '2024_08_07'
   Custom-Edited: false
@@ -7122,10 +7162,10 @@
   Created-Date: '2024_08_07'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: 1a9847beb3ba84780a04a05080be63ea
+  Rule-Body-Hash: 7842ba0542977cdd5e244784598de28b
   Ruleset: core
-  Summary: This rule detects the loading of the VSS (Volume Shadow Copy Service) trace DLL, specifically `vsstrace.dll`, by unusual executables on Windows systems. The behavior is considered potentially suspicious, as VSS functionality is typically invoked by known system processes and trusted applications. The rule applies exclusions to commonly expected paths and processes, such as Windows system directories and well-known software locations, to minimize false positives. It guards against unauthorized or stealthy operations that could manipulate or delete volume shadow copies, often associated with defense evasion or impact techniques like data destruction.
-  Updated-Date: '2025_10_29'
+  Summary: This rule detects potentially suspicious activity involving the loading of the `vsstrace.dll` library by uncommon executables on Windows systems. Specifically, it identifies occurrences where executables that are not normally associated with Volume Shadow Copy operations load the `vsstrace.dll`, which is linked to shadow copy tracing components. This can indicate unauthorized or malicious attempts to interact with system shadow copies, potentially as part of defense evasion or impact tactics. The rule excludes common applications and directories known to legitimately use this DLL, reducing false positives from standard Windows operations and trusted software.
+  Updated-Date: '2026_01_30'
 48d053db-6a56-4866-b60d-0975647050ed:
   Created-Date: '2025_10_02'
   Custom-Edited: false
@@ -7869,10 +7909,10 @@
   Created-Date: '2024_09_04'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: d6f98a514d2431d734bf949895332a9a
+  Rule-Body-Hash: fffab3bbd8df1d9765387b9d8fe9b985
   Ruleset: sigmahq
-  Summary: This rule detects the practice of DLL sideloading, where Dynamic Link Libraries (DLLs) typically located in system directories such as System32 or SysWOW64 are loaded from non-standard, potentially suspicious locations. This behavior can indicate an attempt to bypass security controls or execute unauthorized code, as malicious actors may use DLL sideloading to run payloads or hide their actions. While legitimate applications may also engage in DLL loading from various directories, this detection aims to identify anomalies that could signal malicious intent or compromise. The rule monitors a wide array of DLLs and compares their loaded locations against expected system paths, triggering alerts when discrepancies suggest DLL sideloading tactics are being employed.
-  Updated-Date: '2025_07_08'
+  Summary: This rule detects potential system DLL sideloading from non-system directories. DLL sideloading is a technique where a malicious actor exploits the dynamic link library (DLL) loading process to inject malicious code, typically by masquerading a malicious DLL with a legitimate one that is expected to be loaded by the application. This detection targets DLLs, which are usually found in system directories like System32 or SysWOW64, but are being loaded from other locations on the system. Such activity can be indicative of various attack techniques such as defense evasion, persistence, or privilege escalation. The detection is comprehensive, including DLLs that could be hijacked as noted in several research projects and publications.
+  Updated-Date: '2026_01_30'
 4fcac6eb-0287-4090-8eea-2602e4c20040:
   Created-Date: '2024_08_07'
   Custom-Edited: false
@@ -8149,10 +8189,10 @@
   Created-Date: '2024_09_04'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: acb2337e3f4f492b1181b7d55301d18f
+  Rule-Body-Hash: 9d295ec4043d7a76610d6b45f105a135
   Ruleset: sigmahq
-  Summary: This rule detects the download of suspicious file types from well-known file and paste sharing domains on Windows systems. It identifies when files with certain extensions, such as '.cpl', '.dll', '.exe', '.hta', '.lnk', '.one', '.vbe', '.vbs', and '.xll' appended with ':Zone', are downloaded from various domains like githubusercontent.com, anonfiles.com, pastebin.com, and others. These files are monitored because they may be associated with potential security threats, including defense evasion tactics by threat actors. The rule helps in identifying potentially harmful downloads from these domains which are often used for distributing malware or performing unauthorized data storage and transfer activities.
-  Updated-Date: '2025_10_02'
+  Summary: "This rule detects the download of suspicious file types from well-known file and paste sharing domains on Windows systems. Specifically, it targets downloads containing certain risky file extensions\u2014such as .cpl, .dll, .exe, .hta, .lnk, .one, .vbe, .vbs, and .xll\u2014interacting with alternate data streams, identified by the \":Zone\" suffix. These file downloads are sourced from domains often used to share files, including githubusercontent.com, anonfiles.com, discordapp.com, dropboxusercontent.com, pastebin.com, and mega.nz, among others. The rule aims to identify potentially malicious file downloads that could be linked to evasion or unauthorized activities, especially involving executable or script files, which are common vectors in cyber threat campaigns."
+  Updated-Date: '2026_01_30'
 5259cbf2-0a75-48bf-b57a-c54d6fabaef3:
   Created-Date: '2024_09_04'
   Custom-Edited: false
@@ -8537,14 +8577,6 @@
   Ruleset: core
   Summary: This rule detects the execution of tools and scripts associated with SMB relay attacks on Windows systems, which are often used for privilege escalation. Specifically, it targets tools such as "PetitPotam," "RottenPotato," "HotPotato," "JuicyPotato," "Responder," and script commands like "Invoke-Tater" and "Invoke-PetitPotam." These tools and scripts can manipulate network protocols to gain unauthorized access or escalate privileges. The rule is designed to identify suspicious execution patterns indicative of these relay attack techniques while filtering out known legitimate software like "HotPotatoes."
   Updated-Date: '2025_10_29'
-558eebe5-f2ba-4104-b339-36f7902bcc1a:
-  Created-Date: '2024_08_07'
-  Custom-Edited: false
-  Reviewed: true
-  Rule-Body-Hash: d3d0f827019339002f47fb2cfe72f239
-  Ruleset: core
-  Summary: This rule detects changes in the creation date of files on a Windows system where the file creation date has been altered to appear as if it was created in a different year than the original, potentially indicating a defense evasion technique known as "timestomping." Timestomping is used by attackers to modify the creation time of a backdoor or other malicious files, making them seem like they were installed along with the operating system. Despite this, legitimate processes may also alter file creation times, so this activity is not inherently malicious. The rule includes filters to exclude certain legitimate files and processes known to change file creation dates.
-  Updated-Date: '2024_09_03'
 5594e67a-7f92-4a04-b65d-1a42fd824a60:
   Created-Date: '2024_09_04'
   Custom-Edited: false
@@ -8597,10 +8629,10 @@
   Created-Date: '2024_09_04'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: 2cc861b1d4af308a7e91d542e04e5ac3
+  Rule-Body-Hash: 4eda05b6e8333ea5cdc05fb3d370c5f4
   Ruleset: sigmahq
-  Summary: This rule detects the use of `curl.exe` to download files from various file-sharing domains, which may indicate suspicious activity. The detection focuses on the creation of processes involving `curl.exe`, specifically from domains associated with file sharing or temporary data storage, such as `githubusercontent.com`, `anonfiles.com`, and `mediafire.com`. The rule identifies command lines that include HTTP references and output flags like `-O` or `--remote-name`, and files with potentially dangerous extensions like `.exe`, `.bat`, and `.vbs`. The behavior aims to highlight unauthorized or malicious data transfer activities within a Windows environment.
-  Updated-Date: '2025_10_02'
+  Summary: This rule detects potentially suspicious file downloads using curl.exe on Windows systems, specifically when downloading from various file-sharing domains. It monitors for command-line executions of curl.exe that involve URLs from known file-sharing and hosting services such as githubusercontent.com, mediafire.com, mega.nz, and pastebin.com, among others. The rule focuses on downloads involving executable files such as .exe, .bat, .ps1, and similar extensions, which are often associated with executable scripts or binaries. The rule looks for command-line arguments that indicate downloading behavior, such as options for remote name or output. This detection aims to identify potentially malicious activities involving unauthorized or unexpected file downloads, which could indicate a threat actor attempting to transfer potentially harmful files onto the system.
+  Updated-Date: '2026_01_30'
 5660d8db-6e25-411f-b92f-094420168a5d:
   Created-Date: '2024_09_03'
   Custom-Edited: false
@@ -8773,10 +8805,10 @@
   Created-Date: '2025_11_28'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: af03da390491e5587661a4915b4bc4c1
+  Rule-Body-Hash: 423974fab96e3f0063e7da13fd08d817
   Ruleset: sigmahq
-  Summary: This rule detects the execution of WSASS, which is a tool designed to dump the LSASS (Local Security Authority Subsystem Service) memory on Windows systems. The tool utilizes Windows Error Reporting's WerFaultSecure.EXE to circumvent Protected Process Light (PPL) protections, enabling credential access through the dumping of sensitive process memory. The detection is based on identifying the execution of the WSASS executable by its image name, specific hash value, or command line containing "werfaultsecure," which is indicative of this memory dumping activity.
-  Updated-Date: '2025_11_28'
+  Summary: This rule detects the execution of WSASS, which is a tool designed to dump LSASS (Local Security Authority Subsystem Service) memory on Windows systems. WSASS utilizes the Windows Error Reporting tool, WerFaultSecure.EXE, to circumvent PPL (Protected Process Light) protections and access sensitive memory areas. The rule identifies this activity by monitoring process creation logs and looks for specific indicators such as the execution of a file named wsass.exe, certain hash values, or command-line patterns that include commands to exploit WerFaultSecure.EXE to access LSASS memory. This activity is typically associated with credential access techniques on Windows platforms.
+  Updated-Date: '2026_01_30'
 58af08eb-f9e1-43c8-9805-3ad9b0482bd8:
   Created-Date: '2024_09_03'
   Custom-Edited: false
@@ -8929,14 +8961,22 @@
   Ruleset: sigmahq
   Summary: This rule detects changes to the Windows Explorer registry settings specifically related to the "Hidden" and "ShowSuperHidden" values. The modification to disable the display of hidden and system files is often used by various malware families to conceal their files from users, thereby evading detection.
   Updated-Date: '2025_02_04'
+5a6b7c8d-9e0f-1a2b-3c4d-5e6f7a8b9c0d:
+  Created-Date: '2026_01_30'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: 95b08ff1842eb50c33cea97a8b7b04a7
+  Ruleset: sigmahq
+  Summary: This rule detects the use of cmd.exe to execute commands with the "start" utility while employing the "/b" (no window) or "/min" (minimized) flags, targeting operations that involve specific script extensions or locations in suspicious directories. This behavior has been associated with malware campaigns involving Chaos, DarkSide, and Emotet, which utilize such techniques for defense evasion. The rule monitors the execution of commands located in system directories commonly associated with temporary or public access and commands using uncommon script extensions. In addition, it looks for patterns indicative of scripting operations intended to evade detection, such as commands that hide execution or initiate suspicious downloads.
+  Updated-Date: '2026_01_30'
 5a6e1e16-07de-48d8-8aae-faa766c05e88:
   Created-Date: '2024_09_04'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: 48f5d9d2915b29c0de52ad604f9744f3
+  Rule-Body-Hash: 4052a6469f39cc2feb681740824efbc6
   Ruleset: sigmahq
-  Summary: This rule detects the execution of the "curl.exe" command with the "-c" flag, which is used to save cookie data. Curl is a command-line tool for transferring data with URLs, and the presence of this flag indicates an attempt to store cookies, potentially suggesting session hijacking activities.
-  Updated-Date: '2024_09_04'
+  Summary: This rule detects the execution of the "curl.exe" utility on Windows systems specifically when used with the "-c" flag or the "--cookie-jar" option. These options are used to save cookie data, which can indicate an attempt at session hijacking by capturing cookies that store session information. Monitoring such processes can help identify unauthorized access attempts or data exfiltration activities by malware or malicious actors using curl to manipulate or capture session cookies.
+  Updated-Date: '2026_01_30'
 5a7132c0-86db-4e6b-95c0-f0e9d7f461aa:
   Created-Date: '2025_10_02'
   Custom-Edited: false
@@ -9045,10 +9085,10 @@
   Created-Date: '2024_08_06'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: ec38d283e0bd058cb55550dd29011b7a
+  Rule-Body-Hash: 1486f4bd519128defb57bf7c908a5f00
   Ruleset: core
-  Summary: This rule detects the usage of bitsadmin.exe to download files with suspicious extensions on Windows systems. Bitsadmin, a command-line tool for managing Background Intelligent Transfer Service (BITS) jobs, can be exploited for malicious purposes. The rule specifically looks for command lines containing keywords like '/transfer,' '/create,' or '/addfile,' along with file extensions such as '.7z,' '.asax,' '.dll,' '.ps1,' '.rar,' and numerous others that are often associated with potentially harmful files or scripts. Monitoring these patterns helps in identifying attempts at defense evasion and persistence by malicious actors.
-  Updated-Date: '2024_09_03'
+  Summary: This rule detects the use of BITSAdmin, which is a command-line tool for managing Background Intelligent Transfer Service jobs on Windows, downloading files with suspicious extensions. The rule monitors for executions of "bitsadmin.exe" when it is used with specific command-line options like "/transfer", "/create", or "/addfile". It specifically looks for downloads that include file extensions commonly associated with scripts, executables, and other potentially malicious formats, such as '.exe', '.bat', '.cmd', '.ps1', and various web-related extensions like '.asp' and '.jsp'. These file types can be indicative of files used in cyber attacks for malware execution or persistence actions.
+  Updated-Date: '2026_01_30'
 5b872a46-3b90-45c1-8419-f675db8053aa:
   Created-Date: '2024_08_07'
   Custom-Edited: false
@@ -9081,6 +9121,14 @@
   Ruleset: emerging-threats
   Summary: This rule detects a suspicious user agent string associated with the APT40 group's Dropbox tool. APT40 is a known advanced persistent threat actor that uses Dropbox as a command-and-control channel. The rule focuses on identifying the specific user agent string "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/36.0.1985.143 Safari/537.36" in HTTP proxy logs when it communicates with the Dropbox API at "api.dropbox.com". This activity is indicative of potential malicious exfiltration or command-and-control operations common in cyber espionage. While this user agent may sometimes represent legitimate old browser usage, its occurrence warrants high scrutiny given the context.
   Updated-Date: '2025_07_08'
+5bac7a56-da88-4c27-922e-c81e113b20cb:
+  Created-Date: '2026_01_30'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: b82f6dd73a984630c110c71d9da22b34
+  Ruleset: sigmahq
+  Summary: This rule detects the execution of GitHub self-hosted runners on local infrastructure, which may be exploited for gaining persistent access and executing unauthorized code. The detection targets the behavior of Shai-Hulud, an npm supply chain malware that compromises CI/CD environments by installing runners on affected systems. This malware misuses these runners to maintain its presence, often occurring after stealing user credentials, and exploits their access to sensitive information and internal networks. The rule identifies specific processes related to the runner's workflow, such as the execution of files like `Runner.Worker.exe` or `Runner.Listener.exe`, and their corresponding command-line parameters related to their operation.
+  Updated-Date: '2026_01_30'
 5bb68627-3198-40ca-b458-49f973db8752:
   Created-Date: '2024_08_07'
   Custom-Edited: false
@@ -9133,10 +9181,10 @@
   Created-Date: '2024_08_07'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: 96a1a9cfaf70944d5f70ce3fc0c96e7f
+  Rule-Body-Hash: 2f68a96f72b1cee10dc215083d26d493
   Ruleset: core
-  Summary: This rule detects potentially suspicious file downloads directly from IP addresses using curl.exe on Windows systems. It identifies instances where curl.exe is invoked to download files from specific IP addresses rather than domain names, with command-line entries including patterns like "http" and parameters such as '-O', '--remote-name', or '--output' which denote file-saving actions. The rule further filters these downloads by looking for file extensions commonly associated with executable, script, and image files including but not limited to .exe, .dll, .bat, .ps1, and .png.
-  Updated-Date: '2024_09_03'
+  Summary: 'This rule detects potentially suspicious activity where files are downloaded directly from IP addresses using `curl.exe` on Windows systems. The detection focuses on command executions involving `curl.exe` combined with certain criteria: an IP address in the URL, the presence of HTTP in the command line, file output options such as `-O`, `--remote-name`, or `--output`, and specific file extensions typically associated with executable or script files, such as `.exe`, `.dll`, and `.ps1`. This pattern may indicate attempts to download and execute malicious files, which aligns with activity seen in attacks targeting software like Veeam or involving malware like IcedID.'
+  Updated-Date: '2026_01_30'
 5cc2cda8-f261-4d88-a2de-e9e193c86716:
   Created-Date: '2024_08_07'
   Custom-Edited: false
@@ -9181,10 +9229,10 @@
   Created-Date: '2024_08_07'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: 04f119080c02a22d70da91b16c071f88
+  Rule-Body-Hash: 5ba26e8ff9817ca55d1b23b4df730521
   Ruleset: core
-  Summary: This rule detects an AppX package added to the pipeline of "to be processed" packages that are located in suspicious locations. Such locations include directories like Public, PerfLogs, Desktop, Downloads, Windows Temp, and Local Temp files. AppX packages found in these directories may indicate malicious activity or attempted malware deployment through unconventional paths.
-  Updated-Date: '2024_09_03'
+  Summary: This rule detects an AppX package that has been added to the deployment pipeline of packages pending processing, specifically when the package is located in a directory commonly used as a staging area. These directories include paths such as PerfLogs, Users/Public, Windows/Temp, and Local/Temp, among others. The presence of an AppX package in such known directories could indicate malicious intent or misuse of Windows apps mechanisms, which is relevant in the context of malware deployment.
+  Updated-Date: '2026_01_30'
 5cdeb555-65de-4767-99fe-e26807465148:
   Created-Date: '2024_08_07'
   Custom-Edited: false
@@ -9585,6 +9633,14 @@
   Ruleset: core
   Summary: This rule detects processes that access the camera and microphone from suspicious directories such as temporary folders, recycle bin, and default user directories on a Windows system. It identifies registry events where the target object involves permissions for the camera and microphone, specifically under paths indicating irregular or temporary file locations. This may indicate potential unauthorized or malicious use of these devices.
   Updated-Date: '2024_09_03'
+6225c53a-a96e-4235-b28f-8d7997cd96eb:
+  Created-Date: '2026_01_30'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: ab0ad985cbdbe6754aae21bd147c8d6e
+  Ruleset: sigmahq
+  Summary: This rule detects the tampering of Hypervisor-protected Code Integrity (HVCI) related registry values via the command line tool reg.exe. HVCI employs virtualization-based security to ensure only trusted code executes in kernel mode, protecting code integrity. Adversaries might manipulate HVCI settings to allow the loading of malicious or unsigned drivers, potentially used to escalate privileges, maintain persistence, or bypass security mechanisms. The detection focuses on process creations involving specific command line patterns or registry modifications related to virtualization-based security settings.
+  Updated-Date: '2026_01_30'
 62b20d44-1546-4e61-afce-8e175eb9473c:
   Created-Date: '2024_09_04'
   Custom-Edited: false
@@ -10413,10 +10469,10 @@
   Created-Date: '2024_09_04'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: 44e359b4d62315a10def0c065b96b2bb
+  Rule-Body-Hash: d0053bc90d762e0d2c68dad12a0ffc85
   Ruleset: sigmahq
-  Summary: This rule detects an AppX package deployment that was blocked by an AppLocker policy. AppX packages are application distribution files used by Windows, and AppLocker is a security feature that restricts which applications can run. The detection is triggered by the specific event ID 412 in the AppXDeployment-Server service logs. The rule aims to identify instances where a deployment attempt is obstructed by the system's application control policies, which can be relevant for monitoring potential security incidents or configuration issues.
-  Updated-Date: '2024_09_04'
+  Summary: This rule detects an attempt to deploy an AppX package that was blocked by an AppLocker policy on a Windows system. AppX packages are application packages used in Windows environments, and AppLocker is a security feature that helps administrators control which applications can be executed on user devices. The detection is based on monitoring for a specific event ID associated with AppX package deployment blockages, indicating an instance where a policy has prevented the installation or execution of a potentially unauthorized or harmful application. This helps enhance security by preventing unwanted software from running.
+  Updated-Date: '2026_01_30'
 6aef64e3-60c6-4782-8db3-8448759c714e:
   Created-Date: '2024_09_04'
   Custom-Edited: false
@@ -10493,10 +10549,10 @@
   Created-Date: '2024_08_07'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: 79b97a2ce95a46275fe9c2051b929888
+  Rule-Body-Hash: 608eb4606c715cfc62a3b607ea9b1275
   Ruleset: core
-  Summary: This rule detects the use of DLL sideloading involving system DLLs that are typically not found in the designated system directories. This technique can be employed to bypass User Account Control (UAC) or escalate privileges, posing a threat to system integrity and security. The focus is on monitoring the loading of specific DLLs within the Windows System32 directory, such as TSMSISrv.dll, TSVIPSrv.dll, wbemcomn.dll, WLBSCTRL.dll, wow64log.dll, and WptsExtensions.dll. The rule filters out DLLs that are legitimately signed by Microsoft Windows, ensuring that alerts are generated only for potentially malicious activity. This enhances the detection of unauthorized attempts to exploit system vulnerabilities through DLL sideloading.
-  Updated-Date: '2025_05_27'
+  Summary: This rule detects the loading of specific system DLL files from the Windows System32 directory that are not typically present on a system. This activity may indicate attempts at phantom DLL hijacking, where attackers exploit legitimate processes to load malicious DLLs. Malicious actors use this technique by placing DLLs with names matching non-existent system binaries, which can then be executed by legitimate applications searching these directories, potentially allowing the attackers to execute arbitrary code.
+  Updated-Date: '2026_01_30'
 6ba5a05f-b095-4f0a-8654-b825f4f16334:
   Created-Date: '2024_08_07'
   Custom-Edited: false
@@ -10753,14 +10809,6 @@
   Ruleset: core
   Summary: This rule detects potential credential dumping activity on Windows systems by identifying default filenames generated by CrackMapExec or Impacket-secretsdump executions. These tools are often used by attackers for unauthorized credential access, utilizing services such as RemoteRegistry to manipulate or extract sensitive information. The rule specifically monitors for occurrences where `svchost.exe` is the executing image and where target filenames match a specific temporary file pattern in the Windows System32 directory. This detection aims to identify suspicious activities indicative of attempted or successful credential dumping, which is a critical security concern.
   Updated-Date: '2025_07_08'
-6e30c82f-a9f8-4aab-b79c-7c12bce6f248:
-  Created-Date: '2024_09_04'
-  Custom-Edited: false
-  Reviewed: true
-  Rule-Body-Hash: 6ab3091095877625719a105756013680
-  Ruleset: sigmahq
-  Summary: This rule detects the usage of the `bitsadmin.exe` tool to download files to uncommon target folders within a Windows environment. Bitsadmin, a command-line tool, is typically employed for creating and monitoring download and upload jobs. It's being observed here for its potential misuse in transferring files to directories like `%AppData%`, `%temp%`, `%tmp%`, or `C:\Windows\Temp\`, which may indicate an attempt to evade defenses or establish persistent access. Such activities can be characteristic of defense evasion or persistence tactics employed by malicious actors.
-  Updated-Date: '2025_11_28'
 6e4dcdd1-e48b-42f7-b2d8-3b413fc58cb4:
   Created-Date: '2024_09_04'
   Custom-Edited: false
@@ -10989,10 +11037,10 @@
   Created-Date: '2024_09_04'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: 2dc46ef1292ab9cd492511fb6d2fd502
+  Rule-Body-Hash: da935df3368054e9d75b0e9dff87ca2d
   Ruleset: sigmahq
-  Summary: This rule detects the installation of suspicious packages on Linux systems using common system installation utilities. It monitors package management tools like apt, apt-get, yum, rpm, and dpkg, looking for installation commands associated with potentially suspicious software such as nmap, netcat, wireshark, tshark, openconnect, and proxychains. While these tools can be used for legitimate administrative purposes, they are often associated with network scanning, sniffing, and tunneling activities, making their unexpected appearance on a system a potential security concern.
-  Updated-Date: '2024_09_04'
+  Summary: This rule detects the installation of potentially suspicious software packages on Linux systems through common package management utilities such as `apt`, `yum`, `rpm`, and `dpkg`. It specifically flags commands aimed at installing tools that could be used for network exploration, tunneling, and packet analysis, such as `nmap`, `netcat`, `wireshark`, `tshark`, `openconnect`, `proxychains`, and `socat`. These tools, while often used for legitimate administrative and maintenance tasks, can also be employed for malicious purposes like reconnaissance and network penetration, thus warranting their monitoring.
+  Updated-Date: '2026_01_30'
 7021255e-5db3-4946-a8b9-0ba7a4644a69:
   Created-Date: '2024_08_07'
   Custom-Edited: false
@@ -11345,6 +11393,14 @@
   Ruleset: core
   Summary: This rule detects suspicious shell commands or program code executed via command line that may establish a reverse shell. It tracks specific patterns indicative of reverse shell activity, such as the use of TCP or UDP outbound connections with Bash, Netcat (nc), and other utilities. Reverse shell commands can be identified by strings like 'bash -i', 'nc -e', and sequences involving '/dev/tcp' or '/dev/udp'. Additionally, it recognizes methods related to redirection, socket creation, and certain Perl and Python execution patterns that are typically employed to initiate reverse shells.
   Updated-Date: '2024_09_03'
+73921b9c-cafd-4446-b0c6-fdb0ace42bc0:
+  Created-Date: '2026_01_30'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: 25c095dc7a3724534471aebf0b4ea9b5
+  Ruleset: sigmahq
+  Summary: This rule detects attempts to disable Windows Credential Guard by monitoring specific registry settings. Credential Guard employs virtualization-based security to protect sensitive credential information, such as NTLM hashes and Kerberos tickets, by isolating them so only privileged system software can access these secrets. Adversaries may attempt to deactivate Credential Guard by changing registry values, thereby gaining access to these sensitive credentials, which can be exploited for lateral movement and privilege escalation within a system. The rule identifies changes in certain registry paths with specific values, which could indicate an attempt to disable the security feature.
+  Updated-Date: '2026_01_30'
 739915e4-1e70-4778-8b8a-17db02f66db1:
   Created-Date: '2024_08_07'
   Custom-Edited: false
@@ -12149,10 +12205,10 @@
   Created-Date: '2024_08_07'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: fc223d9f58455a23ef9969b9fb5d87a7
+  Rule-Body-Hash: 88da88b11154c3b250349ea3c6be2e65
   Ruleset: core
-  Summary: This rule detects network connections initiated by processes running in suspicious or uncommon file system locations on a Windows operating system. The rule flags connections if the initiating processes are found in directories such as "$Recycle.bin," "Perflogs," "Temp," "Users\Default," "Windows\Fonts," "Windows\IME," "Windows\System32\Tasks," "Windows\Tasks," "config\systemprofile," and "Windows\addins." It also excludes connections to certain common or known domains to avoid false positives. The detection of such activity is valuable for identifying potential command-and-control communications associated with malware or other unauthorized processes.
-  Updated-Date: '2024_09_03'
+  Summary: This rule detects network connections initiated by processes executed from potentially suspicious or uncommon file system locations on Windows systems. These locations include directories such as $Recycle.bin, Perflogs, Temp, and specific user profile paths like Default and Public. Additionally, directories within the Windows operating system, such as Fonts, IME, and various Tasks folders, are considered uncommon. These directories are typically not used for regular executable files, and their usage for launching network connections may indicate malicious behavior, such as command-and-control activities associated with threats. The detection criteria specifically focus on these unusual file paths, excluding network connections to certain known domains like GitHub, Discord CDN, Dropbox, and other popular cloud storage and pastebin services, to minimize false positives.
+  Updated-Date: '2026_01_30'
 7b449a5e-1db5-4dd0-a2dc-4e3a67282538:
   Created-Date: '2024_08_07'
   Custom-Edited: false
@@ -12365,10 +12421,10 @@
   Created-Date: '2024_08_07'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: 553ca0eccb3041df4b3df3e46e70be08
+  Rule-Body-Hash: a8d5058cfbd366d45b01147cd6637882
   Ruleset: core
-  Summary: This rule detects the use of malicious PowerShell commandlets associated with well-known exploitation frameworks. It identifies potential security threats by monitoring PowerShell modules that match a specified list of suspicious commandlet names. These commandlets are known to perform a wide range of malicious activities, such as exfiltration, persistence, privilege escalation, and credential harvesting. The rule targets PowerShell exploitation frameworks like PowerSharpPack, Invoke-ZeroLogon, ADRecon, Mimikatz, and others. These tools are often used by attackers to gain unauthorized access, bypass security protocols, and execute arbitrary commands. By detecting these commandlets, the rule helps in identifying and mitigating potential security breaches on Windows systems.
-  Updated-Date: '2025_07_08'
+  Summary: This rule detects the use of Commandlet names associated with well-known PowerShell exploitation frameworks. These frameworks include toolsets designed for network penetration testing, privilege escalation, and data exfiltration, such as Mimikatz, Invoke-ZeroLogon, and BloodHound. The detection focuses on identifying potentially malicious activities executed through PowerShell, which may involve credential harvesting, network scanning, persistence mechanisms, and software vulnerabilities exploitation. It targets Commandlets that perform actions like extracting credentials, manipulating security tokens, installing backdoors, and interacting with Active Directory and DNS records. This detection rule is crucial for identifying and mitigating activities related to PowerShell-based attacks on Windows environments, reflecting a broad range of attack vectors typically used by adversaries.
+  Updated-Date: '2026_01_30'
 7d1aaf3d-4304-425c-b7c3-162055e0b3ab:
   Created-Date: '2024_08_07'
   Custom-Edited: false
@@ -12441,6 +12497,14 @@
   Ruleset: emerging-threats
   Summary: This rule detects the use of a Proof-of-Concept (PoC) tool designed to exploit the Local Privilege Escalation (LPE) vulnerability identified as CVE-2021-41379. This vulnerability impacts Windows operating systems and is exploited using the "InstallerFileTakeOver" tool, which is publicly available on Github. The detection is triggered by an event with a specific EventID and Provider Name associated with the Microsoft Installer, particularly when the event data contains the string "test pkg." This rule is instrumental in identifying attempts to gain unauthorized elevated access on a system by exploiting this vulnerability.
   Updated-Date: '2024_11_11'
+7dbbcac2-57a0-45ac-b306-ff30a8bd2981:
+  Created-Date: '2026_01_30'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: c189ba8b44d0825d1438d076dca6030e
+  Ruleset: sigmahq
+  Summary: This rule detects tampering of the AMSI (Anti-Malware Scan Interface) related registry values using command line tools such as reg.exe or PowerShell. AMSI is a security feature in Windows that allows applications and services to integrate with antimalware products to scan scripts and other code executions. Adversaries may attempt to disable AMSI by modifying certain registry settings to avoid detection when running malicious scripts. This rule focuses on identifying registry alteration attempts involving the AMSI settings, specifically changes that use command-line commands to add or modify registry keys related to AMSI, often done to evade security measures.
+  Updated-Date: '2026_01_30'
 7dc2dedd-7603-461a-bc13-15803d132355:
   Created-Date: '2024_09_04'
   Custom-Edited: false
@@ -12789,10 +12853,10 @@
   Created-Date: '2024_09_04'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: 258ec5d81c3ef95dfeb919fe538549dc
+  Rule-Body-Hash: f7bdae78cad7da35a193d3d68b72ef09
   Ruleset: sigmahq
-  Summary: This rule detects unusual processes accessing the `desktop.ini` file, which is utilized to alter how Windows Explorer displays a folder's content, such as renaming files without modifying them on disk. It monitors for specific processes interacting with this file to identify potentially malicious activities that may indicate privilege escalation or persistence mechanisms typically associated with post-exploitation activities.
-  Updated-Date: '2025_10_29'
+  Summary: This rule detects unusual processes interacting with the `desktop.ini` file on Windows systems, which is typically used to influence how Windows Explorer displays folder contents. The detection focuses on processes not commonly expected to access this file, flagging potentially suspicious activity that could suggest privilege escalation or persistence techniques employed by an attacker. The rule excludes activities related to standard Windows file paths and certain legitimate software operations, such as those by JetBrains Toolbox or Microsoft OneDrive, to reduce false positives.
+  Updated-Date: '2026_01_30'
 81325ce1-be01-4250-944f-b4789644556f:
   Created-Date: '2024_09_04'
   Custom-Edited: false
@@ -13205,10 +13269,10 @@
   Created-Date: '2024_09_04'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: 86328e516a0d1404320fa964f78f2fbc
+  Rule-Body-Hash: 9b5afe984ce1c28b545d012ee8fb44e5
   Ruleset: sigmahq
-  Summary: This rule detects the use of `bitsadmin.exe` to download files from potentially suspicious file-sharing domains on Windows systems. `Bitsadmin.exe` is a legitimate command-line tool used for managing Background Intelligent Transfer Service (BITS) in Windows, which can transfer files between a client and a server. The rule targets command lines containing specific transfer-related flags, such as `/transfer`, `/create`, or `/addfile`, coupled with URLs from domains known for file sharing, such as `githubusercontent.com`, `anonfiles.com`, `cdn.discordapp.com`, and `pastebin.com`, among others. This behavior could indicate misuse of BITS for downloading malicious content or evading detection by network defenses. While some legitimate applications may use these methods, the potential for false positives is limited, necessitating careful analysis of detected events for any security implications.
-  Updated-Date: '2025_07_08'
+  Summary: This rule detects the use of the `bitsadmin` tool on Windows systems to download files from suspicious domains commonly associated with file-sharing and potential malicious activities. The tool, `bitsadmin.exe`, is typically utilized for managing transfers of files asynchronously between a client and a server. However, its misuse by malicious actors to download and execute malicious software is a common tactic for evasion and persistence. The rule monitors command line arguments that include transfer-related operations (`/transfer`, `/create`, `/addfile`) and flags specific domains that are often used in unauthorized file downloads, including popular file-sharing services like GitHub, Dropbox, and Mediafire, as well as other lesser-known domains like transfer.sh and trycloudflare.com. Detecting these activities helps in identifying potential command-and-control communications and unauthorized data transfers within a network.
+  Updated-Date: '2026_01_30'
 851c506b-6b7c-4ce2-8802-c703009d03c0:
   Created-Date: '2024_09_04'
   Custom-Edited: false
@@ -13333,10 +13397,10 @@
   Created-Date: '2024_09_04'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: cbfe588af86d723f4e23270c18488355
+  Rule-Body-Hash: 428ed911827c8ffc4e717548d762d9b0
   Ruleset: sigmahq
-  Summary: This rule detects the execution of "curl.exe" with a custom "User-Agent". Attackers can use this to download or exfiltrate data via "curl" to a domain that only accepts specific "User-Agent" strings, which can be part of malicious activities.
-  Updated-Date: '2024_09_04'
+  Summary: This rule detects the execution of "curl.exe" on Windows systems when used with a potential custom "User-Agent" string. Attackers can use this method to download or exfiltrate data by sending HTTP requests to a domain that only accepts specific "User-Agent" strings. This behavior is indicative of attempts to communicate with a server that requires particular headers, which might be used in malicious activities.
+  Updated-Date: '2026_01_30'
 85de3a19-b675-4a51-bfc6-b11a5186c971:
   Created-Date: '2024_09_04'
   Custom-Edited: false
@@ -13345,6 +13409,14 @@
   Ruleset: sigmahq
   Summary: This rule detects the use of the "find" binary on macOS in a potentially suspicious manner to perform discovery activities. Specifically, it monitors for command line parameters associated with searching for files that have unusual or potentially insecure permission settings, such as '-perm -4000', '-perm -2000', '-perm 0777', '-perm -222', '-perm -o w', '-perm -o x', '-perm -u=s', and '-perm -g=s'. Such activity may indicate an attempt to identify files that could be exploited for privilege escalation or other malicious purposes.
   Updated-Date: '2024_09_04'
+85f520e7-6f5e-43ca-874c-222e5bf9c0de:
+  Created-Date: '2026_01_30'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: 63dc04663d588704775cfc1d14d3a0cf
+  Ruleset: sigmahq
+  Summary: This rule detects the execution of `devcon.exe` with commands aimed at disabling the VMware Virtual Machine Communication Interface (VMCI) device. The activity may occur during legitimate VMware Tools troubleshooting or as part of resolving driver conflicts. However, it could also signal malicious behavior where malware seeks to hijack hardware communication via the VMCI device. This technique has been exploited in scenarios involving VMware ESXi vulnerabilities, enabling attacks to escape virtual machines and execute unauthorized code on the ESXi host.
+  Updated-Date: '2026_01_30'
 86157017-c2b1-4d4a-8c33-93b8e67e4af4:
   Created-Date: '2024_09_04'
   Custom-Edited: false
@@ -13661,18 +13733,18 @@
   Created-Date: '2024_08_07'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: 49101b754f478ae0bb16313e6a4c8ce6
+  Rule-Body-Hash: fccca37a74ef4457a9a399552eeee5cc
   Ruleset: core
-  Summary: This rule detects potentially malicious PowerShell commandlets, which are indicative of exploitation activity, by analyzing script block text within PowerShell scripts. It identifies commandlets that are associated with well-known exploitation frameworks and malware, such as PowerSharpPack and Invoke-ZeroLogon, which target system vulnerabilities or attempt privilege escalation. The rule monitors for commandlets associated with credential dumping, reconnaissance, persistence mechanisms, and reverse shells, among other suspicious activities. By identifying these specific commandlets, the rule aids in detecting unauthorized access and actions on Windows systems that may lead to data exfiltration, privilege escalation, or other security breaches.
-  Updated-Date: '2025_07_08'
+  Summary: This rule detects the execution of specific PowerShell script block commands that are associated with well-known exploitation frameworks. These commandlets include a wide array of functions such as credential extraction, system backdoors, privilege escalation, lateral movement, and data exfiltration. The identified commandlets are used by various exploit tools and frameworks such as Mimikatz, PowerSploit, BloodHound, and others, indicative of potential unauthorized activities or malicious actions on the Windows operating system. The rule relies on enabled script block logging to identify these actions, which could be used by attackers to exploit system vulnerabilities, gather sensitive information, or maintain persistence within a compromised network.
+  Updated-Date: '2026_01_30'
 898d5fc9-fbc3-43de-93ad-38e97237c344:
   Created-Date: '2024_09_04'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: 4b0e401028f57f7c3bbcb9b50bf9dfcc
+  Rule-Body-Hash: 8b5218a93cb64d7145574de529aab92a
   Ruleset: sigmahq
-  Summary: This rule detects an AppX package installation attempt on Windows systems that encounters the specific error code "0x80073cff." This error code indicates that the package does not meet the signing requirements, suggesting that the installation may involve a suspicious or potentially malicious package. This detection is important for identifying potential threat actors leveraging unsigned AppX packages to deploy malware or perform unauthorized actions.
-  Updated-Date: '2024_09_04'
+  Summary: This rule detects a failed deployment or installation of an AppX package on Windows systems when the error code "0x80073cff" appears, indicating that the package did not meet the required signing standards. This error can arise when a package installer attempts to deploy an application without adhering to the digital signing prerequisites enforced by Windows, which are necessary for security and integrity. Such failed installations may indicate attempts to install untrusted or improperly signed software, potentially including malicious applications that exploit Windows vulnerabilities.
+  Updated-Date: '2026_01_30'
 899133d5-4d7c-4a7f-94ee-27355c879d90:
   Created-Date: '2024_09_04'
   Custom-Edited: false
@@ -13721,6 +13793,14 @@
   Ruleset: sigmahq
   Summary: This rule detects the deletion of backups or system state backups via "wbadmin.exe" on Windows systems. This activity is often employed by ransomware operators and other malicious actors to disrupt recovery processes by removing backup files. The rule focuses on command-line instructions that include terms related to deletion and backups, while ensuring duplicate alerts are minimized. Legitimate uses such as administration scripts may trigger this detection as false positives.
   Updated-Date: '2024_09_04'
+8a2f4b1c-3d5e-4f7a-9b2c-1e4f6d8a9c2b:
+  Created-Date: '2026_01_30'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: 69cbf17c8e9e809253dfeff5f8985cb8
+  Ruleset: sigmahq
+  Summary: This rule detects the execution of WerFaultSecure.exe when it loads dbgcore.dll or dbghelp.dll, both of which include the MiniDumpWriteDump function. This function creates a minidump of a process by suspending all its threads to ensure a consistent snapshot of the process's memory. The technique known as EDR-Freeze exploits WerFaultSecure.exe, which operates as a Protected Process Light with a WinTCB protection level, to suspend Endpoint Detection and Response (EDR) or antivirus (AV) processes. This suspension capability allows malicious activities to occur undetected during the time these processes are inactive.
+  Updated-Date: '2026_01_30'
 8a3038e8-9c9d-46f8-b184-66234a160f6f:
   Created-Date: '2024_09_04'
   Custom-Edited: false
@@ -13837,10 +13917,10 @@
   Created-Date: '2024_09_04'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: f9e502416af969372e7ecccd65b41790
+  Rule-Body-Hash: b407780d60f68227e1bd7f0f2f7ef125
   Ruleset: sigmahq
-  Summary: This rule detects an AppX package that has been added to the processing pipeline, sourced from suspicious domains. The package is identified through a Windows event, specifically EventID 854, which is associated with the AppX Deployment Server service on Windows systems. The domains in question include well-known file hosting, file sharing, and cloud storage services such as GitHub, Dropbox, Discord, and Mega, among others. The rule aims to highlight potentially malicious applications being installed on a Windows system through these channels, based on the domain from which the AppX package originates. The mentioned domains are frequently scrutinized due to their usage by attackers in malware deployment and defense evasion strategies.
-  Updated-Date: '2025_07_08'
+  Summary: This rule detects the download of an AppX package from file sharing or Content Delivery Network (CDN) domains, as identified by a specific set of URLs, into Windows systems' AppX deployment server. The event signifies that a package is added to the list of packages pending processing. This detection can be critical in identifying potential instances of malware distribution, as malicious actors might use legitimate app distribution mechanisms to deploy harmful applications. The implicated domains are known platforms such as GitHub, Discord, Dropbox, MediaFire, and others that could be misused to evade security measures.
+  Updated-Date: '2026_01_30'
 8b5dacf2-aeb7-459d-b133-678eb696d410:
   Created-Date: '2025_11_28'
   Custom-Edited: false
@@ -13861,10 +13941,10 @@
   Created-Date: '2024_09_04'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: 9ec70ea8247663829a51aa6249da38f7
+  Rule-Body-Hash: d6220a92558b13640a1a41cc270ca753
   Ruleset: sigmahq
-  Summary: This rule detects changes to the Windows registry key associated with Hypervisor Enforced Code Integrity (HVCI), specifically when the "Enabled" value is set to 0. Disabling this feature allows attackers to execute unsigned and potentially malicious code within the kernel, posing a significant security risk. HVCI is a security feature that leverages virtualization-based security to prevent unauthorized code execution, and its disablement should be closely monitored to prevent potential exploitation.
-  Updated-Date: '2025_11_28'
+  Summary: This rule detects changes to specific registry keys related to Hypervisor Enforced Code Integrity (HVCI) in Windows, specifically when the "Enabled" value is set to 0, effectively disabling HVCI. Disabling this security feature allows an attacker to execute unsigned and potentially harmful code within the kernel. Legitimate cases may include system administration tasks where HVCI needs to be disabled for troubleshooting purposes, such as incompatibility issues with certain drivers or applications.
+  Updated-Date: '2026_01_30'
 8b93a509-1cb8-42e1-97aa-ee24224cdc15:
   Created-Date: '2024_09_04'
   Custom-Edited: false
@@ -14037,10 +14117,10 @@
   Created-Date: '2024_09_04'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: 0ac88a62dedd4af91a801d6eaa4b5439
+  Rule-Body-Hash: fd63688909269c2c475ece8dd62c8470
   Ruleset: sigmahq
-  Summary: This rule detects potential execution of the SquiblyTwo attack technique, which is a method used to bypass application whitelisting by abusing the Windows Management Instrumentation Command-line (WMIC). The detection focuses on identifying processes where the Image ends with '\wmic.exe' and the OriginalFileName is 'wmic.exe'. It further inspects the process hashes, specifically looking for certain Imphash values, and monitors command lines containing both 'format:' and 'http'. These indicators suggest that WMIC might have been exploited, possibly with a name change, to execute unauthorized scripts or malicious commands through a remote server.
-  Updated-Date: '2024_12_20'
+  Summary: This rule detects potential execution of the SquiblyTwo technique, which leverages Windows Management Instrumentation (WMI) to execute malicious code remotely. This method involves using the Windows utility `wmic.exe` to process XSL (eXtensible Stylesheet Language) scripts that may contain embedded JScript or VBScript. The technique is notable for bypassing application whitelisting constraints by fetching XSL content from remote sources via HTTP/HTTPS and executing it with full trust privileges directly in memory. This approach avoids detection by traditional disk-based security mechanisms and represents a common use of Living Off The Land Binary (LOLBin) techniques for defense evasion and code execution.
+  Updated-Date: '2026_01_30'
 8d7e392e-9b28-49e1-831d-5949c6281228:
   Created-Date: '2024_08_07'
   Custom-Edited: false
@@ -14129,6 +14209,14 @@
   Ruleset: sigmahq
   Summary: This rule detects attempts by authenticated users who are not permitted to log on remotely, attempting to connect to a computer via Remote Desktop. Such events may arise from attackers probing the network for accessible Windows servers, triggering security event ID 4825.
   Updated-Date: '2025_11_28'
+8e95e73e-ba02-4a87-b4d7-0929b8053038:
+  Created-Date: '2026_01_30'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: d1d808389a4221df7f6add843a3e5dcf
+  Ruleset: sigmahq
+  Summary: This rule detects suspicious child processes that are spawned by ArcSOC.exe, which is associated with ArcGIS Server REST services. ArcSOC.exe can be exploited by attackers to execute code remotely if they successfully compromise an ArcGIS Server system and upload a malicious Server Object Extension (SOE). The rule monitors for specific script interpreters and command-line tools, such as cmd.exe, cscript.exe, mshta.exe, powershell.exe, pwsh.exe, regsvr32.exe, rundll32.exe, wmic.exe, and wscript.exe, being launched as child processes of ArcSOC.exe. It excludes detection of the benign "cmd.exe /c 'ver'" command to reduce false positives.
+  Updated-Date: '2026_01_30'
 8ec2c8b4-557a-4121-b87c-5dfb3a602fae:
   Created-Date: '2024_08_07'
   Custom-Edited: false
@@ -14169,6 +14257,14 @@
   Ruleset: sigmahq
   Summary: This rule detects suspicious use of space characters within TypedPaths registry paths on Windows systems. The presence of numerous space characters, such as En Quad, Em Space, Figure Space, or even normal spaces, in these paths may indicate an attempt to execute commands via phishing lures that use file-fix techniques to obscure malicious activity. By embedding spaces in these paths, attackers can hide harmful commands from detection mechanisms.
   Updated-Date: '2025_11_28'
+8f3ab69a-aa22-4943-aa58-e0a52fdf6818:
+  Created-Date: '2026_01_30'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: 307ee7f07d7c917ace87ff5d95b81b67
+  Ruleset: sigmahq
+  Summary: This rule detects modifications to the User Shell Folders registry values via command-line tools such as reg.exe or PowerShell, which may indicate an attempt to establish persistence on a compromised system. By altering these registry values, attackers can redirect them to malicious executables or scripts that will automatically execute at startup. This technique is commonly employed to maintain persistence, as it ensures that the malicious payloads are executed every time the system boots.
+  Updated-Date: '2026_01_30'
 8f668cc4-c18e-45fe-ad00-624a981cf88a:
   Created-Date: '2024_09_04'
   Custom-Edited: false
@@ -15061,10 +15157,10 @@
   Created-Date: '2024_09_04'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: bc9e86b06d3725472104f23bc8b86117
+  Rule-Body-Hash: 3577488dbaed6932570cf96906457fe6
   Ruleset: sigmahq
-  Summary: This rule detects attempts to install unsigned AppX packages using the "Add-AppxPackage" cmdlet or its alias "Add-AppPackage" in Windows PowerShell scripts. The rule specifically looks for script blocks containing the cmdlet with the flag "-AllowUnsigned," which indicates an attempt to bypass the standard security measures intended to prevent the installation of unverified software. Unsigned AppX packages can pose security risks as they might bypass standard application verification processes, making these detections crucial for identifying potential malicious activity or policy violations.
-  Updated-Date: '2024_09_04'
+  Summary: This rule detects attempts to install unsigned AppX packages on Windows systems using the PowerShell cmdlet "Add-AppxPackage" or its alias "Add-AppPackage." The detection focuses on the presence of the " -AllowUnsigned" parameter, which indicates an attempt to bypass the signature requirement for installing applications, potentially for purposes of persistence or defense evasion.
+  Updated-Date: '2026_01_30'
 97661d9d-2beb-4630-b423-68985291a8af:
   Created-Date: '2024_08_07'
   Custom-Edited: false
@@ -15381,10 +15477,10 @@
   Created-Date: '2024_08_07'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: 975edecf5ae78d08e8722d1ba9c6cc5b
+  Rule-Body-Hash: 38c3b9e284ce7afa93a7dd8895c5ae17
   Ruleset: core
-  Summary: This rule detects the use of the Bitsadmin tool on Windows systems to download files from URLs that contain direct IP addresses. The activity is suspicious as Bitsadmin, a command-line tool for creating and monitoring download and upload jobs, is typically used in legitimate contexts for managing file transfers. However, its use with direct IP addresses may indicate malicious activity, such as downloading files for cyber attacks involving tactics like defense evasion or persistence. The rule specifically monitors the process creation events for instances of "bitsadmin.exe" with command line arguments that suggest file transfer operations from direct IP addresses, while excluding known non-malicious uses related to certain URLs like those from 7-Zip.
-  Updated-Date: '2025_11_28'
+  Summary: This rule detects the suspicious downloading of files using bitsadmin with a direct IP address in the URL. Bitsadmin is a command-line tool in Windows used to create, download, and monitor file transfers. The rule triggers when bitsadmin executes commands like '/transfer', '/create', or '/addfile', paired with URLs starting with 'http://' and followed by a numeric pattern indicating a direct IP. An exception is made for URLs associated with 7-Zip to reduce false positives. This activity can be indicative of malicious behavior such as evading defenses, maintaining persistence, or mimicking legitimate processes.
+  Updated-Date: '2026_01_30'
 99c8be4f-3087-4f9f-9c24-8c7e257b442e:
   Created-Date: '2024_12_20'
   Custom-Edited: false
@@ -15409,6 +15505,14 @@
   Ruleset: sigmahq
   Summary: This rule detects the execution of the "cloudflared" tool, which is used to establish connections back to a tunnel. Threat actors have been observed leveraging this tool to maintain persistence and gain remote access to compromised networks. This detection pertains to the creation of processes on Windows systems where specific command-line arguments such as '-config', '-credentials-contents', '-credentials-file', or '-token' are used in conjunction with commands like 'tunnel' and 'run'.
   Updated-Date: '2024_11_11'
+9a025188-6f2d-42f8-bb2f-d3a83d24a5af:
+  Created-Date: '2026_01_30'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: 307bd5dc584ebc70c653bd2057a30115
+  Ruleset: sigmahq
+  Summary: This rule detects attempts to install unsigned MSIX/AppX packages on Windows systems using the -AllowUnsigned parameter. It leverages AppXDeployment-Server events to identify when unsigned packages are installed, which may indicate potential misuse or security risks. This behavior is typically monitored by identifying Event ID 603 with a specific flag in the system logs. While the installation of unsigned packages might be legitimate in scenarios like software development or testing, malicious actors might exploit this behavior for unauthorized package deployment, leading to possible defense evasion and execution attacks.
+  Updated-Date: '2026_01_30'
 9a0b8719-cd3c-4f0a-90de-765a4cb3f5ed:
   Created-Date: '2024_09_04'
   Custom-Edited: false
@@ -15525,10 +15629,10 @@
   Created-Date: '2024_09_04'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: 38674f4412e7e23654b2bdd2500bdb14
+  Rule-Body-Hash: 408182e60939e7bd37ab82c38ab82ccb
   Ruleset: sigmahq
-  Summary: This rule detects the loading of "credui.dll" and related DLLs by uncommon processes. This is significant because attackers may exploit these DLLs to use functions like "CredUIPromptForCredentials" or "CredUnPackAuthenticationBufferW", which are typically involved in credential prompting and authentication unpacking. The detection encompasses multiple specific DLLs and employs filtering to exclude well-known, legitimate programs that load these DLLs, thus aiming to reduce false positives. The rule also notes potential legitimate processes that could trigger it, which should be considered in the evaluation of detections.
-  Updated-Date: '2024_09_04'
+  Summary: This rule detects the loading of `credui.dll` or `wincredui.dll` by uncommon processes. The DLLs are related to credential management functions such as `CredUIPromptForCredentials` and `CredUnPackAuthenticationBufferW`, which can be targeted by attackers for unauthorized access to credential information. The detection focuses on identifying atypical process behavior associated with these DLLs, excluding legitimate processes such as system applications and recognized software like browser or file explorer applications.
+  Updated-Date: '2026_01_30'
 9b0b7ac3-6223-47aa-a3fd-e8f211e637db:
   Created-Date: '2024_09_04'
   Custom-Edited: false
@@ -15637,10 +15741,10 @@
   Created-Date: '2024_08_07'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: c07cc0ad991d83f81c3981351a8014f7
+  Rule-Body-Hash: 037ce944deb9d0b9da35e71c1ee6602d
   Ruleset: core
-  Summary: This rule detects the modification of the startup key in the Windows registry to a path where a payload could be stored and subsequently launched during system startup. The specific registry keys targeted are within 'SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\User Shell Folders' and include entries that end with 'Startup'. This behavior can indicate attempts to establish persistence or elevate privileges by setting up malicious software to execute automatically when the computer starts.
-  Updated-Date: '2024_09_03'
+  Summary: This rule detects modifications to the User Shell Folders registry values associated with Startup and Common Startup paths in Windows. Such changes can signify attempts to maintain persistence on a system by pointing these registry keys to malicious executables or scripts that execute at startup. This technique is frequently exploited by attackers to ensure that their malicious payloads are automatically launched each time the system boots, leveraging the registry for persistence and privilege escalation efforts.
+  Updated-Date: '2026_01_30'
 9c3d6e32-f4c8-4d73-8b8f-95c3b383a13c:
   Created-Date: '2025_07_08'
   Custom-Edited: false
@@ -15701,10 +15805,10 @@
   Created-Date: '2024_09_04'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: f427db82ad4961086b0897e2e88fa518
+  Rule-Body-Hash: 8c9fab651ecdc17ea4d078e5001f0d72
   Ruleset: sigmahq
-  Summary: This rule detects file downloads directly from IP address URLs using curl.exe on Windows systems. It focuses on identifying instances where the curl.exe utility is executed with command line arguments that include an IP address and specific download flags like '-O', '--remote-name', or '--output'. The rule filters out certain file extensions to prevent duplication.
-  Updated-Date: '2024_09_04'
+  Summary: This rule detects attempts to download files directly from URLs identified by IP addresses using the command-line tool curl.exe on Windows systems. This activity is captured by monitoring for the execution of curl.exe in combination with command-line arguments typical for downloading, such as those specifying output file options. The detection focuses on scenarios where the URL is specified as an IP address, with indicators such as the presence of "http" in the command and the use of options like "-O", "--remote-name", or "--output". A filter is applied to exclude certain file extensions that might overlap with other detections, allowing for focused identification of potentially suspicious file download activities.
+  Updated-Date: '2026_01_30'
 9ccba514-7cb6-4c5c-b377-700758f2f120:
   Created-Date: '2024_08_07'
   Custom-Edited: false
@@ -15897,6 +16001,14 @@
   Ruleset: sigmahq
   Summary: This rule detects the use of PowerShell cmdlets to export certificates from the local certificate store. Threat actors may exploit this technique to steal private keys from compromised systems. The detection involves monitoring command lines containing 'Export-PfxCertificate' or 'Export-Certificate'.
   Updated-Date: '2024_09_04'
+9e8894c0-0ae0-11ef-9d85-1f2942bec57c:
+  Created-Date: '2026_01_30'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: 7d09da1fbd42da8cba6ef5a8f8e66554
+  Ruleset: sigmahq
+  Summary: This rule detects modifications to the shell open command registry keys in Windows that redirect to suspicious or unconventional locations often exploited by malware for persistence. Such modifications can signal attempts to alter the default action when opening files. This behavior is typically employed in User Account Control (UAC) bypass or persistence techniques, where malicious scripts or binaries are executed instead of legitimate software. The key locations identified in this rule include directories like `$Recycle.Bin`, `AppData\Local\Temp`, `Contacts`, `Music`, `PerfLogs`, `Photos`, `Pictures`, `Users\Public`, `Videos`, and `Windows\Temp`, as well as environment variables like `%AppData%`, `%LocalAppData%`, `%Temp%`, and `%tmp%`. These changes could be legitimate in the context of authorized software installations or updates but warrant investigation to rule out malicious intent.
+  Updated-Date: '2026_01_30'
 9e8f6035-88bf-4a63-96b6-b17c0508257e:
   Created-Date: '2024_08_07'
   Custom-Edited: false
@@ -16033,6 +16145,14 @@
   Ruleset: sigmahq
   Summary: This rule detects potentially suspicious child processes emerging from "Diskshadow.exe". It identifies instances where "Diskshadow.exe" spawns processes such as "certutil.exe", "cscript.exe", "mshta.exe", "powershell.exe", "pwsh.exe", "regsvr32.exe", "rundll32.exe", or "wscript.exe", which could signal attempts to escape parent/child relationship detection or circumvent application whitelisting rules. Such behavior may indicate actions like VSS evasion, persistence methods, Active Directory database extraction, or other malicious activities.
   Updated-Date: '2024_09_04'
+9f5c1d59-33be-4e60-bcab-85d2f566effd:
+  Created-Date: '2026_01_30'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: bf6c4650d4de0c009b4cc5cddc18e408
+  Ruleset: sigmahq
+  Summary: This rule detects suspicious process access to the LSASS (Local Security Authority Subsystem Service) when invoked from processes located in atypical directories, using the `dbgcore.dll` or `dbghelp.dll` in the call trace. These dynamic-link libraries (DLLs) contain functions such as `MiniDumpWriteDump`, which can be misused for credential dumping. Although newer tools like Mimikatz may prefer using `ntdll.dll`, these DLLs remain used by older or simpler credential dumping utilities and tools that target LSASS memory for credential theft. The rule focuses on processes originating from unusual file locations, indicating potential malicious activity, as these DLLs are still operational for accessing and suspending LSASS processes.
+  Updated-Date: '2026_01_30'
 9f6a34b4-2688-4eb7-a7f5-e39fef573d0e:
   Created-Date: '2024_08_07'
   Custom-Edited: false
@@ -16205,10 +16325,10 @@ a0d7e4d2-bede-4141-8896-bc6e237e977c:
   Created-Date: '2024_09_04'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: b7da738384268ba7435c874a96650fe7
+  Rule-Body-Hash: 0cb7948d9d149b69206db6c4e6c783c0
   Ruleset: sigmahq
-  Summary: This rule detects potentially suspicious file downloads executed via wget.exe from file-sharing domains on Windows systems. Wget.exe is a command-line utility used for downloading files from the web. The rule identifies downloads from specific domains that are often used for hosting files, such as githubusercontent.com, mediafire.com, and mega.nz, among others, which could indicate unauthorized or malicious activity. It focuses on command lines containing particular extensions such as .ps1, .dat, .msi, .bat, .exe, and others, which are commonly associated with scripts or executable files. The rule checks for command flags like '-O' and '--output-document', commonly used in wget command-line operations, potentially indicating an attempt to download and save files onto the system.
-  Updated-Date: '2025_10_02'
+  Summary: This rule detects potentially suspicious activities where files are downloaded from file-sharing domains using the wget.exe command on a Windows system. It specifically monitors for the presence of wget.exe in process creation and identifies command lines that contain URLs from known file-sharing services, such as Github, Discord, Dropbox, Mediafire, and more. It also checks for specific flags like output redirection or saving to specific file types commonly associated with malware, such as .exe, .bat, .ps1, and more. This detection aims to identify and alert on potentially malicious activities that may involve downloading and executing malicious payloads from the internet using the wget tool.
+  Updated-Date: '2026_01_30'
 a0edd39f-a0c6-4c17-8141-261f958e8d8f:
   Created-Date: '2024_09_04'
   Custom-Edited: false
@@ -16293,10 +16413,10 @@ a18e0862-127b-43ca-be12-1a542c75c7c5:
   Created-Date: '2024_08_06'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: 600950e4b877d22a329d3ad207095b83
+  Rule-Body-Hash: bf15b46bb8fb58213f5031d065b0ad20
   Ruleset: core
-  Summary: This rule detects potential credential dumping by monitoring Windows error reporting events where the Local Security Authority Subsystem Service (lsass.exe) has crashed. Such crashes could indicate deliberate attempts to exploit the Windows Error Reporting system using techniques like Lsass-Shtinkering, designed to extract credentials by dumping the memory of the lsass process. The detection focuses on specific application error logs indicating an unsuccessful status tied to lsass.exe, while accounting for rare, legitimate crashes of the process. References include detailed documentation and presentations on the Lsass-Shtinkering technique.
-  Updated-Date: '2024_09_03'
+  Summary: This rule detects Windows error reporting events indicating that the process "lsass.exe" (Local Security Authority Subsystem Service) has crashed. This may be due to deliberate attacks using techniques such as Lsass-Shtinkering, which are employed to extract credentials by causing the LSASS process to fail.
+  Updated-Date: '2026_01_30'
 a197e378-d31b-41c0-9635-cfdf1c1bb423:
   Created-Date: '2024_09_04'
   Custom-Edited: false
@@ -17137,6 +17257,14 @@ aa35a627-33fb-4d04-a165-d33b4afca3e8:
   Ruleset: core
   Summary: This rule detects remote access to the Local Security Authority Subsystem Service (LSASS) process via Windows Remote Management (WinRM), which could indicate credential dumping attempts using tools like Mimikatz. The detection focuses on instances where the target image is `lsass.exe` and the source image is `wsmprovhost.exe`, with specific access parameters. This type of activity is associated with credential access, execution, and lateral movement tactics in a network.
   Updated-Date: '2024_09_03'
+aa37cbb0-da36-42cb-a90f-fdf216fc7467:
+  Created-Date: '2026_01_30'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: a62f9219d7245bb34dd39caa7406429c
+  Ruleset: sigmahq
+  Summary: This rule detects attempts to disable the Anti-Malware Scan Interface (AMSI) on Windows systems by identifying changes to the AmsiEnable registry value. AMSI is a Windows security feature that facilitates integration between applications and anti-malware products, helping protect against malicious content. Disabling AMSI through registry modification is a tactic adversaries might use to avoid detection by security software, allowing the execution of harmful scripts or code without being scanned. The detection focuses on registry alterations, selecting entries where the AmsiEnable setting is configured to a value indicating it is turned off.
+  Updated-Date: '2026_01_30'
 aa3a6f94-890e-4e22-b634-ffdfd54792cc:
   Created-Date: '2024_08_07'
   Custom-Edited: false
@@ -17157,10 +17285,10 @@ aa6f6ea6-0676-40dd-b510-6e46f02d8867:
   Created-Date: '2024_09_04'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: 07f2d815b992ab81a16d7894b729b45d
+  Rule-Body-Hash: 181ccc4aeac5a1b1b8690a0ca526adc0
   Ruleset: sigmahq
-  Summary: This rule detects the execution of "curl.exe" using the "file://" protocol handler to read local files. "Curl.exe" is a command-line tool designed for transferring data with URLs, and this rule flags its use for accessing local file paths, which could indicate attempts to read or exfiltrate local content.
-  Updated-Date: '2024_09_04'
+  Summary: This rule detects the execution of "curl.exe" with the "file://" protocol handler, which indicates that the tool is being used to read local files on a Windows system. Curl, a command line tool, typically used for transferring data with URLs, is being leveraged here for accessing files using the local file protocol. This behavior is monitored by observing the process creation logs where "curl.exe" appears as the process name and includes a command line with "file:///". This action could indicate an attempt to access sensitive information stored on the system's local files.
+  Updated-Date: '2026_01_30'
 aa7a3fce-bef5-4311-9cc1-5f04bb8c308c:
   Created-Date: '2024_09_04'
   Custom-Edited: false
@@ -17517,10 +17645,10 @@ ae02ed70-11aa-4a22-b397-c0d0e8f6ea99:
   Created-Date: '2024_09_04'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: c91e3b824a99edc8773985acde17072b
+  Rule-Body-Hash: 3a9f7266145ab14b36bb3a482c912945
   Ruleset: sigmahq
-  Summary: This rule detects the downloading of suspicious file types, specifically script files with extensions like `.bat`, `.cmd`, or `.ps1`, from well-known file and paste sharing domains. Such domains include platforms like `githubusercontent.com`, `anonfiles.com`, `mega.nz`, `pastebin.com`, and others. The rule is designed to identify potentially harmful downloads that may indicate malicious activity, such as unauthorized scripts intended for defense evasion or other attacks, on Windows systems.
-  Updated-Date: '2025_10_02'
+  Summary: This rule detects the download of suspicious file types, specifically batch (.bat), command (.cmd), and PowerShell (.ps1) scripts from well-known file and paste sharing websites. The targeted domains include popular sites such as GitHub, Dropbox, MediaFire, and Pastebin, among others. The rule aims to identify potential security threats by monitoring downloads that may involve malware or scripts used for defense evasion tactics within Windows environments. By focusing on specific domain names and file extensions, it helps in identifying unusual or unauthorized transfers that could indicate a security breach.
+  Updated-Date: '2026_01_30'
 ae215552-081e-44c7-805f-be16f975c8a2:
   Created-Date: '2024_08_07'
   Custom-Edited: false
@@ -17733,10 +17861,10 @@ aff715fa-4dd5-497a-8db3-910bea555566:
   Created-Date: '2024_08_07'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: 7b2fe024979a065a4b7de2ceb1464910
+  Rule-Body-Hash: 5f729987660013d95c8ca3cc614661d2
   Ruleset: core
-  Summary: This rule detects suspicious DNS queries directed to external service interaction domains, which are often associated with out-of-band interactions that occur following a successful remote code execution (RCE) attack. These domains include platforms such as burpcollaborator.net, canarytokens.com, ceye.io, and others hosted under various DNS logging and interaction services like dnslog.cn and interact.sh. Such queries can indicate attempts by attackers to verify or maintain access after exploiting a vulnerability. This detection is crucial for identifying potentially malicious reconnaissance or initial access attempts within a network.
-  Updated-Date: '2025_11_28'
+  Summary: This rule detects DNS queries to external service interaction domains commonly used for out-of-band interactions following successful Remote Code Execution (RCE). It monitors domains frequently associated with legitimate security testing tools and frameworks, such as Burpsuite Collaborator, Thinkst Canarytokens, and Project Discovery's Interactsh, among others. These domains are typically used in security assessments to verify successful execution of exploits and to ensure that code execution results in intended interactions with external servers. This detection helps identify potentially malicious activities that misuse these interactions in unauthorized contexts, highlighting the need for scrutiny when such domain queries are observed.
+  Updated-Date: '2026_01_30'
 b014ea07-8ea0-4859-b517-50a4e5b7ecec:
   Created-Date: '2024_08_07'
   Custom-Edited: false
@@ -18053,10 +18181,10 @@ b29aed60-ebd1-442b-9cb5-16a1d0324adb:
   Created-Date: '2024_09_04'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: 9afda3c09b97b864de15cb656399af5f
+  Rule-Body-Hash: 0c92c2f85f8ed45e0bf77349e8db677c
   Ruleset: sigmahq
-  Summary: This rule detects modifications to the Windows registry keys under the path `\SOFTWARE\Wow6432Node\Microsoft\Windows\CurrentVersion`, which are used as autostart extensibility points (ASEP). Such modifications can be indicative of attempts to achieve persistence on a system by ensuring specific programs or scripts run automatically upon system startup. The rule focuses on changes to keys associated with running processes like `Run`, `RunOnce`, `RunServices`, and their variations, as these are commonly utilized by both legitimate applications and potentially unwanted software to maintain automatic execution. The presence of unauthorized modifications could suggest malicious activity, such as the installation of malware that aims to establish a foothold by leveraging autostart mechanisms.
-  Updated-Date: '2025_10_29'
+  Summary: This rule detects modifications of autostart extensibility points (ASEPs) within specific registry paths in Windows operating systems. It focuses on changes made to keys under the `Wow6432Node` in `\SOFTWARE\Microsoft\Windows\CurrentVersion`. These changes could indicate attempts to achieve persistence by loading programs automatically during system startup. The rule aims to identify potentially malicious activities by monitoring modifications to registry subkeys such as `ShellServiceObjectDelayLoad`, `Run`, `RunOnce`, `RunOnceEx`, and other related entries that can be used by both legitimate applications and malware to establish persistence. The detection is configured to filter out known benign cases, where legitimate software or administrative actions typically modify these autostart entries.
+  Updated-Date: '2026_01_30'
 b2b048b0-7857-4380-b0fb-d3f0ab820b71:
   Created-Date: '2024_09_04'
   Custom-Edited: false
@@ -18477,10 +18605,10 @@ b6e04788-29e1-4557-bb14-77f761848ab8:
   Created-Date: '2024_09_04'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: 4ed0659afd205d9aa67707ab8eb94cc2
+  Rule-Body-Hash: c6a3b4d3ca1a83777b4ef1bd0944e9b5
   Ruleset: sigmahq
-  Summary: This rule detects potentially suspicious file downloads executed through PowerShell on Windows systems, particularly focusing on file sharing domains. It monitors process creation events for instances where PowerShell or its alternative executables, such as 'PowerShell.EXE' or 'pwsh.dll', are used to initiate downloads from commonly known file-sharing platforms. The rule targets command-line activities involving download functions such as '.DownloadString(', '.DownloadFile(', 'Invoke-WebRequest', 'iwr', or 'wget' and references a range of file sharing domains like 'mega.nz', 'pastebin.com', 'mediafire.com', and others. The detection aims to identify potentially harmful downloads that might be part of malicious activities using PowerShell to retrieve files from the internet.
-  Updated-Date: '2025_10_02'
+  Summary: This rule detects potentially suspicious file downloads initiated via PowerShell executable processes on Windows systems. The detection focuses on instances where these processes interact with well-known file-sharing and content hosting domains through specific command-line patterns associated with file download activities. Such patterns include the use of methods like `.DownloadString`, `.DownloadFile`, `Invoke-WebRequest`, `iwr`, and `wget` associated with domains such as anonfiles.com, cdn.discordapp.com, and others. This behavior can indicate malicious activities, such as unauthorized or harmful file downloads, which are often utilized by attackers to deliver malware or exfiltrate data.
+  Updated-Date: '2026_01_30'
 b6ea3cc7-542f-43ef-bbe4-980fbed444c7:
   Created-Date: '2024_08_07'
   Custom-Edited: false
@@ -19285,10 +19413,10 @@ beaa66d6-aa1b-4e3c-80f5-e0145369bfaf:
   Created-Date: '2024_09_04'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: 47a794aa6cf68e655174f4202e7b4189
+  Rule-Body-Hash: da0b19a3d1f3dc11d3a00425015c9de2
   Ruleset: sigmahq
-  Summary: This rule detects potentially suspicious activity involving the use of various log query utilities and commands to search and extract content from specific event logs on Windows systems. The activity includes looking for specific event IDs, which may indicate efforts to acquire sensitive information such as usernames, IP addresses, and hostnames. Tools and techniques targeted in this detection include those utilizing the `wevtutil.exe`, `wmic.exe`, and PowerShell cmdlets like `Get-WinEvent` and `get-eventlog`. Specific event log channels of interest include Microsoft Windows PowerShell, Security Auditing, Terminal Services, and Windows Defender. This detection aims to identify actions commonly associated with threat actors attempting to gather intelligence or credentials through examination of event logs.
-  Updated-Date: '2025_07_08'
+  Summary: This rule detects potentially suspicious activity involving the use of log query utilities and commands to search and extract information from Windows event logs. It focuses on the execution of tools such as `wevtutil`, `wmic`, and PowerShell cmdlets like `Get-WinEvent` and `Get-EventLog`, which are used to dump or query the content of specific event logs or to look for specific event IDs. This behavior can indicate attempts by threat actors to gather sensitive data, including usernames, IP addresses, and hostnames, for further exploitation. The rule targets the usage patterns of these utilities and specific event log channels, such as Microsoft-Windows-PowerShell and Microsoft-Windows-Security-Auditing, among others. It is designed to identify both common and specific Event IDs, potentially revealing the actions of threat actors conducting reconnaissance or credential access activities through event log analysis.
+  Updated-Date: '2026_01_30'
 bed26dea-4525-47f4-b24a-76e30e44ffb0:
   Created-Date: '2025_10_29'
   Custom-Edited: false
@@ -19509,10 +19637,18 @@ c0d3734d-330f-4a03-aae2-65dacc6a8222:
   Created-Date: '2024_08_07'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: 696b86c74a44215a034b976b189bef60
+  Rule-Body-Hash: 9a32d0eac4ef764e90c1de5e8e390313
   Ruleset: core
-  Summary: This rule detects possible remote command execution initiated by a web application or web shell on Linux systems. It monitors the execution of `execve` and `execveat` system calls made by a process with the effective user ID (euid) of the web server, typically `www-data`. By auditing these system calls, the rule helps identify potential malicious activity, such as exploiting command injection vulnerabilities, which could allow attackers to execute arbitrary commands on the server. While flagged activities might include legitimate administrative tasks or actions by unconventional web applications, they also present a significant security risk, necessitating careful analysis.
-  Updated-Date: '2025_07_08'
+  Summary: This rule detects potential command execution activities performed by web applications or web shells on Linux systems. The focus is on monitoring system calls `execve` and `execveat` executed under the privileges of a web server user, typically identified by the user ID associated with `www-data`. This behavior is indicative of command injection attempts, where a malicious actor exploits vulnerabilities in web applications to execute unauthorized commands on the underlying server. Such actions are critical security threats and suggest possible persistence mechanisms employed by attackers. While this detection strategy may sometimes overlap with legitimate administrative tasks or operations from complex web applications, these instances are considered false positives and should be verified cautiously.
+  Updated-Date: '2026_01_30'
+c0e0bdec-3e3d-47aa-9974-05539c999c89:
+  Created-Date: '2026_01_30'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: 6baddb48c31f8431c44df04beb0b17e1
+  Ruleset: sigmahq
+  Summary: This rule detects potential unauthorized registry modifications related to 'OracleOciLib' and 'OracleOciLibPath' under the 'MSDTC' settings in Windows. Such modifications may indicate an attempt to redirect the loading of 'oci.dll' to a malicious DLL, which can be a tactic used by threat actors for phantom DLL hijacking via the Microsoft Distributed Transaction Coordinator (MSDTC) service. This activity is generally associated with techniques for persistence, privilege escalation, and defense evasion in a system.
+  Updated-Date: '2026_01_30'
 c1182e02-49a3-481c-b3de-0fadc4091488:
   Created-Date: '2024_09_04'
   Custom-Edited: false
@@ -19569,6 +19705,14 @@ c172b7b5-f3a1-4af2-90b7-822c63df86cb:
   Ruleset: sigmahq
   Summary: This rule detects the use of the Linux command `systemctl mask` to disable system power management targets such as suspend, hibernate, or hybrid sleep. Adversaries may utilize this technique to prevent a system from entering sleep or shutdown states, thereby ensuring that their malicious processes remain active and uninterrupted. Such behavior is linked to persistence or defense evasion strategies, as it impairs normal system power operations to maintain long-term access or avoid the termination of malicious activity.
   Updated-Date: '2025_10_29'
+c17d47b7-dcd6-4109-87eb-d1817bd4cbc9:
+  Created-Date: '2026_01_30'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: 49e0e9eb443969953de19e16a3bea5a1
+  Ruleset: sigmahq
+  Summary: This rule detects attempts to tamper with Windows Credential Guard settings in the registry via command-line tools such as Reg.exe or PowerShell. Credential Guard utilizes virtualization-based security to protect sensitive credentials like NTLM hashes and Kerberos tickets. Adversaries may try to disable Credential Guard to access these credentials for lateral movement and privilege escalation. The rule identifies suspicious command lines targeting DeviceGuard or LSA registry paths and manipulating keys such as EnableVirtualizationBasedSecurity, RequirePlatformSecurityFeatures, or LsaCfgFlags. Such actions could indicate efforts to disable or modify Credential Guard, posing a risk of exposing credentials.
+  Updated-Date: '2026_01_30'
 c187c075-bb3e-4c62-b4fa-beae0ffc211f:
   Created-Date: '2024_09_04'
   Custom-Edited: false
@@ -19949,10 +20093,10 @@ c598cc0c-9e70-4852-b9eb-8921af79f598:
   Created-Date: '2025_10_29'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: 64503588b573c278317492f9e1866271
+  Rule-Body-Hash: 4bdfdf61f29434b96d7acb944b2e4c1f
   Ruleset: sigmahq
-  Summary: This rule detects the execution of EDR-Freeze, a hacktool designed to temporarily disable monitoring by Endpoint Detection and Response (EDR) and Antivirus solutions on Windows systems. EDR-Freeze exploits the MiniDumpWriteDump function and WerFaultSecure.exe to suspend security processes using a race-condition attack strategy. The tool operates in user mode, avoiding the need for kernel-level vulnerabilities or bringing your own vulnerable driver (BYOVD), and targets the moment when the WerFaultSecure process suspends, rendering EDR and Antivirus systems inactive.
-  Updated-Date: '2025_10_29'
+  Summary: This rule detects the execution of EDR-Freeze, a hacktool designed to exploit the MiniDumpWriteDump function and WerFaultSecure.exe on Windows. EDR-Freeze allows an attacker to suspend Endpoint Detection and Response (EDR) and antivirus processes by leveraging a race-condition attack, which temporarily places these security processes into a dormant state. The tool achieves this by pausing WerFaultSecure at a strategic moment when it freezes the target process. This technique operates in user mode, avoiding the need for kernel-level exploits or Bring Your Own Vulnerable Driver (BYOVD) methods, thus disabling monitoring functions in EDR or antimalware solutions.
+  Updated-Date: '2026_01_30'
 c5a178bf-9cfb-4340-b584-e4df39b6a3e7:
   Created-Date: '2024_08_07'
   Custom-Edited: false
@@ -20089,6 +20233,14 @@ c6fb44c6-71f5-49e6-9462-1425d328aee3:
   Ruleset: core
   Summary: This rule detects base64 encoded PowerShell commands that utilize the "MpPreference" cmdlet to modify or tamper with Windows Defender Antivirus settings. Specifically, it searches for encoded commands such as "Add-MpPreference" and "Set-MpPreference," which are indicative of potential attempts to alter security configurations. By monitoring these encoded strings, the rule aims to identify suspicious activity that could be associated with defense evasion tactics.
   Updated-Date: '2024_09_03'
+c70834fa-fb9d-4aa0-9e7d-45ceed36f3f7:
+  Created-Date: '2026_01_30'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: 7db14100575224625e6d07640bbd6e58
+  Ruleset: sigmahq
+  Summary: This rule detects suspicious child processes initiated from Node.js server processes on Linux systems, which may indicate a remote code execution exploit like CVE-2025-55182, also known as React2Shell. This rule identifies malicious exploitation attempts where attackers leverage the Node.js `child_process` module to run arbitrary system commands. It specifically monitors the usage of `execSync()` or `exec()` functions, which often execute commands through a shell followed by potentially harmful operations or scripts. The rule also checks for cases where suspicious processes are spawned using other methods, with the Image field reflecting the executed process directly.
+  Updated-Date: '2026_01_30'
 c708a93f-46b4-4674-a5b8-54aa6219c5fa:
   Created-Date: '2024_08_07'
   Custom-Edited: false
@@ -20365,10 +20517,10 @@ c977cb50-3dff-4a9f-b873-9290f56132f1:
   Created-Date: '2024_09_04'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: f420c6bcd29cc67e3e9900af74afe4da
+  Rule-Body-Hash: 52721a0bd209335614d27ba325afdc90
   Ruleset: sigmahq
-  Summary: This rule detects AppX packages that are added to the processing pipeline from uncommon locations on Windows systems. AppX packages are used for installing and distributing applications, and they are typically found in standard directories like "C:\Program Files\WindowsApps\" or similar system paths. The presence of AppX packages in unexpected locations may indicate malicious activity or unauthorized installations, often associated with defense evasion techniques in malware operations. The rule specifically excludes paths associated with known legitimate services like Microsoft Teams or the OneDrive directory, focusing on identifying potential threats or irregularities outside these common paths.
-  Updated-Date: '2025_10_29'
+  Summary: This rule detects the addition of AppX packages to a deployment pipeline when these packages are located in uncommon directories on a Windows system. AppX is a distribution format for Windows applications, often associated with Universal Windows Platform (UWP) apps. The presence of AppX packages in unusual directories may indicate suspicious activity, as malware can use this method to evade detection and deploy malicious payloads. The rule specifically targets EventID 854 logged by the AppX Deployment Server service, and it filters out events related to common and trusted directories or URLs associated with Microsoft's software distribution channels.
+  Updated-Date: '2026_01_30'
 c9783e20-4793-4164-ba96-d9ee483992c4:
   Created-Date: '2024_09_04'
   Custom-Edited: false
@@ -20573,10 +20725,10 @@ cb9cc1d1-e84e-4bdc-b7ad-c31b1b7908ec:
   Created-Date: '2024_09_04'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: 832afcaf5bd873a437b7077ac46d7a67
+  Rule-Body-Hash: ad3e3e831b35f339af8119f709c8cb20
   Ruleset: sigmahq
-  Summary: This rule detects the execution of "curl.exe" with the "--insecure" flag. The "--insecure" flag is used to skip SSL verification steps, which can potentially expose data to Man-in-the-Middle attacks. The rule monitors process creation logs in Windows systems, specifically looking for instances where "curl.exe" is executed with this flag in the command line. The use of this flag is typically seen in scenarios where access is needed to internal or poorly maintained development systems, but it can also indicate insecure data transfer practices that could be exploited for malicious purposes.
-  Updated-Date: '2024_09_04'
+  Summary: This rule detects the execution of the program "curl.exe" on Windows systems when it is used with the "--insecure" flag. The presence of this flag indicates that the connection may be made insecurely by ignoring SSL certificate warnings, which could lead to vulnerabilities or exposure to man-in-the-middle attacks.
+  Updated-Date: '2026_01_30'
 cbaa3ef3-07a9-4c8e-82d1-9e40578da7fd:
   Created-Date: '2024_08_07'
   Custom-Edited: false
@@ -21077,10 +21229,10 @@ d059842b-6b9d-4ed1-b5c3-5b89143c6ede:
   Created-Date: '2024_09_04'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: 7bd5dcff384c2c3793eb4abe8681a030
+  Rule-Body-Hash: c4574adca9dcc43d0c470a2a44a75b30
   Ruleset: sigmahq
-  Summary: This rule detects the usage of the `bitsadmin.exe` tool for downloading files on Windows systems. Bitsadmin is a command-line utility that manages the Background Intelligent Transfer Service (BITS), which is commonly used for downloading files asynchronously in the background. The rule triggers when processes are created that involve `bitsadmin.exe` and contain specific command line parameters indicative of a file transfer, such as `/transfer` or HTTP URLs. This behavior may suggest an attempt at defense evasion or establishing persistence, as malicious actors can misuse Bitsadmin to download and execute malicious code discreetly. While some legitimate applications may utilize this tool, such occurrences are generally limited.
-  Updated-Date: '2025_11_28'
+  Summary: This rule detects the use of the `bitsadmin` command-line tool on Windows systems for downloading files. BITSAdmin is a command-line utility that manages the Background Intelligent Transfer Service (BITS), which is used to download or upload files between a client and server. The rule specifically identifies instances where `bitsadmin.exe` is used with certain command parameters that indicate a file transfer, such as `/transfer`, `/create`, `/addfile`, and URLs beginning with `http`. While BITSAdmin can be used for legitimate purposes, such as managing transfers of application updates, its use in this manner could be indicative of malicious activity, including defense evasion, persistence, command and control, or data exfiltration tactics.
+  Updated-Date: '2026_01_30'
 d06be4b9-8045-428b-a567-740a26d9db25:
   Created-Date: '2024_09_04'
   Custom-Edited: false
@@ -21489,6 +21641,14 @@ d522eca2-2973-4391-a3e0-ef0374321dae:
   Ruleset: core
   Summary: This rule detects abnormal child processes initiated by various Windows system processes, which could indicate a misuse of debug privileges by arbitrary parent processes. It specifically monitors unexpected child processes spawned by key system executables such as winlogon.exe, services.exe, lsass.exe, and others, analyzing who initiated them. The rule focuses on instances where child processes like PowerShell or command prompt executables are triggered and cross-references the original file names to discern suspicious behavior. To reduce false positives, it filters out instances where the command line includes specific keywords like "route" and "ADD". This detection aims to uncover potential privilege escalation or defense evasion tactics in a Windows environment.
   Updated-Date: '2025_11_28'
+d526c60a-e236-4011-b165-831ffa52ab70:
+  Created-Date: '2026_01_30'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: 27ef3009d51871dec97fb1d11a1626e9
+  Ruleset: sigmahq
+  Summary: This rule detects the disabling of the Windows Vulnerable Driver Blocklist by monitoring registry modifications, specifically when the setting is set to 'DWORD (0x00000000)'. The Windows Vulnerable Driver Blocklist is designed to prevent the loading of known vulnerable drivers, and disabling it can be a sign of an attempt to circumvent security measures. Such actions are often associated with threat actors looking to install malicious or vulnerable drivers, potentially as part of techniques to bypass Endpoint Detection and Response (EDR) solutions. This feature is supported on Windows 10 version 1903 and later, as well as Windows Server 2022 and later. Changes to this setting require a system reboot to take effect, and this rule focuses on detecting the registry modification itself.
+  Updated-Date: '2026_01_30'
 d52d2e87-eb03-4fac-961d-eb616da79788:
   Created-Date: '2024_09_03'
   Custom-Edited: false
@@ -21533,10 +21693,10 @@ d5866ddf-ce8f-4aea-b28e-d96485a20d3d:
   Created-Date: '2024_09_04'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: 320e6b4d09697582df85d259267094c4
+  Rule-Body-Hash: 4145db0088d78e396425a89b05d3a5ab
   Ruleset: sigmahq
-  Summary: This rule detects the creation of executable files that use the names of known system processes but are placed in directories outside of the standard system folders such as System32 or SysWOW64. The rule is designed to identify potentially malicious activities where attackers may attempt to mimic legitimate system executables for evasion purposes. It suggests establishing a baseline of normal environment behaviors to minimize false positives, such as legitimate system processes temporarily copied for testing or third-party software coincidentally named the same as these system processes.
-  Updated-Date: '2025_11_28'
+  Summary: This rule detects the creation of executables with names matching those of legitimate Windows system processes in directories outside their expected locations, such as System32 or SysWOW64. The presence of such files can indicate potential attempts at defense evasion or impersonation activities, where malicious software is placed in non-system directories while using trusted process names. Examples of system process names under scrutiny include `cmdl32.exe`, `lsass.exe`, `svchost.exe`, and `explorer.exe`, among others. The rule advises establishing a baseline to differentiate between legitimate use cases and suspicious activity to minimize false positives.
+  Updated-Date: '2026_01_30'
 d58ba5c6-0ed7-4b9d-a433-6878379efda9:
   Created-Date: '2024_09_04'
   Custom-Edited: false
@@ -21581,10 +21741,18 @@ d635249d-86b5-4dad-a8c7-d7272b788586:
   Created-Date: '2024_09_04'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: 06469da9d3573811a7fbca148ce76b10
+  Rule-Body-Hash: 98bf12d1bee3e0f023e268a417793ff9
   Ruleset: sigmahq
-  Summary: This rule detects the downloading of files using BITS (Background Intelligent Transfer Service) transfer jobs from various file-sharing domains on Windows systems. BITS is used for asynchronous and prioritized transfer of files between machines and is commonly exploited by attackers to download malicious files or payloads stealthily. The detection focuses on identifying transfer jobs where the file source is from domains typically associated with file sharing, such as those hosted on sites like GitHub, Dropbox, MediaFire, and MEGA, among others. This behavior may indicate an attempt at evasion or persistence by utilizing legitimate file-sharing platforms for malicious purposes.
-  Updated-Date: '2025_10_02'
+  Summary: This rule detects the use of BITS (Background Intelligent Transfer Service) to download files from known file-sharing domains on Windows systems. It specifically monitors for Event ID 16403 in the BITS client service, indicating a transfer job is accessing URLs associated with various file-sharing platforms such as GitHub, Discord, Dropbox, Mega, and Pastebin, among others. These domains are often used for legitimate purposes, but they can also be exploited for malicious activities, including defense evasion and persistence by attackers seeking to maintain a foothold on compromised systems. The detection of such activity is crucial because it can be indicative of unauthorized or suspicious downloads that may be part of a larger exploit or malware campaign.
+  Updated-Date: '2026_01_30'
+d645ef86-2396-48a1-a2b6-b629ca3f57ff:
+  Created-Date: '2026_01_30'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: 086e9905b2889fecec383dfb4baeb9bc
+  Ruleset: sigmahq
+  Summary: This rule detects attempts to disable Windows Credential Guard by monitoring for the deletion of specific registry values. Windows Credential Guard leverages virtualization-based security to secure credentials, granting access exclusively to privileged system software. Attackers may try to disable Credential Guard as a tactic to access protected credentials such as NTLM hashes and Kerberos tickets, which can facilitate lateral movement and help escalate privileges within a network. The rule observes deletions in registry paths related to Credential Guard settings, which are critical for maintaining the security of stored credentials.
+  Updated-Date: '2026_01_30'
 d65aee4d-2292-4cea-b832-83accd6cfa43:
   Created-Date: '2024_09_04'
   Custom-Edited: false
@@ -22125,10 +22293,10 @@ dd3ee8cc-f751-41c9-ba53-5a32ed47e563:
   Created-Date: '2024_09_04'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: 9cd025e25a60d1d30af589590758a85c
+  Rule-Body-Hash: 3f2e324c4fc0d9321db14d01e21d5b03
   Ruleset: sigmahq
-  Summary: This rule detects attempts by threat actors to add or modify registry keys in Windows systems. Specifically, it looks for the suspicious use of the `reg add` command targeting the `hkcu\software\classes\ms-settings\shell\open\command` path, with commands involving `/ve`, `/d`, or `/v DelegateExecute`. Additionally, it monitors for the use of the `reg delete` command targeting `hkcu\software\classes\ms-settings`. Such activities are commonly associated with dumping SAM, SECURITY, and SYSTEM registry hives, which are indicative of credential access techniques used in attacks, such as those seen in the Diavol ransomware.
-  Updated-Date: '2024_09_04'
+  Summary: This rule detects modifications to the registry's 'ms-settings' protocol handler, which is commonly exploited to perform User Account Control (UAC) bypass or achieve persistence on a Windows system. Attackers can alter this registry entry to hijack the command execution path, allowing malicious code to run with elevated privileges. The detection focuses on identifying process creation events involving tools like 'reg.exe' and 'powershell.exe' or 'pwsh.exe', specifically looking for command lines that include modifications to 'ms-settings\shell\open\command'. Such actions may indicate attempts to execute unauthorized commands with higher privileges, posing a significant security concern.
+  Updated-Date: '2026_01_30'
 dd6b39d9-d9be-4a3b-8fe0-fe3c6a5c1795:
   Created-Date: '2024_09_04'
   Custom-Edited: false
@@ -22357,10 +22525,10 @@ df6ecb8b-7822-4f4b-b412-08f524b4576c:
   Created-Date: '2024_09_04'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: c2a2a78cf37514194e63b5fae801dce2
+  Rule-Body-Hash: e4d6fe1bbca0f5561f949a83136b66df
   Ruleset: sigmahq
-  Summary: This rule detects the creation of system DLL files that are typically not found, especially within system directories. The act of creating these DLLs is often employed as a technique for DLL hijacking, which can be used by attackers for defense evasion, establishing persistence, or escalating privileges within a Windows environment.
-  Updated-Date: '2025_11_28'
+  Summary: This rule detects the creation of specific system DLL files that are typically not present on a system or are not ordinarily located in system directories. Such DLL files may be maliciously placed to exploit phantom DLL hijacking vulnerabilities. In a phantom DLL hijacking attack, attackers place DLLs with names matching those of expected non-existent system binaries in directories where legitimate applications might unsuspectingly load them, leading to the potential execution of these hostile DLLs. Identifying the creation of these particular DLLs could indicate potential preparation for such attacks.
+  Updated-Date: '2026_01_30'
 df9a0e0e-fedb-4d6c-8668-d765dfc92aa7:
   Created-Date: '2024_09_04'
   Custom-Edited: false
@@ -22421,10 +22589,10 @@ e021bbb5-407f-41f5-9dc9-1864c45a7a51:
   Created-Date: '2024_09_04'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: 67bb258e5f3872395349ea5347b8bf1a
+  Rule-Body-Hash: 54d8e32bea6ac459ba23a794c25a110c
   Ruleset: sigmahq
-  Summary: This rule detects the deployment of an AppX package that was blocked by the local computer policy on Windows. It monitors specific events from the AppXDeployment-Server service, indicated by EventIDs 441, 442, 453, and 454, to identify instances where the deployment was prevented due to policy restrictions.
-  Updated-Date: '2024_09_04'
+  Summary: This rule detects situations where the deployment of an AppX package is blocked due to local computer policy settings on a Windows system. Specifically, it triggers when certain conditions are met, such as when deployments are blocked by the "Allow deployment operations in special profiles" policy (Event ID 441), when attempts are made to deploy apps to non-system volumes against the "Disable deployment of Windows Store apps to non-system volumes" policy (Event ID 442), or when package deployments are blocked by platform policies (Event IDs 453 and 454). These event IDs serve as indicators of deployment restrictions enforced by policy settings.
+  Updated-Date: '2026_01_30'
 e032f5bc-4563-4096-ae3b-064bab588685:
   Created-Date: '2024_08_07'
   Custom-Edited: false
@@ -22533,10 +22701,10 @@ e0f8ab85-0ac9-423b-a73a-81b3c7b1aa97:
   Created-Date: '2024_08_07'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: 7a9e50bdec091ef206df2cc93585dccb
+  Rule-Body-Hash: 2981e8bcf075f646223d6107a03f1efc
   Ruleset: core
-  Summary: This rule detects network communications initiated by executables residing in potentially suspicious folders on Windows systems that are connecting to file sharing and hosting domains. These directories typically include locations such as "\$Recycle.bin," "\Temp," "\Windows\Tasks," and others that are frequently exploited by malicious actors to host or execute unauthorized software. The rule is specifically looking for connections to a list of domains associated with file sharing and hosting services, such as GitHub, Dropbox, MediaFire, Pastebin, and others. The rule helps identify potential data exfiltration or command and control activities by observing these communications, which are often leveraged by malware to transfer data or receive instructions.
-  Updated-Date: '2024_11_11'
+  Summary: This rule detects executables located in potentially suspicious directories initiating network connections to file sharing domains. It targets processes running from locations often associated with temporary or suspicious activity, such as directories within `Temp`, `Perflogs`, `Recycle.bin`, and several subdirectories within `Windows`. The rule specifically monitors for connections to domains commonly used for file sharing or data exfiltration, including those related to platforms like GitHub, Discord, Dropbox, Pastebin, and Mega. These connections might signify exfiltration or unauthorized command-and-control activities, particularly when initiated by processes in unconventional folders. It is important to differentiate between legitimate installers in these directories, which may connect to certain domains to download additional components, and actual threats.
+  Updated-Date: '2026_01_30'
 e1118a8f-82f5-44b3-bb6b-8a284e5df602:
   Created-Date: '2024_08_07'
   Custom-Edited: false
@@ -22861,10 +23029,10 @@ e497a24e-9345-4a62-9803-b06d7d7cb132:
   Created-Date: '2025_10_29'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: b6ea625e14db821e9ad2ec2579ec86be
+  Rule-Body-Hash: 6c05905e6444d762d5ef77815cca3f08
   Ruleset: sigmahq
-  Summary: This rule detects actions aimed at disabling Address Space Layout Randomization (ASLR) in Linux systems. ASLR is a security feature that randomizes the memory address space of processes, providing protection against certain types of attacks. However, attackers or developers conducting exploitative testing might attempt to disable ASLR to simplify memory exploitation techniques. This rule identifies such actions by monitoring the use of the `personality` system call with the `ADDR_NO_RANDOMIZE` flag, direct modifications to the `/proc/sys/kernel/randomize_va_space` file, or the execution of the `sysctl` command configured to set `kernel.randomize_va_space` to `0`. These activities can significantly weaken the ASLR protections, making systems more vulnerable to memory corruption attacks.
-  Updated-Date: '2025_10_29'
+  Summary: 'This rule detects actions that disable Address Space Layout Randomization (ASLR) in Linux systems. It identifies three specific methods used to turn off ASLR: the use of the `personality` syscall with the ADDR_NO_RANDOMIZE flag, modifying the `/proc/sys/kernel/randomize_va_space` file, and executing the `sysctl` command to set `kernel.randomize_va_space=0`. Disabling ASLR is often employed by attackers during exploit development or to bypass memory protection mechanisms, as it can undermine ASLR''s effectiveness and increase the reliability of memory corruption attacks.'
+  Updated-Date: '2026_01_30'
 e49b5745-1064-4ac1-9a2e-f687bc2dd37e:
   Created-Date: '2024_09_04'
   Custom-Edited: false
@@ -22945,6 +23113,14 @@ e52cb31c-10ed-4aea-bcb7-593c9f4a315b:
   Ruleset: sigmahq
   Summary: This rule detects attempts to bypass User Account Control (UAC) by hijacking the Microsoft Management Console (MMC) Windows Firewall snap-in. It identifies when a process creation event is triggered by the MMC executable specifically associated with the command for Windows Firewall (WF.msc), but excludes cases where the WerFault.exe process is involved. This tactic is utilized for defense evasion and privilege escalation.
   Updated-Date: '2025_10_29'
+e54279c7-4910-4e2c-902c-c56a25b549f6:
+  Created-Date: '2026_01_30'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: e6b73ef6dd868591609d836ceb9debdc
+  Ruleset: sigmahq
+  Summary: This rule detects the installation of MSIX/AppX packages that have full trust privileges on Windows systems. These packages can run with elevated privileges, bypassing normal AppX container restrictions, which can be leveraged for potential security risks. The focus is on identifying packages not sourced from legitimate Microsoft URLs or known system processes like `sysprep.exe` or `svchost.exe` related to `AppReadiness`. It also filters out installations from common and expected paths such as those originating from "Program Files" directories or legitimate Microsoft update mechanisms. This detection aims to capture suspicious or malicious installations while accounting for established trusted sources to minimize false positives.
+  Updated-Date: '2026_01_30'
 e54979bd-c5f9-4d6c-967b-a04b19ac4c74:
   Created-Date: '2024_09_04'
   Custom-Edited: false
@@ -23201,6 +23377,14 @@ e76c8240-d68f-4773-8880-5c6f63595aaf:
   Ruleset: core
   Summary: This rule detects the usage of the Time Travel Debugging Utility, specifically targeting the loading of certain DLL files such as 'ttdrecord.dll', 'ttdwriter.dll', and 'ttdloader.dll'. This utility is sometimes employed by adversaries to execute malicious processes or to capture memory dumps of critical processes like 'lsass.exe', which is often targeted for credential harvesting.
   Updated-Date: '2024_09_03'
+e76ca062-4de0-4d79-8d90-160a0d335eca:
+  Created-Date: '2026_01_30'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: 7a7da6d478ccaba100550c624fbd4757
+  Ruleset: sigmahq
+  Summary: This rule detects the execution of the Kernel Driver Utility (KDU) tool on Windows systems. KDU is capable of bypassing driver signature enforcement, thereby allowing unsigned or malicious drivers to be loaded into the Windows kernel. This can lead to privilege escalation, persistence, or the evasion of security controls. The detection relies on identifying specific process creation events where file names such as 'kdu.exe' or 'hamakaze.exe' are launched, or where specific command line arguments indicating actions such as mapping drivers to the kernel, selecting vulnerability driver providers, or modifying process objects are used. While some legitimate uses such as driver development or administrative troubleshooting might trigger this rule, its primary concern is identifying potentially malicious use.
+  Updated-Date: '2026_01_30'
 e7888eb1-13b0-4616-bd99-4bc0c2b054b9:
   Created-Date: '2024_08_07'
   Custom-Edited: false
@@ -23297,6 +23481,14 @@ e88a6ddc-74f7-463b-9b26-f69fc0d2ce85:
   Ruleset: sigmahq
   Summary: This rule detects processes that register new DLLs under the Windows registry key HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\W32Time\TimeProviders with uncommon DLL names. The activity involves setting the 'DllName' value, which adversaries may exploit to execute malicious DLLs during system boot as part of persistence or privilege escalation tactics. The Windows Time service (W32Time) is responsible for time synchronization, and its configuration can be manipulated to launch unauthorized code when the system starts.
   Updated-Date: '2025_02_04'
+e890acee-d488-420e-8f20-d9b19b3c3d43:
+  Created-Date: '2026_01_30'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: 79ec9825d56b1dea05f3fcc5b78ec0ba
+  Ruleset: sigmahq
+  Summary: This rule detects suspicious file creation activity by the ArcGIS Server process ArcSOC.exe. ArcSOC.exe is responsible for hosting REST services on an ArcGIS server. The detection focuses on the creation of files with potentially dangerous or unusual file types such as executable files, scripts, and other extensions that might suggest malicious activity, like ".exe," ".dll," or script files like ".js" and ".ps1." The presence of such files could indicate potential actions related to defense evasion, command and control, persistence, or initial access techniques.
+  Updated-Date: '2026_01_30'
 e8954be4-b2b8-4961-be18-da1a5bda709c:
   Created-Date: '2024_08_07'
   Custom-Edited: false
@@ -23717,10 +23909,10 @@ eca5e022-d368-4043-98e5-9736fb01f72f:
   Created-Date: '2025_07_08'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: 85fbfddd3409619539a8f8f34eff551a
+  Rule-Body-Hash: 3ce6dd7682f364202119160172225a70
   Ruleset: sigmahq
-  Summary: This rule detects the use of the `syslog` system call with specific action codes that clear or disable the kernel ring buffer logs, known as dmesg logs. Action code 5 (SYSLOG_ACTION_CLEAR) is used to clear the logs without reading them, action code 4 (SYSLOG_ACTION_READ_CLEAR) reads and clears the logs, and action code 6 (SYSLOG_ACTION_CONSOLE_OFF) disables logging to the console. These actions are often utilized by attackers to hide evidence of exploitation or privilege escalation activities on a system. The `dmesg -c` command, for example, leverages this syscall to clear logs and can be indicative of malicious intent when used in this context.
-  Updated-Date: '2025_07_08'
+  Summary: This rule detects the use of the `syslog` syscall to perform specific actions such as clearing the kernel ring buffer logs or disabling logging to the console. The actions of interest include using codes to read and clear logs, clear logs without reading, and disable console logging. These activities can be employed by attackers to conceal their actions, particularly after gaining unauthorized access or escalating privileges. This technique can be utilized by executing commands, such as `dmesg -c`, which internally trigger this syscall.
+  Updated-Date: '2026_01_30'
 eca81e8d-09e1-4d04-8614-c91f44fd0519:
   Created-Date: '2024_09_04'
   Custom-Edited: false
@@ -24341,10 +24533,10 @@ f331aa1f-8c53-4fc3-b083-cc159bc971cb:
   Created-Date: '2024_08_07'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: 493ab14769bafb42157a498d39832d17
+  Rule-Body-Hash: 3ae2b5f3df37f6ba3a9b6086dedaa92f
   Ruleset: core
-  Summary: This rule detects the creation of known malicious PowerShell scripts utilized for exploitation on Windows systems. These scripts are sourced from a variety of open-source projects and repositories, known for conducting offensive security operations. The rule identifies specific script filenames associated with malicious activities such as creating backdoors, executing unauthorized commands, collecting sensitive data, and bypassing security controls. Among these scripts are notable tools from repositories like PowerSploit, PowerUpSQL, and others focused on privilege escalation, credential dumping, and system reconnaissance. This detection aims to alert administrators to the potential compromise of systems through the use of these PowerShell scripts.
-  Updated-Date: '2025_07_08'
+  Summary: This rule detects the creation of malicious PowerShell scripts on Windows systems. It specifically identifies the generation of files associated with known offensive PowerShell tools and scripts used for exploitation and penetration testing. The detection process focuses on scripts with file names indicating malicious intent, such as those that capture credentials, execute unauthorized commands, establish backdoors, or perform system monitoring. It includes a comprehensive list of suspicious script names that signify potential threats when created, pointing out tools like PowerSploit, Invoke-Mimikatz, and PowerUpSQL, among many others. The rule aims to highlight activities related to attempted privilege escalation, credential theft, and persistence by identifying these scripts' file creation events.
+  Updated-Date: '2026_01_30'
 f346bbd5-2c4e-4789-a221-72de7685090d:
   Created-Date: '2024_09_04'
   Custom-Edited: false
