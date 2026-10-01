@@ -1,0 +1,52 @@
+title: One Source Logging In Over SSH To Many Internal Hosts
+id: eefc6d24-0cdd-4b73-aab7-416f82e8251c
+status: experimental
+description: |
+    Detects one source that Zeek saw authenticate successfully over SSH to ten or more different
+    internal hosts within an hour. An operator or worm with harvested keys or passwords moves
+    through a network one SSH hop at a time; each login alone looks like routine administration,
+    but ten internal hosts from one source in an hour is lateral movement unless the source is a
+    jump box or automation server. It needs no agent on the source, so it also covers unmanaged
+    hosts, appliances and attacker-supplied machines whose SSH traffic crosses a sensor.
+references:
+    - https://attack.mitre.org/techniques/T1021/004/
+license: Elastic-2.0
+author: 'Security Onion Solutions'
+date: 2026/09/30
+tags:
+    - attack.lateral-movement
+    - attack.t1021.004
+correlation:
+    type: value_count
+    rules:
+        - so_zeek_ssh_login_internal
+    group-by:
+        - src_ip
+    timespan: 1h
+    condition:
+        field: dst_ip
+        gte: 10
+falsepositives:
+    - Jump boxes and configuration management servers (add them to a source filter)
+    - CI/CD workers provisioning many test machines at once
+summary: '%source.ip% logged in over SSH to %count% internal hosts in %duration% (client %ssh.client%)'
+level: medium
+---
+title: Zeek SSH Login To An Internal Host
+id: ce0cdf5b-3103-4fce-90e4-938b4ff3e9c1
+name: so_zeek_ssh_login_internal
+description: Base event -- Zeek inferred a successful SSH authentication to a private address.
+logsource:
+    category: network
+detection:
+    selection:
+        event.dataset: 'zeek.ssh'
+        ssh.authentication.success: true
+        dst_ip|cidr:
+            - '10.0.0.0/8'
+            - '172.16.0.0/12'
+            - '192.168.0.0/16'
+    condition: selection
+fields:
+    - dst_ip
+    - ssh.client

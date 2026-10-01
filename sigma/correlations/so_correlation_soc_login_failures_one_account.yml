@@ -1,0 +1,42 @@
+title: Security Onion - Repeated SOC Login Failures For One Account
+id: c448c9f6-2979-4ceb-8d26-ab2aaedd92b0
+status: experimental
+description: |
+    Detects three or more failed Security Onion Console logins for the same account within ten
+    minutes. A mistyped password once or twice is normal; three or more in ten minutes suggests
+    password guessing against that account. Review whether the account then logged in, and from where.
+references:
+    - https://attack.mitre.org/techniques/T1110/001/
+license: Elastic-2.0
+author: 'Security Onion Solutions'
+date: 2026/09/30
+tags:
+    - attack.credential-access
+    - attack.t1110.001
+correlation:
+    type: event_count
+    rules:
+        - so_soc_login_failure
+    group-by:
+        - User
+    timespan: 10m
+    condition:
+        gte: 3
+falsepositives:
+    - A user repeatedly entering an old password after a password change
+summary: '%count% failed SOC logins for %user.name% in %duration%, from %http.request.headers.x-real-ip%'
+level: high
+---
+title: Security Onion - SOC Login Failure
+id: 74ae8c72-8162-4034-809c-e7a6affe2ccb
+name: so_soc_login_failure
+description: Base event -- a failed login to the Security Onion Console.
+logsource:
+    product: kratos
+    service: audit
+detection:
+    selection:
+        msg: 'Encountered self-service login error.'
+    condition: selection
+fields:
+    - http.request.headers.x-real-ip
