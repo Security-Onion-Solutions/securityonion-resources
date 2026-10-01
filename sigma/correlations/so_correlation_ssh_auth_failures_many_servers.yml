@@ -1,0 +1,53 @@
+title: SSH Authentication Failing Against Many Servers From One Host
+id: d30e2bf9-4d8d-4194-86e6-5a71010bf434
+status: experimental
+description: |
+    Detects one source failing SSH authentication against ten or more different servers within
+    ten minutes, as inferred by Zeek. Password spraying across servers and SSH-spreading malware
+    (cryptojacking worms such as Outlaw and Kinsing) try credentials against many servers, one or
+    two attempts each, so no single server sees enough failures to trip a per-server rule. A person
+    mistyping a password fails against one server. Zeek infers the outcome from the encrypted
+    session, so this covers every host whose SSH traffic crosses a sensor, including hosts that
+    send no logs.
+references:
+    - https://attack.mitre.org/techniques/T1110/003/
+    - https://attack.mitre.org/techniques/T1021/004/
+license: Elastic-2.0
+author: 'Security Onion Solutions'
+date: 2026/09/30
+tags:
+    - attack.credential-access
+    - attack.lateral-movement
+    - attack.t1110.003
+    - attack.t1021.004
+correlation:
+    type: value_count
+    rules:
+        - so_zeek_ssh_auth_failure
+    group-by:
+        - src_ip
+    timespan: 10m
+    condition:
+        field: dst_ip
+        gte: 10
+falsepositives:
+    - Configuration management or inventory jobs that SSH to many hosts with a stale key
+    - Git over SSH to a code host with many front-end addresses, which Zeek can record as failed
+summary: '%source.ip% failed SSH authentication against %count% servers in %duration% (client %ssh.client%)'
+level: high
+---
+title: Zeek SSH Authentication Failure
+id: 1913c42e-df5d-4ce8-a157-3abbb6802c0f
+name: so_zeek_ssh_auth_failure
+description: Base event -- Zeek inferred that an SSH session failed to authenticate.
+logsource:
+    category: network
+detection:
+    selection:
+        event.dataset: 'zeek.ssh'
+        ssh.authentication.success: false
+    condition: selection
+fields:
+    - dst_ip
+    - dst_port
+    - ssh.client

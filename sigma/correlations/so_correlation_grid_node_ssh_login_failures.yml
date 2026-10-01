@@ -1,0 +1,47 @@
+title: Security Onion - Repeated Grid Node Login Failures (SSH)
+id: 36f6dd17-5b13-427a-a56f-c3903800cf61
+status: experimental
+description: |
+    Detects ten or more failed SSH logins to Security Onion grid nodes from one source address
+    within ten minutes. Grid nodes are monitoring infrastructure; an administrator mistyping a
+    password produces one or two failures, while automated guessing produces dozens. Review
+    whether the source then logged in successfully.
+references:
+    - https://attack.mitre.org/techniques/T1110/001/
+license: Elastic-2.0
+author: 'Security Onion Solutions'
+date: 2026/09/30
+tags:
+    - attack.credential-access
+    - attack.t1110.001
+correlation:
+    type: event_count
+    rules:
+        - so_grid_node_ssh_login_failure
+    group-by:
+        - src_ip
+    timespan: 10m
+    condition:
+        gte: 10
+falsepositives:
+    - Automation or a backup job retrying with a stale password
+    - Vulnerability scanners running credentialed SSH checks
+summary: '%count% failed SSH logins to %host.name% from %source.ip% in %duration% (accounts: %user.name%)'
+level: high
+---
+title: Security Onion - Grid Node Login Failure (SSH)
+id: 17e12477-00be-4369-bd5e-190be6fe806b
+name: so_grid_node_ssh_login_failure
+description: Base event -- a failed SSH login to a grid node.
+logsource:
+    product: linux
+    service: auth
+detection:
+    selection:
+        event.outcome: 'failure'
+        event.action: 'ssh_login'
+        tags|contains: 'so-grid-node'
+    condition: selection
+fields:
+    - hostname
+    - User

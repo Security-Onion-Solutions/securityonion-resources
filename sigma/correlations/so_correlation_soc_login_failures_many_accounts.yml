@@ -1,0 +1,45 @@
+title: Security Onion - SOC Login Failures Across Many Accounts
+id: 4562da34-5749-45be-9f28-6e5f710eb35d
+status: experimental
+description: |
+    Detects failed Security Onion Console logins for three or more distinct accounts from one
+    client address within ten minutes. Password spraying tries a few common passwords against
+    many accounts to stay under per-account thresholds, so no single account stands out; the
+    breadth across accounts does.
+references:
+    - https://attack.mitre.org/techniques/T1110/003/
+license: Elastic-2.0
+author: 'Security Onion Solutions'
+date: 2026/09/30
+tags:
+    - attack.credential-access
+    - attack.t1110.003
+correlation:
+    type: value_count
+    rules:
+        - so_soc_login_failure_spray
+    group-by:
+        - http.request.headers.x-real-ip
+    timespan: 10m
+    condition:
+        field: User
+        gte: 3
+falsepositives:
+    - A shared workstation, proxy or NAT address where several analysts mistype passwords at once
+    - One person trying several of their own usernames
+summary: '%count% SOC accounts failed to log in from %http.request.headers.x-real-ip% in %duration%: %user.name%'
+level: high
+---
+title: Security Onion - SOC Login Failure
+id: 58b90af8-2d75-49e8-83f4-b982a5e04632
+name: so_soc_login_failure_spray
+description: Base event -- a failed login to the Security Onion Console.
+logsource:
+    product: kratos
+    service: audit
+detection:
+    selection:
+        msg: 'Encountered self-service login error.'
+    condition: selection
+fields:
+    - User
