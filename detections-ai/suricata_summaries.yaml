@@ -552802,10 +552802,10 @@
   Created-Date: '2026_10_02'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: 3cb269306e5259be492be9e324918394
+  Rule-Body-Hash: f43b0b443931a5b2a55209035fc5c355
   Ruleset: ETOPEN
-  Summary: This rule detects communication attempts with a command-and-control (C2) domain associated with the TryNodeRAT malware in the Server Name Indication (SNI) field of a TLS handshake. The specific domain identified is ".okx3.io". TryNodeRAT is a type of Remote Access Trojan (RAT) that targets Windows operating systems, allowing attackers to remotely control affected systems. The detection focuses on outbound connections from client endpoints to external networks.
-  Updated-Date: '2026_10_02'
+  Summary: This rule detects communications from the TryNodeRAT malware. It specifically identifies when a client uses a Server Name Indication (SNI) extension in a TLS handshake to establish a connection to a command-and-control domain, ending with ".okx3.io". This behavior is indicative of potential TryNodeRAT activity, which is a type of Remote Access Trojan (RAT) that allows unauthorized access and control of infected systems.
+  Updated-Date: '2026_10_12'
 '2072317':
   Created-Date: '2026_10_02'
   Custom-Edited: false
@@ -553510,6 +553510,46 @@
   Ruleset: ETOPEN
   Summary: This rule detects network traffic associated with the CountLoader malware, which is known for command and control activities. Specifically, it targets HTTP POST requests from a compromised client within the internal network to an external server. The request includes a URL pattern indicative of communication with the malware's control infrastructure, particularly attempting to report task execution results. The rule checks for an HTTP URI containing specific query parameters and an authorization header indicative of malicious activity. Additionally, the presence of a specific User-Agent string suggests the use of WinHttp.WinHttpRequest, further pointing to potentially malicious communications linked to the CountLoader malware.
   Updated-Date: '2026_10_09'
+'2072405':
+  Created-Date: '2026_10_12'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: 9c2d2b4c31454e6e64e1c1edb176f7cc
+  Ruleset: ETOPEN
+  Summary: This rule detects an attempted command injection exploit targeting RPC endpoints with an Authorization header. The attack involves sending a POST request to the "/rpc" URI with a Basic Authorization header and includes characters that are often used in code injection attacks, such as semicolons, backticks, pipes, or dollar signs. The rule is designed to identify potential security breaches on networking equipment, specifically indicating an attempted administrative access on products by Lantronix. It references CVE-2025-67038 related to a known vulnerability, aiming to exploit public-facing applications.
+  Updated-Date: '2026_10_12'
+'2072406':
+  Created-Date: '2026_10_12'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: 00b370944c1e1a8db3c2e66337f86d4f
+  Ruleset: ETOPEN
+  Summary: This rule detects DNS queries for the domain "digitden.cyou," which is associated with command and control (CnC) activities related to the Lumma Stealer malware. Lumma Stealer is known for targeting client endpoints and is categorized under the MITRE technique for Application Layer Protocol related to Command and Control activities. The rule is designed to monitor network activity that indicates potential communication with this malicious domain, suggesting a compromise by Lumma Stealer malware.
+  Updated-Date: '2026_10_12'
+'2072407':
+  Created-Date: '2026_10_12'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: 8a5fd7c1ee407f53bcef5b3f1d131913
+  Ruleset: ETOPEN
+  Summary: This rule detects TLS traffic to a domain associated with the Win32/Lumma Stealer malware. Specifically, it identifies connections where the Server Name Indicator (SNI) in a TLS session matches "digitden.cyou." Lumma Stealer is a type of malware known for stealing sensitive information and is categorized as a command-and-control threat. This detection is critical as it indicates possible communication with a command-and-control server linked to this malware family.
+  Updated-Date: '2026_10_12'
+'2072408':
+  Created-Date: '2026_10_12'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: a342463de93581e55d947e7c42cdc347
+  Ruleset: ETOPEN
+  Summary: This rule detects DNS queries for the domain "fast-api.thelist2win.org," which is associated with command and control (C2) communications for the TA569 threat group, particularly involving Gh0loader malware. Gh0loader is a malware downloader often used to deliver other types of malicious software to compromised systems. The detection of such a query may indicate a system is attempting to communicate with a C2 server controlled by TA569, which may be part of a larger exploit kit campaign involving the SocGholish malware family.
+  Updated-Date: '2026_10_12'
+'2072409':
+  Created-Date: '2026_10_12'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: 9318f28e6edb22ebc7bdf58aa831c179
+  Ruleset: ETOPEN
+  Summary: This rule detects communication attempts with a specific command and control (C2) domain associated with the TA569 threat actor, known for distributing the SocGholish malware through compromised websites. It focuses on traffic where the server name indication (SNI) in a TLS handshake matches "fast-api.thelist2win.org." This pattern is indicative of potential malicious activity involving Gholoader, a malicious loader often used to deliver other forms of malware. The rule identifies such traffic in established outbound connections, assisting in detecting and preventing malicious activities linked to this infrastructure.
+  Updated-Date: '2026_10_12'
 '2100110':
   Created-Date: '2024_08_07'
   Custom-Edited: false
