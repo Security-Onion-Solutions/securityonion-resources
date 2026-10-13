@@ -526458,10 +526458,10 @@
   Created-Date: '2026_04_28'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: fad151ee287dd08c0e2e05b17a396317
+  Rule-Body-Hash: 301e1ce48d75d705b69a3972e5d6fa9a
   Ruleset: ETOPEN
-  Summary: This rule detects attempts to connect to phishing domains that mimic legitimate services by examining the Server Name Indication (SNI) in Transport Layer Security (TLS) traffic. Specifically, it looks for connections to domains ending in ".sender-365.com," which is associated with DeviceCode phishing attacks. Such attacks typically involve tricking users into revealing credentials or other sensitive information by posing as legitimate cloud or email services. The rule is triggered for established connections originating from within the home network to external networks.
-  Updated-Date: '2026_04_28'
+  Summary: This rule detects a phishing attempt using a suspicious domain name, "sender-365.com," within the Server Name Indication (SNI) field of a TLS handshake. It triggers when there is an established connection from an internal network to an external network, specifically where the TLS SNI ends with ".sender-365.com." This behavior is associated with social engineering attacks aiming to deceive users by imitating reputable services.
+  Updated-Date: '2026_10_13'
 '2069015':
   Created-Date: '2026_04_28'
   Custom-Edited: false
@@ -530578,10 +530578,10 @@
   Created-Date: '2026_06_02'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: 0eb50ee2e299baf8169f3ecf89187be3
+  Rule-Body-Hash: 1a94d7f94fcfadd3ea02fc74cbb7ca48
   Ruleset: ETOPEN
-  Summary: This rule detects a DNS query that includes the domain ".teampulsynk.team," which is associated with phishing activities. It identifies attempts to resolve this domain by monitoring DNS traffic for the specified content pattern. The detection targets social engineering tactics in which potential initial access through phishing is suspected, impacting various Windows operating systems and client endpoints.
-  Updated-Date: '2026_06_02'
+  Summary: This rule detects DNS queries for the domain "teampulsynk.team," which is associated with phishing activities, specifically for the UNK_DeadDrop campaign. The detection is used to identify potential social engineering attacks in which an attacker attempts to gain initial access to client endpoints within a network. The rule is designed with a high confidence level and a major severity impact, targeting endpoints on various Windows operating systems and aiming to prevent initial access through phishing.
+  Updated-Date: '2026_10_13'
 '2069532':
   Created-Date: '2026_06_02'
   Custom-Edited: false
@@ -533554,10 +533554,10 @@
   Created-Date: '2026_06_12'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: 41ad88a74595901ae1feb347a5cb41fe
+  Rule-Body-Hash: ea0585a5cc7c8811d121eb7cf8b9170b
   Ruleset: ETOPEN
-  Summary: This rule detects DNS queries for the domain "khwancast.com," which is associated with spyware developed by the NSO Group. Such spyware can compromise devices and is typically used for surveillance purposes. This detection aims to identify potential command-and-control (C2) communications from client endpoints, indicating possible spyware infection or activity within the network.
-  Updated-Date: '2026_06_12'
+  Summary: This rule detects DNS queries containing the specific domain "khwancast.com", which is associated with NSO Group spyware. The presence of this domain in a DNS lookup could indicate potential spyware communication or activity. This type of spyware is known for targeting client endpoints and can affect various Windows operating systems. Detection of such domains is critical due to the potential security risks they pose.
+  Updated-Date: '2026_10_13'
 '2069904':
   Created-Date: '2026_06_12'
   Custom-Edited: false
@@ -552738,10 +552738,10 @@
   Created-Date: '2026_10_01'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: fe43a66e26df7d1912537c5454a60ddd
+  Rule-Body-Hash: fc261980967b778070cfd8a1ed3b1980
   Ruleset: ETOPEN
-  Summary: This rule detects HTTP requests to domains ending with ".extratechsolutions.com," which are associated with dynamic DNS services. Such requests could indicate attempts to utilize dynamic DNS for command and control communication, potentially as part of malicious activities or unauthorized network usage. The detection is crafted to identify these specific requests in established connections where the host header in the HTTP request matches the target domain pattern.
-  Updated-Date: '2026_10_01'
+  Summary: This rule detects HTTP requests made to domains ending with ".extratechsolutions.com", which are associated with dynamic DNS services, indicating potential command and control activity. Dynamic DNS services are often used to obscure malicious activity by frequently changing IP addresses associated with a domain name. This detection helps identify suspicious network behavior that may involve the use of dynamic resolution for maintaining persistent communication with compromised systems.
+  Updated-Date: '2026_10_13'
 '2072309':
   Created-Date: '2026_10_01'
   Custom-Edited: false
@@ -553194,10 +553194,10 @@
   Created-Date: '2026_10_06'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: 4ff4615e521cf6f24eb89c534eb3bdfe
+  Rule-Body-Hash: 423539a813cdcc14dad43bea0ba548fc
   Ruleset: ETOPEN
-  Summary: This rule detects a specific C2 (Command and Control) response indicative of ContEXE Stealer malware activity on network traffic directed towards a client endpoint. It identifies an established connection with HTTP responses containing an "OK" status and distinct JSON-like fields such as "service", "s3_mock", "object_lock", and "time," signaling a heartbeat check from the malware. These fields reveal the potential presence of ContEXE Stealer, a data-stealing malware targeting Windows operating systems. The rule aims to identify an interaction consistent with this activity by matching these contents within the response body, indicating potential data collection efforts by the malware.
-  Updated-Date: '2026_10_06'
+  Summary: This rule detects a response from a command-and-control (C2) server associated with the ContEXE Stealer malware. The detection occurs when an HTTP response containing specific JSON-formatted content, including status code 200 and fields such as "ok", "service", "s3_mock", "object_lock", and "time", is observed. The rule is designed to identify the heartbeat mechanism used by the ContEXE Stealer, a type of information-stealing malware that collects data from infected Windows systems.
+  Updated-Date: '2026_10_13'
 '2072366':
   Created-Date: '2026_10_06'
   Custom-Edited: false
@@ -553274,10 +553274,10 @@
   Created-Date: '2026_10_07'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: 643e03ecc2637afecdf47874558952ee
+  Rule-Body-Hash: 81bcc164cc0a9a69879232a7aa1b450a
   Ruleset: ETOPEN
-  Summary: This rule detects an attempted command injection targeting D-Link devices through the `gena.cgi` script, exploiting a vulnerability identified as CVE-2024-23625. The attack is executed via a crafted HTTP GET request, which includes the `/gena.cgi` path and attempts to manipulate the `service` parameter. The rule specifically looks for malicious input characters often associated with command injection attacks, such as semicolons and dollar signs, that may indicate an exploitation attempt on networking equipment.
-  Updated-Date: '2026_10_07'
+  Summary: This rule detects an attempted command injection targeting the D-Link gena.cgi script through a service parameter, associated with CVE-2024-23625. The attack is triggered by suspicious HTTP GET requests to the `/gena.cgi` endpoint, with payloads containing potential command separators or encoded malicious characters. This vulnerability can be exploited to execute unauthorized commands, posing a security risk to affected D-Link devices. The detection applies to established connections where the malformed requests are directed to the server, indicating a possible compromise of network equipment identified as a critical security event.
+  Updated-Date: '2026_10_13'
 '2072376':
   Created-Date: '2026_10_07'
   Custom-Edited: false
@@ -553354,10 +553354,10 @@
   Created-Date: '2026_10_08'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: dd0e3fb580e9886464b1716428e296e2
+  Rule-Body-Hash: 0e666e2fcf1bf0ecb1a1391ee5d86510
   Ruleset: ETOPEN
-  Summary: This rule detects attempts by malware from the TA569 Gholoader group to communicate with a command and control (CnC) domain during a TLS handshake. The domain of interest, "fw-static.nashbashracing.org," is identified in the Server Name Indication (SNI) field of the TLS traffic. This activity is associated with the SocGholish malware family, where compromise typically involves exploitation through web browsers, targeting client endpoints. The detection takes place when an established connection is made from a device on the home network to an external server, indicating potential malicious activity via a compromised website.
-  Updated-Date: '2026_10_08'
+  Summary: This rule detects connections over TLS to a command-and-control (C2) domain associated with the TA569 Gholoader malware variant. The specific domain of interest is "fw-static.nashbashracing.org," which appears in the Server Name Indication (SNI) field of the TLS handshake. Gholoader is commonly used in malicious campaigns to deliver and manage malware on compromised systems, and detecting its C2 connections is crucial for mitigating the threat it poses to client endpoints.
+  Updated-Date: '2026_10_13'
 '2072386':
   Created-Date: '2026_10_08'
   Custom-Edited: false
@@ -553538,18 +553538,154 @@
   Created-Date: '2026_10_12'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: a342463de93581e55d947e7c42cdc347
+  Rule-Body-Hash: 6488e75ce38f027bc01d3553f468b980
   Ruleset: ETOPEN
-  Summary: This rule detects DNS queries for the domain "fast-api.thelist2win.org," which is associated with command and control (C2) communications for the TA569 threat group, particularly involving Gh0loader malware. Gh0loader is a malware downloader often used to deliver other types of malicious software to compromised systems. The detection of such a query may indicate a system is attempting to communicate with a C2 server controlled by TA569, which may be part of a larger exploit kit campaign involving the SocGholish malware family.
-  Updated-Date: '2026_10_12'
+  Summary: This rule detects DNS queries associated with the TA569 Gholoader command and control (C2) domain "fast-api.thelist2win.org". The Gholoader malware, linked to the SocGholish malware family, is known for facilitating the delivery of additional malicious payloads through compromised websites. The rule identifies these queries, which could be indicative of compromised systems attempting to communicate with attacker-controlled servers, and is focused on protecting client endpoints from such threats.
+  Updated-Date: '2026_10_13'
 '2072409':
   Created-Date: '2026_10_12'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: 9318f28e6edb22ebc7bdf58aa831c179
+  Rule-Body-Hash: 1123b49ab8a923882759c292bf1a3214
   Ruleset: ETOPEN
-  Summary: This rule detects communication attempts with a specific command and control (C2) domain associated with the TA569 threat actor, known for distributing the SocGholish malware through compromised websites. It focuses on traffic where the server name indication (SNI) in a TLS handshake matches "fast-api.thelist2win.org." This pattern is indicative of potential malicious activity involving Gholoader, a malicious loader often used to deliver other forms of malware. The rule identifies such traffic in established outbound connections, assisting in detecting and preventing malicious activities linked to this infrastructure.
-  Updated-Date: '2026_10_12'
+  Summary: This rule detects attempted communication to a command-and-control (C2) server associated with the TA569 malware campaign, specifically involving the Gholoader malware. The detection triggers when the specific domain "fast-api.thelist2win.org" is present in the Server Name Indication (SNI) field of a TLS handshake. This rule is designed to identify potential trojan activity linked to the Gholoader distribution within the network traffic flowing from an internal host to an external server.
+  Updated-Date: '2026_10_13'
+'2072410':
+  Created-Date: '2026_10_13'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: df6a26dcd78e9bece5f5b28a18509a57
+  Ruleset: ETOPEN
+  Summary: This rule detects DNS queries for the domain "reliabledmwqj.shop," which is associated with the Win32/Lumma Stealer malware's command and control (C&C) servers. Lumma Stealer is a malicious software used by cybercriminals to exfiltrate sensitive information from infected systems. The rule triggers when a DNS lookup matches this specific domain, indicating potential communication with the malware's C&C infrastructure.
+  Updated-Date: '2026_10_13'
+'2072411':
+  Created-Date: '2026_10_13'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: 79b39027ae9e0e95c6c6ff6339afca3f
+  Ruleset: ETOPEN
+  Summary: This rule detects traffic directed to a domain associated with the Lumma Stealer malware within TLS Server Name Indication (SNI) fields. The Lumma Stealer is a type of malware designed to illicitly capture and exfiltrate sensitive data from an infected system. The specific domain flagged in this rule is "reliabledmwqj.shop", identified as a potential command and control server used by this malware to execute operations. The detection focuses on established connections from a monitored home network to external servers.
+  Updated-Date: '2026_10_13'
+'2072412':
+  Created-Date: '2026_10_13'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: a76dfd804db8f7135de0602a5741bd03
+  Ruleset: ETOPEN
+  Summary: This rule detects the presence of a Command and Control (CnC) domain associated with the TA569 Gholoader malware family through a DNS query. Specifically, it targets DNS lookups for the domain "prod-static.nascarnash.com," which is linked to malicious activities. Gholoader is part of the SocGholish malware, often utilized to compromise client endpoints via exploit kits. The rule is designed to monitor web browsers for signs of this malware, considering the high confidence and major severity of the threat.
+  Updated-Date: '2026_10_13'
+'2072413':
+  Created-Date: '2026_10_13'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: 862d2a93ea971a622b909ded6bf5a130
+  Ruleset: ETOPEN
+  Summary: This rule detects communication with a command and control (C&C) server associated with the TA569 Gholoader malware, known as SocGholish. It specifically identifies this activity by monitoring for the presence of the domain "prod-static.nascarnash.com" in the Server Name Indication (SNI) field of Transport Layer Security (TLS) traffic as it is established to a server. This indication suggests a potential compromise involving web browsers, targeting client endpoints.
+  Updated-Date: '2026_10_13'
+'2072414':
+  Created-Date: '2026_10_13'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: dcf4bb1dec0e8bb843a0706a0cec2e8a
+  Ruleset: ETOPEN
+  Summary: This rule detects an attempt to access a third-party Windows activation script via an HTTP GET request. It specifically identifies requests made by the WindowsPowerShell user agent trying to reach a server with the host name "get.activated.win." The rule highlights potential adware or potentially unwanted program (PUP) activity linked to Windows client endpoints. This detection is relevant for users potentially being targeted or using unauthorized or illicit methods to activate Windows software, noting its presence on GitHub related to Microsoft activation scripts.
+  Updated-Date: '2026_10_13'
+'2072415':
+  Created-Date: '2026_10_13'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: a738660ae1d8452a6c696208a0053526
+  Ruleset: ETOPEN
+  Summary: This rule detects an HTTP GET request made by a potentially malicious PowerShell loader, specifically targeting a file named "contis.exe". The user agent in the HTTP request resembles a Windows 10 system using a 64-bit architecture. Such activity suggests the use of a generic PowerShell script attempting to download and execute a payload, indicative of a command and control operation. This detection is associated with malware-related activity on Windows client systems.
+  Updated-Date: '2026_10_13'
+'2072416':
+  Created-Date: '2026_10_13'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: ebd0f1f5ec6e888ad3b7f41b74282d88
+  Ruleset: ETOPEN
+  Summary: This rule detects DNS queries for domains ending with ".conti.pk", which are associated with a generic PowerShell loader often used in malware campaigns. The rule is designed to identify attempts to reach out to domains potentially linked to the Conti ransomware group or similar malicious activities, helping to prevent trojan activities on client endpoints.
+  Updated-Date: '2026_10_13'
+'2072417':
+  Created-Date: '2026_10_13'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: 664f08bce99fccd01d8c809c2dfb8530
+  Ruleset: ETOPEN
+  Summary: This rule detects traffic that is attempting to connect to a domain associated with a generic PowerShell loader payload, specifically one containing ".conti.pk" in the TLS Server Name Indication (SNI) field. This domain is related to potentially malicious activities carried out by PowerShell scripts, which are often used to download or execute malware such as remote access trojans or ransomware. The rule applies to established outbound connections from a secure client endpoint, with high confidence indicating possible trojan activity.
+  Updated-Date: '2026_10_13'
+'2072418':
+  Created-Date: '2026_10_13'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: 8697d576f388e3ab833f9224dc04fa9b
+  Ruleset: ETOPEN
+  Summary: This rule detects a DNS query associated with a potentially unwanted program (PUP) attempting to contact a specific domain used in Windows activation scripts. The domain of interest is "get.activated.win", which is queried as part of suspicious activity often linked to adware. The rule is designed to flag such queries as indicative of adware-related behavior on a client endpoint.
+  Updated-Date: '2026_10_13'
+'2072419':
+  Created-Date: '2026_10_13'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: 71202c531d1189ee57531010031e515d
+  Ruleset: ETOPEN
+  Summary: This rule detects a potential adware or potentially unwanted program (PUP) activity by identifying communication attempts to a domain associated with a Windows activation script. It triggers when a TLS Server Name Indication (SNI) contains the specific domain "get.activated.win" in an outgoing server-bound flow from within the network to external destinations. This indicates an attempt to access suspicious domains related to unauthorized Windows software activation.
+  Updated-Date: '2026_10_13'
+'2072420':
+  Created-Date: '2026_10_13'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: 7b3a2e2683ade431b4234a592f4ce87c
+  Ruleset: ETOPEN
+  Summary: This rule detects a DNS query for a domain associated with TryNodeRAT command and control activity, specifically targeting the domain ".fins.workers.dev". This action is indicative of potential malicious communication involving the TryNodeRAT malware, which typically targets client endpoints running various versions of Windows.
+  Updated-Date: '2026_10_13'
+'2072421':
+  Created-Date: '2026_10_13'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: 848dcb44c0c8cd6b4e1eb87c68b1cb1e
+  Ruleset: ETOPEN
+  Summary: This rule detects DNS queries for domains associated with the TryNodeRAT command and control infrastructure, specifically targeting the domain pattern ".nffnj.workers.dev". TryNodeRAT is a type of Remote Access Trojan (RAT) that allows attackers to control infected systems remotely, posing a threat to client endpoints running various Windows operating systems. The rule identifies potential communication between the RAT and its control servers, indicating a high confidence level of suspected malicious activity.
+  Updated-Date: '2026_10_13'
+'2072422':
+  Created-Date: '2026_10_13'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: 68d678242fb3eaf766224e4ba1e5da81
+  Ruleset: ETOPEN
+  Summary: This rule detects Domain Name System (DNS) queries associated with the command and control (C2) domain of the TryNodeRAT malware, specifically queries containing ".filedu.workers.dev". TryNodeRAT is a remote access trojan (RAT) that allows attackers to remotely control infected machines, typically exploiting client endpoints running Windows operating systems. The rule monitors for any attempts to resolve this domain, indicative of potential communication with a TryNodeRAT server, thereby signaling possible malware activity within the network.
+  Updated-Date: '2026_10_13'
+'2072423':
+  Created-Date: '2026_10_13'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: 6883ce75363cbe41febaa98d0d4e0d43
+  Ruleset: ETOPEN
+  Summary: This rule detects communication with a command and control (CnC) domain associated with the TryNodeRAT malware over a Transport Layer Security (TLS) connection. It specifically identifies the use of the server name indication (SNI) field in TLS traffic that ends with ".fins.workers.dev". TryNodeRAT is a remote access trojan (RAT) that potentially allows attackers to control infected systems, and this rule helps in identifying attempts to connect to its CnC server using a distinct domain pattern.
+  Updated-Date: '2026_10_13'
+'2072424':
+  Created-Date: '2026_10_13'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: ed5092fac6458dfcf7ef706a802ea94d
+  Ruleset: ETOPEN
+  Summary: This rule detects traffic associated with TryNodeRAT, a Remote Access Trojan (RAT), by identifying command and control (CnC) communications through the presence of the specific domain ".nffnj.workers.dev" within the TLS Server Name Indication (SNI) field of network traffic. The rule is designed to monitor traffic flowing from a client endpoint within the internal network to external networks, focusing on established connections.
+  Updated-Date: '2026_10_13'
+'2072425':
+  Created-Date: '2026_10_13'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: e9ae375627e92c76c771aef5d2ec40bc
+  Ruleset: ETOPEN
+  Summary: This rule detects network traffic involving TryNodeRAT malware by identifying communication with a command and control (C2) domain specified in the Server Name Indication (SNI) field of TLS traffic. The rule particularly searches for the domain ".filedu.workers.dev" within the TLS SNI, which is characteristic of the TryNodeRAT, a Remote Access Trojan (RAT) targeting various Windows operating systems. It focuses on traffic from internal networks directed to external networks during established connections, aiming to uncover potential remote control activities initiated by this malware.
+  Updated-Date: '2026_10_13'
+'2072426':
+  Created-Date: '2026_10_13'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: db07cfec1bdddcc4e40be912f700861d
+  Ruleset: ETOPEN
+  Summary: This rule detects HTTP traffic where a fake Windows User-Agent is observed, indicating possible data obfuscation activity in command and control tactics. The traffic involves an established connection from an internal network to an external network and features a specific pattern in the User-Agent header resembling a Mozilla agent on a Windows NT 10.0 system with Win64 and x64 architecture. This pattern has a fixed byte size of 41, triggering the rule when observed within the specified threshold limits.
+  Updated-Date: '2026_10_13'
 '2100110':
   Created-Date: '2024_08_07'
   Custom-Edited: false
