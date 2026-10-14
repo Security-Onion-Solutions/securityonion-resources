@@ -367338,10 +367338,10 @@
   Created-Date: '2024_08_07'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: 95dbe33bf616fde8c7b7c40f8c4d643d
+  Rule-Body-Hash: d603e9c9e744675f9defd202500b3e63
   Ruleset: ETOPEN
-  Summary: This rule detects an attempted command injection exploit targeting the Korenix JetWave and Edimax networking equipment through the "formSysCmd" endpoint. By monitoring HTTP POST requests sent to a server, the rule identifies malicious activity in which attackers try to execute unauthorized system commands by injecting special characters in the "sysCmd" parameter of the HTTP request body. This exploitation attempt is associated with known vulnerabilities CVE-2016-20017 and CVE-2025-14094, allowing potentially harmful control over affected devices.
-  Updated-Date: '2025_12_09'
+  Summary: This rule detects an attempted command injection targeting Korenix JetWave, Edimax, and TRENDnet devices through the use of the vulnerable "formSysCmd" endpoint. It specifically monitors HTTP POST requests directed to servers within the home network that include suspicious command sequences in the request body, indicating an attempt to exploit known vulnerabilities CVE-2016-20017, CVE-2025-14094, and CVE-2026-10180. The attack involves crafting requests that may leverage special characters or encodings to execute unauthorized commands, indicating exploitation of public-facing network equipment to potentially gain initial access.
+  Updated-Date: '2026_10_14'
 '2049121':
   Created-Date: '2024_08_07'
   Custom-Edited: false
@@ -553178,10 +553178,10 @@
   Created-Date: '2026_10_06'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: eac2049819e96930e88abb6d8b6cfef7
+  Rule-Body-Hash: 9c41fefce4fecab5899f602dae17e23e
   Ruleset: ETOPEN
-  Summary: This rule detects network traffic indicative of a ContEXE Stealer malware command and control (C2) server check-in response. It specifically identifies HTTP responses with a status code of 200 and looks for specific JSON key names such as "api_token", "tag", and "machine_id" within the file data, which are associated with malware activity. The rule is designed to catch communications between infected systems and their C2 servers, indicating data exfiltration or other malicious activity within targeted client endpoints, particularly on Windows operating systems.
-  Updated-Date: '2026_10_06'
+  Summary: This rule detects communication from a compromised host to a ContEXE Stealer Command and Control (C2) server, indicating a potential check-in response from the server. The detection focuses on an established connection to the client where specific HTTP components are present, such as the status code "200" and JSON keys like "api_token" and "tag". These elements are used by the malware to verify check-ins and identify individual machines. ContEXE Stealer is a type of malware that can exfiltrate data from infected systems, and this rule helps identify its network activity, particularly focusing on systems running various versions of Windows as a potential attack target.
+  Updated-Date: '2026_10_14'
 '2072364':
   Created-Date: '2026_10_06'
   Custom-Edited: false
@@ -553338,10 +553338,10 @@
   Created-Date: '2026_10_08'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: b0648d0968b40cea43fe7cb2466aec32
+  Rule-Body-Hash: 2c0cc5faf7d53213200588da2e9c2605
   Ruleset: ETOPEN
-  Summary: This rule detects DNS queries associated with the SocGholish malware, specifically targeting the command-and-control domain "fw-static.nashbashracing.org". The rule aims to identify this malicious activity, which is linked to the TA569 threat group, by examining DNS traffic for the presence of this domain. This activity is associated with client endpoints and can be indicative of a compromised website used to facilitate malware distribution.
-  Updated-Date: '2026_10_08'
+  Summary: This rule detects attempts to resolve a Command and Control (CnC) domain associated with the TA569 malware campaign, specifically the Gholoader variant, in DNS queries. The query looks for the domain "fw-static.nashbashracing.org," indicating potential SocGholish exploit activity. Gholoader is a malware downloader typically delivered via malicious web content and used to load additional malicious payloads on the victim's system. This rule is aimed at identifying such threats targeting client endpoints through web browsers by monitoring DNS traffic at the network perimeter.
+  Updated-Date: '2026_10_14'
 '2072384':
   Created-Date: '2026_10_08'
   Custom-Edited: false
@@ -553362,10 +553362,10 @@
   Created-Date: '2026_10_08'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: 7d3c3b93384e759747078ca585180be6
+  Rule-Body-Hash: 8ce66bce41498e57b683122d97c4b886
   Ruleset: ETOPEN
-  Summary: This rule detects communication with a command and control (CnC) server associated with the Gholoader malware, specifically targeting domains using the TLS Server Name Indication (SNI) extension. It identifies traffic involving the domain "match.sitefulia.com" during an established connection to a server. The rule is relevant for environments where the Gholoader malware, which is part of the SocGholish malware family, might exploit web browsers and client endpoints through compromised websites.
-  Updated-Date: '2026_10_08'
+  Summary: This rule detects communication with a command and control (C&C) domain associated with the TA569 threat actor, particularly involving the Gholoader malware. The detection is triggered by identifying a specific server name indication (SNI) pattern, "match.sitefulia.com," within TLS traffic from internal to external networks. Gholoader is linked to malicious activity involving the SocGholish malware family, often distributed through compromised websites. The rule focuses on traffic that could indicate an endpoint client being targeted by this malware, posing a potential threat to web browsers used within a network.
+  Updated-Date: '2026_10_14'
 '2072387':
   Created-Date: '2026_10_08'
   Custom-Edited: false
@@ -553570,10 +553570,10 @@
   Created-Date: '2026_10_13'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: a76dfd804db8f7135de0602a5741bd03
+  Rule-Body-Hash: 20ea1dcd4b0c7dd3e1e5b9f658b3a238
   Ruleset: ETOPEN
-  Summary: This rule detects the presence of a Command and Control (CnC) domain associated with the TA569 Gholoader malware family through a DNS query. Specifically, it targets DNS lookups for the domain "prod-static.nascarnash.com," which is linked to malicious activities. Gholoader is part of the SocGholish malware, often utilized to compromise client endpoints via exploit kits. The rule is designed to monitor web browsers for signs of this malware, considering the high confidence and major severity of the threat.
-  Updated-Date: '2026_10_13'
+  Summary: This rule detects DNS lookups for the domain "prod-static.nascarnash.com," which is associated with the TA569 threat actor group and Gholoader malware command and control (CnC) traffic. Gholoader is linked to the SocGholish malware family, typically used in exploit kits to compromise client endpoints and deliver additional malicious payloads. The rule triggers on DNS queries to this domain, indicating potential trojan activity involving compromised websites.
+  Updated-Date: '2026_10_14'
 '2072413':
   Created-Date: '2026_10_13'
   Custom-Edited: false
@@ -553626,10 +553626,10 @@
   Created-Date: '2026_10_13'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: 71202c531d1189ee57531010031e515d
+  Rule-Body-Hash: 476e9fb33b051a351ea3a560d2386896
   Ruleset: ETOPEN
-  Summary: This rule detects a potential adware or potentially unwanted program (PUP) activity by identifying communication attempts to a domain associated with a Windows activation script. It triggers when a TLS Server Name Indication (SNI) contains the specific domain "get.activated.win" in an outgoing server-bound flow from within the network to external destinations. This indicates an attempt to access suspicious domains related to unauthorized Windows software activation.
-  Updated-Date: '2026_10_13'
+  Summary: This rule detects network traffic indicating potential adware or potentially unwanted program (PUP) activity by identifying attempts to connect to the domain "get.activated.win" via TLS Server Name Indication (SNI). The rule matches established connections originating from the internal network towards an external network, suggesting the presence of a Windows activation script associated with adware or PUP frameworks known to generate unwanted software behavior.
+  Updated-Date: '2026_10_14'
 '2072420':
   Created-Date: '2026_10_13'
   Custom-Edited: false
@@ -553686,6 +553686,158 @@
   Ruleset: ETOPEN
   Summary: This rule detects HTTP traffic where a fake Windows User-Agent is observed, indicating possible data obfuscation activity in command and control tactics. The traffic involves an established connection from an internal network to an external network and features a specific pattern in the User-Agent header resembling a Mozilla agent on a Windows NT 10.0 system with Win64 and x64 architecture. This pattern has a fixed byte size of 41, triggering the rule when observed within the specified threshold limits.
   Updated-Date: '2026_10_13'
+'2072427':
+  Created-Date: '2026_10_14'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: 121e7d03efdc66b2871bb10f2e6227cb
+  Ruleset: ETOPEN
+  Summary: This rule detects an authentication bypass vulnerability in Ivanti Connect Secure, identified as CVE-2026-104935. It targets HTTP traffic directed towards web servers and is triggered by specific patterns within the URI and HTTP headers, particularly when accessing the path "/dana-na/auth/url_default/welcome.cgi" and a header containing "x-dscgi-path" in a case-insensitive manner. The rule aims to identify attempts to exploit this zero-day vulnerability, which could lead to unauthorized access to the server.
+  Updated-Date: '2026_10_14'
+'2072428':
+  Created-Date: '2026_10_14'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: f45704e1677b6ca661dc870e2ebbb1e4
+  Ruleset: ETOPEN
+  Summary: This rule detects a potential buffer overflow vulnerability in the Tenda F456 router, specifically targeting the "page" parameter within a POST request to the "/goform/L7Im" URI. The vulnerability, identified as CVE-2026-9389, involves the use of an excessively long value in the "page" parameter that could lead to a buffer overflow. This type of attack typically occurs when more data is sent than the allocated length of the buffer, potentially allowing an attacker to execute arbitrary code or cause a denial of service on the targeted network equipment.
+  Updated-Date: '2026_10_14'
+'2072429':
+  Created-Date: '2026_10_14'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: 988b14bb13c5c34f35b42872a9278814
+  Ruleset: ETOPEN
+  Summary: This rule detects DNS queries for the domain "tools.studerandson.com," which is associated with TA569 and Gholoader command and control (CnC) activity. Gholoader is a malware loader commonly linked with the SocGholish family, and this specific query indicates possible communication with a compromised website involved in distributing malware, potentially targeting web browsers on client endpoints.
+  Updated-Date: '2026_10_14'
+'2072430':
+  Created-Date: '2026_10_14'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: e561d6070232dc226273887d9e8b8a3d
+  Ruleset: ETOPEN
+  Summary: This rule detects traffic associated with the TA569 malware distribution campaign involving Gholoader, specifically when a client requests a TLS session that includes the server name indicator (SNI) "tools.studerandson.com". This domain is linked to command and control (CnC) activities. The rule flags such indicators in the context of potential trojan activity emanating from a compromised website, which is associated with the SocGholish malware family targeting client endpoints via web browsers.
+  Updated-Date: '2026_10_14'
+'2072431':
+  Created-Date: '2026_10_14'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: 5885b2a5f6e8266fff32e1c97cb3b0e3
+  Ruleset: ETOPEN
+  Summary: This rule detects an attempted remote code execution vulnerability specific to CraftCMS, identified by CVE-2026-44011. The rule triggers on HTTP POST requests directed to the CraftCMS endpoint "/admin/actions/element-search/search" when specific conditions are met, including the use of JSON content type and the presence of session-related cookies like "CraftSessionId" and "_identity". The request body must contain particular patterns, such as commands related to CraftCMS elements and their typecasting behaviors, which potentially exploit the application's functionality linked to the "typecastBeforeSave" method. This activity is flagged as an exploit attempt targeting web servers running CraftCMS, with high confidence in its severity.
+  Updated-Date: '2026_10_14'
+'2072432':
+  Created-Date: '2026_10_14'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: 63426dd4d8ae86f33af4123c842bc5d3
+  Ruleset: ETOPEN
+  Summary: This rule detects an attempted buffer overflow targeting TRENDnet networking equipment. Specifically, it identifies a potential exploitation effort involving a POST request to the endpoint "/goform/formTcpipSetup" with a "name" parameter. The attack, associated with CVE-2026-109157, involves an excessively long input to the "name" field that could trigger a buffer overflow vulnerability, potentially allowing unauthorized access or disruption of services. The detection is based on identifying request body patterns where the input length for the "name" parameter exceeds 100 characters, following a "=" character and prior to any "&" or the end of the string, aimed at compromising web applications through exploiting public-facing elements of the TRENDnet system.
+  Updated-Date: '2026_10_14'
+'2072433':
+  Created-Date: '2026_10_14'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: b9ab441f92ae499ee55aed3b562a3630
+  Ruleset: ETOPEN
+  Summary: This rule detects an attempted command injection exploit targeting TRENDnet networking devices. The attack occurs through an HTTP POST request sent to the "/goform/formWlanSetup" endpoint. It specifically looks for malicious input within the "enrollee" parameter of the request body, which includes characters such as semicolons, newlines, backticks, pipes, or dollar signs. This type of attack is associated with a vulnerability identified as CVE-2026-10182, which could potentially allow unauthorized command execution, posing a security threat to affected devices.
+  Updated-Date: '2026_10_14'
+'2072434':
+  Created-Date: '2026_10_14'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: 7361853774bcf63321d04d9847c5e0fd
+  Ruleset: ETOPEN
+  Summary: This rule detects an attempted buffer overflow vulnerability in the TRENDnet network equipment, specifically targeting the `formWlanSetup` script through a POST request. The attack exploits the `enrollee` parameter with an overly long input, potentially leading to a buffer overflow condition. This vulnerability is identified as CVE-2026-10183. The rule monitors for HTTP requests containing `/goform/formWlanSetup` in the URI and checks the request body for the `enrollee` parameter with an input length surpassing 100 characters. This activity is characteristic of a web application attack aimed at exploiting public-facing applications, aligning with the initial access tactic as per MITRE's framework.
+  Updated-Date: '2026_10_14'
+'2072435':
+  Created-Date: '2026_10_14'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: 614ea6077b77ab3b7e81c063024e97e2
+  Ruleset: ETOPEN
+  Summary: This rule detects an attempt to exploit a vulnerability in GitLab (CVE-2026-85706) that allows unauthenticated users to read arbitrary files. The attack is identified by monitoring HTTP traffic directed at servers, specifically looking for POST requests to endpoints under the `/api/v4/projects/` path followed by `/repository/` in the URI and containing a specific pattern suggesting an unauthorized file read attempt. This exploit can lead to potential exposure of sensitive information on servers running vulnerable instances of GitLab.
+  Updated-Date: '2026_10_14'
+'2072436':
+  Created-Date: '2026_10_14'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: 0081a086fdb048f5e12a10ecdff21ddf
+  Ruleset: ETOPEN
+  Summary: This rule detects a DNS query to a command and control (C2) domain associated with TryNodeRAT malware. The domain in question ends with ".foundations.bond," which indicates potential communication with a TryNodeRAT C2 server. TryNodeRAT is a type of Remote Access Trojan (RAT) that allows attackers to remotely control infected systems. This rule is designed to identify potential compromises on client endpoints running Windows operating systems by matching DNS queries to the specified suspicious domain.
+  Updated-Date: '2026_10_14'
+'2072437':
+  Created-Date: '2026_10_14'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: af55c3141a23eefc53af4f0f989c4668
+  Ruleset: ETOPEN
+  Summary: This rule detects DNS lookups for the domain ".ncsgo.workers.dev", which is associated with TryNodeRAT command and control (C2) communications. TryNodeRAT is a remote access trojan (RAT) that can control infected computers by communicating with a C2 server. The detection focuses on identifying attempts to communicate with this specific malicious domain, indicating potential compromise by TryNodeRAT malware.
+  Updated-Date: '2026_10_14'
+'2072438':
+  Created-Date: '2026_10_14'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: 1eb0773fdff592878310930013879479
+  Ruleset: ETOPEN
+  Summary: This rule detects DNS queries for the command and control (CnC) domain associated with the TryNodeRAT malware, specifically targeting DNS lookups that end with ".mcfind.workers.dev". TryNodeRAT is a type of Remote Access Trojan (RAT) that allows an attacker to gain unauthorized control over a compromised system. The rule is designed to identify potential malicious activity indicative of TryNodeRAT attempting to communicate with its CnC infrastructure.
+  Updated-Date: '2026_10_14'
+'2072439':
+  Created-Date: '2026_10_14'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: 44e277e3b215cb6189cb93fe984b3d17
+  Ruleset: ETOPEN
+  Summary: This rule detects DNS queries related to the TryNodeRAT malware, specifically looking for Command and Control (CnC) domains used during its operation. It identifies DNS lookups for the domain "tesso2.workers.dev," which is associated with TryNodeRAT's communication channels. TryNodeRAT is a Remote Access Trojan (RAT) that targets Windows operating systems, enabling unauthorized remote control of infected systems.
+  Updated-Date: '2026_10_14'
+'2072440':
+  Created-Date: '2026_10_14'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: 38c1cae5bcea86e9c756498ca1562db1
+  Ruleset: ETOPEN
+  Summary: This rule detects DNS queries for a Command and Control (C2) domain associated with TryNodeRAT malware. The domain in question is ".zkffh-amilok.workers.dev". TryNodeRAT is a Remote Access Trojan (RAT) that can be used by attackers to remotely control infected systems. The detection is triggered when a DNS query attempts to resolve this specific domain, indicating potential communication with the malware's C2 infrastructure.
+  Updated-Date: '2026_10_14'
+'2072441':
+  Created-Date: '2026_10_14'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: c76c7d4e1760f9240f20152e6e66c31b
+  Ruleset: ETOPEN
+  Summary: This rule detects potential command-and-control communication attempts from the malware family TryNodeRAT by identifying the use of a specific domain, ".foundations.bond," in the Server Name Indication (SNI) field of a TLS handshake. TryNodeRAT is a type of Remote Access Trojan (RAT) that might target client endpoints running Windows operating systems. The detection focuses on traffic from an internal network heading towards an external network, specifically looking for encrypted communications that include this suspicious domain, indicating a possible compromise or malware activity.
+  Updated-Date: '2026_10_14'
+'2072442':
+  Created-Date: '2026_10_14'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: 73aa564e886b92fcb7039752899af254
+  Ruleset: ETOPEN
+  Summary: This rule detects communication attempts with a command-and-control (C2) domain associated with the TryNodeRAT malware in TLS Server Name Indication (SNI) fields. Specifically, it identifies connections where the SNI contains the domain ".ncsgo.workers.dev". TryNodeRAT is a type of Remote Access Trojan (RAT) that allows attackers to remotely control compromised systems, often used for data exfiltration or furthering network attacks. The detection targets client endpoints running Windows operating systems, indicating a potential security breach or compromise attempt on these systems.
+  Updated-Date: '2026_10_14'
+'2072443':
+  Created-Date: '2026_10_14'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: d2e6430370e8329b0e913a66aef16198
+  Ruleset: ETOPEN
+  Summary: This rule detects network traffic associated with the TryNodeRAT malware using a specific domain in the TLS Server Name Indication (SNI) field. The rule identifies connections from the internal network to external hosts that have the ".mcfind.workers.dev" domain, which is indicative of command and control communication characteristic of the TryNodeRAT remote access trojan. This malware family is known for targeting client endpoint systems, often being used to gain unauthorized access and control over them.
+  Updated-Date: '2026_10_14'
+'2072444':
+  Created-Date: '2026_10_14'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: 98a3bb58843930b5010e54d86f7ad336
+  Ruleset: ETOPEN
+  Summary: This rule detects network traffic where a client on a potentially infected machine attempts to establish a communication session with a specific command-and-control (C2) server domain associated with TryNodeRAT malware. The detection focuses on the Server Name Indication (SNI) field of TLS connections, specifically looking for the domain .tesso2.workers.dev, which may indicate malicious activity on a Windows operating system. The TryNodeRAT is a type of Remote Access Trojan (RAT), capable of controlling infected machines remotely, and the rule helps in identifying potential infections by flagging unusual domain connections typical of such malware in its C2 communications.
+  Updated-Date: '2026_10_14'
+'2072445':
+  Created-Date: '2026_10_14'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: a35dd9fdad53040737da74b75224a2f4
+  Ruleset: ETOPEN
+  Summary: This rule detects communication attempts to a command-and-control domain associated with the TryNodeRAT malware using a specific server name indication (SNI) in TLS connections. The rule looks for the domain ".zkffh-amilok.workers.dev" in the TLS SNI field of outgoing connections from an internal network to an external network, indicating potential activity of this remote access trojan on a client endpoint, particularly on Windows operating systems.
+  Updated-Date: '2026_10_14'
 '2100110':
   Created-Date: '2024_08_07'
   Custom-Edited: false
