@@ -553658,10 +553658,10 @@
   Created-Date: '2026_10_13'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: 6883ce75363cbe41febaa98d0d4e0d43
+  Rule-Body-Hash: a085084888a6ea904201f024fc1214c0
   Ruleset: ETOPEN
-  Summary: This rule detects communication with a command and control (CnC) domain associated with the TryNodeRAT malware over a Transport Layer Security (TLS) connection. It specifically identifies the use of the server name indication (SNI) field in TLS traffic that ends with ".fins.workers.dev". TryNodeRAT is a remote access trojan (RAT) that potentially allows attackers to control infected systems, and this rule helps in identifying attempts to connect to its CnC server using a distinct domain pattern.
-  Updated-Date: '2026_10_13'
+  Summary: This rule detects communication attempts to a command and control (C2) domain associated with the TryNodeRAT malware using Transport Layer Security (TLS) Server Name Indication (SNI) field. The rule is triggered when TLS traffic from a monitored internal network to an external network includes the ".fins.workers.dev" domain within the SNI, indicating possible contact with a malicious server. TryNodeRAT is a Remote Access Trojan (RAT), and the detection targets client endpoints that might be compromised. The alert focuses on identifying such malicious domain patterns to prevent data breaches or unauthorized access orchestrated by this malware.
+  Updated-Date: '2026_10_19'
 '2072424':
   Created-Date: '2026_10_13'
   Custom-Edited: false
@@ -553978,10 +553978,10 @@
   Created-Date: '2026_10_16'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: 01cb05b09cf5fc4b027260321d67e200
+  Rule-Body-Hash: e9686e93ed5c7ec57021dbb079734979
   Ruleset: ETOPEN
-  Summary: This rule detects DNS queries for the domain "cookie-sync.xyz," which is associated with the AdFection malware family. AdFection is a threat that exploits targeted advertising techniques to deliver spyware to client endpoints, including web browsers, Android, and iOS devices. The detection of such domains helps identify potential exploitation attempts and mitigate the risk of spyware infiltration through targeted ads.
-  Updated-Date: '2026_10_16'
+  Summary: This rule detects DNS lookups for the domain "cookie-sync.xyz," which is associated with the AdFection malware, a known threat that potentially targets web browsers and mobile operating systems like Android and iOS. This domain is related to activities involving spyware embedded in targeted advertising channels.
+  Updated-Date: '2026_10_19'
 '2072464':
   Created-Date: '2026_10_16'
   Custom-Edited: false
@@ -554042,10 +554042,10 @@
   Created-Date: '2026_10_16'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: aaf9ba4f4cd873317463947dcd238a19
+  Rule-Body-Hash: c0ca25151a1beff830bb2476f70d1da9
   Ruleset: ETOPEN
-  Summary: This rule detects the use of a specific domain, "tracookiepixel.xyz," in the Server Name Indication (SNI) field of TLS traffic, which is associated with the AdFection malware family. AdFection is known to leverage internet advertisements as a delivery mechanism for spyware, turning targeted ads into a potential conduit for malicious activities. The detection is triggered for outbound connections originating from the internal network towards external networks, indicating a potential client endpoint compromise.
-  Updated-Date: '2026_10_16'
+  Summary: This rule detects traffic containing the domain "tracookiepixel.xyz" in the Server Name Indication (SNI) field of TLS connections, which is associated with the AdFection malware family. AdFection is known to exploit targeted advertising mechanisms to deliver spyware. The detection targets client endpoints, including web browsers, Android, and iOS platforms, and is relevant for monitoring communication between an internal network and external entities.
+  Updated-Date: '2026_10_19'
 '2072472':
   Created-Date: '2026_10_16'
   Custom-Edited: false
@@ -554074,26 +554074,26 @@
   Created-Date: '2026_10_16'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: 810576421c9871529c48a48b18659c7f
+  Rule-Body-Hash: c9cb300f036e7e9735b39be3e978d8a1
   Ruleset: ETOPEN
-  Summary: This rule detects network traffic related to the AdFection malware by identifying TLS sessions where the Server Name Indication (SNI) field contains the domain "checkmyimp.com". The rule focuses on traffic from local networks to external networks that is established and directed to the server, highlighting potential spyware activities linked to targeted advertising tactics. It indicates that the threat impacts web browsers, as well as Android and iOS operating systems, posing a risk primarily to client endpoints.
-  Updated-Date: '2026_10_16'
+  Summary: This rule detects traffic where the Server Name Indication (SNI) in a TLS connection matches the domain "checkmyimp.com", which is associated with AdFection, a malware family known for turning targeted ads into a spyware delivery method. The rule examines TLS connections initiated by clients within a network, searching for this specific domain, which suggests a compromise or misuse of web browsers or mobile devices using Android or iOS operating systems. This is part of a broader effort to identify and mitigate security threats at the client endpoint level.
+  Updated-Date: '2026_10_19'
 '2072476':
   Created-Date: '2026_10_16'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: 66e80e62866c54235e173f19810236ed
+  Rule-Body-Hash: 2b43cd3cc53810f42855bafcfa6e5a6e
   Ruleset: ETOPEN
-  Summary: This rule detects network traffic where the TLS Server Name Indication (SNI) contains the domain "ads-impressions.com". It is associated with monitoring for AdFection-related activities, which involve targeted advertisements being used as a vector for potential spyware delivery. The rule specifically targets established connections from an internal network to external networks, monitoring for a specific pattern in the communication that could suggest malicious intent. This behavior is relevant to devices such as web browsers and mobile operating systems like Android and iOS, aiming to protect client endpoints from exploitation through spyware-related domain interactions.
-  Updated-Date: '2026_10_16'
+  Summary: This rule detects network traffic involving a domain associated with potentially malicious activity, specifically targeting the presence of "ads-impressions.com" in the Server Name Indication (SNI) field of a TLS handshake. This is related to the AdFection malware family that exploits advertising technologies to facilitate spyware activities. It applies to established connections from internal to external networks using web browsers on Android and iOS platforms, aiming at client endpoints as potential targets for this exploitation.
+  Updated-Date: '2026_10_19'
 '2072477':
   Created-Date: '2026_10_16'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: ea6456c553ceb21ce337f3512716b33c
+  Rule-Body-Hash: a0881b8d076f76ac29e13569e3d992a7
   Ruleset: ETOPEN
-  Summary: This rule detects network traffic where the Server Name Indication (SNI) field in a TLS handshake contains the domain "nutralove.co," which is associated with the AdFection malware family. AdFection has been identified as turning targeted ads into spyware delivery mechanisms, potentially affecting web browsers, Android, and iOS client endpoints. The detection of this domain within TLS traffic is crucial for identifying potentially malicious activities targeting these systems.
-  Updated-Date: '2026_10_16'
+  Summary: This rule detects TLS traffic where the Server Name Indication (SNI) contains the domain "nutralove.co," which is related to AdFection, a type of spyware. The alert monitors established connections from internal networks to external networks, specifically focusing on web browsers, Android, and iOS devices. The presence of this domain in the SNI field could indicate an attempt to exploit client endpoints using techniques similar to those identified by Citizen Lab in research on targeted advertising being used to deliver spyware.
+  Updated-Date: '2026_10_19'
 '2072478':
   Created-Date: '2026_10_16'
   Custom-Edited: false
@@ -554114,10 +554114,10 @@
   Created-Date: '2026_10_16'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: 312af6f41f6ef24d20c1da21eabc214f
+  Rule-Body-Hash: fc03bedb7edb3794a9788f552648064c
   Ruleset: ETOPEN
-  Summary: This rule detects communication attempts involving the AdFection malware, specifically when the TLS Server Name Indication (SNI) field in a traffic flow to a server contains the domain "noas.trakking.co". AdFection is associated with targeted advertising mechanisms that have been repurposed into conduits for distributing spyware. This detection is relevant to web browsers on Android and iOS devices and aims to identify potential exploitation of client endpoints through this domain in TLS traffic.
-  Updated-Date: '2026_10_16'
+  Summary: This rule detects a specific domain associated with AdFection, identified in the TLS Server Name Indication (SNI) field, which is used in established connections from internal networks to external destinations. The domain in question is "noas.trakking.co", linked to potentially malicious activities involving ad tracking and spyware delivery, as reported by security researchers. This alert is particularly relevant for devices using web browsers on platforms such as Android and iOS, indicating a potential spyware threat originating from targeted advertisements.
+  Updated-Date: '2026_10_19'
 '2072481':
   Created-Date: '2026_10_16'
   Custom-Edited: false
@@ -554138,18 +554138,18 @@
   Created-Date: '2026_10_16'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: 377dba5c817d952a8487aa309e607d66
+  Rule-Body-Hash: 1663a8d0004529fad392ab6865513fd8
   Ruleset: ETOPEN
-  Summary: This rule detects DNS queries related to the AdFection spyware, specifically targeting the domain "discover-tech.io". AdFection is known for utilizing targeted advertisements as a means to deliver spyware to user endpoints. By monitoring DNS lookups for this particular domain, the rule aims to identify potential attempts to connect with the infrastructure associated with this spyware, thereby allowing for the early detection and mitigation of such threats on client endpoints, including web browsers and mobile platforms such as Android and iOS.
-  Updated-Date: '2026_10_16'
+  Summary: This rule detects DNS queries for the domain "discover-tech.io," which is associated with AdFection-related activities. AdFection is a campaign known for using targeted ads as a method for delivering spyware. The detection focuses on matching the specified domain in DNS traffic, indicating potential spyware targeting client endpoints such as web browsers, Android, and iOS devices. This match highlights a risk of exploitation as reported by Citizen Lab.
+  Updated-Date: '2026_10_19'
 '2072484':
   Created-Date: '2026_10_16'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: 1a6c10b36c76288699647219c09dd128
+  Rule-Body-Hash: 5704fd9fb749f6b8d648a6e5ba0daa9f
   Ruleset: ETOPEN
-  Summary: This rule detects DNS queries for domains ending with ".mydsp.io" that are associated with AdFection, a spyware-related malware family. The rule is designed to identify potential spyware activity linked to targeted advertising techniques on client endpoints running web browsers, Android, or iOS. The detection aims to mitigate the risk of exploitation through such domains by identifying suspicious DNS lookups indicative of malicious activity.
-  Updated-Date: '2026_10_16'
+  Summary: This rule detects DNS queries for domains related to "AdFection" by identifying lookups for domains ending with ".mydsp.io". "AdFection" refers to malicious activities involving targeted ads being utilized as a conduit for spyware. The rule aims to identify potential spyware threats on various client endpoints, including web browsers, Android, and iOS devices. The presence of such DNS lookups could indicate an attempt to exploit targeted advertising technologies for distributing spyware.
+  Updated-Date: '2026_10_19'
 '2072485':
   Created-Date: '2026_10_16'
   Custom-Edited: false
@@ -554218,10 +554218,10 @@
   Created-Date: '2026_10_16'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: c43ef62b6c402c58c2362eed856c85d2
+  Rule-Body-Hash: 75f9573c325eb3c3f5a2e407cb4b47b0
   Ruleset: ETOPEN
-  Summary: This rule detects network traffic featuring a specific domain, "controlium.net," within the Server Name Indication (SNI) field of TLS connections. This activity is associated with the AdFection malware, which exploits the advertising ecosystem to deliver spyware. The rule targets traffic originating from internal networks that is heading out to external domains, indicating a potential spyware-related event in client endpoint environments, including web browsers and mobile platforms such as Android and iOS.
-  Updated-Date: '2026_10_16'
+  Summary: This rule detects attempts to connect to a known AdFection-related domain through Transport Layer Security (TLS) Server Name Indication (SNI) by identifying traffic to ".controlium.net". AdFection is associated with spyware that exploits targeted advertising technologies to compromise client endpoints. This rule is triggered when an established TLS connection from a device within a home network to an external network is detected, indicating potential spyware communication linked to the AdFection malware family.
+  Updated-Date: '2026_10_19'
 '2072494':
   Created-Date: '2026_10_16'
   Custom-Edited: false
@@ -554242,10 +554242,10 @@
   Created-Date: '2026_10_16'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: c67d3b56e2f9e26232ed5c7ec87f64ca
+  Rule-Body-Hash: 5464f03789d41c546dd21edb871a86c4
   Ruleset: ETOPEN
-  Summary: This rule detects traffic related to the AdFection malware by identifying connections where the Server Name Indication (SNI) field in TLS connections includes the domain "myweb3id.io". This domain is associated with AdFection, a malware known to exploit advertising networks for delivering spyware. The rule targets client endpoints using web browsers and mobile devices running Android or iOS, specifically focusing on established connections from internal networks to external servers.
-  Updated-Date: '2026_10_16'
+  Summary: This rule detects network traffic where the server name indication (SNI) in a TLS handshake contains the domain ".myweb3id.io". This domain is associated with the AdFection malware, which is known to misuse advertising technology to facilitate spyware activities. The rule is focused on communications from internal networks to external networks, particularly looking for established connections headed to the server.
+  Updated-Date: '2026_10_19'
 '2072497':
   Created-Date: '2026_10_16'
   Custom-Edited: false
@@ -554278,6 +554278,54 @@
   Ruleset: ETOPEN
   Summary: This rule detects communication with a command and control (C2) server associated with TryNodeRAT malware through the TLS Server Name Indication (SNI) extension. TryNodeRAT is a type of Remote Access Trojan (RAT) used to allow unauthorized remote control over an infected computer system. The rule identifies traffic directed to the domain "storage-files-api.workers.dev," which is indicative of TryNodeRAT activity, suggesting that the device establishing this connection may be compromised and under the control of an external attacker.
   Updated-Date: '2026_10_16'
+'2072501':
+  Created-Date: '2026_10_19'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: 7192dba0145f7aa6bccf8059dda64153
+  Ruleset: ETOPEN
+  Summary: This rule detects DNS queries for the domain "gloob.top," which is associated with command-and-control activities of the Lumma Stealer malware. Lumma Stealer is a type of malicious software designed to steal sensitive information from infected systems. The presence of this domain in DNS traffic may indicate an attempt by the malware to communicate with its command server, which can be a part of a larger cyberattack involving data theft and unauthorized access to compromised endpoints.
+  Updated-Date: '2026_10_19'
+'2072502':
+  Created-Date: '2026_10_19'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: 25b6178d46e73825310b116fc4204a68
+  Ruleset: ETOPEN
+  Summary: This rule detects network traffic attempting to establish a TLS connection to a server with a Server Name Indication (SNI) in the TLS handshake that matches the domain "gloob.top." This behavior is associated with the Win32/Lumma Stealer malware, which is known for stealing sensitive information from infected systems. The rule triggers on outbound connections from the monitored network, indicating potential command-and-control communication with the Lumma Stealer infrastructure.
+  Updated-Date: '2026_10_19'
+'2072503':
+  Created-Date: '2026_10_19'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: e28a20bfcaf26b46ed3bed8b03bae7d9
+  Ruleset: ETOPEN
+  Summary: This rule detects DNS queries for a Command and Control (C2) domain associated with the TA569 threat actor group and Gholoader malware. The domain queried is "mini-kit.nashstuder.com", indicating potential communication with a C2 server. Gholoader, often linked with SocGholish malware campaigns, is used to deliver and execute various malicious payloads on infected systems. The detection highlights a possible compromise via a DNS lookup indicative of ongoing or attempted exploitation activity.
+  Updated-Date: '2026_10_19'
+'2072504':
+  Created-Date: '2026_10_19'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: 8f0bf56368eaeaa78498f75d7547fe6d
+  Ruleset: ETOPEN
+  Summary: This rule detects a DNS query for a domain associated with the TA569 malware campaign, specifically targeting the Gholoader command and control (CnC) infrastructure. The queried domain "embed-api.joelbaueronline.com" is linked to the SocGholish malware family, a type of malware that typically engages in malicious activities like data theft or system compromise. This detection is intended to identify potentially compromised client endpoints attempting to communicate with this malicious domain, which is part of an exploit kit known to impact web browsers.
+  Updated-Date: '2026_10_19'
+'2072505':
+  Created-Date: '2026_10_19'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: 2ea8533400888682c085acb2fc9d49e0
+  Ruleset: ETOPEN
+  Summary: This rule detects communication with a command and control (C2) domain used by the Gholoader malware, which is associated with the TA569 threat actor group. The specific domain being flagged is "mini-kit.nashstuder.com," identified in the Server Name Indication (SNI) field of a TLS connection. This detection occurs when the client's traffic is established and directed to a server. The rule is designed to identify potential trojan activity concerning the SocGholish malware family, which targets client endpoints, and it is significant for identifying compromised websites involved in exploit kit campaigns.
+  Updated-Date: '2026_10_19'
+'2072506':
+  Created-Date: '2026_10_19'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: dea5659549f380094322cc891fc1d507
+  Ruleset: ETOPEN
+  Summary: This rule detects attempts to communicate with a command and control (C&C) domain associated with the TA569 group using the Gholoader malware through a TLS Server Name Indication (SNI). Specifically, it identifies traffic to the domain "embed-api.joelbaueronline.com" in outbound TLS connections. Gholoader is used by attackers to download and execute malicious payloads on infected systems, typically involving compromised websites. This detection is part of efforts to identify and mitigate activity related to the SocGholish malware family.
+  Updated-Date: '2026_10_19'
 '2100110':
   Created-Date: '2024_08_07'
   Custom-Edited: false
