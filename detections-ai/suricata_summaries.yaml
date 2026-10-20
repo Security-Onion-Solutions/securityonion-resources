@@ -51914,42 +51914,42 @@
   Created-Date: '2024_08_07'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: 4eea37c82eb513849a0caf6e0315dc04
+  Rule-Body-Hash: dc65aad4a7d8fd34714d8d4801c8afb0
   Ruleset: ETOPEN
-  Summary: This rule detects an attempted exploit targeting a vulnerability in Microsoft Windows via NETAPI. Specifically, it identifies traffic that could exploit the stack overflow flaw described in Microsoft's MS08-067 security bulletin. This vulnerability, which is associated with CVE-2008-4250, allows for remote code execution on the affected system, posing a significant security risk. The rule looks for specific UDP traffic patterns to identify intrusion attempts on network-enabled services using NETBIOS, typically on port 139, which is a common target for attackers seeking to gain unauthorized administrative access.
-  Updated-Date: '2024_12_17'
+  Summary: This rule detects attempts to exploit a stack overflow vulnerability in Microsoft Windows affecting the NETAPI service, as detailed in MS08-067. The vulnerability can be leveraged by attackers to execute arbitrary code on a target system, potentially gaining administrative privileges. The detection is triggered by specific UDP traffic to port 139 on the home network, particularly targeting the NETBIOS interface with a specific header pattern. This vulnerability is identified by CVE-2008-4250 and is a well-known security risk that attackers may exploit, making it important to monitor for such intrusion attempts.
+  Updated-Date: '2026_10_20'
 '2008691':
   Created-Date: '2024_08_07'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: b5fdc013746ee5a1ba5a3b7d864dba5d
+  Rule-Body-Hash: 88c7b0b6bfc8e1f06bc6710c437d92ee
   Ruleset: ETOPEN
-  Summary: This rule detects an attempted attack exploiting a known vulnerability in Microsoft Windows, specifically the NETAPI32.dll component, which is vulnerable to a stack overflow as detailed in the MS08-067 security bulletin. This vulnerability could allow remote code execution on affected systems, and it is particularly notable due to its historical association with major malware outbreaks, such as the Conficker worm. The rule targets incoming UDP traffic on port 139, scanning for specific byte patterns that trigger the exploit, thereby enabling network administrators to detect and mitigate potential security threats related to this specific vulnerability.
-  Updated-Date: '2024_12_17'
+  Summary: This rule detects an attempted exploit of a security vulnerability in Microsoft Windows related to the NETAPI, specifically targeting a stack overflow vulnerability addressed in the MS08-067 security bulletin. The attack leverages the NETBIOS service over UDP to execute unauthorized actions, potentially allowing an attacker to gain administrative access to the affected system. The vulnerability is identified by CVE-2008-4250, and it's triggered by malicious data sent via the specified DCE/RPC interface.
+  Updated-Date: '2026_10_20'
 '2008692':
   Created-Date: '2024_08_07'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: f5fa0845a3fbba4bf61d4d14dcf4a59e
+  Rule-Body-Hash: 24a7db6abefd2e0be24360a84e281ce6
   Ruleset: ETOPEN
-  Summary: This rule detects an attempted stack overflow attack targeting Microsoft Windows systems via the NETAPI interface on UDP port 139, exploiting the vulnerability identified as MS08-067. This vulnerability, detailed in CVE-2008-4250, can be used by attackers to execute arbitrary code remotely and potentially gain administrative control over a vulnerable system. The signature identifies attempts by inspecting specific byte patterns associated with the exploit.
-  Updated-Date: '2024_12_17'
+  Summary: This rule detects an attempt to exploit a stack overflow vulnerability in Microsoft's Windows NETAPI library, specifically targeting the NETBIOS service on UDP port 139. The rule identifies traffic that includes specific DCERPC interface operations and content patterns related to the vulnerability identified in Microsoft Security Bulletin MS08-067 and CVE-2008-4250. The attack seeks to execute arbitrary code on the targeted Windows system through crafted network messages, potentially leading to unauthorized administrative access.
+  Updated-Date: '2026_10_20'
 '2008693':
   Created-Date: '2024_08_07'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: f6fcd3e639de4d4c2304c56a3452e6dc
+  Rule-Body-Hash: ade3c2e55bfb56425393cf490af822df
   Ruleset: ETOPEN
-  Summary: This rule detects attempts to exploit a stack overflow vulnerability in Microsoft Windows systems via the NETAPI interface. The specific vulnerability is identified as MS08-067, which allows remote attackers to execute arbitrary code by sending specially crafted packets to port 139/UDP. This rule matches packets containing specific byte sequences that are indicative of this exploit attempt. The vulnerability is notable for its use in several malware campaigns, including the Conficker worm, which targeted unpatched systems by leveraging this flaw.
-  Updated-Date: '2024_12_17'
+  Summary: This rule detects an attempt to exploit the Microsoft Windows NETAPI stack overflow vulnerability, identified as MS08-067. This vulnerability allows remote code execution and is associated with the CVE-2008-4250 identifier. The rule targets UDP traffic directed at port 139 within a protected network and looks for specific Distributed Computing Environment/Remote Procedure Call (DCE/RPC) interface activity and operation numbers that suggest malicious behavior. This particular exploit may allow an attacker to execute arbitrary code with administrative privileges on the targeted system.
+  Updated-Date: '2026_10_20'
 '2008694':
   Created-Date: '2024_08_06'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: 5e258819031784481a944fb5abcf2d39
+  Rule-Body-Hash: 048e5412de35a3f3eee26c42f7cf36e0
   Ruleset: ETOPEN
-  Summary: This rule detects an attempted Microsoft Windows NETAPI stack buffer overflow vulnerability exploitation, known as MS08-067. It is an inbound UDP traffic attack targeting port 139 on the home network. This vulnerability could allow remote code execution if successfully exploited, enabling an attacker to take control of the affected system. The rule utilizes specific byte patterns in the packet payload to identify malicious activity associated with this vulnerability. MS08-067 is a well-known security issue, and Microsoft released a security bulletin addressing it, while the CVE identifier associated with this vulnerability is CVE-2008-4250.
-  Updated-Date: '2024_12_17'
+  Summary: This rule detects an attempted inbound exploit targeting the Microsoft Windows NETAPI stack overflow vulnerability identified in MS08-067. This exploit involves the Distributed Computing Environment/Remote Procedure Call (DCE/RPC) interface and is identifiable by specific operation numbers and data patterns within the UDP traffic directed at port 139. The vulnerability, also referenced by CVE-2008-4250, can be exploited to execute arbitrary code on affected systems, and is a significant threat to network security.
+  Updated-Date: '2026_10_20'
 '2008695':
   Created-Date: '2024_08_07'
   Custom-Edited: false
@@ -51962,34 +51962,34 @@
   Created-Date: '2024_08_07'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: 135e3fb3edcba5129a843d167bedacd3
+  Rule-Body-Hash: ec71cb7e6790a38d81cedcb3a52ba70a
   Ruleset: ETOPEN
-  Summary: This rule detects an attempted exploitation of a stack overflow vulnerability in Microsoft Windows, specifically targeting the NETAPI service. This vulnerability, identified as CVE-2008-4250, is known as MS08-067. An attacker exploiting this flaw can execute arbitrary code with administrative privileges by sending a specially crafted UDP packet to port 139 on the target system. The rule triggers on specific byte sequences in the packet content that are indicative of such an attack attempt.
-  Updated-Date: '2024_12_17'
+  Summary: This rule detects an attempt to exploit the Microsoft Windows NETAPI stack overflow vulnerability, identified as MS08-067. The vulnerability is exploited through malicious DCERPC (Distributed Computing Environment / Remote Procedure Call) traffic directed towards port 139. This type of attack can result in remote code execution on affected systems. The rule specifically targets the characteristic method and data patterns involved in this exploit, including a unique identifier for the related DCERPC interface and operation number. This vulnerability is historically significant as it was used by the infamous Conficker worm.
+  Updated-Date: '2026_10_20'
 '2008697':
   Created-Date: '2024_08_07'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: cf75c5dc86e2d6b4608b0fe575c43d33
+  Rule-Body-Hash: 78409934b08eb3e5c14d8c340b74b8e6
   Ruleset: ETOPEN
-  Summary: This rule detects an attempted exploit of a vulnerability in Microsoft Windows' NETAPI, specifically targeting a stack overflow condition as detailed in Microsoft Security Bulletin MS08-067. The rule is triggered by UDP traffic on port 139 destined for internal network addresses that includes specific byte sequences and path traversal patterns in its payload. The vulnerability, identified as CVE-2008-4250, allows for remote code execution, which could give an attacker administrative control over the affected system.
-  Updated-Date: '2024_12_17'
+  Summary: This rule detects an attempted stack overflow exploit targeting Microsoft Windows NETAPI, specifically addressing the vulnerability identified in Microsoft Security Bulletin MS08-067. The exploit involves sending maliciously crafted data over UDP to port 139, exploiting a flaw in the handling of remote procedure calls via the NETAPI interface. This vulnerability, associated with CVE-2008-4250, can lead to unauthorized access or control over the affected system by executing arbitrary code.
+  Updated-Date: '2026_10_20'
 '2008698':
   Created-Date: '2024_08_06'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: 48396f8bd4299fdcdb57390287d81275
+  Rule-Body-Hash: 4ddba732455a9d837663e4f144f9e32b
   Ruleset: ETOPEN
-  Summary: This rule detects an attempt to exploit a stack overflow vulnerability in Microsoft Windows' NETAPI, as outlined in security bulletin MS08-067. This vulnerability allows remote attackers to execute arbitrary code on affected systems by sending a crafted network packet to port 139, which is used for NetBIOS sessions. The detection is based on specific patterns in the packet content, targeting known signatures associated with this exploit.
-  Updated-Date: '2024_12_17'
+  Summary: This rule detects attempts to exploit a known vulnerability in Microsoft Windows NETAPI, specifically targeting the stack overflow vulnerability described in MS08-067. The attack involves UDP traffic aimed at port 139 within the home network. It uses the Distributed Computing Environment / Remote Procedure Call (DCE/RPC) interface with a specific operation number (opnum 32) and requires particular stub data to identify the attack. The vulnerability, identified by CVE-2008-4250, allows remote code execution, and attackers use it to gain administrative control over vulnerable systems.
+  Updated-Date: '2026_10_20'
 '2008699':
   Created-Date: '2024_08_06'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: 1b3b65b7e782ea1ef0835b49b92eec02
+  Rule-Body-Hash: 9b74648b13fdf65d9095faab337cd22f
   Ruleset: ETOPEN
-  Summary: This rule detects an attempt to exploit a vulnerability in Microsoft Windows via the NETAPI service, specifically targeting a stack overflow vulnerability known as MS08-067. The rule examines incoming UDP traffic on port 139 to identify patterns indicative of this exploit, which could allow an attacker to execute arbitrary code on the target system. This vulnerability, related to CVE-2008-4250, is notable as it can lead to unauthorized administrative access to affected systems.
-  Updated-Date: '2024_12_17'
+  Summary: This rule detects an attempted exploitation of the Microsoft Windows NETAPI stack overflow vulnerability identified as MS08-067. This vulnerability affects the Server service and allows remote attackers to execute arbitrary code on affected systems. The rule is triggered by specific pattern detection in the payload of a UDP packet directed at network port 139 within the home network, signifying potential malicious activity indicative of this exploit. The detected content references a specific sequence of bytes that is associated with this particular vulnerability exploit, highlighting a potential breach attempt.
+  Updated-Date: '2026_10_20'
 '2008700':
   Created-Date: '2024_08_07'
   Custom-Edited: false
@@ -52002,82 +52002,82 @@
   Created-Date: '2024_08_07'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: 0fa40e5fe14298fd761499a25154077e
+  Rule-Body-Hash: 3624e65ed3433b9f09e56773ea33faa4
   Ruleset: ETOPEN
-  Summary: This rule detects an inbound attempt to exploit a stack overflow vulnerability in the Microsoft Windows NETAPI library, specifically related to the MS08-067 vulnerability. The attack is identified by examining network traffic on TCP port 445, with the detection focusing on the presence of specific binary patterns in the payload indicative of this exploit. This vulnerability, designated as CVE-2008-4250, allows unauthorized remote code execution, potentially allowing attackers to gain administrative privileges on the targeted Windows system.
-  Updated-Date: '2024_12_17'
+  Summary: This rule detects an attempt to exploit a known vulnerability in Microsoft Windows named MS08-067, which involves a stack overflow in the NETAPI interface. The vulnerability can be triggered by sending a specific pattern of data over TCP to a targeted server on port 445, and successful exploitation could allow remote code execution. This vulnerability was previously assigned the CVE identifier CVE-2008-4250. It targets systems running a vulnerable version of the Microsoft Windows operating system by leveraging a flaw in the handling of certain network traffic related to the NETBIOS API.
+  Updated-Date: '2026_10_20'
 '2008702':
   Created-Date: '2024_08_06'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: c268d33700e4535c29eff85888bf846a
+  Rule-Body-Hash: 68fbfff0caad826ef98a6d3abd5273d9
   Ruleset: ETOPEN
-  Summary: This rule detects an inbound attempt to exploit the Microsoft Windows NetAPI stack overflow vulnerability identified as MS08-067. This vulnerability, which affects Windows systems, could allow an attacker to execute arbitrary code by sending specially crafted packets to a vulnerable service running on TCP port 445. The rule specifically looks for established connections directed towards a server and matches particular hexadecimal patterns indicative of this exploit. This detection is linked to CVE-2008-4250 and has been documented in various security advisories.
-  Updated-Date: '2024_12_17'
+  Summary: This rule detects an attempted stack overflow vulnerability exploit against Microsoft Windows using the NETAPI interface, specifically targeting MS08-067. This vulnerability can be exploited to execute arbitrary code on a target system, which typically indicates an attempt to gain administrative access. The attack is carried out over TCP to port 445, commonly associated with the SMB protocol, using specific DCE/RPC interface identifiers and operation numbers associated with this known vulnerability.
+  Updated-Date: '2026_10_20'
 '2008703':
   Created-Date: '2024_08_07'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: ba0a5944251b772935f027df380d8009
+  Rule-Body-Hash: ce283dbdee8857313ad41da460d962d9
   Ruleset: ETOPEN
-  Summary: This rule detects an attempted network intrusion targeting Microsoft Windows systems through the exploitation of a vulnerability in the NETAPI32.dll component, as outlined in Microsoft Security Bulletin MS08-067. It involves an overflow in the stack buffer, facilitated by specific packet contents, which could allow remote code execution. This vulnerability, identified by CVE-2008-4250, poses significant security risks by potentially granting an attacker administrative control over the affected system. The rule triggers on TCP traffic directed at port 445, commonly used by the Microsoft-DS service, where established connections to a server exhibit specific hexadecimal patterns and path traversal attempts.
-  Updated-Date: '2024_12_17'
+  Summary: This rule detects attempts to exploit a specific vulnerability in Microsoft Windows, identified as a stack overflow in the NETAPI interface due to an improper handling of paths in RPC requests. This vulnerability, known as MS08-067, can allow an attacker to execute arbitrary code on the target system. The rule monitors for inbound TCP traffic on port 445 associated with the particular DCE/RPC interface and operation number that are indicative of this exploit attempt. The presence of specific path traversal patterns in the data stream triggers the alert, suggesting an attempted administrative access through exploiting the stack overflow vulnerability.
+  Updated-Date: '2026_10_20'
 '2008704':
   Created-Date: '2024_08_06'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: c9d98690dd7f3ba32361f21a59b364dd
+  Rule-Body-Hash: 1634de438a504e67f0ba736929b41288
   Ruleset: ETOPEN
-  Summary: This rule detects an attempt to exploit a stack overflow vulnerability in the Microsoft Windows NETAPI service, specifically associated with the MS08-067 advisory. It monitors inbound traffic on TCP port 445 to identify patterns in network packets that suggest an attack targeting this vulnerability, which can allow remote code execution on affected systems. The rule looks for specific byte sequences within network traffic that are characteristic of an attack exploiting this flaw, as described in CVE-2008-4250.
-  Updated-Date: '2024_12_17'
+  Summary: This rule detects an attempt to exploit a known vulnerability in Microsoft Windows, specifically the NETAPI stack overflow vulnerability defined in MS08-067. It targets a specific DCE/RPC interface and operation on TCP port 445, which is commonly used for SMB communications. The attack involves sending a crafted packet with a particular sequence of bytes that are indicative of this exploit. This vulnerability was notable for being used by the Conficker worm to propagate itself. The rule is aimed at identifying attempts to gain unauthorized administrative access by exploiting this flaw.
+  Updated-Date: '2026_10_20'
 '2008705':
   Created-Date: '2024_08_07'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: 0b6246884548d56e6f9432f910262566
+  Rule-Body-Hash: 9c3375fb9e481af319ad4f4088a3a281
   Ruleset: ETOPEN
-  Summary: This rule detects an attempted exploit targeting a vulnerability in Microsoft Windows NetAPI that can lead to a stack overflow. This vulnerability is known as MS08-067 and is identified by CVE-2008-4250. It involves a specific sequence of byte patterns and occurs over TCP port 445 in established connections directed to a server within the home network. If successfully exploited, this vulnerability can facilitate unauthorized administrative access to the affected system.
-  Updated-Date: '2024_12_17'
+  Summary: This rule detects an inbound attempt to exploit a stack overflow vulnerability in Microsoft Windows NETAPI, specifically identified as MS08-067. The vulnerability allows remote attackers to execute arbitrary code by sending a crafted RPC request to the Netlogon service on TCP port 445. The detection focuses on a specific RPC interface and operation number, as well as a particular sequence of hexadecimal data within the RPC request that is indicative of the exploit.
+  Updated-Date: '2026_10_20'
 '2008706':
   Created-Date: '2024_08_07'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: 1f0d2b111ef41191a1318a12a30271a2
+  Rule-Body-Hash: e6205e4cf54eb3761d8daa3d7d01dd4a
   Ruleset: ETOPEN
-  Summary: This rule detects attempts to exploit a vulnerability in Microsoft Windows related to a stack overflow in NETAPI, specifically targeting port 139. The attack, linked to the MS08-067 security bulletin, involves an established TCP connection to a server and is characterized by specific byte patterns in the payload. This vulnerability, identified by CVE-2008-4250, allows for remote code execution and poses a significant threat to Windows systems if successfully exploited.
-  Updated-Date: '2024_12_17'
+  Summary: This rule detects an attempt to exploit a stack overflow vulnerability in the Microsoft Windows Server service (MS08-067) over NetBIOS. The attack specifically targets TCP traffic on port 139 and is characterized by specific data patterns in an established connection directed to a server. The vulnerability, identified by CVE-2008-4250, allows remote code execution and is significant enough to be addressed by security updates from Microsoft.
+  Updated-Date: '2026_10_20'
 '2008707':
   Created-Date: '2024_08_07'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: 28fd3ac51d51b5a56210c9757732e1e0
+  Rule-Body-Hash: b7862779dc6ca0cb5f8c404e2c219e2c
   Ruleset: ETOPEN
-  Summary: This rule detects an attempted buffer overflow attack targeting the Microsoft Windows Server service through the NETBIOS protocol on port 139. It identifies malicious payloads that exploit a vulnerability outlined in Microsoft's MS08-067 security bulletin, commonly known as a NETAPI stack overflow vulnerability. This vulnerability allows remote code execution on systems running unpatched versions of Windows, resulting from specially crafted packets. The rule monitors established TCP connections to a server and looks for specific byte sequences that are characteristic of this exploit.
-  Updated-Date: '2024_12_17'
+  Summary: This rule detects an attempt to exploit a Microsoft Windows vulnerability, known as MS08-067, through a stack overflow in the NetAPI service. This vulnerability allows an attacker to execute arbitrary code on a target system via specially crafted Network Basic Input/Output System (NETBIOS) packets. The rule triggers when a DCERPC request with specific interface and operation numbers is sent to a server, containing the suspicious stub data pattern. The vulnerability is associated with CVE-2008-4250 and poses a risk of remote code execution, which can lead to an unauthorized administrative action on the affected system.
+  Updated-Date: '2026_10_20'
 '2008708':
   Created-Date: '2024_08_06'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: 6ed0ab03fd8df8760ac6f41582e457f3
+  Rule-Body-Hash: fb062fca75d72215b610314345017c3d
   Ruleset: ETOPEN
-  Summary: This rule detects attempts to exploit the Microsoft Windows NETAPI stack overflow vulnerability identified in MS08-067. This vulnerability allows an attacker to execute arbitrary code on a vulnerable system through crafted network packets directed to the NETBIOS service on port 139. The rule identifies such an exploit attempt by matching specific patterns in the packet content, including certain hexadecimal values and directory traversal sequences. This threat is associated with CVE-2008-4250 and has significant implications for system administrators, as it could lead to unauthorized remote access or control over affected systems.
-  Updated-Date: '2024_12_17'
+  Summary: This rule detects an attempted stack overflow attack targeting the Microsoft Windows NETAPI service, specifically exploiting a vulnerability identified as MS08-067. The threat is indicated by an established TCP connection directed to the server on port 139, involving the use of the DCE/RPC interface identified by UUID 4b324fc8-1670-01d3-1278-5a47bf6ee188 with operation number 31. The attack signature includes the presence of the string "../../" in the stub data, which is characteristic of this exploit attempt. The vulnerability was addressed in a security bulletin by Microsoft and is associated with CVE-2008-4250.
+  Updated-Date: '2026_10_20'
 '2008709':
   Created-Date: '2024_08_06'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: 9b976f0614f101227e5f0d6448afd290
+  Rule-Body-Hash: 4377d2e53402a5ac8af1c3750b673c48
   Ruleset: ETOPEN
-  Summary: This rule detects attempts to exploit the Microsoft Windows NETAPI stack overflow vulnerability identified as MS08-067. This vulnerability, which affects affected Windows systems, could allow remote attackers to execute arbitrary code by sending specially crafted packets to the server. The rule is triggered when specific byte patterns are observed in an established TCP connection directed to a server on port 139, indicating a likely attack attempt corresponding to CVE-2008-4250.
-  Updated-Date: '2024_12_17'
+  Summary: This rule detects an attempt to exploit the Microsoft Windows NETAPI stack overflow vulnerability identified in security bulletin MS08-067. It monitors inbound TCP traffic to port 139, which is commonly used for the NetBIOS session service, and checks for an established connection directed to a server. The rule specifically looks for a particular sequence of data within Distributed Computing Environment/Remote Procedure Call (DCE/RPC) communications that could indicate exploitation attempts targeting the NETAPI32 remote code execution vulnerability. This vulnerability can lead to unauthorized administrative access if successfully exploited. References to this vulnerability include CVE-2008-4250.
+  Updated-Date: '2026_10_20'
 '2008710':
   Created-Date: '2024_08_06'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: 65f3325a4d96461d443618a2f3366cdc
+  Rule-Body-Hash: e8133565c36557b03f5931c1b84730c1
   Ruleset: ETOPEN
-  Summary: This rule detects an inbound attempt to exploit a stack overflow vulnerability in Microsoft Windows NETAPI, specifically targeting port 139. This exploit is related to a vulnerability identified as MS08-067, which allows remote attackers to execute arbitrary code with system-level privileges. The rule looks for specific patterns in the network traffic that match the known signature of the exploit, as indicated by certain byte sequences. This vulnerability has been widely acknowledged and documented under CVE-2008-4250, indicating its potential impact on network security if successfully exploited.
-  Updated-Date: '2024_12_17'
+  Summary: This rule detects an attempt to exploit a Microsoft Windows vulnerability known as the NETAPI stack overflow, identified by Microsoft as MS08-067. The rule specifically targets incoming traffic over TCP to port 139 on the destination network, identifying this exploit when a specific sequence of operations and data patterns are detected in NETBIOS sessions. The vulnerability, registered as CVE-2008-4250, can be used to execute arbitrary code on the target system and is considered a significant security threat due to its potential for system takeover.
+  Updated-Date: '2026_10_20'
 '2008711':
   Created-Date: '2024_08_06'
   Custom-Edited: false
@@ -52090,34 +52090,34 @@
   Created-Date: '2024_08_07'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: 199d998e4f50a58003478231a3af74ee
+  Rule-Body-Hash: 2069c931df7d55e6868f8706a45ed188
   Ruleset: ETOPEN
-  Summary: This rule detects an attempt to exploit a stack overflow vulnerability in the Microsoft Windows NETAPI service, specifically targeting the vulnerability identified as MS08-067. This vulnerability affects the Windows Server service using the SMB protocol over TCP port 445 and could allow remote attackers to execute arbitrary code on a vulnerable system. The rule searches for specific byte sequences that indicate the presence of malicious traffic designed to exploit this flaw. This vulnerability was notably exploited by various malware, including the Conficker worm.
-  Updated-Date: '2024_12_17'
+  Summary: This rule detects attempts to exploit a known vulnerability in Microsoft Windows, specifically the NETAPI stack overflow identified by MS08-067. The rule targets traffic coming into the network on TCP port 445 and checks for established connections directed to a server. It identifies potential exploitation attempts by looking for specific interface and operation numbers in the DCERPC protocol, as well as particular patterns in the stub data. This vulnerability is documented in various security bulletins and has been assigned CVE-2008-4250.
+  Updated-Date: '2026_10_20'
 '2008713':
   Created-Date: '2024_08_06'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: 9a6acc022981a3269a60ea9e087e4005
+  Rule-Body-Hash: 1f3f3090332b6ec359c4592e390eaea3
   Ruleset: ETOPEN
-  Summary: This rule detects an attempt to exploit a vulnerability in Microsoft Windows known as the NETAPI stack overflow, specifically identified as MS08-067, which affects systems via the NetBIOS service over TCP port 445. This vulnerability, when exploited, can allow an attacker to execute arbitrary code on the vulnerable system. The rule examines network traffic to identify a specific pattern associated with this exploit attempt, using a sequence of byte values and directory traversal strings in the payload of an established connection directed to a server on the network, indicating a possible infiltration.
-  Updated-Date: '2024_12_17'
+  Summary: This rule detects attempts to exploit a stack overflow vulnerability in Microsoft Windows' NETAPI, specifically targeting the Server service, as described in MS08-067. The exploitation occurs over a DCERPC interface associated with NetBIOS, using opcode 32 and including specific directory traversal content. This vulnerability allows remote code execution, which can lead to unauthorized administrative access to the targeted system. The rule aims to identify such inbound exploit attempts on TCP port 445, which is commonly used by Microsoft Windows File and Printer Sharing.
+  Updated-Date: '2026_10_20'
 '2008714':
   Created-Date: '2024_08_06'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: 2c91ca32e296e5d2120740f79c598f33
+  Rule-Body-Hash: 6132cbe88d06461a0cdc256b1a860df0
   Ruleset: ETOPEN
-  Summary: This rule detects attempts to exploit a stack overflow vulnerability in the Microsoft Windows NETAPI API, specifically targeting a flaw outlined in Microsoft Security Bulletin MS08-067. The vulnerability can be leveraged by an attacker to execute arbitrary code on the target machine. This rule triggers on inbound TCP traffic to port 445, which is associated with the SMB protocol, often used for file sharing over a network. The detection is based on a specific sequence of bytes in the traffic that corresponds to the exploit signature for the vulnerability identified as CVE-2008-4250.
-  Updated-Date: '2024_12_17'
+  Summary: This rule detects an attempted network exploit targeting a vulnerability in Microsoft Windows, specifically the NETAPI stack overflow associated with MS08-067. This vulnerability could allow an attacker to execute arbitrary code on a target server over TCP port 445, which is commonly used for Microsoft Windows network shares. The rule identifies these attempts by looking for specific patterns in the DCE/RPC interface and operation number, which are indicative of attempts to exploit the vulnerability. The attack can be related to CVE-2008-4250 and is addressed by Microsoft's security bulletin MS08-067.
+  Updated-Date: '2026_10_20'
 '2008715':
   Created-Date: '2024_08_07'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: 06c258696b12810a69cb8e431f2f82be
+  Rule-Body-Hash: 6184d85e0858b794f18fdf9c407c0f8b
   Ruleset: ETOPEN
-  Summary: This rule detects an attempted exploitation of the Microsoft Windows NETAPI stack overflow vulnerability, identified as MS08-067. It targets TCP traffic on port 445 directed towards the internal network and identifies specific byte patterns associated with this attack. The vulnerability is a critical security issue within the NETAPI32.dll that allows remote code execution on affected systems. It has been documented in detail by Microsoft and detailed in the Common Vulnerabilities and Exposures records under CVE-2008-4250.
-  Updated-Date: '2024_12_17'
+  Summary: This rule detects attempts to exploit a Microsoft Windows vulnerability, specifically an inbound NETAPI stack overflow, associated with MS08-067. This vulnerability allows an attacker to execute arbitrary code on a target system. The rule identifies malicious traffic targeting TCP port 445 in an established connection to a server, specifically matching the Distributed Computing Environment / Remote Procedure Call (DCE/RPC) interface identified by the UUID 4b324fc8-1670-01d3-1278-5a47bf6ee188 and operation number 32. The rule also looks for specific hexadecimal content within the data to identify the exploit attempt. This vulnerability was addressed in Microsoft Security Bulletin MS08-067 and is referenced in CVE-2008-4250.
+  Updated-Date: '2026_10_20'
 '2008716':
   Created-Date: '2024_08_07'
   Custom-Edited: false
@@ -52130,34 +52130,34 @@
   Created-Date: '2024_08_06'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: b46f0cc1071571fc5fa1692768fc000b
+  Rule-Body-Hash: 75c97ef6f2cc5b265e4a8dfe9b4537e8
   Ruleset: ETOPEN
-  Summary: This rule detects an inbound attempt to exploit a stack overflow vulnerability in Microsoft Windows NETAPI, as described in the MS08-067 security bulletin. The attack targets TCP port 139 on the home network and is part of an established connection to a server. The rule looks for specific patterns in the data payload that are indicative of this exploit. This vulnerability, identified as CVE-2008-4250, can allow remote code execution, which could grant an attacker administrative-level access to the affected system.
-  Updated-Date: '2024_12_17'
+  Summary: This rule detects an attempted exploitation of a stack overflow vulnerability in Microsoft Windows' NETAPI32 interface, specifically related to the MS08-067 security update. This vulnerability, CVE-2008-4250, could allow remote attackers to execute arbitrary code on a targeted system by sending specially crafted RPC requests to a server on TCP port 139. The rule examines traffic directed towards a server using established connections and looks for specific patterns in the data stream that match the characteristics of this exploit.
+  Updated-Date: '2026_10_20'
 '2008718':
   Created-Date: '2024_08_07'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: 39ee95f55ea775db71c862f191dfa7a3
+  Rule-Body-Hash: c4e8119aa7b92b4ee25f15d158dad5e3
   Ruleset: ETOPEN
-  Summary: This rule detects an attempted exploitation of the Microsoft Windows NETAPI stack overflow vulnerability identified as MS08-067. The vulnerability allows remote code execution in the Windows Server service via crafted RPC requests. Triggered by specific byte patterns in network traffic, this attack vector can be used to gain administrative control over the affected system. The rule highlights the presence of a particular hexadecimal sequence and directory traversal patterns within the network flow directed toward the server, which signals a possible exploitation attempt.
-  Updated-Date: '2024_12_17'
+  Summary: This rule detects an attempted stack overflow attack targeting the Microsoft Windows NETAPI service, specifically exploiting the MS08-067 vulnerability. It identifies inbound network traffic attempting to exploit this vulnerability by inspecting established TCP connections directed to a server on port 139. The rule checks for specific Distributed Computing Environment / Remote Procedure Calls (DCE/RPC) interface and operation numbers, indicating the presence of malicious attempts. It also looks for the presence of a particular file path pattern, which is a characteristic of the exploitation method used in such attacks. This vulnerability allows remote attackers to execute arbitrary code by sending crafted requests to the targeted system, potentially granting unauthorized administrative access.
+  Updated-Date: '2026_10_20'
 '2008719':
   Created-Date: '2024_08_06'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: 06743363f6465eb6983951d4a055dec8
+  Rule-Body-Hash: 5ac2351c3329e425cadcd364b6a60b95
   Ruleset: ETOPEN
-  Summary: This rule detects an attempted exploitation of a known vulnerability in Microsoft Windows, specifically the NETAPI stack overflow vulnerability identified as MS08-067. This exploit targets TCP port 139, commonly used for network communications in Windows environments, and involves a specific sequence of bytes within the network traffic that indicates an attack attempt aiming to execute arbitrary code via the stack overflow. The rule monitors established connections directed to a server within the home network for these patterns, referring to well-documented security resources for this vulnerability such as Microsoft and CERT advisories.
-  Updated-Date: '2024_12_17'
+  Summary: This rule detects an attempt to exploit a stack overflow vulnerability in the Microsoft Windows NETAPI service, specifically targeting the MS08-067 vulnerability. The attack involves sending crafted requests to the server using the Distributed Computing Environment/Remote Procedure Call (DCE/RPC) interface with certain operation numbers and data patterns. This vulnerability can be exploited to gain unauthorized administrative privileges on the target system by sending malicious traffic to port 139, commonly used for NETBIOS services.
+  Updated-Date: '2026_10_20'
 '2008720':
   Created-Date: '2024_08_07'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: 2b838cac864b0079f6aa1e46119f82bf
+  Rule-Body-Hash: 567453873efdfcc52b72288204731783
   Ruleset: ETOPEN
-  Summary: This rule detects an attempt to exploit a stack overflow vulnerability in the Microsoft Windows NETAPI service, specifically targeting an issue known as MS08-067. The vulnerability exists in the handling of specific network traffic, which can be exploited remotely via crafted packets sent to TCP port 139. Successful exploitation could allow an attacker to execute arbitrary code with administrative privileges on the affected system. The rule identifies suspicious activity by inspecting established TCP connections to a server for specific hexadecimal patterns within the network traffic. This vulnerability is documented in CVE-2008-4250, and its exploitation poses a significant security risk to systems running vulnerable versions of Microsoft Windows.
-  Updated-Date: '2024_12_17'
+  Summary: This rule detects an attempt to exploit a stack overflow vulnerability in Microsoft Windows NETAPI, specifically targeting the vulnerability outlined in MS08-067. This vulnerability is associated with the Server service and could enable an attacker to execute arbitrary code on the targeted machine. The rule triggers on TCP traffic directed towards port 139, which is commonly used for NETBIOS sessions, and identifies the specific RPC interface and operation number indicative of this exploit attempt. The attack leverages a sequence in the DCERPC stub data to potentially achieve unauthorized administrative control over the affected system.
+  Updated-Date: '2026_10_20'
 '2008721':
   Created-Date: '2024_08_06'
   Custom-Edited: false
@@ -358010,10 +358010,10 @@
   Created-Date: '2024_08_07'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: f5d5eb07a2b06ef690e87585abb88d71
+  Rule-Body-Hash: ff9967faa7c71c2ce4ceac181cba1b9d
   Ruleset: ETOPEN
-  Summary: This rule detects attempts to exploit a known vulnerability in Apache RocketMQ version 5.1.0, identified as CVE-2023-33246. This vulnerability allows arbitrary code injection in the broker configuration, potentially leading to remote code execution. The detection focuses on HTTP traffic patterns with specific content signatures that suggest an exploitation attempt, such as command sequences related to shell execution.
-  Updated-Date: '2025_08_19'
+  Summary: This rule detects attempts to exploit an arbitrary code injection vulnerability in Apache RocketMQ version 5.1.0. The vulnerability, identified as CVE-2023-33246, allows attackers to inject malicious code through broker configuration by sending specially crafted packets containing specific shell metacharacters. The detection triggers when these packets are sent over an established TCP connection to designated broker ports.
+  Updated-Date: '2026_10_20'
 '2047955':
   Created-Date: '2024_08_07'
   Custom-Edited: false
@@ -552378,10 +552378,10 @@
   Created-Date: '2026_09_28'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: e7d2376d763e8600baec4bdd02f64f0d
+  Rule-Body-Hash: 00814a35e8d9e40708e067e104ed6236
   Ruleset: ETOPEN
-  Summary: This rule detects DNS queries to domains ending with ".shanetrainfitness.com," which are associated with dynamic DNS services. This behavior may indicate the use of dynamic resolution techniques often employed for command and control purposes within network activities.
-  Updated-Date: '2026_09_28'
+  Summary: This rule detects DNS queries made to domains ending with ".shanetrainfitness.com," which are associated with dynamic DNS services. Such activity may indicate potential command and control communication using dynamic domain resolution techniques, as these services allow changing the IP address associated with a domain name. The rule is designed to identify queries that may be part of unauthorized communication attempts typically used in strategies to evade detection and establish persistent connections with remote servers.
+  Updated-Date: '2026_10_20'
 '2072264':
   Created-Date: '2026_09_28'
   Custom-Edited: false
@@ -553266,10 +553266,10 @@
   Created-Date: '2026_10_07'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: 3d06744ef3c7771eae38cee33cc42d30
+  Rule-Body-Hash: 1b1e65791d4e8c98bb83896449de682e
   Ruleset: ETOPEN
-  Summary: This rule detects a data exfiltration activity associated with the ContEXE Stealer malware by identifying a command-and-control (C2) server response. The detection focuses on an established HTTP connection where data is being sent to a client on the home network. The response contains specific indicators within the data, such as job IDs, status, part, parts count, and size in bytes, all of which are typical of this malware's operations. ContEXE Stealer is known for its ability to collect data from infected systems, often targeting Windows operating systems, and exfiltrate it back to an attacker-controlled server. The rule specifically monitors for HTTP status code 200 responses that match the characteristic patterns associated with this malware family.
-  Updated-Date: '2026_10_07'
+  Summary: This rule detects data exfiltration activity related to the ContEXE Stealer through a command-and-control (C2) response. It matches HTTP traffic indicating an ongoing C2 communication with responses that have a 200 HTTP status code. The traffic contains specific JSON-like patterns with fields such as "job_id," "status," "part," "parts_count," and "size_bytes," which suggest data transfer processes being orchestrated by the stealer. The ContEXE Stealer is malware that focuses on extracting data from infected systems, and the rule targets C2 communications back to the client endpoint. The rule leverages patterns associated with known indicators of this stealer, which impacts various Windows operating systems.
+  Updated-Date: '2026_10_20'
 '2072375':
   Created-Date: '2026_10_07'
   Custom-Edited: false
@@ -553306,10 +553306,10 @@
   Created-Date: '2026_10_07'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: a90147c3bac839ec9ae291fab6d020b7
+  Rule-Body-Hash: 13a09ac225a0360998d0dabac03750b3
   Ruleset: ETOPEN
-  Summary: This rule detects network traffic involving an established TLS connection from a host within the monitored network to an external network, where the Server Name Indication (SNI) in the TLS handshake contains the domain "kjhg.lol." This activity is associated with the ClickFix exploit kit, a threat used to execute malicious payloads on victim systems by exploiting browser vulnerabilities, thus compromising the targeted endpoints. The activity aligns with the MITRE ATT&CK framework's Initial Access tactic and the Drive-by Compromise technique.
-  Updated-Date: '2026_10_07'
+  Summary: This rule detects network traffic involving the ClickFix exploit kit by inspecting Transport Layer Security (TLS) communications where the Server Name Indication (SNI) contains the domain "kjhg.lol". The ClickFix exploit kit is associated with initial access tactics, specifically drive-by compromises, and involves potentially compromised websites that may target client endpoints through web browsers.
+  Updated-Date: '2026_10_20'
 '2072380':
   Created-Date: '2026_10_07'
   Custom-Edited: false
@@ -553514,10 +553514,10 @@
   Created-Date: '2026_10_12'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: 9c2d2b4c31454e6e64e1c1edb176f7cc
+  Rule-Body-Hash: f678d6a0a0892675551b38e2c80357f3
   Ruleset: ETOPEN
-  Summary: This rule detects an attempted command injection exploit targeting RPC endpoints with an Authorization header. The attack involves sending a POST request to the "/rpc" URI with a Basic Authorization header and includes characters that are often used in code injection attacks, such as semicolons, backticks, pipes, or dollar signs. The rule is designed to identify potential security breaches on networking equipment, specifically indicating an attempted administrative access on products by Lantronix. It references CVE-2025-67038 related to a known vulnerability, aiming to exploit public-facing applications.
-  Updated-Date: '2026_10_12'
+  Summary: This rule detects an attempted command injection in the HTTP POST requests targeting RPC endpoints with an authorization header using basic authentication. The presence of specific potentially harmful characters or encoded values in the request headers suggests an exploitation attempt against systems like Lantronix networking equipment. This attack attempts to leverage a vulnerability (CVE-2025-67038) that could allow unauthorized users to gain administrative access. The rule identifies attempts to exploit public-facing applications by monitoring for suspect patterns that align with known exploits targeting these systems.
+  Updated-Date: '2026_10_20'
 '2072406':
   Created-Date: '2026_10_12'
   Custom-Edited: false
@@ -553578,10 +553578,10 @@
   Created-Date: '2026_10_13'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: 862d2a93ea971a622b909ded6bf5a130
+  Rule-Body-Hash: e53acffeda8b8486af6c01429916cfd3
   Ruleset: ETOPEN
-  Summary: This rule detects communication with a command and control (C&C) server associated with the TA569 Gholoader malware, known as SocGholish. It specifically identifies this activity by monitoring for the presence of the domain "prod-static.nascarnash.com" in the Server Name Indication (SNI) field of Transport Layer Security (TLS) traffic as it is established to a server. This indication suggests a potential compromise involving web browsers, targeting client endpoints.
-  Updated-Date: '2026_10_13'
+  Summary: This rule detects communication with a command and control (C&C) domain associated with the TA569 threat actor and the Gholoader malware in a TLS Server Name Indication (SNI) field. Specifically, it monitors for the domain "prod-static.nascarnash.com" in network traffic. The rule is relevant to web browsers and targets client endpoints, indicating a potential malware activity involving the SocGholish exploit kit.
+  Updated-Date: '2026_10_20'
 '2072414':
   Created-Date: '2026_10_13'
   Custom-Edited: false
@@ -553618,10 +553618,10 @@
   Created-Date: '2026_10_13'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: 8697d576f388e3ab833f9224dc04fa9b
+  Rule-Body-Hash: 103459cc132e149af5b727a436824e26
   Ruleset: ETOPEN
-  Summary: This rule detects a DNS query associated with a potentially unwanted program (PUP) attempting to contact a specific domain used in Windows activation scripts. The domain of interest is "get.activated.win", which is queried as part of suspicious activity often linked to adware. The rule is designed to flag such queries as indicative of adware-related behavior on a client endpoint.
-  Updated-Date: '2026_10_13'
+  Summary: This rule detects a DNS query to the domain "get.activated.win", which is associated with potentially unwanted programs (PUP), specifically adware. The query indicates an attempt to access a Windows activation script from this domain, suggesting that adware-related activities are occurring on a client endpoint within the monitored network.
+  Updated-Date: '2026_10_20'
 '2072419':
   Created-Date: '2026_10_13'
   Custom-Edited: false
@@ -553666,10 +553666,10 @@
   Created-Date: '2026_10_13'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: ed5092fac6458dfcf7ef706a802ea94d
+  Rule-Body-Hash: 9db48ffc0424ae3486f02e8a1801d2ee
   Ruleset: ETOPEN
-  Summary: This rule detects traffic associated with TryNodeRAT, a Remote Access Trojan (RAT), by identifying command and control (CnC) communications through the presence of the specific domain ".nffnj.workers.dev" within the TLS Server Name Indication (SNI) field of network traffic. The rule is designed to monitor traffic flowing from a client endpoint within the internal network to external networks, focusing on established connections.
-  Updated-Date: '2026_10_13'
+  Summary: This rule detects an attempt to communicate with a command and control (C2) domain associated with the TryNodeRAT malware over a TLS session. Specifically, it identifies the use of the Server Name Indicator (SNI) field containing the domain ".nffnj.workers.dev" in TLS traffic originating from the internal network to an external server. The TryNodeRAT malware is a Remote Access Trojan (RAT) that can enable an attacker to control infected systems remotely. The presence of this domain in the SNI suggests potential communication with a TryNodeRAT C2 server, indicating a compromised system.
+  Updated-Date: '2026_10_20'
 '2072425':
   Created-Date: '2026_10_13'
   Custom-Edited: false
@@ -553738,10 +553738,10 @@
   Created-Date: '2026_10_14'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: b9ab441f92ae499ee55aed3b562a3630
+  Rule-Body-Hash: 3c36af73069845dd9bc2da2ad0a4e647
   Ruleset: ETOPEN
-  Summary: This rule detects an attempted command injection exploit targeting TRENDnet networking devices. The attack occurs through an HTTP POST request sent to the "/goform/formWlanSetup" endpoint. It specifically looks for malicious input within the "enrollee" parameter of the request body, which includes characters such as semicolons, newlines, backticks, pipes, or dollar signs. This type of attack is associated with a vulnerability identified as CVE-2026-10182, which could potentially allow unauthorized command execution, posing a security threat to affected devices.
-  Updated-Date: '2026_10_14'
+  Summary: This rule detects an attempt at command injection via the enrollee parameter in the formWlanSetup function of TRENDnet networking equipment, which is a vulnerability identified as CVE-2026-10182. The attack is executed by sending a crafted HTTP POST request to the URI path "/goform/formWlanSetup" and using specific malicious characters or patterns within the enrollee parameter to exploit the system. The rule aims to identify potential exploitation efforts intended to gain unauthorized control or access to networked devices, indicating an attempted administrative intrusion on TRENDnet products.
+  Updated-Date: '2026_10_20'
 '2072434':
   Created-Date: '2026_10_14'
   Custom-Edited: false
@@ -553810,10 +553810,10 @@
   Created-Date: '2026_10_14'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: 73aa564e886b92fcb7039752899af254
+  Rule-Body-Hash: 64688bcc7e00b53da973a7bf0d2c2be1
   Ruleset: ETOPEN
-  Summary: This rule detects communication attempts with a command-and-control (C2) domain associated with the TryNodeRAT malware in TLS Server Name Indication (SNI) fields. Specifically, it identifies connections where the SNI contains the domain ".ncsgo.workers.dev". TryNodeRAT is a type of Remote Access Trojan (RAT) that allows attackers to remotely control compromised systems, often used for data exfiltration or furthering network attacks. The detection targets client endpoints running Windows operating systems, indicating a potential security breach or compromise attempt on these systems.
-  Updated-Date: '2026_10_14'
+  Summary: This rule detects attempts to connect to a command and control (C2) domain associated with the TryNodeRAT malware. It identifies traffic from the internal network to external destinations where the TLS Server Name Indication (SNI) includes the specific domain pattern ".ncsgo.workers.dev". This behavior is indicative of TryNodeRAT, a Remote Access Trojan (RAT) designed to gain control over infected systems, commonly targeting clients running on various Windows operating systems.
+  Updated-Date: '2026_10_20'
 '2072443':
   Created-Date: '2026_10_14'
   Custom-Edited: false
@@ -553826,10 +553826,10 @@
   Created-Date: '2026_10_14'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: 98a3bb58843930b5010e54d86f7ad336
+  Rule-Body-Hash: debbd6073f0d67c23e6423fabb7ac195
   Ruleset: ETOPEN
-  Summary: This rule detects network traffic where a client on a potentially infected machine attempts to establish a communication session with a specific command-and-control (C2) server domain associated with TryNodeRAT malware. The detection focuses on the Server Name Indication (SNI) field of TLS connections, specifically looking for the domain .tesso2.workers.dev, which may indicate malicious activity on a Windows operating system. The TryNodeRAT is a type of Remote Access Trojan (RAT), capable of controlling infected machines remotely, and the rule helps in identifying potential infections by flagging unusual domain connections typical of such malware in its C2 communications.
-  Updated-Date: '2026_10_14'
+  Summary: This rule detects command-and-control (CnC) communication attempts associated with TryNodeRAT malware by identifying specific domain names in TLS Server Name Indication (SNI) fields. It targets traffic from an internal network to any external network where the SNI ends with ".tesso2.workers.dev". TryNodeRAT is a type of Remote Access Trojan (RAT) used by attackers to control compromised systems remotely. The rule specifically monitors established connections from client endpoints, such as Windows operating systems, indicating potential attempts of unauthorized remote management activity.
+  Updated-Date: '2026_10_20'
 '2072445':
   Created-Date: '2026_10_14'
   Custom-Edited: false
@@ -553914,18 +553914,18 @@
   Created-Date: '2026_10_16'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: 0d0bd4202d823939294e4067bfd54062
+  Rule-Body-Hash: 4b3dd3f605267e5451eb16ba88942a89
   Ruleset: ETOPEN
-  Summary: This rule detects DNS queries for the domain "st-attr.robstuder.org," which is associated with command and control (CnC) activity for the TA569 Gholoader malware. Gholoader is a known malware loader that is often distributed via compromised websites and is associated with the SocGholish malware family. The detection focuses on identifying potential threats targeting client endpoints by monitoring suspicious DNS lookups that may indicate exploitation attempts using exploit kits or compromised infrastructure.
-  Updated-Date: '2026_10_16'
+  Summary: This rule detects a DNS query associated with the Gholoader malware, specifically targeting the command and control domain "st-attr.robstuder.org". Gholoader is part of the SocGholish malware family and is used to compromise client endpoints by exploiting vulnerable web browsers. This detection is relevant for identifying threats originating from compromised websites and is part of efforts to monitor and prevent Trojan-related activities.
+  Updated-Date: '2026_10_20'
 '2072456':
   Created-Date: '2026_10_16'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: aac8c3f85dad5094f71c9ab53c3d9408
+  Rule-Body-Hash: 357416ebf4cc0072179a1cd34ff4090b
   Ruleset: ETOPEN
-  Summary: This rule detects communication with a command and control (CnC) domain associated with the TA569 malware campaign, specifically the Gholoader variant. The detection is triggered during an established TLS session when the server name indicator (SNI) field contains the domain "st-attr.robstuder.org". Gholoader is a type of malware often used to download other malicious payloads, and this rule aims to identify potential malicious activity involving compromised websites or exploit kits targeting client endpoints.
-  Updated-Date: '2026_10_16'
+  Summary: This rule detects communication with a known Command and Control (CnC) domain associated with the TA569 threat actor group, specifically targeting the Gholoader malware. The detection focuses on the presence of the domain "st-attr.robstuder.org" within the Server Name Indication (SNI) field of a TLS connection, indicating potential activity of SocGholish malware, which is linked to malicious software distribution via exploit kits. This activity usually involves compromised websites used to propagate malware to client endpoints through vulnerabilities in web browsers. The rule is based on threat intelligence updates and is intended for deployment at network perimeters to identify and mitigate trojan activity originating from internal networks to the specified domain.
+  Updated-Date: '2026_10_20'
 '2072457':
   Created-Date: '2026_10_16'
   Custom-Edited: false
@@ -554018,26 +554018,26 @@
   Created-Date: '2026_10_16'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: 70a71682acbbd254f3a435ca513b7173
+  Rule-Body-Hash: 96ea92467d64b47009a35a959b763c35
   Ruleset: ETOPEN
-  Summary: This rule detects DNS queries related to the AdFection malware, specifically looking for the domain "noas.adtimizer.co." AdFection is known for exploiting digital advertising networks to deliver spyware. The detection is relevant for web browsers, Android, and iOS devices, with the primary attack target being client endpoints. The rule aims to identify potential exploitation by looking for this domain in network DNS activities.
-  Updated-Date: '2026_10_16'
+  Summary: This rule detects a DNS query for the domain "noas.adtimizer.co," which is associated with the AdFection malware. AdFection is known for being part of malicious advertising activities, potentially used to deliver spyware through compromised ads. The presence of this domain in DNS lookups suggests that a device may have been exposed to this threat, indicating potential malicious activity targeting web browsers and mobile devices running Android or iOS. The rule focuses on identifying such interactions at client endpoints, with particular attention to preventing spyware distribution.
+  Updated-Date: '2026_10_20'
 '2072469':
   Created-Date: '2026_10_16'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: 941858eb35f47e02374db27f80571b53
+  Rule-Body-Hash: 4406701295ab5b4c6e65439a02b0ad26
   Ruleset: ETOPEN
-  Summary: This rule detects DNS queries for the domain "noas.impchkdsp.com," which is associated with the AdFection malware. AdFection is known for leveraging targeted advertising technologies to deliver spyware. The rule is particularly relevant for monitoring web browsers, Android, and iOS platforms, and targets client endpoints. It serves as a method of identifying potential exploitation using this specific domain in DNS lookups.
-  Updated-Date: '2026_10_16'
+  Summary: This rule detects a DNS query for the domain "noas.impchkdsp.com," which is associated with the AdFection malware family. AdFection is known for utilizing targeted advertising frameworks to spread spyware. The detection is significant for web browsers and mobile devices running Android or iOS, indicating a potential threat to client endpoints. The rule highlights the risk posed by this domain, as it may signify spyware activity targeting users through advertising channels.
+  Updated-Date: '2026_10_20'
 '2072470':
   Created-Date: '2026_10_16'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: 17f9862fe76e6fad153639044ac02f05
+  Rule-Body-Hash: 98e2494ca5059377a555bdd855c31177
   Ruleset: ETOPEN
-  Summary: This rule detects DNS queries for the domain "noas.trakking.co," which is associated with AdFection malware. AdFection is known to exploit targeted advertising mechanisms to deliver spyware, potentially targeting web browsers and devices running Android or iOS. This detection can help identify suspicious network activity that may indicate exploitation attempts or active infection.
-  Updated-Date: '2026_10_16'
+  Summary: This rule detects DNS queries to "noas.trakking.co," a domain associated with the AdFection malware, which leverages targeted advertising infrastructure as a means to deliver spyware. This activity targets client endpoints utilizing web browsers, and affects Android and iOS devices.
+  Updated-Date: '2026_10_20'
 '2072471':
   Created-Date: '2026_10_16'
   Custom-Edited: false
@@ -554050,18 +554050,18 @@
   Created-Date: '2026_10_16'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: 6ce8359942cbc6172cf84e04dd6e2b97
+  Rule-Body-Hash: ef02655d06ba5ff36bffc2b1af0ad921
   Ruleset: ETOPEN
-  Summary: This rule detects the use of the domain "cookiesurfer.com" in the Server Name Indication (SNI) field of TLS traffic, indicating potential communication with AdFection-related infrastructure. AdFection is associated with a spyware distribution platform that exploits targeted advertising networks. The rule triggers when TLS traffic towards external networks contains this domain, suggesting possible malicious activity or spyware distribution. The detection pertains to environments involving web browsers and mobile operating systems like Android and iOS and is intended to safeguard client endpoints.
-  Updated-Date: '2026_10_16'
+  Summary: This rule detects network traffic where the Server Name Indication (SNI) in a TLS handshake contains the domain "cookiesurfer.com," which is associated with the AdFection malware family. AdFection is a type of spyware that can exploit targeted ads to deliver malicious payloads, potentially affecting web browsers and mobile devices running Android or iOS. This detection helps identify potential spyware infiltration on client endpoints, indicating malicious activity at the network perimeter.
+  Updated-Date: '2026_10_20'
 '2072473':
   Created-Date: '2026_10_16'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: ee0943153eb0cc38c82221fb1e757b4d
+  Rule-Body-Hash: 932ce6a5baeb42bbbd4e6392b27033ae
   Ruleset: ETOPEN
-  Summary: This rule detects an attempt to access a TLS Server Name Indication (SNI) associated with the domain "cookie-sync.xyz," which is related to the AdFection malware family. AdFection is known for using targeted advertising mechanisms as a conduit for spyware distribution. The detection focuses on network traffic from internal clients to external servers with the specified SNI, indicating potential malicious activity aimed at client endpoints through web browsers on platforms such as Android and iOS.
-  Updated-Date: '2026_10_16'
+  Summary: This rule detects network traffic associated with the AdFection spyware by identifying requests to the domain "cookie-sync.xyz" in the TLS Server Name Indication (SNI) during an established connection to external networks. This specific domain is related to cookie synchronization activities that may facilitate ad tracking and potentially spyware distribution, targeting web browsers on Android and iOS client endpoints.
+  Updated-Date: '2026_10_20'
 '2072474':
   Created-Date: '2026_10_16'
   Custom-Edited: false
@@ -554098,18 +554098,18 @@
   Created-Date: '2026_10_16'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: 4ecc701555e4d0f8e3655e75f6d02e38
+  Rule-Body-Hash: f1569c00aedd7b23716432422342607c
   Ruleset: ETOPEN
-  Summary: This rule detects network traffic aimed at identifying connections to domains related to AdFection spyware by examining the Server Name Indication (SNI) field in the TLS handshake. Specifically, it looks for the domain "noas.adtimizer.co," which has been associated with the distribution of spyware through targeted ads. AdFection is known to affect various web browsers and mobile operating systems like Android and iOS, targeting client endpoints. The rule applies to established outbound connections and is designed to recognize potential exploit kits or malware activity with high confidence and minimal impact on performance.
-  Updated-Date: '2026_10_16'
+  Summary: This rule detects traffic involving a domain associated with AdFection malware in the Server Name Indication (SNI) of a TLS handshake. Specifically, it looks for the domain "noas.adtimizer.co," which is linked to spyware activity disguised as targeted advertising. This technique can exploit client endpoints, including web browsers, Android devices, and iOS devices, potentially leading to spyware installation.
+  Updated-Date: '2026_10_20'
 '2072479':
   Created-Date: '2026_10_16'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: 2b23eab91bc9a69d72b19dc82177c262
+  Rule-Body-Hash: 84ef4b3be279ced1a2f235e2026c3257
   Ruleset: ETOPEN
-  Summary: This rule detects TLS traffic from internal networks to external networks where the Server Name Indication (SNI) matches the domain "noas.impchkdsp.com," associated with AdFection. AdFection is known for being linked to a malicious activity that leverages targeted advertisement to distribute spyware. The detection mechanism targets established connections where the client device communicates with external servers, specifically focusing on web browsers and mobile devices on Android and iOS platforms. The rule is triggered when a Secure Sockets Layer (SSL) SNI field contains the specified domain, indicating potential exploitation by the AdFection malware family.
-  Updated-Date: '2026_10_16'
+  Summary: This rule detects network traffic where the Server Name Indication (SNI) field in a TLS handshake contains the domain "noas.impchkdsp.com," which is associated with AdFection. AdFection is a malware family that potentially exploits targeted advertising to deliver spyware. Traffic is matched when it flows from internal to external networks during established connections, and this detection specifically targets client endpoints using web browsers on Android and iOS devices.
+  Updated-Date: '2026_10_20'
 '2072480':
   Created-Date: '2026_10_16'
   Custom-Edited: false
@@ -554154,18 +554154,18 @@
   Created-Date: '2026_10_16'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: 948af1959c7adeca093c5fd8e2890bbe
+  Rule-Body-Hash: a6fbfcb83f0961afbff57d5e5af56824
   Ruleset: ETOPEN
-  Summary: This rule detects DNS lookups for domains associated with "AdFection," a malware family known to exploit advertising networks to deliver spyware. Specifically, it monitors for queries ending with ".controlium.net," which are related to this activity. The rule aims to identify potential threats targeting web browsers and mobile devices running Android or iOS, marking them as potential client endpoint attacks.
-  Updated-Date: '2026_10_16'
+  Summary: This rule detects DNS queries to domains associated with the "controlium.net" domain, which are linked to the AdFection malware family. AdFection is known for turning targeted advertisements into a potential conduit for spyware, potentially affecting web browsers, Android, and iOS devices, and posing a risk to client endpoints. The rule performs case-insensitive checks for DNS queries ending with ".controlium.net" to identify possible security threats.
+  Updated-Date: '2026_10_20'
 '2072486':
   Created-Date: '2026_10_16'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: 188802a6f6e494deaa44d5282d5bb143
+  Rule-Body-Hash: ed809ed3db600fd22a570844503d9bd9
   Ruleset: ETOPEN
-  Summary: This rule detects DNS queries for a specific domain associated with the AdFection malware, known as "powerium.net." It monitors network traffic for domain name lookups involving this particular domain, which has been linked to spyware activities designed to exploit targeted advertising infrastructures. The rule is intended to identify potential threats to client endpoints, including web browsers and mobile devices running Android and iOS, by flagging suspicious domain activity indicative of malicious exploitation attempts.
-  Updated-Date: '2026_10_16'
+  Summary: This rule detects DNS queries for domains ending with ".powerium.net," associated with the AdFection malware. AdFection is known for utilizing spyware capabilities masked behind targeted ads. The detection is based on DNS lookups, indicating that a client endpoint might be reaching out to suspicious domains linked to this malware family. The rule focuses on identifying potential threats to web browsers and mobile operating systems, such as Android and iOS, with the intent to protect client endpoints from this type of exploit.
+  Updated-Date: '2026_10_20'
 '2072487':
   Created-Date: '2026_10_16'
   Custom-Edited: false
@@ -554186,10 +554186,10 @@
   Created-Date: '2026_10_16'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: 594a238b332a115a9eca7739b4818832
+  Rule-Body-Hash: c24aede5dab344b63ccce98c2067406a
   Ruleset: ETOPEN
-  Summary: This rule detects DNS lookups for domains related to AdFection spyware, specifically targeting the domain "myipinfo.io". AdFection is known to exploit digital advertising channels to deploy spyware on client endpoints. The rule triggers when such a domain is queried, highlighting a potential security threat to web browsers and mobile devices like Android and iOS.
-  Updated-Date: '2026_10_16'
+  Summary: This rule detects a DNS query for the domain "myipinfo.io," which is associated with AdFection, a spyware that can use targeted ads as a conduit for its activities. This domain lookup is flagged due to its potential link to malicious activity targeting client endpoints, including web browsers and mobile devices running Android and iOS. The rule aims to identify attempts to resolve this suspect domain by monitoring DNS traffic at the network perimeter.
+  Updated-Date: '2026_10_20'
 '2072490':
   Created-Date: '2026_10_16'
   Custom-Edited: false
@@ -554202,18 +554202,18 @@
   Created-Date: '2026_10_16'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: 374623933cbd28f9962b3a76ee1ff540
+  Rule-Body-Hash: cb2aa81e4a883f278f0abbe17cb4ab85
   Ruleset: ETOPEN
-  Summary: This rule detects network traffic where the Server Name Indication (SNI) in the TLS handshake contains the domain ".discover-tech.io," which is related to AdFection malware. AdFection is known for utilizing targeted advertisements as a vector for delivering spyware. The rule focuses on outbound connections from internal networks to external networks, looking specifically for the ".discover-tech.io" domain indication in established server-bound TLS connections. The detection aims to identify and mitigate potential exploit kit usage associated with this spyware delivery method.
-  Updated-Date: '2026_10_16'
+  Summary: This rule detects network traffic involving the use of a domain related to the AdFection malware family in the Server Name Indication (SNI) field of a TLS handshake. The specific domain of interest is ".discover-tech.io", and its detection is indicative of potential spyware activity, as detailed in a report by Citizen Lab. This rule is focused on traffic from internal to external networks and aims to identify communication patterns associated with spyware threats, which may exploit web browsers, Android, and iOS client endpoints.
+  Updated-Date: '2026_10_20'
 '2072492':
   Created-Date: '2026_10_16'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: 8061bff5ccafd6eed66e45efe85b8159
+  Rule-Body-Hash: 0ea39dda8365723625c0b911ee9cad90
   Ruleset: ETOPEN
-  Summary: This rule detects TLS traffic where the Server Name Indication (SNI) field contains a domain related to "mydsp.io," which is associated with the AdFection malware. AdFection is known for leveraging advertising infrastructure to potentially deliver spyware to client endpoints. The detection occurs within established connections directed from the internal network to an external network, specifically targeting web browser and mobile device traffic on Android and iOS platforms as part of a perimeter security strategy.
-  Updated-Date: '2026_10_16'
+  Summary: "This rule detects traffic to a domain associated with AdFection malware in the TLS Server Name Indication (SNI) field. The domain \".mydsp.io\" is identified, which is related to AdFection\u2014malware that can exploit targeted advertising networks to deliver spyware. The detection applies to established connections from within a protected network to external destinations, specifically focusing on potential threats to web browsers and mobile clients on Android and iOS platforms."
+  Updated-Date: '2026_10_20'
 '2072493':
   Created-Date: '2026_10_16'
   Custom-Edited: false
@@ -554234,10 +554234,10 @@
   Created-Date: '2026_10_16'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: 9d780b4f3159ea880295ab371489ca83
+  Rule-Body-Hash: 1517a33572177d17246da9ec86c0a733
   Ruleset: ETOPEN
-  Summary: This rule detects traffic associated with the AdFection spyware family by identifying connections that use the domain "platc-tester.com" in the Server Name Indication (SNI) field of a TLS handshake. This is indicative of potential spyware activity targeting client endpoints, including web browsers on Android and iOS devices. The rule is particularly focused on outbound connections from the internal network to external destinations, aiming to identify instances where targeted ad technology may have been exploited to deliver spyware.
-  Updated-Date: '2026_10_16'
+  Summary: This rule detects network traffic directed towards the external network where the Server Name Indication (SNI) field in a TLS handshake contains the domain "platc-tester.com". This domain is associated with AdFection, a known malware family that exploits infrastructure for delivering targeted ads, which can be used as a vector for spyware deployment. The rule identifies such traffic when the connection is established from a client's end within the monitored internal network, aiming to prevent potential spyware distribution to devices using web browsers on various platforms, including Android and iOS.
+  Updated-Date: '2026_10_20'
 '2072496':
   Created-Date: '2026_10_16'
   Custom-Edited: false
@@ -554250,34 +554250,34 @@
   Created-Date: '2026_10_16'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: 5d98a6f4d4ce47eb1222a33a1cd39885
+  Rule-Body-Hash: ed32022ac4a50a509ff67b77ae56e547
   Ruleset: ETOPEN
-  Summary: This rule detects connections to a domain associated with AdFection, a known malware threat, using the Server Name Indication (SNI) in TLS traffic. The targeted domain is "myipinfo.io," which is related to potential spyware activities facilitated through ads. This detection is relevant for traffic from client endpoints that might involve web browsers or devices running Android and iOS.
-  Updated-Date: '2026_10_16'
+  Summary: This rule detects attempts to connect to a domain associated with AdFection spyware campaigns within the TLS Server Name Indication (SNI) field, specifically targeting connections to ".myipinfo.io". AdFection leverages advertising technology to distribute spyware, posing threats to client devices such as web browsers, Android, and iOS systems. The rule highlights potential exploitation efforts aimed at client endpoints, leveraging targeted ads as a method of spyware distribution.
+  Updated-Date: '2026_10_20'
 '2072498':
   Created-Date: '2026_10_16'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: 364a5857667a40723dcaf4772cca67af
+  Rule-Body-Hash: 48e3e9b993d13ea446cec6a92149e231
   Ruleset: ETOPEN
-  Summary: This rule detects network traffic where the TLS Server Name Indication (SNI) includes the domain ".akedo.gg," which is associated with AdFection spyware. The detection focuses on established connections from internal networks to external networks, specifically targeting client-endpoints such as web browsers and mobile devices running Android or iOS. This rule identifies potentially malicious activities involving the AdFection malware family, which is known for utilizing targeted advertisements as a vector for delivering spyware, as detailed in research by Citizen Lab.
-  Updated-Date: '2026_10_16'
+  Summary: This rule detects traffic with a Server Name Indicator (SNI) in a Transport Layer Security (TLS) connection that matches the domain "akedo.gg," which is associated with the AdFection malware. AdFection leverages targeted advertising to distribute spyware, potentially affecting web browsers and mobile devices running Android and iOS. The rule triggers on outbound TLS connections from a protected network to external networks, identifying clients that may have been compromised or are attempting to connect to domains related to malicious activities linked with the AdFection malware family.
+  Updated-Date: '2026_10_20'
 '2072499':
   Created-Date: '2026_10_16'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: 89e6cb36f0b03b07d626bf1d6b8f9b61
+  Rule-Body-Hash: cc86d42bf3c573568554c64850361c07
   Ruleset: ETOPEN
-  Summary: This rule detects an attempt to perform a DNS lookup for a command and control domain associated with the TryNodeRAT malware. The specific domain is ".storage-files-api.workers.dev", which is indicative of malicious communication from the TryNodeRAT family, a type of Remote Access Trojan (RAT) used to control infected systems. The detection method focuses on identifying this domain within DNS queries, highlighting potential RAT activity targeting client endpoints running Windows operating systems.
-  Updated-Date: '2026_10_16'
+  Summary: This rule detects DNS queries for a command and control (C2) domain associated with the TryNodeRAT malware, identified by the specific pattern ".storage-files-api.workers.dev" in the queried domain name. TryNodeRAT is a type of Remote Access Trojan (RAT) that allows an attacker to remotely control an infected system, potentially leading to data theft or unauthorized system access. The rule targets DNS requests made by clients within a protected network to identify and mitigate potential communications with malicious infrastructure.
+  Updated-Date: '2026_10_20'
 '2072500':
   Created-Date: '2026_10_16'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: a2ca6191cc1c9bed2e3e78001269c8d5
+  Rule-Body-Hash: 0a295c886e759c9a1d34a49a2e2255ee
   Ruleset: ETOPEN
-  Summary: This rule detects communication with a command and control (C2) server associated with TryNodeRAT malware through the TLS Server Name Indication (SNI) extension. TryNodeRAT is a type of Remote Access Trojan (RAT) used to allow unauthorized remote control over an infected computer system. The rule identifies traffic directed to the domain "storage-files-api.workers.dev," which is indicative of TryNodeRAT activity, suggesting that the device establishing this connection may be compromised and under the control of an external attacker.
-  Updated-Date: '2026_10_16'
+  Summary: This rule detects network traffic indicating communication with a command and control (C2) domain associated with TryNodeRAT malware. It targets client endpoints by examining the Server Name Indication (SNI) in TLS traffic, specifically looking for domains ending with ".storage-files-api.workers.dev." TryNodeRAT is a type of remote access trojan (RAT) that enables attackers to gain control over infected systems. The detection focuses on identifying domain patterns used for malicious activities.
+  Updated-Date: '2026_10_20'
 '2072501':
   Created-Date: '2026_10_19'
   Custom-Edited: false
@@ -554298,26 +554298,26 @@
   Created-Date: '2026_10_19'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: e28a20bfcaf26b46ed3bed8b03bae7d9
+  Rule-Body-Hash: 7b4640954760fa4e585f2b9bbc06096a
   Ruleset: ETOPEN
-  Summary: This rule detects DNS queries for a Command and Control (C2) domain associated with the TA569 threat actor group and Gholoader malware. The domain queried is "mini-kit.nashstuder.com", indicating potential communication with a C2 server. Gholoader, often linked with SocGholish malware campaigns, is used to deliver and execute various malicious payloads on infected systems. The detection highlights a possible compromise via a DNS lookup indicative of ongoing or attempted exploitation activity.
-  Updated-Date: '2026_10_19'
+  Summary: This rule detects a DNS lookup associated with the TA569 threat group, specifically targeting the "mini-kit.nashstuder.com" domain. This domain is linked to command and control activity for the Gholoader malware, which is part of the SocGholish malware family. The rule is designed to identify potentially malicious DNS queries that indicate exploit kit activity originating from compromised websites. This detection aims to protect client endpoints from trojan activity by identifying communication patterns consistent with known malware infrastructure.
+  Updated-Date: '2026_10_20'
 '2072504':
   Created-Date: '2026_10_19'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: 8f0bf56368eaeaa78498f75d7547fe6d
+  Rule-Body-Hash: bc2a6d9edb4cc5357ca267ded12cb498
   Ruleset: ETOPEN
-  Summary: This rule detects a DNS query for a domain associated with the TA569 malware campaign, specifically targeting the Gholoader command and control (CnC) infrastructure. The queried domain "embed-api.joelbaueronline.com" is linked to the SocGholish malware family, a type of malware that typically engages in malicious activities like data theft or system compromise. This detection is intended to identify potentially compromised client endpoints attempting to communicate with this malicious domain, which is part of an exploit kit known to impact web browsers.
-  Updated-Date: '2026_10_19'
+  Summary: This rule detects a DNS lookup for a Command and Control (CnC) domain associated with the TA569 Gholoader malware, specifically for the domain "embed-api.joelbaueronline.com." Gholoader is often linked to the SocGholish malware family, which targets client endpoints. The rule triggers when a DNS query matches this domain, indicating potential malicious activity involving the exploitation of compromised websites and the use of exploit kits. The detection suggests a high confidence level of a major threat, with implications for web browsers at client endpoints.
+  Updated-Date: '2026_10_20'
 '2072505':
   Created-Date: '2026_10_19'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: 2ea8533400888682c085acb2fc9d49e0
+  Rule-Body-Hash: f064db8714487b7928e38ceed673bbd3
   Ruleset: ETOPEN
-  Summary: This rule detects communication with a command and control (C2) domain used by the Gholoader malware, which is associated with the TA569 threat actor group. The specific domain being flagged is "mini-kit.nashstuder.com," identified in the Server Name Indication (SNI) field of a TLS connection. This detection occurs when the client's traffic is established and directed to a server. The rule is designed to identify potential trojan activity concerning the SocGholish malware family, which targets client endpoints, and it is significant for identifying compromised websites involved in exploit kit campaigns.
-  Updated-Date: '2026_10_19'
+  Summary: This rule detects traffic associated with the control and command (C&C) domain used by the Gholoader malware as part of the TA569 threat actor's campaign. Specifically, it targets a domain ("mini-kit.nashstuder.com") used as a server name indication (SNI) in TLS handshake requests. This indicates potential trojan activity from the SocGholish malware family, which typically involves exploiting compromised websites to deliver malware or execute unauthorized actions on client endpoints.
+  Updated-Date: '2026_10_20'
 '2072506':
   Created-Date: '2026_10_19'
   Custom-Edited: false
@@ -554326,6 +554326,86 @@
   Ruleset: ETOPEN
   Summary: This rule detects attempts to communicate with a command and control (C&C) domain associated with the TA569 group using the Gholoader malware through a TLS Server Name Indication (SNI). Specifically, it identifies traffic to the domain "embed-api.joelbaueronline.com" in outbound TLS connections. Gholoader is used by attackers to download and execute malicious payloads on infected systems, typically involving compromised websites. This detection is part of efforts to identify and mitigate activity related to the SocGholish malware family.
   Updated-Date: '2026_10_19'
+'2072507':
+  Created-Date: '2026_10_20'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: 2bf0967c011690d8391c7adc41cd666a
+  Ruleset: ETOPEN
+  Summary: This rule detects a DNS query that involves the domain "treboarkez.lol," which is associated with exploit kits. Exploit kits are malicious tools used to exploit vulnerabilities on a victim's machine, often facilitating malware delivery or unauthorized access. The presence of this domain in DNS lookups can indicate an attempt by a client endpoint to reach a compromised website, potentially leading to a drive-by compromise and subsequent security risks. This detection is important for identifying initial access tactics involving malicious domain interactions.
+  Updated-Date: '2026_10_20'
+'2072508':
+  Created-Date: '2026_10_20'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: d20a5af9bae56cb1bf4fc2111ca9a670
+  Ruleset: ETOPEN
+  Summary: This rule detects network traffic where the Server Name Indication (SNI) field in a TLS handshake contains the domain "treboarkez.lol". This domain is associated with exploit kits, which are software frameworks used to exploit vulnerabilities in web browsers or browser plugins to execute malicious code. The rule is designed to identify potential drive-by compromise attempts, where a victim unknowingly downloads and executes malware by visiting a compromised website. This activity is part of initial access tactics commonly used by attackers.
+  Updated-Date: '2026_10_20'
+'2072509':
+  Created-Date: '2026_10_20'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: 8ab056b9d718d7cf5803cc57fa5bcc7d
+  Ruleset: ETOPEN
+  Summary: This rule detects an unauthenticated server-side request forgery (SSRF) vulnerability in Plex Media Server, identified as CVE-2026-96652. The exploit involves a specific HTTP GET request to the "/player/timeline" URI with a particular pattern in the 'content' field of the request, which includes protocols like "http" or "https". This type of attack allows an adversary to abuse Plex Media Server, potentially leading to unauthorized access or actions by crafting malicious requests. The rule is designed to catch this specific behavior indicative of web application attacks, especially those targeting public-facing applications, and is rated with a high confidence level for detection.
+  Updated-Date: '2026_10_20'
+'2072510':
+  Created-Date: '2026_10_20'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: 023913e601a2ade95a6765d7e4865650
+  Ruleset: ETOPEN
+  Summary: This rule detects a URL injection vulnerability in Plex Media Server known as Plex2Shell, specifically targeting the "searchOne" function. The attack vector involves crafting a malicious HTTP GET request that exploits CVE-2026-96654, allowing attackers to execute unauthorized actions or access sensitive information on servers running Plex Media Server. The pattern searched for in the HTTP URI suggests an attempt to manipulate the "identifier" parameter followed by a technique to potentially access restricted function directories.
+  Updated-Date: '2026_10_20'
+'2072511':
+  Created-Date: '2026_10_20'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: b37c8692e676ac26985f2bb9d27c3955
+  Ruleset: ETOPEN
+  Summary: This rule detects an attempt to exploit a vulnerability in Plex Media Server known as Plex2Shell, specifically targeting an authenticated arbitrary file write vulnerability identified as CVE-2026-96655. The detection focuses on specific HTTP requests made to the server in an established connection, looking for parameters indicative of the attack within the URI and HTTP PUT method requests. This attack targets Plex Media Server through specific patterns in the request meant to exploit the server's handling of transcoder options, potentially allowing an attacker to write arbitrary files to the server.
+  Updated-Date: '2026_10_20'
+'2072512':
+  Created-Date: '2026_10_20'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: 0728f851315fecc7c1675cc7513e20a5
+  Ruleset: ETOPEN
+  Summary: This rule detects an attempt to exploit the Plex Media Server via a vulnerability identified as CVE-2026-96655, allowing an authenticated user to perform arbitrary file write operations. The exploit involves an HTTP PUT request matching specific patterns associated with Plex's preference settings, particularly in relation to transcoding options. The presence of these patterns indicates a potential web application attack aimed at gaining initial access to vulnerable servers.
+  Updated-Date: '2026_10_20'
+'2072513':
+  Created-Date: '2026_10_20'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: 328d7c8b8ff5f969d897e643588dc107
+  Ruleset: ETOPEN
+  Summary: This rule detects an attempt to exploit a server-side request forgery (SSRF) vulnerability, specifically CVE-2026-96655, in Plex Media Server through the Plex2Shell vulnerability. It targets the URL pattern associated with the transcode functionality of Plex Media Server and requires an authenticated session. The rule inspects HTTP GET requests directed towards specific paths that could be used maliciously to manipulate server requests externally, potentially leading to unauthorized access or exposure of internal resources.
+  Updated-Date: '2026_10_20'
+'2072514':
+  Created-Date: '2026_10_20'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: 3470463f2cd5d768075c20617bb9db3e
+  Ruleset: ETOPEN
+  Summary: This rule detects a potential denial-of-service attack in which an excessive number of HTTP/2 stream resets are sent to a web server. The attack is characterized by frequent RST_STREAM frames with a CANCEL error code being sent within a short time frame. The monitoring threshold is set at 1,000 resets from a single source within 10 seconds, identifying suspicious activity indicative of an attempt to disrupt the web server's operations. This rule is relevant to CVE-2023-44487, a known vulnerability associated with such HTTP/2 rapid reset attacks, which can degrade service availability.
+  Updated-Date: '2026_10_20'
+'2072515':
+  Created-Date: '2026_10_20'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: 5969c490c283593cd22b8c9f7eb8c172
+  Ruleset: ETOPEN
+  Summary: This rule detects DNS queries for the domain "brightfutuxres.tech," which is associated with command and control (CnC) activity related to the Win32/Lumma Stealer malware. Lumma Stealer is a type of malware designed to steal sensitive information from infected systems and communicate with attackers through CnC servers. The rule targets client endpoints that initiate DNS lookups for this specific domain, as it is indicative of potential malicious activity linked to the Lumma Stealer malware family.
+  Updated-Date: '2026_10_20'
+'2072516':
+  Created-Date: '2026_10_20'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: 9600f517c2aee80a8bfcacfb8ab5640a
+  Ruleset: ETOPEN
+  Summary: This rule detects traffic related to the Lumma Stealer malware, specifically identifying a domain used in its operations. It focuses on TLS traffic where the server name indicator (SNI) matches the domain "brightfutuxres.tech". This domain is associated with command and control activities of the Lumma Stealer, a type of malware designed to steal sensitive information from infected Windows systems. The rule is designed to trigger on established TLS connections directed to servers that resolve this specific domain, as part of monitoring potential communications indicative of the Lumma Stealer's presence in a network.
+  Updated-Date: '2026_10_20'
 '2100110':
   Created-Date: '2024_08_07'
   Custom-Edited: false
