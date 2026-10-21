@@ -255962,18 +255962,18 @@
   Created-Date: '2024_08_06'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: 460fffd32398916f1faeb97488b58be9
+  Rule-Body-Hash: 3cd5ff2b7858eca6031f8180643ba176
   Ruleset: ETOPEN
-  Summary: This rule detects potential SAP Internet Communication Manager (ICM) desynchronization scanning activity related to the vulnerability CVE-2022-22536. The rule triggers on HTTP requests to a specific URI, which likely indicates an attempt to exploit or scan for this vulnerability. The traffic must be part of an established connection directed to a server, with an HTTP GET method used in the request. It specifically looks for requests targeting the SAP logo image on a login page and checks if the content length in the request headers meets a specified condition, suggesting scanning or misuse. This detection could signify an attempted administrative access or exploitation of publicly facing SAP applications.
-  Updated-Date: '2025_01_31'
+  Summary: This rule detects potential scanning activity aiming to exploit a vulnerability in SAP's Internet Communication Manager (ICM) known as MPI desynchronization, identified by CVE-2022-22536. The detection is triggered by an HTTP GET request targeting the SAP-specific URI path "/sap/public/bc/ur/Login/assets/corbu/sap_logo.png" to a server within a network. The activity involves unusually large content-length values, characteristic of this exploit attempt, which could allow attackers to disrupt legitimate communications or execute further malicious actions by exploiting improperly handled data synchronization in the affected SAP component.
+  Updated-Date: '2026_10_21'
 '2035183':
   Created-Date: '2024_08_07'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: a878340c3eb7c17e2818293170587ce1
+  Rule-Body-Hash: 2f0adacce87486047d9235bd35112cce
   Ruleset: ETOPEN
-  Summary: This rule detects potential scanning activity for a vulnerability in SAP Internet Communication Manager (ICM) involving message parsing interface desynchronization, identified as CVE-2022-22536. The detection focuses on HTTP GET requests directed at servers within the home or HTTP server network, particularly targeting URLs containing "/sap/admin/public/default.html?" with a specific content length criterion. This behavior is characteristic of attempts to exploit this vulnerability for unauthorized access, which is categorized as attempted administrative access to the server.
-  Updated-Date: '2025_01_31'
+  Summary: This rule detects scanning activity aimed at exploiting a vulnerability in the SAP ICM (Internet Communication Manager) related to MPI (Message Passing Interface) desynchronization, identified as CVE-2022-22536. The attack involves sending a crafted HTTP GET request to a SAP server, specifically targeting the URI "/sap/admin/public/default.html?" with an unusually large content length. The detection focuses on established HTTP connections directed at SAP servers, flagging requests with a content length of 65535 bytes or more as potential exploit attempts. This is indicative of an attacker attempting to gain unauthorized access to the server by exploiting public-facing applications.
+  Updated-Date: '2026_10_21'
 '2035184':
   Created-Date: '2024_08_07'
   Custom-Edited: false
@@ -271458,10 +271458,10 @@
   Created-Date: '2024_08_06'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: ed1fa1eee6a3cf2280efec0ad7fe9255
+  Rule-Body-Hash: 04cfef4ca51bea0cee49c5d42894d365
   Ruleset: ETOPEN
-  Summary: This rule detects an attempted remote code execution (RCE) exploit targeting Mitel MiVoice Connect systems. The exploit is associated with CVE-2022-29499, a vulnerability found in the data validation processes of MiVoice Connect software. Attackers use a specially crafted HTTP GET request directed at the vulnerable endpoint `/scripts/vtest.php`, attempting to execute unauthorized commands by manipulating the `get_url` parameter. The detection is triggered when traffic meets the conditions specified, indicating a potential exploitation attempt.
-  Updated-Date: '2025_09_03'
+  Summary: This rule detects an inbound HTTP GET request targeting the Mitel MiVoice Connect system, specifically attempting a remote code execution (RCE) exploit linked to CVE-2022-29499. The malicious request is characterized by accessing the `/scripts/vtest.php` endpoint with a `get_url` parameter that further seeks a URL formatted to exploit the `ucbsync.php` script, injecting a `cmd=syncfile:db_files` command. This rule identifies attempts to exploit the data validation vulnerabilities in Mitel's voice over IP (VoIP) appliances, potentially allowing attackers to execute arbitrary commands on the targeted server.
+  Updated-Date: '2026_10_21'
 '2037122':
   Created-Date: '2024_08_07'
   Custom-Edited: false
@@ -357274,10 +357274,10 @@
   Created-Date: '2024_08_07'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: ea3ad051a694c4e3c5588c927bdfb7fa
+  Rule-Body-Hash: 81f8897d0386dee5d0b0e590adc70916
   Ruleset: ETOPEN
-  Summary: This rule detects an attempted exploitation of a known vulnerability (CVE-2023-32315) in Openfire, a software used for real-time collaboration through instant messaging. The attack involves an authentication bypass that could lead to remote code execution (RCE) on the targeted server. The pattern involves the attacker sending a specially crafted HTTP GET request to access a setup page directory traversal path, which can lead to unauthorized user creation with administrative privileges by including parameters such as "csrf=", "username=", "password=", "passwordConfirm=", and "isadmin=on". This incident aligns with tactics used to gain initial access by exploiting public-facing applications.
-  Updated-Date: '2025_08_20'
+  Summary: This rule detects attempts to exploit a vulnerability in Openfire (CVE-2023-32315), characterized by authentication bypass and remote code execution capabilities. It monitors established HTTP connections directed to servers within the specified network environments and looks for specific patterns in the URI path that suggest an attack targeting Openfire's setup configuration. The exploitation of this vulnerability can potentially allow unauthorized access and command execution on the affected servers.
+  Updated-Date: '2026_10_21'
 '2047863':
   Created-Date: '2024_08_06'
   Custom-Edited: false
@@ -424026,10 +424026,10 @@
   Created-Date: '2024_09_27'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: b9602353d67b23c7b58cbf4863196728
+  Rule-Body-Hash: e3dd47fcd95d2463a2ba4ae37343cef3
   Ruleset: ETOPEN
-  Summary: This rule detects a potential exploit targeting Adobe Commerce/Magento platforms by identifying an XML Entity Injection vulnerability, which is specified as CVE-2024-34102. The rule triggers when a POST request is made to a server, specifically looking for requests to the "/rest/V1/guest-carts/estimate-shipping-methods" URI. It also checks that the content type is "application/json" and ensures the presence of specific HTTP headers and body elements characteristic of an attempted XML attack, such as a DOCTYPE declaration and XML ENTITY elements. This behavior is indicative of an attacker attempting to exploit nested deserialization, which can compromise the web application's security.
-  Updated-Date: '2025_01_31'
+  Summary: This rule detects attempts to exploit a pre-authentication XML Entity Injection vulnerability in Adobe Commerce / Magento, identified as CVE-2024-34102. It monitors for HTTP POST requests to a server where the URI begins with "/rest/V1/guest-carts/" and ends with "/estimate-shipping-methods." The content type of the request must be "application/json," and the request body should contain specific XML patterns, including "<!DOCTYPE" and "<!ENTITY," indicating a potential attack. This vulnerability allows attackers to inject malicious XML into the application, which could lead to unauthorized access and data exposure.
+  Updated-Date: '2026_10_21'
 '2056208':
   Created-Date: '2024_09_27'
   Custom-Edited: false
@@ -499850,10 +499850,10 @@
   Created-Date: '2025_11_07'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: 714a5107ad50a940682edb343c6be0ad
+  Rule-Body-Hash: 4f462034a479664d9749696064f0d1a4
   Ruleset: ETOPEN
-  Summary: This rule detects an attempt to exploit a specific access control bypass vulnerability in Adobe ColdFusion, identified as CVE-2023-38205. It targets requests made to a ColdFusion server where the URI includes "CFIDE/wizards/common/utils.cfc?" and contains a specific method parameter "method=wizardHash&". The vulnerability can allow unauthorized access to certain ColdFusion components, compromising server security. The rule monitors established HTTP connections directed towards a server within the specified network to identify potential attacks exploiting this vulnerability.
-  Updated-Date: '2025_11_10'
+  Summary: This rule detects an access control bypass vulnerability in Adobe ColdFusion, specifically targeting the "cfide/wizards/common/utils.cfc" file with a method called "wizardhash." This vulnerability, identified as CVE-2023-38205, allows unauthorized access and potential exploitation of ColdFusion applications. The rule triggers when there is an established connection to the server, signaling a potential web application attack.
+  Updated-Date: '2026_10_21'
 '2065689':
   Created-Date: '2025_11_07'
   Custom-Edited: false
@@ -553786,10 +553786,10 @@
   Created-Date: '2026_10_14'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: 44e277e3b215cb6189cb93fe984b3d17
+  Rule-Body-Hash: ac776e6b61707f8a1d03ad14e9cd103c
   Ruleset: ETOPEN
-  Summary: This rule detects DNS queries related to the TryNodeRAT malware, specifically looking for Command and Control (CnC) domains used during its operation. It identifies DNS lookups for the domain "tesso2.workers.dev," which is associated with TryNodeRAT's communication channels. TryNodeRAT is a Remote Access Trojan (RAT) that targets Windows operating systems, enabling unauthorized remote control of infected systems.
-  Updated-Date: '2026_10_14'
+  Summary: This rule detects DNS queries for the domain "tesso2.workers.dev," which is associated with the command and control (C2) communication of the TryNodeRAT malware. TryNodeRAT is a Remote Access Trojan (RAT) that targets client endpoints. It facilitates unauthorized control over infected systems, potentially allowing attackers to exfiltrate data or deploy other malicious activities. This rule specifically looks for queries that resolve to this C2 domain, indicating a potential infection on the network.
+  Updated-Date: '2026_10_21'
 '2072440':
   Created-Date: '2026_10_14'
   Custom-Edited: false
@@ -553802,10 +553802,10 @@
   Created-Date: '2026_10_14'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: c76c7d4e1760f9240f20152e6e66c31b
+  Rule-Body-Hash: 57e7b2a394b7222ba998826dd5e1e414
   Ruleset: ETOPEN
-  Summary: This rule detects potential command-and-control communication attempts from the malware family TryNodeRAT by identifying the use of a specific domain, ".foundations.bond," in the Server Name Indication (SNI) field of a TLS handshake. TryNodeRAT is a type of Remote Access Trojan (RAT) that might target client endpoints running Windows operating systems. The detection focuses on traffic from an internal network heading towards an external network, specifically looking for encrypted communications that include this suspicious domain, indicating a possible compromise or malware activity.
-  Updated-Date: '2026_10_14'
+  Summary: This rule detects communication attempts with a command-and-control (C2) domain related to the TryNodeRAT malware in the TLS Server Name Indication (SNI) field. The target domain includes ".foundations.bond" as a suffix, signaling a possible infection from TryNodeRAT, a type of remote access trojan often used for unauthorized access and control over a victim's machine. This activity typically involves a client endpoint in an established connection attempting to reach an external server.
+  Updated-Date: '2026_10_21'
 '2072442':
   Created-Date: '2026_10_14'
   Custom-Edited: false
@@ -553970,10 +553970,10 @@
   Created-Date: '2026_10_16'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: 702a03f21f52c2e8f30a48cb32223a95
+  Rule-Body-Hash: 7ae61fe12e358ab36aa7e97e24335b6e
   Ruleset: ETOPEN
-  Summary: This rule detects DNS queries for the domain "cookiesurfer.com," which is associated with the AdFection malware family. AdFection is known for exploiting ad-related technologies to potentially distribute spyware. Queries to this domain may indicate an attempt to use exploit kits or targeted ad channels to compromise devices running web browsers on Android or iOS, making the client endpoint a target of interest. The detection serves as a security measure to identify and prevent potential spyware activities linked to this domain.
-  Updated-Date: '2026_10_16'
+  Summary: This rule detects DNS queries for the domain "cookiesurfer.com," which is associated with the AdFection malware. AdFection is known to use targeted advertising techniques to distribute spyware, turning benign ad services into tools for tracking and data extraction. The rule is applicable to a variety of clients, including web browsers and mobile operating systems like Android and iOS, highlighting the potential risk to client endpoints.
+  Updated-Date: '2026_10_21'
 '2072463':
   Created-Date: '2026_10_16'
   Custom-Edited: false
@@ -554066,10 +554066,10 @@
   Created-Date: '2026_10_16'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: 968460cf38169a8ffd5a558c07c42b08
+  Rule-Body-Hash: 004b9fbf15e257656f7ba69e8f6b9015
   Ruleset: ETOPEN
-  Summary: This rule detects network traffic involving a connection from an internal network to an external network where the TLS Server Name Indication (SNI) field contains the domain "ads-monitor.xyz". This domain is associated with AdFection, a known spyware delivered via targeted advertisements. The rule triggers when a client device, such as a web browser or mobile device, attempts to establish a connection, indicating potential exposure to AdFection-related threats.
-  Updated-Date: '2026_10_16'
+  Summary: This rule detects the use of a specific domain "ads-monitor.xyz" in the Server Name Indication (SNI) field of Transport Layer Security (TLS) traffic. The domain is associated with the AdFection malware family, known for exploiting targeted advertising systems to facilitate spyware installation. This rule targets client endpoints using web browsers on Android or iOS devices, indicating potential spyware activity when such domain names are observed in a TLS connection.
+  Updated-Date: '2026_10_21'
 '2072475':
   Created-Date: '2026_10_16'
   Custom-Edited: false
@@ -554226,10 +554226,10 @@
   Created-Date: '2026_10_16'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: 656b3f35ec88f3a6631c11d3e86cf3eb
+  Rule-Body-Hash: c1d9103a667e29ed8f126a26dbc476a2
   Ruleset: ETOPEN
-  Summary: This rule detects network traffic in which a client within the monitored network is establishing a TLS connection to a server and the domain name in the Server Name Indication (SNI) field ends with ".powerium.net". The detection relates to AdFection, a form of malware that takes advantage of ad delivery networks to inflict spyware on targeted systems. This rule aims to identify such potential threats as part of a broader effort to monitor and control unwanted exploitation through online advertisements.
-  Updated-Date: '2026_10_16'
+  Summary: This rule detects traffic where the TLS Server Name Indication (SNI) extension includes the domain ".powerium.net." It is associated with potential ad-related malware activity from the AdFection malware family aimed at client endpoints using web browsers, Android, or iOS platforms. This domain presence may indicate spyware distribution through targeted advertisements, posing a minor security threat.
+  Updated-Date: '2026_10_21'
 '2072495':
   Created-Date: '2026_10_16'
   Custom-Edited: false
@@ -554322,10 +554322,10 @@
   Created-Date: '2026_10_19'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: dea5659549f380094322cc891fc1d507
+  Rule-Body-Hash: e8e811e610c82eae43d67d681610963a
   Ruleset: ETOPEN
-  Summary: This rule detects attempts to communicate with a command and control (C&C) domain associated with the TA569 group using the Gholoader malware through a TLS Server Name Indication (SNI). Specifically, it identifies traffic to the domain "embed-api.joelbaueronline.com" in outbound TLS connections. Gholoader is used by attackers to download and execute malicious payloads on infected systems, typically involving compromised websites. This detection is part of efforts to identify and mitigate activity related to the SocGholish malware family.
-  Updated-Date: '2026_10_19'
+  Summary: This rule detects communication involving the TA569 Gholoader malware using a Command and Control (CnC) domain in the Server Name Indication (SNI) field during a TLS handshake. It specifically targets the domain "embed-api.joelbaueronline.com" within secure connections from the internal network to external networks. This activity is associated with the SocGholish malware, often used to deploy additional malicious payloads or steal information by exploiting a compromised website.
+  Updated-Date: '2026_10_21'
 '2072507':
   Created-Date: '2026_10_20'
   Custom-Edited: false
@@ -554386,10 +554386,10 @@
   Created-Date: '2026_10_20'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: 3470463f2cd5d768075c20617bb9db3e
+  Rule-Body-Hash: b9a952304da06644d32e6c4bec9477ab
   Ruleset: ETOPEN
-  Summary: This rule detects a potential denial-of-service attack in which an excessive number of HTTP/2 stream resets are sent to a web server. The attack is characterized by frequent RST_STREAM frames with a CANCEL error code being sent within a short time frame. The monitoring threshold is set at 1,000 resets from a single source within 10 seconds, identifying suspicious activity indicative of an attempt to disrupt the web server's operations. This rule is relevant to CVE-2023-44487, a known vulnerability associated with such HTTP/2 rapid reset attacks, which can degrade service availability.
-  Updated-Date: '2026_10_20'
+  Summary: This rule detects a Denial of Service (DoS) attack exploiting HTTP/2 protocol by observing excessive RSTSTREAM frame resets with an error code of CANCEL being sent to a web server. This pattern can overwhelm the server, potentially leading to service disruptions. The detection criteria are triggered when the number of such resets originating from a single source exceeds 1000 within a 10-second window, indicating a possible attempt to exploit the identified vulnerability CVE-2023-44487.
+  Updated-Date: '2026_10_21'
 '2072515':
   Created-Date: '2026_10_20'
   Custom-Edited: false
@@ -554406,6 +554406,110 @@
   Ruleset: ETOPEN
   Summary: This rule detects traffic related to the Lumma Stealer malware, specifically identifying a domain used in its operations. It focuses on TLS traffic where the server name indicator (SNI) matches the domain "brightfutuxres.tech". This domain is associated with command and control activities of the Lumma Stealer, a type of malware designed to steal sensitive information from infected Windows systems. The rule is designed to trigger on established TLS connections directed to servers that resolve this specific domain, as part of monitoring potential communications indicative of the Lumma Stealer's presence in a network.
   Updated-Date: '2026_10_20'
+'2072517':
+  Created-Date: '2026_10_21'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: 2f3d2ca67ede0f31a423e1857960e5d9
+  Ruleset: ETOPEN
+  Summary: This rule detects communication related to the Matanbuchus malware, specifically identifying command-and-control (C2) tunneling activity over UDP port 5354. It triggers when a UDP packet from an external network to the home network shows signs of an established session, suggesting a malicious connection involving a variant of a Microsoft domain. This detection involves specific data patterns that signify the presence of Matanbuchus, a type of malware used for executing harmful commands on infected systems.
+  Updated-Date: '2026_10_21'
+'2072518':
+  Created-Date: '2026_10_21'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: adec04c19a51a5ff566a3f630c3c64ec
+  Ruleset: ETOPEN
+  Summary: This rule detects Matanbuchus malware command and control (C2) tunneling activity over UDP, specifically when a data acknowledgment packet with a particular byte sequence is sent to a client within the home network. The rule is triggered by an established connection to the client and looks for a specific pattern in the data payload suggesting communication typical of Matanbuchus, which is known for its malicious activities including protocol tunneling for C2 communication. The detection is set to trigger if the same source sends matching patterns at least ten times within sixty seconds. Matanbuchus is associated with sophisticated malware campaigns targeting various industries, utilizing techniques such as command and control to maintain communication with infected systems.
+  Updated-Date: '2026_10_21'
+'2072519':
+  Created-Date: '2026_10_21'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: ed1f1d93f8b47b6732c64b32a07e699f
+  Ruleset: ETOPEN
+  Summary: This rule detects inbound UDP traffic associated with the Matanbuchus malware, specifically targeting command and control (C2) tunneling activity that involves an 'E Subdomain' for data exfiltration. The detection is triggered by a specific byte pattern in the traffic payload. Matanbuchus is a type of malware used for illicit activities such as data exfiltration and is identified by certain patterns in the traffic, indicating its active communication with a control server. This signature emphasizes identifying communications related to C2 activities that are characteristic of the Matanbuchus malware family.
+  Updated-Date: '2026_10_21'
+'2072520':
+  Created-Date: '2026_10_21'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: 0b1d2f37b49730651f720b8bf464a099
+  Ruleset: ETOPEN
+  Summary: This rule detects inbound tunneling activity associated with Matanbuchus command-and-control (C2) traffic. It monitors UDP traffic from any external network to the internal network, specifically looking for established connections directed to the client that match specific byte patterns indicative of Matanbuchus activity. Matanbuchus is a malware strain known for its use in C2 communications to control compromised systems. The rule identifies unique packet contents that signify an attempt to terminate a tunnel, associated with the malware's operations.
+  Updated-Date: '2026_10_21'
+'2072521':
+  Created-Date: '2026_10_21'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: 61688dc4c1cdab3dae14a0c45646f3d9
+  Ruleset: ETOPEN
+  Summary: This rule detects a DNS query for a domain associated with command and control (C2) activity linked to TryNodeRAT malware, specifically when the queried domain ends with ".groks.workers.dev". TryNodeRAT is a type of Remote Access Trojan (RAT) that allows an attacker to remotely control an infected system, typically used for unauthorized access and data exfiltration. The detection focuses on identifying DNS lookups to known malicious C2 domains, an indicator of potential RAT activity on a network endpoint. This rule targets endpoints running various versions of Windows.
+  Updated-Date: '2026_10_21'
+'2072522':
+  Created-Date: '2026_10_21'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: 0e1602ceaa86028900bd0a0c6b9b01b8
+  Ruleset: ETOPEN
+  Summary: This rule detects communication with a command and control (CnC) domain used by the TryNodeRAT malware through the Server Name Indication (SNI) extension in Transport Layer Security (TLS) traffic. The rule identifies domains ending with ".groks.workers.dev" in the SNI field, indicating potential contact with a server associated with the TryNodeRAT, a type of Remote Access Trojan (RAT) malware targeting client endpoints.
+  Updated-Date: '2026_10_21'
+'2072523':
+  Created-Date: '2026_10_21'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: b9821340d4fb520f4459b72c8dd864fe
+  Ruleset: ETOPEN
+  Summary: This rule detects DNS queries for a known command-and-control domain associated with the TA569 Gholoader, which is malware implicated in delivering further malicious payloads. Specifically, it identifies queries for "ssp-prod.joelbauertraining.com," linking potentially to the SocGholish malware family, a tool used for distributing malware through compromised websites or exploit kits. The rule is designed to identify this network activity as part of its effort to recognize and mitigate the risk posed by such threats to client endpoints.
+  Updated-Date: '2026_10_21'
+'2072524':
+  Created-Date: '2026_10_21'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: b4f320ce5e8b6821bde678f4215bfe61
+  Ruleset: ETOPEN
+  Summary: This rule detects communication attempts to a command and control (CnC) domain associated with the TA569 threat actor group, specifically involving the Gholoader malware. It triggers when observing a Transport Layer Security (TLS) Server Name Indication (SNI) in network traffic that matches "ssp-prod.joelbauertraining.com." This domain is linked with malicious activities related to the SocGholish malware family, which is known for compromising websites to deliver further payloads. The rule focuses on identifying such network activities to help prevent the propagation of this malware from client endpoints to compromised external servers.
+  Updated-Date: '2026_10_21'
+'2072525':
+  Created-Date: '2026_10_21'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: 52e1a3c4c33ffe458679299c706e8d81
+  Ruleset: ETOPEN
+  Summary: This rule detects DNS queries for a domain associated with the Win32/Lumma Stealer malware. Specifically, it identifies lookups for the domain "rbmlh.xyz," which is related to the command and control (CnC) infrastructure used by the Lumma Stealer. This activity indicates potential communication between an infected client endpoint and the Lumma Stealer's CnC server, possibly as part of a broader command-and-control tactic used by this malware to exfiltrate data or receive further instructions.
+  Updated-Date: '2026_10_21'
+'2072526':
+  Created-Date: '2026_10_21'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: a7ad7fd8669e40608017c0a4acb14887
+  Ruleset: ETOPEN
+  Summary: This rule detects network traffic involving a connection to a domain associated with the Lumma Stealer malware, specifically identifying the domain "rbmlh.xyz" observed in the Server Name Indication (SNI) field of TLS connections. Lumma Stealer is a type of malware that is characterized by its ability to steal sensitive information from infected systems. The rule examines established TLS connections directed towards the server and targets potential command and control activities as part of its detection strategy.
+  Updated-Date: '2026_10_21'
+'2072527':
+  Created-Date: '2026_10_21'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: 3b8936e4ac5e2a4410951bed0e3ba256
+  Ruleset: ETOPEN
+  Summary: This rule detects a DNS query for the domain "siltapl.fun," which is associated with command and control (CnC) activities of the Lumma Stealer malware. Lumma Stealer is a type of malicious software designed to illicitly obtain sensitive information from infected systems. The rule flags DNS lookups for this domain, suggesting potential targeting of client endpoints by this malware family within the network.
+  Updated-Date: '2026_10_21'
+'2072528':
+  Created-Date: '2026_10_21'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: ae399bba402a75917248015caa5a0ae8
+  Ruleset: ETOPEN
+  Summary: This rule detects network traffic where a client is trying to communicate with a domain associated with the Lumma Stealer malware via TLS Server Name Indication (SNI), specifically targeting the domain "siltapl.fun". The Lumma Stealer is a type of malware that likely performs data theft on infected Windows systems. The detection is part of efforts to identify command-and-control communication channels used by the malware to exfiltrate information from compromised hosts. The connection is established from a monitored network to any other server, emphasizing the domain's use in malicious operations.
+  Updated-Date: '2026_10_21'
+'2072529':
+  Created-Date: '2026_10_21'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: 418a7894aa2083b52144bc7abb604581
+  Ruleset: ETOPEN
+  Summary: This rule detects an attempt to exploit a vulnerability in Apache CouchDB through Erlang RPC that could lead to unauthorized OS command execution. The detection focuses on specific data patterns associated with this exploit, which has been documented and assigned CVE-2022-24706. This vulnerability allows attackers to potentially execute arbitrary commands on the server, posing significant security risks to affected systems.
+  Updated-Date: '2026_10_21'
 '2100110':
   Created-Date: '2024_08_07'
   Custom-Edited: false
