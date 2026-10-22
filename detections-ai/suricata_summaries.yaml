@@ -331082,10 +331082,10 @@
   Created-Date: '2024_08_07'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: 34d702dc5dc2ace58928da9f9f47ed68
+  Rule-Body-Hash: 003b1616ac7f3ec042bd01f99f00327f
   Ruleset: ETOPEN
-  Summary: This rule detects an attempted unauthenticated command injection targeting TP-Link Archer AX21 routers, specifically exploiting the vulnerability identified as CVE-2023-1389. The attack occurs when an HTTP POST request is made to the "/cgi-bin" URI. The rule searches for requests that begin with a specific token and include a request body containing the operation set to "write" and a country parameter formatted in a certain way. This activity suggests a potential effort to exploit remote services on networking equipment for gaining administrative access.
-  Updated-Date: '2025_01_31'
+  Summary: This rule detects an attempted exploitation of a command injection vulnerability in TP-Link Archer AX21 routers, identified by CVE-2023-1389. The rule triggers when there is an established HTTP POST request directed to a server containing specific patterns indicative of an attempt to inject unauthorized commands. The request URI involves access to the "/cgi-bin/luci" endpoint with exploitable parameters, particularly targeting the "stok" parameter. Also, the HTTP request body should contain operations trying to overwrite a "country" setting. The detection logic further alerts on suspicious command injection syntax within these input fields, aiming to prevent unauthorized command execution on the affected networking equipment.
+  Updated-Date: '2026_10_22'
 '2044586':
   Created-Date: '2024_08_07'
   Custom-Edited: false
@@ -363042,18 +363042,18 @@
   Created-Date: '2024_08_07'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: a9854ec066b5269b2c17daa0f5c53eff
+  Rule-Body-Hash: c7e1bdd1de51599ae9cbfbb0a4608112
   Ruleset: ETOPEN
-  Summary: This rule detects an outbound HTTP POST request targeting a specific URI on a web server, which is indicative of potential exploitation of a Cisco IOS XE web server vulnerability identified as CVE-2023-20198. The URI in question is "/webui/logoutconfirm.html?logon_hash=1". This activity suggests an attempt to check for an implant or compromise related to this particular vulnerability, with the suspected purpose being connected to unauthorized access or control of affected Cisco devices running IOS XE software. The rule sets a threshold to limit alerts to one per source every five minutes to avoid excessive notifications for repeated activity.
-  Updated-Date: '2025_08_19'
+  Summary: This rule detects outbound traffic patterns indicative of an unauthorized implant in Cisco IOS XE web servers, targeting the web server logout functionality via a specific URI. It focuses on HTTP POST requests to the "/webui/logoutconfirm.html?logon_hash=1" endpoint, a behavior associated with exploitation of the vulnerability identified as CVE-2023-20198. The rule monitors established connections from internal to external networks and uses thresholds to limit alerts, highlighting potential malicious activity linked to the exploitation of Cisco IOS XE Software.
+  Updated-Date: '2026_10_22'
 '2048584':
   Created-Date: '2024_08_07'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: fa26e78292014df74bbfe5716d509b8b
+  Rule-Body-Hash: 59a01b68449e1510590be2255206b970
   Ruleset: ETOPEN
-  Summary: This rule detects an exploit attempt targeting Cisco IOS XE devices, specifically checking for unauthorized activity involving a web server implant identified by CVE-2023-20198. It focuses on HTTP POST requests to the URI path `/webui/logoutconfirm.html?logon_hash=1`, which is indicative of a malicious implant operation. The rule is triggered by incoming traffic aimed at potential exploitation of the web server capabilities of these networking devices, ensuring that any detected activity is logged with a limited alert rate.
-  Updated-Date: '2025_08_19'
+  Summary: This rule detects a check-in from the BadCandy malware, which targets Cisco IOS XE devices. It identifies specific HTTP POST requests directed towards web servers with a URI pattern matching "/webui/logoutconfirm.html?logon_hash=1". The detection is triggered under established connections from external networks. This activity is associated with an ongoing exploitation of a vulnerability identified as CVE-2023-20198 in Cisco IOS XE software. The rule applies a threshold to limit alerts to one per source every five minutes to reduce noise.
+  Updated-Date: '2026_10_22'
 '2048585':
   Created-Date: '2024_08_07'
   Custom-Edited: false
@@ -365850,18 +365850,18 @@
   Created-Date: '2024_08_07'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: 036cc883edf797dcaef7063458a99ee0
+  Rule-Body-Hash: 9c22027858feb25041e9122cdddebd31
   Ruleset: ETOPEN
-  Summary: This rule detects an attempt to access a Cisco IOS XE Web Server using the suspicious username "cisco_support" within an authentication cookie. The activity targets networking equipment and is associated with an identified vulnerability, CVE-2023-20198. An established inbound HTTP connection using the GET method is flagged when this specific username is found, which may indicate unauthorized access or exploitation attempts on Cisco IOS XE Software.
-  Updated-Date: '2025_08_19'
+  Summary: This rule detects HTTP traffic involving an established connection to a server where a GET request contains a cookie starting with "Auth=cisco_support". This activity is associated with the BadCandy malware implant targeting Cisco IOS XE software, where a local account named "cisco_support" may indicate unauthorized access. The rule specifically monitors for potential exploitation linked to CVE-2023-20198, identified as a threat to networking equipment using Cisco IOS XE.
+  Updated-Date: '2026_10_22'
 '2048935':
   Created-Date: '2024_08_06'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: 475fa162e804a34cb99c709e0cb57895
+  Rule-Body-Hash: 92121c784aa56b0f2616f614c3e3a95e
   Ruleset: ETOPEN
-  Summary: This rule detects outbound HTTP GET requests from a device within the network attempting to authenticate to an external server using a suspicious username, "cisco_support," in the cookie header. This activity is related to a vulnerability in Cisco IOS XE web servers, identified as CVE-2023-20198, which is being actively exploited.
-  Updated-Date: '2025_08_19'
+  Summary: This rule detects an outbound HTTP request from a network within the designated home environment to an external network, where the request method is GET, and a suspicious username "cisco_support" is used in the authentication cookie. This activity is related to a vulnerability in Cisco IOS XE software, specifically CVE-2023-20198. The detection focuses on traffic that involves established connections directed to a server, indicating an authentication attempt to the Cisco IOS XE web server using the specified username. This rule is designed to identify potential exploitation of this vulnerability in the Cisco network equipment.
+  Updated-Date: '2026_10_22'
 '2048936':
   Created-Date: '2024_08_07'
   Custom-Edited: false
@@ -365882,66 +365882,66 @@
   Created-Date: '2024_08_06'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: f341aef759a1e9ae36b413863d9025a7
+  Rule-Body-Hash: 9ff227db8d148779d069d4184fdf847e
   Ruleset: ETOPEN
-  Summary: This rule detects attempts to exploit a vulnerability in the Cisco IOS XE Web Server by monitoring for HTTP GET requests containing the cookie "Auth=cisco_tac_admin" in inbound traffic to a protected network or HTTP servers. The presence of this specific authentication token is associated with suspicious activity, as it indicates potential unauthorized access using a known exploit (CVE-2023-20198) targeting Cisco's network operating system. This rule aims to identify such exploitation attempts to help prevent unauthorized access and mitigate security risks.
-  Updated-Date: '2025_08_19'
+  Summary: This rule detects an attempt involving the BadCandy malware to use a local account with the username "cisco_tac_admin" in a GET request to a vulnerable Cisco IOS XE device. The detection triggers when there is an HTTP request containing a cookie that starts with "Auth=cisco_tac_admin." The rule is associated with known active exploitation as per the referenced CVE-2023-20198, indicating a security vulnerability within Cisco IOS XE software.
+  Updated-Date: '2026_10_22'
 '2048939':
   Created-Date: '2024_08_07'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: c1f24a12adccb76656bdd94eef85fcbe
+  Rule-Body-Hash: 72515fcbfd29246d248f70b9e84b76cb
   Ruleset: ETOPEN
-  Summary: This rule detects an HTTP GET request containing an authentication cookie named "Auth" with the value "cisco_tac_admin" being sent from a potentially compromised internal network host to an external network. This activity is associated with an exploit targeting the Cisco IOS XE software's web server, specifically referencing CVE-2023-20198. The use of the suspicious username "cisco_tac_admin" indicates potential unauthorized access or exploitation attempts against such systems.
-  Updated-Date: '2025_08_19'
+  Summary: This rule detects outbound HTTP traffic from a local network to an external network where an HTTP request involves a suspicious username, specifically "cisco_tac_admin," attempting to authenticate on a Cisco IOS XE web server. This activity may be indicative of exploitation related to the vulnerability identified as CVE-2023-20198.
+  Updated-Date: '2026_10_22'
 '2048940':
   Created-Date: '2024_08_07'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: 5012feb0d891ca4f67ac4dce90a9226e
+  Rule-Body-Hash: a8ce2006d088e1968845fea91e1d19bb
   Ruleset: ETOPEN
-  Summary: This rule detects an outbound authentication bypass attempt targeting Cisco IOS XE Web Server, specifically exploiting a vulnerability identified as CVE-2023-20198. The attack involves an established connection from a home network to an external server using the HTTP POST method. The request's URI contains specific encoded characters, and the body of the HTTP request includes SOAP message structures, indicating an attempt to manipulate or bypass authentication mechanisms. The rule limits detections to one per source every 300 seconds to reduce noise and focuses on attempts to gain unauthorized initial access to the application.
-  Updated-Date: '2025_08_19'
+  Summary: This rule detects a potential authentication bypass attempt targeting Cisco IOS XE web servers, potentially exploiting the vulnerability identified as CVE-2023-20198. The rule monitors outbound HTTP POST requests from a home network to any external network, looking for specific patterns within the HTTP URI and request body that suggest an attempt to exploit this vulnerability. It is designed to activate on confirmed connections to the server and employs a threshold to limit alerts for individual source IP addresses. This rule is aimed at identifying attempts to gain unauthorized administrative access to public-facing Cisco applications.
+  Updated-Date: '2026_10_22'
 '2048941':
   Created-Date: '2024_08_07'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: 210a55711ec4f6434663b39048824a12
+  Rule-Body-Hash: c781b03f9d489d3733169a63996e30a3
   Ruleset: ETOPEN
-  Summary: This rule detects a potential authentication bypass attempt targeting Cisco IOS XE web servers, specifically exploiting a known vulnerability identified as CVE-2023-20198. The rule looks for HTTP POST requests directed at servers within a defined network range, searching for specific patterns in the request URI and body that suggest an exploit attempt. It inspects the raw HTTP URI for double percent signs and the request body for specific SOAP-related content, indicating a possible attempt to bypass authentication mechanisms by exploiting vulnerabilities in public-facing applications. This monitoring helps prevent unauthorized administrative access by identifying and limiting such exploit attempts.
-  Updated-Date: '2025_08_19'
+  Summary: This rule detects an attempted authentication bypass exploit targeting Cisco IOS XE web servers, associated with CVE-2023-20198. The rule is triggered by a specific HTTP POST request pattern, where the URI does not include "webui_wsma_http" and the request body contains SOAP elements, which indicates a bypass attempt. The rule monitors established HTTP connections directed to server IPs and uses regular expressions to identify potential exploitation activities. It limits alerts to one per source IP every 300 seconds to reduce noise.
+  Updated-Date: '2026_10_22'
 '2048942':
   Created-Date: '2024_08_07'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: 4d6756ecdb808cb8a97bc735787d20fc
+  Rule-Body-Hash: 3651ef81cf064f62c99ed1903578c66a
   Ruleset: ETOPEN
-  Summary: This rule detects an outbound HTTP POST request indicative of an attempt to exploit a vulnerability in Cisco IOS XE Web Server, specifically targeting the execCLI function in SOAP messages, associated with CVE-2023-20198. It monitors established connections from the internal network to external destinations, searching for specific SOAP request patterns that include credentials and commands, which could signify unauthorized execution of commands on the server as part of an exploitation attempt.
-  Updated-Date: '2025_08_19'
+  Summary: This rule detects outbound HTTP POST requests that are part of a potential exploitation attempt against the Cisco IOS XE web server, targeting the execCLI function through SOAP requests. It is associated with CVE-2023-20198 and identifies traffic containing specific patterns in the HTTP request body indicative of a username and password followed by a command and an execCLI invocation. The rule is designed to capture suspicious activity that could relate to unauthorized command execution on Cisco-networking equipment.
+  Updated-Date: '2026_10_22'
 '2048943':
   Created-Date: '2024_08_07'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: ab4af995b8bb6ed7dcac4d744a78ac9c
+  Rule-Body-Hash: 5dc164de461882b525f556ccb707a7f1
   Ruleset: ETOPEN
-  Summary: This rule detects an inbound HTTP POST request targeting Cisco IOS XE Web Servers that potentially exploits the execCLI feature via SOAP, associated with CVE-2023-20198. The request contains specific patterns indicating the presence of a username and password in a SOAP message, followed by an "execCLI" command, which may be used for unauthorized command execution. The rule monitors established connections directed to the server and employs a threshold to limit alerts to one per source every 300 seconds. The exploitation is detailed further in a blog by Talos Intelligence.
-  Updated-Date: '2025_08_19'
+  Summary: This rule detects an attempted exploitation of Cisco IOS XE's web server software using the execCLI command within a SOAP request. When an HTTP POST request, specifically destined to internal or server addresses, contains the "UsernameToken" element and the "execCLI" command, it indicates a potential vulnerability exploitation as described in CVE-2023-20198. The detection is aimed at recognizing initial unauthorized access to networking equipment which can be exploited through public-facing applications. The rule imposes a threshold to limit alerts to one occurrence every 300 seconds per source IP, helping in identifying targeted attacks or scanning activity.
+  Updated-Date: '2026_10_22'
 '2048944':
   Created-Date: '2024_08_07'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: c5c834c31a009e0c8338e359eeeaa95b
+  Rule-Body-Hash: 469350476707710f1fb8367d6484f876
   Ruleset: ETOPEN
-  Summary: This rule detects an outbound HTTP POST request, which indicates an attempt to exploit a Cisco IOS XE Web Server vulnerability identified as CVE-2023-20198. The request includes SOAP XML elements related to authentication credentials ('Username' and 'Password') and configuration changes ('config-data' and 'cli-config-data-block'). This activity potentially points to unauthorized configuration modifications on Cisco IOS XE devices via the web server, which may be of interest for security monitoring. The rule also imposes a rate limit to trigger only once per source within a 300-second interval to reduce noise.
-  Updated-Date: '2025_08_19'
+  Summary: This rule detects an attempt to exploit a configuration change on the Cisco IOS XE web server using SOAP requests, specifically targeting the vulnerability identified as CVE-2023-20198. The rule is triggered by observing an outbound HTTP POST request in an established connection directed to an external server. The HTTP request body must include specific XML elements associated with WS-Security username-password tokens and configuration data blocks, which are indicative of a configuration change command via CLI. The rule limits the alert to once every 300 seconds per source to mitigate alert fatigue. This specific exploit is significant as it involves unauthorized changes to network equipment configurations.
+  Updated-Date: '2026_10_22'
 '2048945':
   Created-Date: '2024_08_06'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: 64360c13fb6360604281ec6b8548e5de
+  Rule-Body-Hash: 17003e8700e54cacb466abf28e4a1198
   Ruleset: ETOPEN
-  Summary: This rule detects attempts to exploit a vulnerability in Cisco IOS XE web servers associated with CVE-2023-20198. The rule targets inbound SOAP messages that utilize HTTP POST requests containing specific patterns indicative of configuration changes, such as user credentials and command execution blocks. It monitors established connections directed toward HTTP servers within the protected network and implements a threshold to limit alerts from the same source within a set timeframe. The vulnerability could allow an attacker to change configurations on affected Cisco devices.
-  Updated-Date: '2025_08_19'
+  Summary: This rule detects attempts to exploit a privilege escalation vulnerability in the Cisco IOS XE Web UI, identified as CVE-2023-20198. It triggers on established HTTP POST requests sent to servers within specific networks, searching for specific XML elements within the request body that indicate attempts to insert malicious configuration data. The vulnerability allows attackers to execute unauthorized commands on the affected Cisco networking equipment, potentially gaining elevated privileges. Attack indicators include particular patterns involving XML `UsernameToken` and `config-data` elements, along with configurations embedded in CDATA sections, which are part of the privilege escalation process.
+  Updated-Date: '2026_10_22'
 '2048946':
   Created-Date: '2024_08_07'
   Custom-Edited: false
@@ -367202,10 +367202,10 @@
   Created-Date: '2024_08_06'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: 69aceb85b35f530964c274d2c035c177
+  Rule-Body-Hash: 9aff1fb63083303d8d71c23fa31bc3a6
   Ruleset: ETOPEN
-  Summary: This rule detects attempts to exploit a vulnerability in the Cisco IOS XE software, specifically targeting the web server component. The attack involves sending a POST request to a specific URI, "/webui/logoutconfirm.html?menu=1", which is associated with the exploit of CVE-2023-20198. This vulnerability allows remote attackers to check if an implant has been deployed on the Cisco IOS XE Web Server. The rule is designed to monitor network traffic directed towards internal servers and limits alerts to prevent excessive logging, providing actionable intelligence about potential malicious activity targeting network infrastructure.
-  Updated-Date: '2025_08_19'
+  Summary: This rule detects an attempted exploitation of a vulnerability in the Cisco IOS XE web server, specifically related to CVE-2023-20198. The detection is triggered by a POST request to a specific URI pattern used in an implant check, which is likely indicative of an attack on networking equipment running this software. The rule monitors traffic directed towards internal networks and web servers, with specific attention given to requests fitting the URI pattern associated with a WebUI logout confirmation. This activity has been highlighted due to the potential for unauthorized control or access resulting from such an exploit.
+  Updated-Date: '2026_10_22'
 '2049104':
   Created-Date: '2024_08_06'
   Custom-Edited: false
@@ -371434,10 +371434,10 @@
   Created-Date: '2024_08_06'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: 0b19824a3e68ec1c3e051753481a455f
+  Rule-Body-Hash: 0f585b6f01cb09a82d1481696cdcbab9
   Ruleset: ETOPEN
-  Summary: This rule detects an attempted exploitation of a known vulnerability in the Sophos Web Appliance, specifically targeting pre-authentication command injection as described in CVE-2023-1671. The attack involves sending an HTTP POST request to the server with a crafted URI and request body that includes specific parameters indicative of the exploit attempt. The intent is likely to execute unauthorized commands on the server through a vulnerable endpoint in the appliance's web interface. This activity is flagged due to the potential for significant security risk posed by unauthorized command execution on affected systems.
-  Updated-Date: '2025_08_19'
+  Summary: This rule detects an attempted pre-authentication command injection exploit targeting the Sophos Web Appliance, associated with CVE-2023-1671. The detection is specific to HTTP POST requests sent to a URI containing "/index.php?" with the parameter "c=blocked" in the query string. The rule inspects the request body for the presence of parameters such as "args_reason=filetypewarn" and "user_encoded=", looking for patterns consistent with command injection attempts, including certain special characters and their encoded representations. This activity indicates a potential attempt to remotely execute commands on the server, and is part of lateral movement tactics as specified by the MITRE ATT&CK framework.
+  Updated-Date: '2026_10_22'
 '2049633':
   Created-Date: '2024_08_06'
   Custom-Edited: false
@@ -400530,10 +400530,10 @@
   Created-Date: '2024_08_07'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: 17d7cba0d17f0062c860379e8608bd17
+  Rule-Body-Hash: 87c29f08725f2d5aa665747fbd7d681f
   Ruleset: ETOPEN
-  Summary: 'This rule detects command and control (CnC) check-in attempts by the Spyder Loader malware. It is triggered by HTTP POST requests to URLs ending in ".php" and includes specific HTTP header content, specifically the ASCII characters "zte: eyJ". Additionally, the request must lack a "referer" header and have a zero-length content body. The rule is designed to identify Spyder Loader activity which is associated with malicious behavior on Windows and client endpoint systems, ensuring network security by monitoring for this type of traffic.'
-  Updated-Date: '2024_09_12'
+  Summary: 'This rule detects network communication associated with the Spyder Loader malware, specifically focusing on command and control (C&C) server check-ins. It triggers when an HTTP POST request is sent from a monitored network to an external network, targeting URI paths that end with ".php" and excluding any requests containing the "Referer" header. The request must also include a specific pattern, "zte: eyJ," within the HTTP headers. Additionally, the rule checks for HTTP content-length headers with a value of zero, indicating potential data exfiltration methods used by the malware. The rule is intended to identify malicious activity from Windows operating systems, linking the traffic to the Spyder malware family, which is known for stealing sensitive information from infected systems.'
+  Updated-Date: '2026_10_22'
 '2053270':
   Created-Date: '2024_08_07'
   Custom-Edited: false
@@ -554170,10 +554170,10 @@
   Created-Date: '2026_10_16'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: c00a1260341a09a2f678587fee09e076
+  Rule-Body-Hash: 025ded2c39d868478f5dc65717e68daa
   Ruleset: ETOPEN
-  Summary: This rule detects DNS queries for the domain "platc-tester.com," which is associated with the AdFection malware. This malware utilizes targeted advertisements to deliver spyware to devices, compromising Android and iOS platforms. The detection of this domain in DNS lookups can indicate a potential security threat to client endpoints, highlighting an attempted exploitation by spyware.
-  Updated-Date: '2026_10_16'
+  Summary: This rule detects DNS queries for domains related to "AdFection" malware, specifically targeting the domain ".platc-tester.com". This malware is known to misuse advertising technology as a means of delivering spyware. The rule aims to identify attempts to resolve this domain, which could indicate the presence of malicious activity on client endpoints, including web browsers and mobile devices running Android or iOS.
+  Updated-Date: '2026_10_22'
 '2072488':
   Created-Date: '2026_10_16'
   Custom-Edited: false
@@ -554442,10 +554442,10 @@
   Created-Date: '2026_10_21'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: 61688dc4c1cdab3dae14a0c45646f3d9
+  Rule-Body-Hash: f09b3e83c98a43d3ba0772c34a1c9b21
   Ruleset: ETOPEN
-  Summary: This rule detects a DNS query for a domain associated with command and control (C2) activity linked to TryNodeRAT malware, specifically when the queried domain ends with ".groks.workers.dev". TryNodeRAT is a type of Remote Access Trojan (RAT) that allows an attacker to remotely control an infected system, typically used for unauthorized access and data exfiltration. The detection focuses on identifying DNS lookups to known malicious C2 domains, an indicator of potential RAT activity on a network endpoint. This rule targets endpoints running various versions of Windows.
-  Updated-Date: '2026_10_21'
+  Summary: This rule detects DNS queries indicative of communication with a command and control (CnC) domain used by the TryNodeRAT malware. The specific domain in question is structured as "groks.workers.dev". This indicates potential malicious activity associated with Remote Access Trojans (RATs), particularly targeting client endpoints running Windows operating systems. The detection has a high confidence level and is considered a major security threat due to its association with malware command and control activities.
+  Updated-Date: '2026_10_22'
 '2072522':
   Created-Date: '2026_10_21'
   Custom-Edited: false
@@ -554458,10 +554458,10 @@
   Created-Date: '2026_10_21'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: b9821340d4fb520f4459b72c8dd864fe
+  Rule-Body-Hash: d01be5f3feb454c754fe5f951fd2286c
   Ruleset: ETOPEN
-  Summary: This rule detects DNS queries for a known command-and-control domain associated with the TA569 Gholoader, which is malware implicated in delivering further malicious payloads. Specifically, it identifies queries for "ssp-prod.joelbauertraining.com," linking potentially to the SocGholish malware family, a tool used for distributing malware through compromised websites or exploit kits. The rule is designed to identify this network activity as part of its effort to recognize and mitigate the risk posed by such threats to client endpoints.
-  Updated-Date: '2026_10_21'
+  Summary: This rule detects a DNS query for the domain "ssp-prod.joelbauertraining.com," which is associated with command and control (CnC) activity related to the TA569 threat actor and the Gholoader malware. Gholoader is a malware loader often used to deploy other malicious payloads, and it is linked to SocGholish, an exploit kit known for delivering malware through compromised websites. This detection helps identify potentially malicious activity originating from compromised client endpoints.
+  Updated-Date: '2026_10_22'
 '2072524':
   Created-Date: '2026_10_21'
   Custom-Edited: false
@@ -554510,6 +554510,134 @@
   Ruleset: ETOPEN
   Summary: This rule detects an attempt to exploit a vulnerability in Apache CouchDB through Erlang RPC that could lead to unauthorized OS command execution. The detection focuses on specific data patterns associated with this exploit, which has been documented and assigned CVE-2022-24706. This vulnerability allows attackers to potentially execute arbitrary commands on the server, posing significant security risks to affected systems.
   Updated-Date: '2026_10_21'
+'2072530':
+  Created-Date: '2026_10_22'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: dd8d3d6ecaa5e62662edb9559de4939b
+  Ruleset: ETOPEN
+  Summary: This rule detects DNS queries associated with TA569 Gholoader command and control activity, specifically targeting the domain "player-js.joelbauer.com". Gholoader, linked to the SocGholish malware family, is utilized as a downloader to deliver malicious payloads to compromised endpoints. The detection is intended to identify potential trojan activity originating from client-side web browsers connecting to malicious infrastructure.
+  Updated-Date: '2026_10_22'
+'2072531':
+  Created-Date: '2026_10_22'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: 1c30ba120ccca4fa1f3ba1f35ac9a316
+  Ruleset: ETOPEN
+  Summary: This rule detects the use of a specific command-and-control (CnC) domain associated with the Gholoader malware family, known as TA569, in the Server Name Indication (SNI) field of a TLS connection. The malicious domain "player-js.joelbauer.com" is used for communication between compromised client endpoints and external networks. This activity is linked to SocGholish, an exploit kit that typically targets web browsers in attacks involving compromised websites.
+  Updated-Date: '2026_10_22'
+'2072532':
+  Created-Date: '2026_10_22'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: a9a4b11a6809e26267cd44224cca9ae1
+  Ruleset: ETOPEN
+  Summary: This rule detects a DNS query for a domain associated with TryNodeRAT, specifically targeting the domain "storagebase.workers.dev". TryNodeRAT is a type of Remote Access Trojan (RAT) that allows attackers unauthorized remote access and control over infected systems. The detection aims to identify communication with a command and control (C2) domain used by TryNodeRAT, which poses a threat to various Windows systems by potentially giving malicious actors control over a client's endpoint.
+  Updated-Date: '2026_10_22'
+'2072533':
+  Created-Date: '2026_10_22'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: 67c0c1878487da4a809628a93049c084
+  Ruleset: ETOPEN
+  Summary: This rule detects communication attempts with a command-and-control domain associated with the TryNodeRAT malware using the Server Name Indication (SNI) field in TLS traffic. It specifically identifies connections to domains ending in ".storagebase.workers.dev," indicating potential malicious activity involving TryNodeRAT, a remote access tool (RAT) that can be used by attackers to gain unauthorized control over affected client endpoints, including a range of Windows operating systems.
+  Updated-Date: '2026_10_22'
+'2072534':
+  Created-Date: '2026_10_22'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: 9c4fc3c4682703e65dfa9ab14f0a3803
+  Ruleset: ETOPEN
+  Summary: This rule detects DNS queries for the domain "boarderryowk.shop," which is associated with the Win32/Lumma Stealer malware's command and control (C2) infrastructure. Lumma Stealer is a type of malware designed to extract sensitive information from compromised systems. The detection focuses on identifying attempts to resolve this specific domain, suggesting potential C2 communication related to the malware activity.
+  Updated-Date: '2026_10_22'
+'2072535':
+  Created-Date: '2026_10_22'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: 76d3cfa40cecb5f10d7822aa9acf3008
+  Ruleset: ETOPEN
+  Summary: This rule detects a connection to the domain "boarderryowk.shop" over TLS, which is associated with the Win32/Lumma Stealer malware. Lumma Stealer is a malicious software designed to exfiltrate sensitive information from an infected system. The rule triggers on an established connection from a home network to any server when the specified domain name is found in the TLS Server Name Indication (SNI) field, regardless of case. This activity is categorized as indicative of command and control communications, which is a technique used by malware to communicate with its operators.
+  Updated-Date: '2026_10_22'
+'2072536':
+  Created-Date: '2026_10_22'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: f9658ff892270d3552558a43f789b409
+  Ruleset: ETOPEN
+  Summary: This rule detects a DNS query for a Command and Control (C2) domain associated with the Win32/Lumma Stealer malware, specifically targeting the domain "fadeclosedrespecttedyw.pw". The Lumma Stealer is a type of malicious software designed to steal sensitive information from compromised systems. This detection aims to identify potential infection scenarios where compromised endpoints attempt to communicate with malicious infrastructure for control or data exfiltration purposes.
+  Updated-Date: '2026_10_22'
+'2072537':
+  Created-Date: '2026_10_22'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: aea478f5b669dd5012f1f8f11b597337
+  Ruleset: ETOPEN
+  Summary: This rule detects network traffic involving the Win32/Lumma Stealer malware by identifying connections to a domain associated with it, specifically "fadeclosedrespecttedyw.pw" in the TLS Server Name Indication (SNI) field. The rule is triggered for traffic from a local network to any destination when this pattern is present in an established TLS session, suggesting possible command-and-control communication associated with the Lumma Stealer malware. This detection helps in identifying potential infections aiming to exfiltrate data using this particular malware.
+  Updated-Date: '2026_10_22'
+'2072538':
+  Created-Date: '2026_10_22'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: b796cf34b7620d374ea9b3c752298aec
+  Ruleset: ETOPEN
+  Summary: This rule detects DNS queries associated with the Lumma Stealer malware, specifically targeting the command-and-control (CnC) domain "peansopk.live". Lumma Stealer is a type of malicious software that aims to extract sensitive information, typically from infected endpoints. The rule leverages the specified domain query pattern to identify potential communication attempts with this malware's CnC server, indicating possible compromise of the client endpoint.
+  Updated-Date: '2026_10_22'
+'2072539':
+  Created-Date: '2026_10_22'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: 070087e9ee1dd4a69d1daff350821d00
+  Ruleset: ETOPEN
+  Summary: This rule detects network traffic where the domain "peansopk.live" is observed in the Server Name Indication (SNI) field of a TLS connection. This domain is associated with the Lumma Stealer malware, which is designed to steal sensitive information from infected Windows systems. The rule is triggered when a connection is established from a host in the monitored network to any external server and the malicious domain is part of the TLS handshake, indicating potential communication with a command and control server.
+  Updated-Date: '2026_10_22'
+'2072540':
+  Created-Date: '2026_10_22'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: 69476b7f61a2b137da8c6e7e03020511
+  Ruleset: ETOPEN
+  Summary: This rule detects a DNS query to the domain "ptramidermsnqj.shop," which is associated with the Win32/Lumma Stealer malware's command and control (CnC) activities. It indicates potential unauthorized data exfiltration or other malicious activities facilitated by the Lumma Stealer malware, which targets client endpoints for illicit operations. The detection aims to identify and alert on DNS lookups connecting to this domain, indicating the presence of Lumma Stealer infections attempting to communicate with their CnC servers using application layer protocols as part of their command and control tactic.
+  Updated-Date: '2026_10_22'
+'2072541':
+  Created-Date: '2026_10_22'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: 264240065d0ccf097ba348d369d2fc1f
+  Ruleset: ETOPEN
+  Summary: This rule detects the use of a specific domain, "ptramidermsnqj.shop," in the Server Name Indicator (SNI) of a TLS connection. This domain is associated with the Win32/Lumma Stealer malware, a type of malicious software designed to steal sensitive information. The rule triggers on traffic originating from the internal network and heading towards this domain, suggesting possible communication with a command-and-control server. Such detection aids in identifying potential command-and-control activities, which are common tactics employed by threats to maintain communication with infected systems.
+  Updated-Date: '2026_10_22'
+'2072542':
+  Created-Date: '2026_10_22'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: 5b38a55c1c8c7cd4f378fdd89a112cec
+  Ruleset: ETOPEN
+  Summary: This rule detects DNS queries for a specific domain associated with the Lumma Stealer malware, a threat designed to exfiltrate sensitive data from infected systems. The domain "trickysymptommysqu.xyz" is identified as a command and control (CnC) domain used by the malware. The detection mechanism focuses on DNS traffic from internal network endpoints, monitoring for this particular domain indicative of a potential compromise involving Lumma Stealer. This malware typically engages in command and control activities, leveraging DNS for communication with its operators as part of its attack strategy.
+  Updated-Date: '2026_10_22'
+'2072543':
+  Created-Date: '2026_10_22'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: 07a732db2e08f04708f53b67df89b509
+  Ruleset: ETOPEN
+  Summary: This rule detects traffic related to the Lumma Stealer malware by identifying the use of a specific domain, "trickysymptommysqu.xyz," within a Transport Layer Security (TLS) Server Name Indication (SNI) field. It targets established connections directed to a server within the specified network scope. Lumma Stealer is a type of malware, and this rule identifies its potential command and control communication by monitoring application layer protocol usage, as outlined in relevant MITRE ATT&CK tactics and techniques. The identification of this domain is critical for preventing unauthorized data exfiltration and maintaining network security.
+  Updated-Date: '2026_10_22'
+'2072544':
+  Created-Date: '2026_10_22'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: 2acf64b08a5be8950e30a4f526a6e7c9
+  Ruleset: ETOPEN
+  Summary: This rule detects potential data exfiltration activity associated with the Kumsuky group, specifically targeting victims to a command-and-control server. It identifies HTTP POST requests to servers outside the protected network with URLs ending in ".php" and containing specific indicators in the request body and headers that match known patterns of Kumsuky's malicious traffic. The rule focuses on information exfiltration techniques that utilize system initialization data, suggesting the involvement of the Kumsuky group's malware using application layer protocols for command-and-control communication.
+  Updated-Date: '2026_10_22'
+'2072545':
+  Created-Date: '2026_10_22'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: a121ed302339ef306a3f0652c1d55b89
+  Ruleset: ETOPEN
+  Summary: This rule detects HTTP GET requests to a filename specifically named "aes.js". It monitors traffic from an internal network to external networks, focusing on established connections directed to the server. The detection is triggered when the URI contains "/aes.js", and it employs a threshold to limit alerts to one occurrence per source IP every 300 seconds, thereby reducing potential noise from repeated access. This rule is relevant in scenarios where "aes.js" could indicate the downloading or use of a JavaScript file potentially involved in encryption operations, which may be benign or part of malicious activities.
+  Updated-Date: '2026_10_22'
 '2100110':
   Created-Date: '2024_08_07'
   Custom-Edited: false
