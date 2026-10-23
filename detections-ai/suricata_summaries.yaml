@@ -335426,10 +335426,10 @@
   Created-Date: '2024_08_07'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: 7a512fdb053ac7a724b5bbde278c60dd
+  Rule-Body-Hash: dce6ff5ddf43a91045b96ac1bd7dc4d1
   Ruleset: ETOPEN
-  Summary: This rule detects an attempt to exploit a vulnerability in PaperCut MF/NG, a print management software, specifically targeting the authentication bypass related to CVE-2023-27350. The detection triggers when an HTTP GET request to the URI "page/SetupCompleted" is observed on an established connection directed to a server within the protected network. This vulnerability could allow unauthorized access to administrative functions, posing a security risk by granting initial access to an attacker.
-  Updated-Date: '2025_08_26'
+  Summary: This rule detects an attempted authentication bypass vulnerability in the PaperCut MF/NG software, specifically targeting the "SetupCompleted" service endpoint. It is a part of an exploit attempt for CVE-2023-27350. The detection occurs when a POST request is made to the specified URI on a server within the monitored network. This type of exploit allows unauthorized administrative access, compromising the security of systems running the affected version of PaperCut.
+  Updated-Date: '2026_10_23'
 '2045131':
   Created-Date: '2024_08_07'
   Custom-Edited: false
@@ -544402,10 +544402,10 @@
   Created-Date: '2026_07_23'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: 77c21395bbb8b6ea0d7579f85c0e6d1e
+  Rule-Body-Hash: ce9b01363a812af1b426ddbfd2d1bb56
   Ruleset: ETOPEN
-  Summary: This rule detects an attempted command injection targeting TP-Link networking equipment via the `WlanNetworkRpm.htm` endpoint, specifically exploiting the `ssid` parameter in GET requests. It identifies malicious traffic that leverages crafted input symbols such as semicolons, newlines, and other special characters indicative of an exploit attempt. The attack is associated with the vulnerability CVE-2023-33538, aiming to gain unauthorized access or control over the affected devices through a public-facing application vulnerability.
-  Updated-Date: '2026_07_23'
+  Summary: This rule detects an attempted command injection vulnerability targeting the TP-Link WlanNetworkRpm.htm web interface, identified by CVE-2023-33538. It monitors HTTP GET requests to a specific URI pattern, aiming to exploit the 'ssid' parameter. The rule looks for suspicious characters typically used in command injection attacks, such as semicolons, newlines, backticks, pipes, and dollar signs, which may indicate attempts to execute unauthorized commands on the target networking equipment. This detection is relevant to potential initial access via exploitation of public-facing applications, and highlights networking devices as a target for such threats.
+  Updated-Date: '2026_10_23'
 '2071267':
   Created-Date: '2026_07_23'
   Custom-Edited: false
@@ -553794,10 +553794,10 @@
   Created-Date: '2026_10_14'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: 38c1cae5bcea86e9c756498ca1562db1
+  Rule-Body-Hash: 3c2cfc4bdf242758f2b5f7dfd751a293
   Ruleset: ETOPEN
-  Summary: This rule detects DNS queries for a Command and Control (C2) domain associated with TryNodeRAT malware. The domain in question is ".zkffh-amilok.workers.dev". TryNodeRAT is a Remote Access Trojan (RAT) that can be used by attackers to remotely control infected systems. The detection is triggered when a DNS query attempts to resolve this specific domain, indicating potential communication with the malware's C2 infrastructure.
-  Updated-Date: '2026_10_14'
+  Summary: This rule detects a DNS query for a domain associated with TryNodeRAT command-and-control traffic, specifically targeting the domain "zkffh-amilok.workers.dev". TryNodeRAT is a type of Remote Access Trojan (RAT), which allows attackers to remotely control compromised systems. The rule identifies this threat by examining DNS queries for the presence of the specified domain string, regardless of case, highlighting a potential communication attempt with a malicious control server used by TryNodeRAT.
+  Updated-Date: '2026_10_23'
 '2072441':
   Created-Date: '2026_10_14'
   Custom-Edited: false
@@ -554010,10 +554010,10 @@
   Created-Date: '2026_10_16'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: 4f0de0e8bd247d01aee074c11cd0444f
+  Rule-Body-Hash: 30f4810f5cb41a3856a3314b7c69c28d
   Ruleset: ETOPEN
-  Summary: This rule detects a DNS lookup for the domain "nutralove.co," which is associated with the AdFection malware family. This type of software can transform targeted advertising technology into a vehicle for spyware distribution. The detection is relevant for web browsers and mobile devices running Android or iOS, indicating a potential security threat to client endpoints. The rule is particularly focused on monitoring perimeter networks for signs of this exploit kit, which could have low performance impact but is marked with high confidence in its detection accuracy.
-  Updated-Date: '2026_10_16'
+  Summary: This rule detects DNS queries for the domain "nutralove.co," which is associated with the AdFection spyware. AdFection is known for using targeted advertisements as a means to deliver spyware to unsuspecting users, affecting web browsers and mobile devices like Android and iOS. The rule is triggered when a DNS lookup request for this specific domain is observed, highlighting potential communication attempts from a client endpoint to an exploit kit that can compromise the security of the device.
+  Updated-Date: '2026_10_23'
 '2072468':
   Created-Date: '2026_10_16'
   Custom-Edited: false
@@ -554450,10 +554450,10 @@
   Created-Date: '2026_10_21'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: 0e1602ceaa86028900bd0a0c6b9b01b8
+  Rule-Body-Hash: f8b4d0cb32cc6ae93e0c20604322d4e7
   Ruleset: ETOPEN
-  Summary: This rule detects communication with a command and control (CnC) domain used by the TryNodeRAT malware through the Server Name Indication (SNI) extension in Transport Layer Security (TLS) traffic. The rule identifies domains ending with ".groks.workers.dev" in the SNI field, indicating potential contact with a server associated with the TryNodeRAT, a type of Remote Access Trojan (RAT) malware targeting client endpoints.
-  Updated-Date: '2026_10_21'
+  Summary: This rule detects communication to a command-and-control domain used by the TryNodeRAT malware within a TLS session. It specifically identifies traffic where the Server Name Indication (SNI) in the TLS handshake matches the pattern ".groks.workers.dev". The TryNodeRAT is associated with remote access Trojan activities, where a threat actor can remotely manipulate and execute commands on the infected machines. The rule is applicable to network flows established from internal to external networks, targeting endpoints running specific versions of Microsoft Windows operating systems.
+  Updated-Date: '2026_10_23'
 '2072523':
   Created-Date: '2026_10_21'
   Custom-Edited: false
@@ -554466,10 +554466,10 @@
   Created-Date: '2026_10_21'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: b4f320ce5e8b6821bde678f4215bfe61
+  Rule-Body-Hash: 28ac9ab9681bd637b2ca8d487b8015b9
   Ruleset: ETOPEN
-  Summary: This rule detects communication attempts to a command and control (CnC) domain associated with the TA569 threat actor group, specifically involving the Gholoader malware. It triggers when observing a Transport Layer Security (TLS) Server Name Indication (SNI) in network traffic that matches "ssp-prod.joelbauertraining.com." This domain is linked with malicious activities related to the SocGholish malware family, which is known for compromising websites to deliver further payloads. The rule focuses on identifying such network activities to help prevent the propagation of this malware from client endpoints to compromised external servers.
-  Updated-Date: '2026_10_21'
+  Summary: This rule detects traffic associated with the TA569 Gholoader malware campaign by identifying the command and control (CnC) domain "ssp-prod.joelbauertraining.com" in the Server Name Indication (SNI) field of a TLS handshake. The rule is triggered when an established connection is directed from a protected network towards an external network and the specific domain is observed. Gholoader is a type of malware commonly associated with the SocGholish toolset, known for utilizing web browsers to exploit client endpoints. The detection aims to prevent compromised websites from facilitating further malicious activities.
+  Updated-Date: '2026_10_23'
 '2072525':
   Created-Date: '2026_10_21'
   Custom-Edited: false
@@ -554522,18 +554522,18 @@
   Created-Date: '2026_10_22'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: 1c30ba120ccca4fa1f3ba1f35ac9a316
+  Rule-Body-Hash: 8e361001365520ae9edf44195346c346
   Ruleset: ETOPEN
-  Summary: This rule detects the use of a specific command-and-control (CnC) domain associated with the Gholoader malware family, known as TA569, in the Server Name Indication (SNI) field of a TLS connection. The malicious domain "player-js.joelbauer.com" is used for communication between compromised client endpoints and external networks. This activity is linked to SocGholish, an exploit kit that typically targets web browsers in attacks involving compromised websites.
-  Updated-Date: '2026_10_22'
+  Summary: This rule detects traffic involving the TA569 Gholoader malware, specifically when a TLS session includes the Server Name Indication (SNI) field matching the domain "player-js.joelbauer.com." The detection pertains to communication that is part of the Gholoader command and control (C2) activity, indicative of potential compromise by the SocGholish malware family, often associated with malicious campaigns that exploit web browsers and client endpoints.
+  Updated-Date: '2026_10_23'
 '2072532':
   Created-Date: '2026_10_22'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: a9a4b11a6809e26267cd44224cca9ae1
+  Rule-Body-Hash: 47f293610fee079657d85049539c9869
   Ruleset: ETOPEN
-  Summary: This rule detects a DNS query for a domain associated with TryNodeRAT, specifically targeting the domain "storagebase.workers.dev". TryNodeRAT is a type of Remote Access Trojan (RAT) that allows attackers unauthorized remote access and control over infected systems. The detection aims to identify communication with a command and control (C2) domain used by TryNodeRAT, which poses a threat to various Windows systems by potentially giving malicious actors control over a client's endpoint.
-  Updated-Date: '2026_10_22'
+  Summary: This rule detects a DNS lookup for a command and control (C2) domain associated with TryNodeRAT, identified by the domain ".storagebase.workers.dev". TryNodeRAT is a type of remote access trojan (RAT), which is malware that allows an attacker to control an infected computer remotely. This detection targets DNS queries from client endpoints, enhancing the capability to identify potential malware activity linked to TryNodeRAT on Windows operating systems.
+  Updated-Date: '2026_10_23'
 '2072533':
   Created-Date: '2026_10_22'
   Custom-Edited: false
@@ -554626,10 +554626,10 @@
   Created-Date: '2026_10_22'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: 2acf64b08a5be8950e30a4f526a6e7c9
+  Rule-Body-Hash: c4c3edc18e30a1c1f123dac808f78d84
   Ruleset: ETOPEN
-  Summary: This rule detects potential data exfiltration activity associated with the Kumsuky group, specifically targeting victims to a command-and-control server. It identifies HTTP POST requests to servers outside the protected network with URLs ending in ".php" and containing specific indicators in the request body and headers that match known patterns of Kumsuky's malicious traffic. The rule focuses on information exfiltration techniques that utilize system initialization data, suggesting the involvement of the Kumsuky group's malware using application layer protocols for command-and-control communication.
-  Updated-Date: '2026_10_22'
+  Summary: This rule detects an HTTP POST request originating from an internal network towards an external network that is highly indicative of malicious activity associated with the Kimsuky group. It specifically looks for traffic that ends with a ".php" extension in the URI and includes certain headers transformed to lowercase containing "mode". It further identifies exfiltration or command-and-control signals by checking for specific encoded sequences, such as "|22|initinfo|22 3a|" and "|3d 5c|r|5c|nSYSTEM|20|INITIAL|20|INFORMATION|5c|r|5c|n|3d|", within the request body. This malicious activity suggests the transfer of system initial information to a command-and-control server, typical of Kimsuky's operations, which aligns with the MITRE ATT&CK framework's command and control tactic using the application layer protocol technique.
+  Updated-Date: '2026_10_23'
 '2072545':
   Created-Date: '2026_10_22'
   Custom-Edited: false
@@ -554638,6 +554638,134 @@
   Ruleset: ETOPEN
   Summary: This rule detects HTTP GET requests to a filename specifically named "aes.js". It monitors traffic from an internal network to external networks, focusing on established connections directed to the server. The detection is triggered when the URI contains "/aes.js", and it employs a threshold to limit alerts to one occurrence per source IP every 300 seconds, thereby reducing potential noise from repeated access. This rule is relevant in scenarios where "aes.js" could indicate the downloading or use of a JavaScript file potentially involved in encryption operations, which may be benign or part of malicious activities.
   Updated-Date: '2026_10_22'
+'2072546':
+  Created-Date: '2026_10_23'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: d6044ac833a01969b84c771006005ca0
+  Ruleset: ETOPEN
+  Summary: This rule detects DNS queries related to the command and control (C2) domain of the NetSupport RAT, specifically targeting the domain "sendcarierpacket.com". NetSupport RAT is a remote access tool that can be used maliciously to control infected systems. This rule is focused on identifying potential communications from client endpoints to this domain, which may indicate the presence of NetSupport RAT activity on a network.
+  Updated-Date: '2026_10_23'
+'2072547':
+  Created-Date: '2026_10_23'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: 56889b6eda6321774248eb6fe595ed88
+  Ruleset: ETOPEN
+  Summary: This rule detects communication to command and control (CnC) domains associated with the NetSupport RAT malware by inspecting the Server Name Indication (SNI) field in TLS traffic. It specifically looks for connections that include the domain ".sendcarierpacket.com" in outbound traffic from internal networks to external networks. NetSupport RAT is a remote access trojan that typically targets Windows operating systems, enabling attackers to gain unauthorized remote control over infected machines.
+  Updated-Date: '2026_10_23'
+'2072548':
+  Created-Date: '2026_10_23'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: 26005bd49b37818bae79393dbec7fc90
+  Ruleset: ETOPEN
+  Summary: This rule detects an exploit attempt targeting a PHP vulnerability identified as CVE-2026-109619. The attack involves a session injection through PHP's `php2shell` handler mismatch via specially crafted HTTP POST requests. The rule monitors established connections to servers, checking for HTTP requests containing the content type "multipart/form-data" and specific patterns within the request body. It looks for the presence of `PHP_SESSION_UPLOAD_PROGRESS` along with a manipulated session filename, indicating a potential exploit attempt against systems running affected versions of PHP, which could impact both clients and servers in the network.
+  Updated-Date: '2026_10_23'
+'2072549':
+  Created-Date: '2026_10_23'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: be9e4a7b696096136a1fc72e8b6ed762
+  Ruleset: ETOPEN
+  Summary: This rule detects an attempt to exploit a vulnerability in PHP, identified as CVE-2026-109618, which is related to the misuse of multipart header fields in HTTP requests to trigger an out-of-memory error on a server. The attack manifests through excessive multipart header amplification during a POST request with a specific content type of "multipart/form-data." The rule specifically looks for a pattern in HTTP requests that includes numerous header lines to identify potential exploitation. This attack can target web servers running the affected versions of PHP.
+  Updated-Date: '2026_10_23'
+'2072550':
+  Created-Date: '2026_10_23'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: ca6078cd859e0fd98b39e0094615495b
+  Ruleset: ETOPEN
+  Summary: This rule detects an exploit attempt targeting PHP applications involving the php2shell attack, specifically the Nested Empty File Control Out-of-Memory (OOM) vulnerability, known as CVE-2026-109618. The rule triggers on HTTP POST requests sent to a server, characterized by a multipart/form-data content type and specific form-data content headers including "Content-Disposition" and "name" fields. It further inspects patterns within the request body to identify suspicious structures, such as triply nested content. This signature aims to identify malicious activity exploiting vulnerabilities in PHP-based web servers.
+  Updated-Date: '2026_10_23'
+'2072551':
+  Created-Date: '2026_10_23'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: 0eb914b56490023b5c2b714e3d09a341
+  Ruleset: ETOPEN
+  Summary: 'This rule detects an exploit attempt targeting PHP using a chunked multipart request without a Content-Length header, associated with CVE-2026-109618. This potential attack involves a POST request with a multipart/form-data content type and uses a "transfer-encoding: chunked" header. The absence of a "Content-Length" header in the request raises a flag, as this is characteristic of attempts to bypass normal request handling and potentially gain unauthorized access to a web server running PHP.'
+  Updated-Date: '2026_10_23'
+'2072552':
+  Created-Date: '2026_10_23'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: 4c3224032f8cbf063ab825be2374ecd1
+  Ruleset: ETOPEN
+  Summary: "This rule detects an exploit attempt targeting PHP web servers via a URL-encoded POST request vulnerability, identified as CVE-2026-109618. The rule specifically looks for HTTP POST requests with a content type of \"application/x-www-form-urlencoded\" where the request body includes binary data followed by certain control or non-printable characters. This pattern may indicate an attempt to corrupt PHP\u2019s $_POST superglobal array, potentially allowing attackers to exploit server-side vulnerabilities. The issue pertains to a known vulnerability, and its detection is crucial for maintaining the security of PHP-based web applications."
+  Updated-Date: '2026_10_23'
+'2072553':
+  Created-Date: '2026_10_23'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: 56b357780072c7ddab44866807723c0e
+  Ruleset: ETOPEN
+  Summary: This rule detects an exploit attempt involving a PHP vulnerability (CVE-2026-109618) by monitoring for a Multipart Request that lacks a Content-Length header. The rule triggers when an established connection to a web server receives an HTTP POST request with a "multipart/form-data" content type, without the presence of a "content-length" header. This specific pattern may indicate an attempt to exploit the mentioned vulnerability in PHP, targeting web servers.
+  Updated-Date: '2026_10_23'
+'2072554':
+  Created-Date: '2026_10_23'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: 64dc2da05e123548a3b8f868f7212bf6
+  Ruleset: ETOPEN
+  Summary: This rule detects an attempted code injection attack targeting PHP web servers through the manipulation of HTTP POST requests. It specifically focuses on identifying malicious uploads where the content type is "multipart/form-data" and includes indications of a PHP code injection vulnerability (CVE-2026-109619). The attacker's payload attempts to assign code execution within the upload process, often using a file name parameter that includes PHP session upload progress attributes crafted to inject PHP code. This type of attack is designed to exploit vulnerabilities in PHP handling of file uploads, potentially allowing unauthorized remote code execution on affected servers.
+  Updated-Date: '2026_10_23'
+'2072555':
+  Created-Date: '2026_10_23'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: 54bdd0ca7585475f56d487cf11e9a6cf
+  Ruleset: ETOPEN
+  Summary: This rule detects attempts to manipulate PHP session upload progress by analyzing HTTP traffic for specific patterns. It identifies requests where a session ID is transmitted using the "PHPSESSID" cookie and checks if the "multipart/form-data" content type is used. The rule searches for the presence of "PHP_SESSION_UPLOAD_PROGRESS" in the request body, suggesting the exploitation of session upload in PHP applications. This manipulation is conducted via an HTTP POST request, where the presence of "filename" in the request body indicates a potential file upload attempt. The rule is designed to catch these actions based on known vulnerabilities described in security advisories.
+  Updated-Date: '2026_10_23'
+'2072556':
+  Created-Date: '2026_10_23'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: 69f42e7fa846ed190755aed080a08cb6
+  Ruleset: ETOPEN
+  Summary: This rule detects an attempt to exploit a vulnerability in PHP applications, identified by CVE-2026-109618, where an excessive number of multipart form-data parts are sent in HTTP POST requests. The exploit targets web servers by sending a high count of form-data sections, potentially overwhelming PHP applications through abnormal processing demands, which may lead to a crash or be exploited further. The attack is aimed at PHP environments using multipart/form-data content types and leverages high-volume HTTP request payloads specifically structured to manipulate server behavior adversely.
+  Updated-Date: '2026_10_23'
+'2072557':
+  Created-Date: '2026_10_23'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: 630040c90795cb9d058bd7f795dde1af
+  Ruleset: ETOPEN
+  Summary: This rule detects attempts to exploit a vulnerability in PHP known as CVE-2026-109618. The attack involves sending an HTTP POST request with a "multipart/form-data" content type that contains a large number of empty filename fields in the request body. This pattern, indicative of the php2shell attack, can be used to compromise a web server by exploiting the PHP application's handling of multipart file uploads. The rule looks for 100 or more instances of empty filename indications within the request, signaling an excessive attempt to manipulate the server's processing logic through this exploit.
+  Updated-Date: '2026_10_23'
+'2072558':
+  Created-Date: '2026_10_23'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: 2f108981a04c14be4811b344c81b85cc
+  Ruleset: ETOPEN
+  Summary: This rule detects an attempt to exploit a command injection vulnerability in D-Link devices via the HTTP POST method to a URI containing "/apply.cgi?formSystemCheck". It specifically looks for malicious patterns in the "ipv4_ping" parameter, which could allow an attacker to execute arbitrary commands on the device. This vulnerability is associated with CVE-2026-95675 and poses a risk of unauthorized administrative access to networking equipment.
+  Updated-Date: '2026_10_23'
+'2072559':
+  Created-Date: '2026_10_23'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: 39fc729793e6d516eb61ec2bfbb3eb65
+  Ruleset: ETOPEN
+  Summary: 'This rule detects an attempted command injection targeting D-Link devices through the DHMAPI''s SetTimeSettings functionality, specifically exploiting the NTPServer parameter. The attack involves sending a POST request to a specific URI, "/DHMAPI/", with an HTTP header containing "api-action: SetTimeSettings". The request body is inspected for potentially malicious sequences indicative of command injection, such as the inclusion of semicolons or other special characters. This vulnerability is identified as CVE-2026-93958, and the rule aims to identify exploit attempts against networking equipment to prevent unauthorized administrative actions.'
+  Updated-Date: '2026_10_23'
+'2072560':
+  Created-Date: '2026_10_23'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: 6e258466c7af639b24d22af324d551ad
+  Ruleset: ETOPEN
+  Summary: This rule detects a DNS query for the domain "transunionbiba.lat", which is associated with command-and-control (C2) activities related to the NetSupport RAT malware. NetSupport RAT is a remote access trojan that provides an attacker with control over infected systems, typically affecting Windows operating systems. Detection of this domain in DNS traffic suggests potential communication with NetSupport RAT's infrastructure, indicative of malware presence on a client endpoint.
+  Updated-Date: '2026_10_23'
+'2072561':
+  Created-Date: '2026_10_23'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: 789e0d3e3ac4ad1c85bb0a7f1fd91483
+  Ruleset: ETOPEN
+  Summary: This rule detects communication with a command-and-control server associated with the NetSupport RAT malware by identifying traffic where the TLS Server Name Indication (SNI) matches the domain "transunionbiba.lat". NetSupport RAT is a remote access trojan used by attackers to remotely control compromised systems, and this detection focuses on identifying clients within a monitored network attempting to reach the malicious domain over an established connection.
+  Updated-Date: '2026_10_23'
 '2100110':
   Created-Date: '2024_08_07'
   Custom-Edited: false
