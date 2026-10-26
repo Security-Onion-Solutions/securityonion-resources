@@ -503770,10 +503770,10 @@
   Created-Date: '2025_12_09'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: 07e37441e1cb4190a577f0d28721a36b
+  Rule-Body-Hash: 3ab06ec8f1eec7d1c235e724292fdfc5
   Ruleset: ETOPEN
-  Summary: This rule detects an attempt to exploit a buffer overflow vulnerability (CVE-2022-37055) in D-Link devices that use the HNAP1 protocol's GetDeviceSettings function. The attack is characterized by an established HTTP connection to a server, where the URI contains "/hnap1/" and the HTTP header includes a specific "SOAPAction" header directed toward the "GetDeviceSettings" operation on the D-Link HNAP1 service. The rule looks for an unusually long query parameter to identify potential overflow attempts. This vulnerability could be leveraged by attackers to compromise D-Link networking equipment, enabling unauthorized access or control over affected devices.
-  Updated-Date: '2025_12_10'
+  Summary: This rule detects an attempted buffer overflow attack exploiting a vulnerability (CVE-2022-37055) in D-Link routers. Specifically, it targets the HNAP1 GetDeviceSettings functionality by looking for HTTP requests made to the URI containing "/hnap1/" with an HTTP header featuring "soapaction" and the path "/hnap1/getdevicesettings" within 60 bytes of the header. The rule inspects for unusually long parameter inputs (at least 100 characters) that could indicate a buffer overflow attempt. This type of attack aims to gain unauthorized access to networking equipment by exploiting the vulnerability in public-facing applications.
+  Updated-Date: '2026_10_26'
 '2066179':
   Created-Date: '2025_12_09'
   Custom-Edited: false
@@ -554514,10 +554514,10 @@
   Created-Date: '2026_10_22'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: dd8d3d6ecaa5e62662edb9559de4939b
+  Rule-Body-Hash: b15673b281c718d7e96b65de358dd326
   Ruleset: ETOPEN
-  Summary: This rule detects DNS queries associated with TA569 Gholoader command and control activity, specifically targeting the domain "player-js.joelbauer.com". Gholoader, linked to the SocGholish malware family, is utilized as a downloader to deliver malicious payloads to compromised endpoints. The detection is intended to identify potential trojan activity originating from client-side web browsers connecting to malicious infrastructure.
-  Updated-Date: '2026_10_22'
+  Summary: This rule detects a DNS lookup for the domain "player-js.joelbauer.com," which is associated with command and control activity related to the TA569 threat actor using the Gholoader malware. Gholoader is known for its involvement in delivering malicious payloads, and this specific domain may indicate an attempt to communicate with a compromised server part of the SocGholish campaign. The rule is structured to monitor DNS queries from internal networks to identify potential infections reaching out to this malicious infrastructure.
+  Updated-Date: '2026_10_26'
 '2072531':
   Created-Date: '2026_10_22'
   Custom-Edited: false
@@ -554626,10 +554626,10 @@
   Created-Date: '2026_10_22'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: c4c3edc18e30a1c1f123dac808f78d84
+  Rule-Body-Hash: 68a6af43f3b9175099543942aa24650c
   Ruleset: ETOPEN
-  Summary: This rule detects an HTTP POST request originating from an internal network towards an external network that is highly indicative of malicious activity associated with the Kimsuky group. It specifically looks for traffic that ends with a ".php" extension in the URI and includes certain headers transformed to lowercase containing "mode". It further identifies exfiltration or command-and-control signals by checking for specific encoded sequences, such as "|22|initinfo|22 3a|" and "|3d 5c|r|5c|nSYSTEM|20|INITIAL|20|INFORMATION|5c|r|5c|n|3d|", within the request body. This malicious activity suggests the transfer of system initial information to a command-and-control server, typical of Kimsuky's operations, which aligns with the MITRE ATT&CK framework's command and control tactic using the application layer protocol technique.
-  Updated-Date: '2026_10_23'
+  Summary: This rule detects HTTP POST requests from an internal network to an external network where the URI ends with ".php" and includes specific header and body patterns that suggest data exfiltration related to the "UNK_PolyPocket" malware. The rule identifies requests that contain header names in lowercase and include a sequence related to "mode" followed by a carriage return and line feed. The request body includes a JSON-like structure with "initinfo" and a pattern indicating system initialization information being sent, which is commonly associated with command-and-control activities on Windows client endpoints. This rule is intended to monitor for malicious communication that may indicate a compromised system engaging in unauthorized data transfer.
+  Updated-Date: '2026_10_26'
 '2072545':
   Created-Date: '2026_10_22'
   Custom-Edited: false
@@ -554650,10 +554650,10 @@
   Created-Date: '2026_10_23'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: 56889b6eda6321774248eb6fe595ed88
+  Rule-Body-Hash: 84beffbe96bed98388f948eac92e4255
   Ruleset: ETOPEN
-  Summary: This rule detects communication to command and control (CnC) domains associated with the NetSupport RAT malware by inspecting the Server Name Indication (SNI) field in TLS traffic. It specifically looks for connections that include the domain ".sendcarierpacket.com" in outbound traffic from internal networks to external networks. NetSupport RAT is a remote access trojan that typically targets Windows operating systems, enabling attackers to gain unauthorized remote control over infected machines.
-  Updated-Date: '2026_10_23'
+  Summary: This rule detects communication with Command and Control (C2) servers of the NetSupport Remote Access Trojan (RAT) by identifying the ".sendcarierpacket.com" domain in the Server Name Indication (SNI) field of TLS traffic. The aim is to monitor and potentially block outbound traffic from infected client endpoints within a network, indicating a possible compromise by this particular malware family. This Remote Access Trojan is known to provide attackers with control over infected systems, primarily targeting various versions of Windows operating systems.
+  Updated-Date: '2026_10_26'
 '2072548':
   Created-Date: '2026_10_23'
   Custom-Edited: false
@@ -554766,6 +554766,70 @@
   Ruleset: ETOPEN
   Summary: This rule detects communication with a command-and-control server associated with the NetSupport RAT malware by identifying traffic where the TLS Server Name Indication (SNI) matches the domain "transunionbiba.lat". NetSupport RAT is a remote access trojan used by attackers to remotely control compromised systems, and this detection focuses on identifying clients within a monitored network attempting to reach the malicious domain over an established connection.
   Updated-Date: '2026_10_23'
+'2072562':
+  Created-Date: '2026_10_26'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: 16298eba7779151e931fb4912871c118
+  Ruleset: ETOPEN
+  Summary: This rule detects an attempted exploitation of an authentication bypass vulnerability in the Cisco Identity Services Engine (ISE) API Gateway, identified as CVE-2026-76460. It triggers when an established HTTP connection to a server contains a specific URI pattern related to active session lists and includes a particular cookie value indicating an application session ID. This exploit can potentially grant unauthorized access to administrative functions on a targeted server running Cisco ISE.
+  Updated-Date: '2026_10_26'
+'2072563':
+  Created-Date: '2026_10_26'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: ab10778cc9c2efc3beefba7891c05ea1
+  Ruleset: ETOPEN
+  Summary: This rule detects an attempted path traversal attack targeting Fortinet's FortiSIEM software, specifically through the gRPC service `phoenixSvc` using the `SendQueryResult` function. The attack is identified by the presence of a malicious `query-id` header within a POST request, aimed at exploiting a vulnerability known as CVE-2026-106173. This vulnerability could lead to unauthorized access or remote code execution on the web server by manipulating file paths. The rule monitors for patterns associated with path traversal to spot potential exploitation attempts.
+  Updated-Date: '2026_10_26'
+'2072564':
+  Created-Date: '2026_10_26'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: c053dff0035a16496d180cde58ed98e6
+  Ruleset: ETOPEN
+  Summary: This rule detects DNS queries associated with a command-and-control domain linked to a backdoored version of the LiteLLM software package. Specifically, it identifies DNS lookups for domains ending with ".litellm.dev." The backdoored LiteLLM package has been compromised to steal credentials, representing a major security threat.
+  Updated-Date: '2026_10_26'
+'2072565':
+  Created-Date: '2026_10_26'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: f77ce846967e4787f5bad086dddbf72f
+  Ruleset: ETOPEN
+  Summary: This rule detects outbound TLS traffic from an internal network to the internet where the server name indication (SNI) field contains the domain ".litellm.dev". This behavior is associated with the LiteLLM backdoor, which can compromise affected systems and steal credentials. The rule targets client endpoints potentially engaged in command and control (C2) communication associated with information-stealing malware, indicating a critical security threat that leverages the domain for malicious activity.
+  Updated-Date: '2026_10_26'
+'2072566':
+  Created-Date: '2026_10_26'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: 5f5ae4dce05bd96a4c9baa3c4784b234
+  Ruleset: ETOPEN
+  Summary: This rule detects malicious activity involving the LiteLLM malware, specifically targeting its data exfiltration behavior. The rule triggers on HTTP requests using the POST method to the domain "www.litellm.dev" with the URI "/healthcheck" and a specific user agent that indicates the presence of Internet Explorer 7 on Windows 10, working in compatibility mode. It looks for an HTTP header containing an "X-Token" with a fixed value, which suggests an attempt to exfiltrate data from an infected system. This activity is associated with a credential-stealing attack, leveraging the compromised malware LiteLLM, which is known for exfiltrating sensitive information from client endpoints on various operating systems such as Windows, Mac, and Linux.
+  Updated-Date: '2026_10_26'
+'2072567':
+  Created-Date: '2026_10_26'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: e1b5e573048e003ba7a0c041a580bc79
+  Ruleset: ETOPEN
+  Summary: This rule detects HTTP GET requests originating from internal networks to external hosts that indicate potential image file downloads using PowerShell from dotted quad hosts. It specifically identifies requests with a URI ending in ".png" or ".jpeg" and originating from a user agent string containing "WindowsPowerShell." The rule triggers when these conditions are met, suggesting the use of PowerShell to retrieve images from numeric IP addresses, which could be indicative of suspicious activity or evasion techniques.
+  Updated-Date: '2026_10_26'
+'2072568':
+  Created-Date: '2026_10_26'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: 7282760c23bd5880d147c7ca13d371fc
+  Ruleset: ETOPEN
+  Summary: This rule detects DNS queries that seek to resolve the domain "xie.rpreh.com," which is associated with the Coruna exploit kit. The Coruna exploit kit is known for being a powerful tool used to compromise iOS devices through drive-by attacks, which are a form of initial access tactic where simply visiting a malicious or compromised website can result in exploitation. The detection targets client endpoints and is designed to alert on potentially critical threats to protect systems from this exploit technique.
+  Updated-Date: '2026_10_26'
+'2072569':
+  Created-Date: '2026_10_26'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: 36ffca4584656beb6673895a1b2e12f7
+  Ruleset: ETOPEN
+  Summary: This rule detects traffic attempting to access a domain associated with the Coruna Exploit Kit using the Server Name Indication (SNI) field in a TLS handshake. Specifically, it looks for the domain "xie.rpreh.com" within the TLS SNI, indicating a potential drive-by compromise attack. The detection pertains to traffic from local networks to external networks, focusing on exploit kit activity related to initial access tactics.
+  Updated-Date: '2026_10_26'
 '2100110':
   Created-Date: '2024_08_07'
   Custom-Edited: false
