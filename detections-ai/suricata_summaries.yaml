@@ -223250,10 +223250,10 @@
   Created-Date: '2024_08_07'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: 698d6d01835c9d1e9ae9aa356101fa28
+  Rule-Body-Hash: 121722e8a0e2b1fb6a22d19fc910fa5c
   Ruleset: ETOPEN
-  Summary: This rule detects an attempted information disclosure against Citrix systems through an inbound HTTP POST request, targeting a vulnerability known as CVE-2020-8195. The request is directed towards a server, specifically checking for a URI path containing a filter string encoded for a path segment, with the request body beginning with "<clipermission". This vulnerability relates to Citrix Application Delivery Controller (ADC) and Gateway systems, potentially allowing unauthorized access to system information.
-  Updated-Date: '2025_09_16'
+  Summary: This rule detects an attempt to exploit a vulnerability in Citrix Application Delivery Controller (ADC) and Gateway, specifically targeting information disclosure through a POST request. The rule identifies suspicious traffic directed to a server that includes a request to the URL path `/rapi/filedownload?` with an indicator in the URI showing unauthorized path access attempts. It searches for the string "filter=path:" in the URI and the presence of "<clipermission" in the request body. The rule is associated with CVE-2020-8195, which can lead to unauthorized access to sensitive Citrix system files, representing a critical security risk.
+  Updated-Date: '2026_10_27'
 '2031069':
   Created-Date: '2024_08_07'
   Custom-Edited: false
@@ -553290,10 +553290,10 @@
   Created-Date: '2026_10_07'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: 7cf060952b717be2884fd8d4770bd9d2
+  Rule-Body-Hash: b7354341a4ed61d7c9fb1daee751ab24
   Ruleset: ETOPEN
-  Summary: This rule detects DNS queries containing the domain "kjhg.lol," which is associated with the ClickFix exploit kit. ClickFix is a type of exploit kit used to gain unauthorized access to client endpoints as part of a drive-by compromise tactic. This detection serves as an indication of potential exploitation attempts targeting web browsers, originating from DNS lookups related to the said domain.
-  Updated-Date: '2026_10_07'
+  Summary: This rule detects DNS queries for a domain associated with the ClickFix exploit kit, specifically "kjhg.lol". The rule helps identify potential attempts to exploit vulnerabilities through drive-by downloads, a tactic tied to the initial access phase of cyber attacks. This is relevant to client endpoints as it highlights potential compromise via malicious domains, often leveraged in ransomware campaigns or fileless malware attacks utilizing PowerShell.
+  Updated-Date: '2026_10_27'
 '2072378':
   Created-Date: '2026_10_07'
   Custom-Edited: false
@@ -553634,10 +553634,10 @@
   Created-Date: '2026_10_13'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: 7b3a2e2683ade431b4234a592f4ce87c
+  Rule-Body-Hash: 61c2e22d2819603a9a612564c4e5fd61
   Ruleset: ETOPEN
-  Summary: This rule detects a DNS query for a domain associated with TryNodeRAT command and control activity, specifically targeting the domain ".fins.workers.dev". This action is indicative of potential malicious communication involving the TryNodeRAT malware, which typically targets client endpoints running various versions of Windows.
-  Updated-Date: '2026_10_13'
+  Summary: This rule detects a DNS query for a specific Command and Control (C&C) domain associated with the TryNodeRAT malware, which is identified by the presence of ".fins.workers.dev" in the domain name. TryNodeRAT is a type of Remote Access Trojan (RAT) that targets client endpoints by establishing remote control over the affected systems, typically used by attackers to exfiltrate data or execute commands. The detection focuses on domains queried by compromised systems, indicating potential communication with a malicious server.
+  Updated-Date: '2026_10_27'
 '2072421':
   Created-Date: '2026_10_13'
   Custom-Edited: false
@@ -553778,10 +553778,10 @@
   Created-Date: '2026_10_14'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: 1eb0773fdff592878310930013879479
+  Rule-Body-Hash: 3b8f41b46ed13bc72be3763b6902c4f7
   Ruleset: ETOPEN
-  Summary: This rule detects DNS queries for the command and control (CnC) domain associated with the TryNodeRAT malware, specifically targeting DNS lookups that end with ".mcfind.workers.dev". TryNodeRAT is a type of Remote Access Trojan (RAT) that allows an attacker to gain unauthorized control over a compromised system. The rule is designed to identify potential malicious activity indicative of TryNodeRAT attempting to communicate with its CnC infrastructure.
-  Updated-Date: '2026_10_14'
+  Summary: This rule detects Domain Name System (DNS) queries indicating potential communication with a command and control (C2) domain associated with TryNodeRAT malware. The specific domain of interest in the DNS lookup is "*.mcfind.workers.dev". TryNodeRAT is a type of Remote Access Trojan (RAT) that can give attackers unauthorized control over infected endpoints. This rule helps identify attempts by such malware to communicate with its C2 infrastructure, typically associated with malicious activities.
+  Updated-Date: '2026_10_27'
 '2072439':
   Created-Date: '2026_10_14'
   Custom-Edited: false
@@ -553994,18 +553994,18 @@
   Created-Date: '2026_10_16'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: a30d13d83bda038437cd0d4b8eb6b0a0
+  Rule-Body-Hash: 72006dbbae8ad1d7c51ee56667263b46
   Ruleset: ETOPEN
-  Summary: This rule detects DNS queries attempting to resolve the domain "checkmyimp.com," which is associated with the AdFection malware. AdFection is known for leveraging advertising mechanisms to distribute spyware. The monitoring of DNS requests to this domain helps identify potential client endpoints affected by this malware, ensuring security measures can be taken on web browsers, Android, and iOS devices.
-  Updated-Date: '2026_10_16'
+  Summary: This rule detects DNS queries for the domain "checkmyimp.com," which is associated with AdFection, a type of adware or spyware. AdFection is known to exploit targeted advertising channels to compromise client endpoints, including web browsers on Android and iOS devices. The detection focuses on ensuring privacy by identifying potential spyware activities linked to this domain.
+  Updated-Date: '2026_10_27'
 '2072466':
   Created-Date: '2026_10_16'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: 279d8af404313a211b3e45222705b382
+  Rule-Body-Hash: e3aa30776958d515ce68cd6bdb3164fd
   Ruleset: ETOPEN
-  Summary: This rule detects DNS queries for the domain "ads-impressions.com," which is associated with the AdFection malware. AdFection leverages targeted advertising systems as a conduit for spyware distribution, potentially affecting web browsers and mobile devices running Android and iOS. The rule aims to identify suspicious activities by monitoring DNS lookups that may indicate an attempt to contact harmful infrastructure linked to AdFection, highlighting a risk towards client endpoints.
-  Updated-Date: '2026_10_16'
+  Summary: This rule detects DNS queries for the domain "ads-impressions.com," which is associated with the AdFection malware. AdFection is linked to targeted advertising and spyware activities. The rule is intended to identify potential threats to web browsers, Android, and iOS on client endpoints by monitoring DNS lookups and triggering an alert when this specific domain is queried. The detection is based on the domain's reputation, which has been documented by security research.
+  Updated-Date: '2026_10_27'
 '2072467':
   Created-Date: '2026_10_16'
   Custom-Edited: false
@@ -554178,10 +554178,10 @@
   Created-Date: '2026_10_16'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: 8f1700bf4f49fd1b653f70d43f6dfcc5
+  Rule-Body-Hash: 6df942730e70c1418a816e13d36f8683
   Ruleset: ETOPEN
-  Summary: This rule detects DNS queries for domains related to "myweb3id.io," which are associated with the AdFection malware family. AdFection is known for exploiting targeted advertising technologies to distribute spyware. By monitoring DNS lookups for this specific domain, the rule helps identify potential attempts to access malicious resources linked to this spyware activity. The focus is on traffic from within a protected network environment (HOME_NET) to external resources.
-  Updated-Date: '2026_10_16'
+  Summary: This rule detects DNS queries for the domain ".myweb3id.io," which is associated with the AdFection malware family. AdFection is known for utilizing targeted ads as a delivery mechanism for spyware. This detection is relevant for web browsers, Android, and iOS devices, indicating a potential threat to client endpoints. The rule highlights a specific pattern where the domain appears in DNS lookups, aiding in identifying communication attempts with malicious infrastructure.
+  Updated-Date: '2026_10_27'
 '2072489':
   Created-Date: '2026_10_16'
   Custom-Edited: false
@@ -554338,10 +554338,10 @@
   Created-Date: '2026_10_20'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: d20a5af9bae56cb1bf4fc2111ca9a670
+  Rule-Body-Hash: 8604c43938c60db3c8ccd25b637fe85f
   Ruleset: ETOPEN
-  Summary: This rule detects network traffic where the Server Name Indication (SNI) field in a TLS handshake contains the domain "treboarkez.lol". This domain is associated with exploit kits, which are software frameworks used to exploit vulnerabilities in web browsers or browser plugins to execute malicious code. The rule is designed to identify potential drive-by compromise attempts, where a victim unknowingly downloads and executes malware by visiting a compromised website. This activity is part of initial access tactics commonly used by attackers.
-  Updated-Date: '2026_10_20'
+  Summary: This rule detects potential malicious activity by identifying TLS traffic containing the Server Name Indication (SNI) field with the domain "treboarkez.lol." This domain is associated with exploit kit activities that could lead to various forms of compromise, such as the distribution of malware or ransomware. The detection specifically targets outbound connections from internal networks to external networks that utilize this domain, indicating a possible exploit or drive-by compromise attempt originating from websites that have been compromised to serve such attack kits.
+  Updated-Date: '2026_10_27'
 '2072509':
   Created-Date: '2026_10_20'
   Custom-Edited: false
@@ -554538,10 +554538,10 @@
   Created-Date: '2026_10_22'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: 67c0c1878487da4a809628a93049c084
+  Rule-Body-Hash: 5f8a75e979937bb02ddafe31f4feecd7
   Ruleset: ETOPEN
-  Summary: This rule detects communication attempts with a command-and-control domain associated with the TryNodeRAT malware using the Server Name Indication (SNI) field in TLS traffic. It specifically identifies connections to domains ending in ".storagebase.workers.dev," indicating potential malicious activity involving TryNodeRAT, a remote access tool (RAT) that can be used by attackers to gain unauthorized control over affected client endpoints, including a range of Windows operating systems.
-  Updated-Date: '2026_10_22'
+  Summary: This rule detects traffic associated with the TryNodeRAT malware, specifically identifying communication to a command and control server. It examines TLS traffic originating from a protected internal network and destined for external networks, focusing on the Server Name Indication (SNI) field. The rule triggers when the SNI field ends with ".storagebase.workers.dev", indicating potential malicious intent. TryNodeRAT is a Remote Access Trojan (RAT) that can give attackers unauthorized control over an infected system.
+  Updated-Date: '2026_10_27'
 '2072534':
   Created-Date: '2026_10_22'
   Custom-Edited: false
@@ -554642,10 +554642,10 @@
   Created-Date: '2026_10_23'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: d6044ac833a01969b84c771006005ca0
+  Rule-Body-Hash: 8a5fa1131d8886f0f1d9be74724e3744
   Ruleset: ETOPEN
-  Summary: This rule detects DNS queries related to the command and control (C2) domain of the NetSupport RAT, specifically targeting the domain "sendcarierpacket.com". NetSupport RAT is a remote access tool that can be used maliciously to control infected systems. This rule is focused on identifying potential communications from client endpoints to this domain, which may indicate the presence of NetSupport RAT activity on a network.
-  Updated-Date: '2026_10_23'
+  Summary: This rule detects DNS queries for the domain ".sendcarierpacket.com," which is associated with command and control (C2) communication for the NetSupport RAT (Remote Access Trojan). NetSupport RAT is a malicious software tool that allows attackers to remotely control a compromised system. This detection is relevant for systems running Windows operating systems, including various versions from Windows XP through Windows 10 and Windows Server editions. The rule is designed to identify attempts to contact this specific domain, indicating potential remote access tool activity.
+  Updated-Date: '2026_10_27'
 '2072547':
   Created-Date: '2026_10_23'
   Custom-Edited: false
@@ -554746,26 +554746,26 @@
   Created-Date: '2026_10_23'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: 39fc729793e6d516eb61ec2bfbb3eb65
+  Rule-Body-Hash: c46dda3b49e8a88f5d2ce9e7326f4bca
   Ruleset: ETOPEN
-  Summary: 'This rule detects an attempted command injection targeting D-Link devices through the DHMAPI''s SetTimeSettings functionality, specifically exploiting the NTPServer parameter. The attack involves sending a POST request to a specific URI, "/DHMAPI/", with an HTTP header containing "api-action: SetTimeSettings". The request body is inspected for potentially malicious sequences indicative of command injection, such as the inclusion of semicolons or other special characters. This vulnerability is identified as CVE-2026-93958, and the rule aims to identify exploit attempts against networking equipment to prevent unauthorized administrative actions.'
-  Updated-Date: '2026_10_23'
+  Summary: 'This rule detects an attempt to exploit a command injection vulnerability in the D-Link DHMAPI during the execution of a SetTimeSettings action, specifically targeting the NTPServer parameter. The rule analyzes HTTP POST requests directed to the path "/DHMAPI/" with a header indicating the "api-action: SetTimeSettings". It further inspects the request body for signs of injection using special characters like semicolons, graves, pipes, or dollar signs. This activity relates to CVE-2026-93958, impacting D-Link networking equipment, and is identified as an attempt to gain unauthorized administrative access.'
+  Updated-Date: '2026_10_27'
 '2072560':
   Created-Date: '2026_10_23'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: 6e258466c7af639b24d22af324d551ad
+  Rule-Body-Hash: 0de6ed28018ad8e862c00d81ffd05374
   Ruleset: ETOPEN
-  Summary: This rule detects a DNS query for the domain "transunionbiba.lat", which is associated with command-and-control (C2) activities related to the NetSupport RAT malware. NetSupport RAT is a remote access trojan that provides an attacker with control over infected systems, typically affecting Windows operating systems. Detection of this domain in DNS traffic suggests potential communication with NetSupport RAT's infrastructure, indicative of malware presence on a client endpoint.
-  Updated-Date: '2026_10_23'
+  Summary: This rule detects a Domain Name System (DNS) lookup for the domain "transunionbiba.lat," which is associated with the command and control (C2) server of the NetSupport RAT (Remote Access Trojan). NetSupport RAT is a type of malware that allows an attacker to gain unauthorized access and control over a victim's machine, often used for malicious activities such as data theft or surveillance. The rule targets DNS queries originating from a protected network, aiming to identify potential communications with this specific malware infrastructure.
+  Updated-Date: '2026_10_27'
 '2072561':
   Created-Date: '2026_10_23'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: 789e0d3e3ac4ad1c85bb0a7f1fd91483
+  Rule-Body-Hash: f733a3ba9ba8f5f74000f22de2650857
   Ruleset: ETOPEN
-  Summary: This rule detects communication with a command-and-control server associated with the NetSupport RAT malware by identifying traffic where the TLS Server Name Indication (SNI) matches the domain "transunionbiba.lat". NetSupport RAT is a remote access trojan used by attackers to remotely control compromised systems, and this detection focuses on identifying clients within a monitored network attempting to reach the malicious domain over an established connection.
-  Updated-Date: '2026_10_23'
+  Summary: This rule detects connections involving the NetSupport RAT, a remote access trojan, by identifying command and control (C2) communications to a specific domain, "transunionbiba.lat," in the Server Name Indication (SNI) field of TLS traffic. It targets Windows systems across various versions and is triggered when an outbound connection is established from the internal network to an external network.
+  Updated-Date: '2026_10_27'
 '2072562':
   Created-Date: '2026_10_26'
   Custom-Edited: false
@@ -554818,18 +554818,82 @@
   Created-Date: '2026_10_26'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: 7282760c23bd5880d147c7ca13d371fc
+  Rule-Body-Hash: bc645993ca3c730f6e0036650a1e8462
   Ruleset: ETOPEN
-  Summary: This rule detects DNS queries that seek to resolve the domain "xie.rpreh.com," which is associated with the Coruna exploit kit. The Coruna exploit kit is known for being a powerful tool used to compromise iOS devices through drive-by attacks, which are a form of initial access tactic where simply visiting a malicious or compromised website can result in exploitation. The detection targets client endpoints and is designed to alert on potentially critical threats to protect systems from this exploit technique.
-  Updated-Date: '2026_10_26'
+  Summary: This rule detects DNS queries related to the Coruna exploit kit by identifying lookups for the domain "xie.rpreh.com". The Coruna exploit kit is a malicious toolkit designed to exploit vulnerabilities on targeted systems, typically aiming to deliver malware to unsuspecting users. This detection focuses on the specific domain associated with the Coruna campaign, highlighting its potential use for drive-by compromise, an initial access technique where users are unknowingly redirected to exploit-laden sites. The rule serves to alert network administrators to potential threats from this malicious domain activity.
+  Updated-Date: '2026_10_27'
 '2072569':
   Created-Date: '2026_10_26'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: 36ffca4584656beb6673895a1b2e12f7
+  Rule-Body-Hash: a6217eb85c86685618a6324d5b55ebc3
   Ruleset: ETOPEN
-  Summary: This rule detects traffic attempting to access a domain associated with the Coruna Exploit Kit using the Server Name Indication (SNI) field in a TLS handshake. Specifically, it looks for the domain "xie.rpreh.com" within the TLS SNI, indicating a potential drive-by compromise attack. The detection pertains to traffic from local networks to external networks, focusing on exploit kit activity related to initial access tactics.
-  Updated-Date: '2026_10_26'
+  Summary: This rule detects an attempt to connect to a domain associated with the Coruna Exploit Kit within the Server Name Indication (SNI) field of a TLS handshake. The specific domain identified is "xie.rpreh.com." The Coruna Exploit Kit is a sophisticated tool used to exploit vulnerabilities on targeted client endpoints, facilitating initial access through drive-by compromise tactics. This activity poses a critical security threat and involves compromised websites being leveraged in the attack process.
+  Updated-Date: '2026_10_27'
+'2072570':
+  Created-Date: '2026_10_27'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: 9565f8fb874b121e1e61a4235b346edb
+  Ruleset: ETOPEN
+  Summary: This rule detects DNS queries to the domain "makketakecoincidejs.shop," which is associated with the Win32/Lumma Stealer malware. Lumma Stealer is known for stealing sensitive information from infected systems. The rule identifies command-and-control activities by monitoring DNS lookup requests for this specific domain name, indicating potential malicious communication related to data exfiltration or other unauthorized actions.
+  Updated-Date: '2026_10_27'
+'2072571':
+  Created-Date: '2026_10_27'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: f01a435903dbd85a886d9334a0d3eb02
+  Ruleset: ETOPEN
+  Summary: This rule detects communication to the domain "makketakecoincidejs.shop" in the TLS Server Name Indication (SNI) field, which is associated with the Lumma Stealer malware. Lumma Stealer is a type of malware used for stealing sensitive information from infected systems. The detection applies to traffic from an internal network destined for any external server, indicating a potential command and control activity related to this malware family.
+  Updated-Date: '2026_10_27'
+'2072572':
+  Created-Date: '2026_10_27'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: 8c828055268945c5ef1543a01e8789ab
+  Ruleset: ETOPEN
+  Summary: This rule detects an attempt to exploit a vulnerability in the Jenkins Groovy Plugin that allows for authenticated remote command execution, identified as CVE-2019-1003030. This attack targets web applications by sending a specific HTTP POST request containing the URI path associated with the Groovy script security sandbox in Jenkins and specific parameters indicating the script should run in a sandboxed environment. This action suggests an attempt to execute arbitrary commands on the server hosting the Jenkins application, representing a significant security risk.
+  Updated-Date: '2026_10_27'
+'2072573':
+  Created-Date: '2026_10_27'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: 3167de76483290d181575243cf8a0994
+  Ruleset: ETOPEN
+  Summary: This rule detects an attempted directory traversal attack on Oracle WebLogic Server, specifically targeting a vulnerability identified as CVE-2020-14750. The rule is triggered when an HTTP GET request to a server contains a suspicious URI path trying to access the "/console/" directory using encoded dot-slash patterns, potentially indicating an exploit attempt against the WebLogic console portal. This type of attack can be used to facilitate unauthorized access, possibly leading to further exploitation such as ransomware deployment.
+  Updated-Date: '2026_10_27'
+'2072574':
+  Created-Date: '2026_10_27'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: f2c2844d4926c024d4159cf23fee1b6f
+  Ruleset: ETOPEN
+  Summary: This rule detects DNS queries for the domain "firebase.emeraldpineventuresllc.com," which is associated with the TA569 malware campaign known as Gholoader. Gholoader is a Trojan that facilitates Command and Control (C&C) communication, often used in malicious activities like exploiting vulnerabilities or distributing other malware. The presence of this domain in DNS lookups indicates potential Trojan activity linked to the SocGholish malware family, suggesting that a client's endpoint may be compromised through exploitation kits or other tactics used by this threat actor. This signaling implies a high-confidence threat targeting web browsers.
+  Updated-Date: '2026_10_27'
+'2072575':
+  Created-Date: '2026_10_27'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: e4da73a6ecde11c69d6a93a4225ddc9a
+  Ruleset: ETOPEN
+  Summary: This rule detects communication between a potentially compromised client endpoint within the home network and an external network involving a specific Command and Control (CnC) domain associated with the Gholoader malware. The domain "firebase.emeraldpineventuresllc.com" is identified in the Server Name Indication (SNI) field during a TLS handshake, which helps attribute the activity to the SocGholish malware family. This detection is relevant for identifying traffic that indicates the presence of Trojan activity linked to this malware, which has associations with exploit kits and compromised websites.
+  Updated-Date: '2026_10_27'
+'2072576':
+  Created-Date: '2026_10_27'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: 460acbba1ec38aa335cdbed357c43bdf
+  Ruleset: ETOPEN
+  Summary: This rule detects a DNS query for a domain associated with TryNodeRAT command-and-control (CnC) infrastructure. Specifically, it looks for DNS lookups containing the domain ".ekkov.workers.dev". TryNodeRAT is a Remote Access Trojan (RAT) used by attackers to remotely control infected systems, and this rule helps identify potential communication attempts from an infected client to its CnC server.
+  Updated-Date: '2026_10_27'
+'2072577':
+  Created-Date: '2026_10_27'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: d4c8f641f5deeb5b0c9816d64e0aebba
+  Ruleset: ETOPEN
+  Summary: This rule detects communication with a known Command and Control (C2) domain associated with the TryNodeRAT malware in the Server Name Indication (SNI) field of TLS traffic. Specifically, it identifies connections using the SNI that ends with the domain ".ekkov.workers.dev". TryNodeRAT is a type of Remote Access Trojan (RAT) that can take control of an infected machine, allowing an attacker to remotely execute malicious activities. This detection targets TLS traffic from internal networks to external destinations and is applicable to various Windows operating systems, indicating that an internal client may be compromised and communicating with the malicious infrastructure.
+  Updated-Date: '2026_10_27'
 '2100110':
   Created-Date: '2024_08_07'
   Custom-Edited: false
