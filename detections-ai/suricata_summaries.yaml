@@ -554894,6 +554894,30 @@
   Ruleset: ETOPEN
   Summary: This rule detects communication with a known Command and Control (C2) domain associated with the TryNodeRAT malware in the Server Name Indication (SNI) field of TLS traffic. Specifically, it identifies connections using the SNI that ends with the domain ".ekkov.workers.dev". TryNodeRAT is a type of Remote Access Trojan (RAT) that can take control of an infected machine, allowing an attacker to remotely execute malicious activities. This detection targets TLS traffic from internal networks to external destinations and is applicable to various Windows operating systems, indicating that an internal client may be compromised and communicating with the malicious infrastructure.
   Updated-Date: '2026_10_27'
+'2072578':
+  Created-Date: '2026_10_28'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: e5d49ae2a869d37700dd4da1691f5d4e
+  Ruleset: ETOPEN
+  Summary: This rule detects a reflected cross-site scripting (XSS) attempt targeting the WordPress login interface, specifically involving the wp-login.php file. The attack aims to exploit a vulnerability associated with the WordPress REST API using JSONP (JavaScript Object Notation with Padding) to execute unauthorized scripts. Identified as CVE-2026-64638, this exploit involves crafting a POST request with specific patterns in the request body, such as a method override and an injection script. The rule identifies attempts to inject a malicious payload in the form of a JSONP callback that could trigger a JavaScript alert, potentially allowing an attacker to access sensitive information by piggybacking on the legitimate WordPress authentication process.
+  Updated-Date: '2026_10_28'
+'2072579':
+  Created-Date: '2026_10_28'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: 8bda4824afb0e87673e044efefe63862
+  Ruleset: ETOPEN
+  Summary: This rule detects an attempted cross-site scripting (XSS) attack targeting the Wordpress `wp-login.php` page specifically involving the Rest API with JSONP. It is designed to identify the presence of the CVE-2026-64638 vulnerability, which could allow attackers to execute arbitrary scripts within the context of another user's browser session. The rule triggers on HTTP POST requests to a specified REST route containing particular parameters such as `_method=GET`, `_jsonp=alert`, and `_envelope=1`, indicating a potential reflected XSS attempt aimed at exploiting Wordpress installations.
+  Updated-Date: '2026_10_28'
+'2072580':
+  Created-Date: '2026_10_28'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: 2eacf6b7e7d1704c1e6b1ff951917abf
+  Ruleset: ETOPEN
+  Summary: This rule detects an attempted cross-site scripting (XSS) attack on Wordpress, specifically targeting the Wordpress REST API at the `wp-login.php` endpoint using JSONP. The malicious request uses a POST method to attempt a reflected XSS attack by crafting a payload with the `_jsonp` and `_method` parameters set to trigger an alert. This vulnerability is tracked as CVE-2026-64638, and exploiting it could allow an attacker to execute arbitrary JavaScript in the context of the targeted application, leading to unauthorized actions or data access.
+  Updated-Date: '2026_10_28'
 '2100110':
   Created-Date: '2024_08_07'
   Custom-Edited: false
