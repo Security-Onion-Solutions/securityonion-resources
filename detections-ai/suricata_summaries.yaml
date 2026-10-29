@@ -554330,10 +554330,10 @@
   Created-Date: '2026_10_20'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: 2bf0967c011690d8391c7adc41cd666a
+  Rule-Body-Hash: 1baca8e31adb629cb01e01209f1ceed7
   Ruleset: ETOPEN
-  Summary: This rule detects a DNS query that involves the domain "treboarkez.lol," which is associated with exploit kits. Exploit kits are malicious tools used to exploit vulnerabilities on a victim's machine, often facilitating malware delivery or unauthorized access. The presence of this domain in DNS lookups can indicate an attempt by a client endpoint to reach a compromised website, potentially leading to a drive-by compromise and subsequent security risks. This detection is important for identifying initial access tactics involving malicious domain interactions.
-  Updated-Date: '2026_10_20'
+  Summary: This rule detects DNS queries for the domain "treboarkez.lol," which is associated with an exploit kit referred to as "ClickFix." Exploit kits are tools often used by attackers to deliver malware by taking advantage of vulnerabilities in web browsers. This specific domain may be tied to activities related to ransomware threats, as suggested by references to research on such threats. The rule is relevant for monitoring potential attempts to compromise client endpoints through web traffic, signifying a threat to initial access tactics in cyber attacks.
+  Updated-Date: '2026_10_29'
 '2072508':
   Created-Date: '2026_10_20'
   Custom-Edited: false
@@ -554802,10 +554802,10 @@
   Created-Date: '2026_10_26'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: 5f5ae4dce05bd96a4c9baa3c4784b234
+  Rule-Body-Hash: c316a2e71ba8471f8e8d49f20dbdef60
   Ruleset: ETOPEN
-  Summary: This rule detects malicious activity involving the LiteLLM malware, specifically targeting its data exfiltration behavior. The rule triggers on HTTP requests using the POST method to the domain "www.litellm.dev" with the URI "/healthcheck" and a specific user agent that indicates the presence of Internet Explorer 7 on Windows 10, working in compatibility mode. It looks for an HTTP header containing an "X-Token" with a fixed value, which suggests an attempt to exfiltrate data from an infected system. This activity is associated with a credential-stealing attack, leveraging the compromised malware LiteLLM, which is known for exfiltrating sensitive information from client endpoints on various operating systems such as Windows, Mac, and Linux.
-  Updated-Date: '2026_10_26'
+  Summary: This rule detects malicious exfiltration activity associated with the malware LiteLLM, where a POST request is sent to the domain "www.litellm.dev." The rule monitors traffic that fits a specific pattern involving a "POST" method and checks for a specific user-agent string imitating Internet Explorer on various Windows operating systems. It identifies traffic directed to the URI "/healthcheck" and looks for a unique "X-Token" header, signaling potential unauthorized data transfer. This rule is relevant for identifying credential theft activities aiming to collect data from client endpoints across multiple operating systems, aligned with known tactics and techniques for data exfiltration by the LiteLLM malware family.
+  Updated-Date: '2026_10_29'
 '2072567':
   Created-Date: '2026_10_26'
   Custom-Edited: false
@@ -554890,10 +554890,10 @@
   Created-Date: '2026_10_27'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: d4c8f641f5deeb5b0c9816d64e0aebba
+  Rule-Body-Hash: a0cdf1642282f616daaf09a0a463606f
   Ruleset: ETOPEN
-  Summary: This rule detects communication with a known Command and Control (C2) domain associated with the TryNodeRAT malware in the Server Name Indication (SNI) field of TLS traffic. Specifically, it identifies connections using the SNI that ends with the domain ".ekkov.workers.dev". TryNodeRAT is a type of Remote Access Trojan (RAT) that can take control of an infected machine, allowing an attacker to remotely execute malicious activities. This detection targets TLS traffic from internal networks to external destinations and is applicable to various Windows operating systems, indicating that an internal client may be compromised and communicating with the malicious infrastructure.
-  Updated-Date: '2026_10_27'
+  Summary: This rule detects communication attempts from a compromised host within the internal network to a TryNodeRAT command and control (C2) domain using Transport Layer Security (TLS) Server Name Indication (SNI). The rule specifically flags connections to domains ending with ".ekkov.workers.dev," which is associated with TryNodeRAT malware. TryNodeRAT is a type of Remote Access Trojan (RAT) that allows attackers to remotely control and execute commands on infected systems. The detection aims to identify and prevent unauthorized data exfiltration and command execution stemming from RAT infections.
+  Updated-Date: '2026_10_29'
 '2072578':
   Created-Date: '2026_10_28'
   Custom-Edited: false
@@ -554918,6 +554918,30 @@
   Ruleset: ETOPEN
   Summary: This rule detects an attempted cross-site scripting (XSS) attack on Wordpress, specifically targeting the Wordpress REST API at the `wp-login.php` endpoint using JSONP. The malicious request uses a POST method to attempt a reflected XSS attack by crafting a payload with the `_jsonp` and `_method` parameters set to trigger an alert. This vulnerability is tracked as CVE-2026-64638, and exploiting it could allow an attacker to execute arbitrary JavaScript in the context of the targeted application, leading to unauthorized actions or data access.
   Updated-Date: '2026_10_28'
+'2072581':
+  Created-Date: '2026_10_29'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: 8d81bd6354d9359ed8598a23c20e9a0f
+  Ruleset: ETOPEN
+  Summary: This rule detects an HTTP request associated with the PolinRider Loader, a malware that communicates with a command-and-control (CnC) server. The request is initiated from a client within the home network to an external server and uses an established flow to the server. The detection focuses on an HTTP GET request to a specific URI path "/boot" and looks for a particular header that includes a distinctive marker. PolinRider Loader is known for its involvement in CnC activities, which are part of command-and-control strategies leveraging application layer protocols, posing a threat to Windows client endpoints.
+  Updated-Date: '2026_10_29'
+'2072582':
+  Created-Date: '2026_10_29'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: fa83c25c57a258c8c5cc59b93ca3ad4f
+  Ruleset: ETOPEN
+  Summary: This rule detects command and control (CnC) activity associated with the PolinRider Loader, a malware tool that communicates with external servers. It looks for HTTP GET requests from an internal network to an external network with specific characteristics. These requests must contain a short URI starting with "/0x/" and match the specified regular expression pattern in the HTTP method. The detection further focuses on HTTP headers that include a particular lowercase string, indicating potential TLS-decrypted communication that fits known patterns of PolinRider's CnC infrastructure activity. The rule aims to identify such traffic as a critical security concern due to its association with malware targeting Windows client endpoints.
+  Updated-Date: '2026_10_29'
+'2072583':
+  Created-Date: '2026_10_29'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: eb2c6c4546ad0e936dbdfd8a0c59acc6
+  Ruleset: ETOPEN
+  Summary: This rule detects a suspicious DNS query indicative of PolinRider Loader malware activity. The query specifically targets a domain with a typographical error, "ethereum-rpc.publicnode.com1," which is associated with malicious communication. This behavior is linked to the PolinRider malware, which utilizes DNS lookups as part of its command and control infrastructure, potentially leveraging compromised or fraudulent nodes related to Ethereum networks.
+  Updated-Date: '2026_10_29'
 '2100110':
   Created-Date: '2024_08_07'
   Custom-Edited: false
