@@ -553722,10 +553722,10 @@
   Created-Date: '2026_10_14'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: 5885b2a5f6e8266fff32e1c97cb3b0e3
+  Rule-Body-Hash: 7aa3406f332850cf323e878b98eed915
   Ruleset: ETOPEN
-  Summary: This rule detects an attempted remote code execution vulnerability specific to CraftCMS, identified by CVE-2026-44011. The rule triggers on HTTP POST requests directed to the CraftCMS endpoint "/admin/actions/element-search/search" when specific conditions are met, including the use of JSON content type and the presence of session-related cookies like "CraftSessionId" and "_identity". The request body must contain particular patterns, such as commands related to CraftCMS elements and their typecasting behaviors, which potentially exploit the application's functionality linked to the "typecastBeforeSave" method. This activity is flagged as an exploit attempt targeting web servers running CraftCMS, with high confidence in its severity.
-  Updated-Date: '2026_10_14'
+  Summary: This rule detects an attempted remote code execution vulnerability in CraftCMS, specifically targeting the element-search typecastBeforeSave functionality as identified in CVE-2026-44011. The detection focuses on HTTP POST requests directed to "/admin/actions/element-search/search" within a web application, utilizing JSON content. It looks for specific session cookies such as "CraftSessionId", "_identity", and "CRAFT_CSRF_TOKEN", indicating that the requests originate from an active session. The rule further scans for obfuscated payloads in the request body that include serialized PHP object elements like "ElementCondition" and "AttributeTypecastBehavior". It contains markers like "Psy\Readline\Hoa\ConsoleProcessus" and function calls such as "execute" and "typecastBeforeSave", which are patterns indicating an exploit attempt intended to execute arbitrary code on the server by leveraging improperly handled typecasting behaviors.
+  Updated-Date: '2026_10_30'
 '2072432':
   Created-Date: '2026_10_14'
   Custom-Edited: false
@@ -553770,10 +553770,10 @@
   Created-Date: '2026_10_14'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: af55c3141a23eefc53af4f0f989c4668
+  Rule-Body-Hash: b2d0ec16deed0c05e62b8acc7e67b6e6
   Ruleset: ETOPEN
-  Summary: This rule detects DNS lookups for the domain ".ncsgo.workers.dev", which is associated with TryNodeRAT command and control (C2) communications. TryNodeRAT is a remote access trojan (RAT) that can control infected computers by communicating with a C2 server. The detection focuses on identifying attempts to communicate with this specific malicious domain, indicating potential compromise by TryNodeRAT malware.
-  Updated-Date: '2026_10_14'
+  Summary: This rule detects a DNS query for a command-and-control domain associated with the TryNodeRAT malware. TryNodeRAT is a type of Remote Access Trojan (RAT) that allows attackers to remotely control infected systems. The rule identifies DNS lookups for the specific domain ".ncsgo.workers.dev", which is used by the malware for communication purposes. This activity is indicative of a compromised system attempting to connect to a malicious server.
+  Updated-Date: '2026_10_30'
 '2072438':
   Created-Date: '2026_10_14'
   Custom-Edited: false
@@ -554938,10 +554938,202 @@
   Created-Date: '2026_10_29'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: eb2c6c4546ad0e936dbdfd8a0c59acc6
+  Rule-Body-Hash: 01cf84adabf04c782ea342dcfd845a47
   Ruleset: ETOPEN
-  Summary: This rule detects a suspicious DNS query indicative of PolinRider Loader malware activity. The query specifically targets a domain with a typographical error, "ethereum-rpc.publicnode.com1," which is associated with malicious communication. This behavior is linked to the PolinRider malware, which utilizes DNS lookups as part of its command and control infrastructure, potentially leveraging compromised or fraudulent nodes related to Ethereum networks.
-  Updated-Date: '2026_10_29'
+  Summary: This rule detects a DNS query that includes a typo in the lookup for "ethereum-rpc.publicnode.com1," which is associated with the PolinRider Loader malware. This malware is known to use Ethereum-related infrastructure for command and control (C2) communications, indicating potential malicious activity involving cryptocurrency nodes.
+  Updated-Date: '2026_10_30'
+'2072584':
+  Created-Date: '2026_10_30'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: c7f0963dfee9ebb82ab63018f652354f
+  Ruleset: ETOPEN
+  Summary: This rule detects a DNS query to the phishing domain "rsvpconnect-events.com". This domain has been identified as being used in social engineering attacks, possibly involving a fake promotional event. The detection aims to prevent users from being duped into scams, potentially involving false AI previews or other deceptive tactics, as outlined in the provided reference link.
+  Updated-Date: '2026_10_30'
+'2072585':
+  Created-Date: '2026_10_30'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: 08538886c47495c30dbf8ea40f88223c
+  Ruleset: ETOPEN
+  Summary: This rule detects a potential phishing attempt involving a suspicious domain observed in TLS Server Name Indication (SNI) headers. Specifically, it monitors for connections from internal to external networks where the SNI contains the domain suffix ".rsvpconnect-events.com". This domain is identified as being used for phishing activities, and the alert is triggered when a connection matching this pattern is established, indicating possible social engineering aimed at users or systems within the network.
+  Updated-Date: '2026_10_30'
+'2072586':
+  Created-Date: '2026_10_30'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: 8226d939f70059529f3b4659a78169be
+  Ruleset: ETOPEN
+  Summary: This rule detects network traffic indicative of a heartbeat communication from a victim machine that is using a Generic Rust Loader, potentially malicious software developed with the Rust programming language. The detection targets HTTP GET requests sent from an internal network to an external destination, characterized by specific patterns within the URI and headers. The request is expected to start with a known pattern and contain parameters that match predetermined numerical conditions. Additionally, the HTTP headers are checked for a particular sequence and a "Keep-Alive" connection directive, suggesting a possible Command and Control (C2) activity, which is commonly used by malware to maintain communication with its operator.
+  Updated-Date: '2026_10_30'
+'2072587':
+  Created-Date: '2026_10_30'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: 5b4b8dfe95d4d2d5f678d62422e41fc5
+  Ruleset: ETOPEN
+  Summary: This rule detects DNS queries from a home network to the malicious domain "krionificatronikal.com", indicating potential trojan activity. The detection targets client endpoints and is designed for perimeter deployment, with a high-confidence level and major severity to alert on possible malware threats.
+  Updated-Date: '2026_10_30'
+'2072588':
+  Created-Date: '2026_10_30'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: 3f6a313f1b46f2edc70f05b5661efedd
+  Ruleset: ETOPEN
+  Summary: "This rule detects a DNS query for the domain \"hollconsole.pw,\" which is associated with the Win32/Lumma Stealer malware\u2019s command and control (C2) communications. The Lumma Stealer is a type of malicious software designed to exfiltrate sensitive information from infected systems. It tracks whether this specific domain is part of the DNS lookup to identify potential C2 activity originating from a client endpoint within a monitored network. The purpose is to help identify and mitigate threats related to unauthorized data exfiltration orchestrated by this malware."
+  Updated-Date: '2026_10_30'
+'2072589':
+  Created-Date: '2026_10_30'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: fc87f98cabc1bd2a7b0dca07e85569c0
+  Ruleset: ETOPEN
+  Summary: This rule detects the use of a known malicious domain, "krionificatronikal.com," during an encrypted TLS session. It triggers when the Server Name Indication (SNI) field in the TLS handshake matches this domain, indicating potential trojan activity as the traffic is directed to a risky external network.
+  Updated-Date: '2026_10_30'
+'2072590':
+  Created-Date: '2026_10_30'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: b1117c1826b8fd9680f272faf32cc3f4
+  Ruleset: ETOPEN
+  Summary: This rule detects the use of a domain associated with the Win32/Lumma Stealer malware in a TLS Server Name Indication (SNI) field. Specifically, it identifies traffic going to the domain "hollconsole.pw" within encrypted sessions. The Lumma Stealer is known for facilitating unauthorized access and data theft by leveraging command and control (C2) communication through applications using the Application Layer Protocol. The detection of this domain indicates possible malware activity linked to this family, highlighting a critical security risk.
+  Updated-Date: '2026_10_30'
+'2072591':
+  Created-Date: '2026_10_30'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: 0b9d086874f63580cd006bd4a9e2689b
+  Ruleset: ETOPEN
+  Summary: This rule detects DNS queries for the malicious domain "universal-api.algarveexportltd.com," which is associated with TA569's Gholoader command and control activity. Gholoader is a type of malware used to deliver payloads and conduct malicious operations on compromised systems. This detection focuses on identifying potential communication with the malware infrastructure, specifically targeting potential threats to client endpoints through web browsers.
+  Updated-Date: '2026_10_30'
+'2072592':
+  Created-Date: '2026_10_30'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: 6f7f716a785229ff97235706f8039759
+  Ruleset: ETOPEN
+  Summary: This rule detects network traffic associated with the TA569 malware campaign, specifically targeting communication involving the Gholoader malware. It identifies attempts to connect to a command-and-control (CnC) server by inspecting the Server Name Indication (SNI) field in TLS traffic. The rule matches on traffic where the SNI field contains the domain "universal-api.algarveexportltd.com," which is associated with malicious activities. This detection is crucial for identifying and blocking connections to potentially compromised websites involved in the distribution of SocGholish malware.
+  Updated-Date: '2026_10_30'
+'2072593':
+  Created-Date: '2026_10_30'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: c56221545fabb14072917962fe98a57f
+  Ruleset: ETOPEN
+  Summary: This rule detects HTTP requests where the "X-Forwarded-For" header is set to indicate a localhost IP address. The intent behind such a modification could be to exploit potential vulnerabilities related to server-side request forgery (SSRF) by misleading the server into treating external requests as if they originated from the local host. This activity is often associated with attempts to bypass security controls and access internal resources or data. The detection relies on identifying specific patterns in the request headers that represent IP addresses for localhost, such as 127.0.0.1 or other equivalent formats.
+  Updated-Date: '2026_10_30'
+'2072594':
+  Created-Date: '2026_10_30'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: 2c167b316e01c00390cf0ed608db501d
+  Ruleset: ETOPEN
+  Summary: This rule detects HTTP traffic where the X-Custom-IP-Authorization header is set to localhost or similar values, such as 127.0.0.1, ::1, or other equivalent representations. This pattern might be indicative of attempts to exploit vulnerabilities like Server-Side Request Forgery (SSRF), where an attacker accesses internal server functionality by manipulating IP address headers. The detection is aimed at identifying potentially unauthorized access or manipulation targeting web servers.
+  Updated-Date: '2026_10_30'
+'2072595':
+  Created-Date: '2026_10_30'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: 41d81e8a407d58ed67613997e28372c2
+  Ruleset: ETOPEN
+  Summary: This rule detects HTTP traffic where the "X-Forwarded-Host" header is set to "localhost." The presence of this condition may indicate an attempt at server-side request forgery (SSRF), where an attacker manipulates HTTP headers to make a targeted web application initiate a request to a local or internal resource believed to be on the external network. The rule looks for multiple patterns corresponding to the localhost or its numerical representations, such as "127.0.0.1" and others, to identify potential misuse that could facilitate unauthorized internal access or information disclosure.
+  Updated-Date: '2026_10_30'
+'2072596':
+  Created-Date: '2026_10_30'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: 032b820352185c7dc1b7d81ab7bccc31
+  Ruleset: ETOPEN
+  Summary: This rule detects HTTP traffic where the X-Remote-IP header is set to the localhost address. This behavior can indicate attempts to perform server-side request forgery (SSRF) attacks, potentially allowing attackers to manipulate the server into making unauthorized requests from localhost, which could lead to exploitation of trust relationships or access to internal services not intended for external exposure.
+  Updated-Date: '2026_10_30'
+'2072597':
+  Created-Date: '2026_10_30'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: 656e7c43e1b2fb39b2ce97c3b96136f9
+  Ruleset: ETOPEN
+  Summary: This rule detects HTTP requests in which the `X-Client-IP` header is set to a value that resolves to "localhost," indicating an attempt at Server-Side Request Forgery (SSRF). The header value can appear in various formats representing the localhost IP, such as "127.0.0.1," "::1," or other numerical or encoded representations like "2130706433." This behavior may be indicative of an attacker attempting to manipulate server-side behavior by presenting misleading IP address information within the HTTP header, potentially bypassing certain access controls or filters.
+  Updated-Date: '2026_10_30'
+'2072598':
+  Created-Date: '2026_10_30'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: db6ea9d7b82ff2fb97f6c7c84618217e
+  Ruleset: ETOPEN
+  Summary: This rule detects HTTP traffic in which the "X-Real-IP" header is set to localhost. It targets scenarios where a client sends an HTTP request to a server, and the header value is manipulated to indicate an internal IP address such as "127.0.0.1" or the equivalent in different formats, which could signify malicious intentions like Server-Side Request Forgery (SSRF), where an attacker attempts to make the server connect to itself or another internal service. This action may be part of techniques for defense evasion or network boundary bridging, where attackers try to exploit the internal network by circumventing expected network boundaries using deceptive IP headers.
+  Updated-Date: '2026_10_30'
+'2072599':
+  Created-Date: '2026_10_30'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: 454a525f683914f18becb6e50938bad4
+  Ruleset: ETOPEN
+  Summary: This rule detects DNS queries for domains associated with the RedHive malware, specifically targeting domains ending with ".gitrm.cfd". RedHive is known for its capabilities in establishing command and control (C2) communications, which are common techniques used by attackers to interact with compromised systems. The rule is applicable to various Windows operating systems and focuses on protecting client endpoints from C2 activities linked to RedHive malware.
+  Updated-Date: '2026_10_30'
+'2072600':
+  Created-Date: '2026_10_30'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: d0b10b98767284d70b93133553e143a6
+  Ruleset: ETOPEN
+  Summary: This rule detects DNS lookup requests for a domain related to the RedHive malware family, specifically the domain ".gitrm.sbs". The presence of this domain in DNS queries may indicate command and control activity associated with RedHive, which is known for targeting Windows operating systems, including both client and server endpoints.
+  Updated-Date: '2026_10_30'
+'2072601':
+  Created-Date: '2026_10_30'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: c07f19b43e2577a3199b301636056033
+  Ruleset: ETOPEN
+  Summary: This rule detects DNS queries to the domain "gitsl.xyz", which is associated with the RedHive malware. RedHive is known for its command and control (C2) activities, typically allowing attackers to manage compromised systems. The rule identifies the use of this domain in DNS lookups, which suggests potential communication with a control server, thus indicating malicious activity targeting client endpoints.
+  Updated-Date: '2026_10_30'
+'2072602':
+  Created-Date: '2026_10_30'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: c736bbcc19188caff4a47c78efdba0c8
+  Ruleset: ETOPEN
+  Summary: This rule detects DNS queries for the domain ".gitview.sbs", which is associated with the RedHive malware family. RedHive is known for using command-and-control (C2) communications to control infected endpoints. The rule is configured to identify such malicious DNS lookups as part of mitigating threats targeting client endpoints on various Windows operating systems.
+  Updated-Date: '2026_10_30'
+'2072603':
+  Created-Date: '2026_10_30'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: 7e8983bd77f141898156c9a90d05c8ec
+  Ruleset: ETOPEN
+  Summary: This rule detects DNS queries for domains associated with the RedHive malware, specifically targeting the domain "viewgit.sbs". RedHive is a malware family, and the activity it conducts falls under the command and control tactic, utilizing application layer protocols for communication. This rule is designed to monitor for indicators of compromise related to RedHive's network activity, focusing on client endpoints running various versions of Windows operating systems.
+  Updated-Date: '2026_10_30'
+'2072604':
+  Created-Date: '2026_10_30'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: 0e3e23b68ba6ed867db11d4e23d12cd3
+  Ruleset: ETOPEN
+  Summary: This rule detects DNS lookup requests for a domain associated with the RedHive malware, specifically targeting queries involving the ".mops.to" domain. RedHive is a malware family involved in command and control activities, and this detection aims to identify infected clients attempting to communicate with potentially malicious servers. The rule is intended to trigger an alert when such suspicious domain requests are observed, indicating possible compromise of the client's endpoint.
+  Updated-Date: '2026_10_30'
+'2072605':
+  Created-Date: '2026_10_30'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: a127b2461cfa18d1b868c5f2d3ca219d
+  Ruleset: ETOPEN
+  Summary: This rule detects a potential command and control communication attempt by flagging any Transport Layer Security (TLS) session where the Server Name Indication (SNI) field includes the domain ".mops.to." This activity is associated with the RedHive malware family, which is known to use such domains for its operations, possibly indicating an attempt at establishing a malicious communication channel. This detection is particularly relevant for systems running Windows operating systems, as it targets client endpoints and aligns with tactics and techniques related to command and control strategies using application layer protocols.
+  Updated-Date: '2026_10_30'
+'2072606':
+  Created-Date: '2026_10_30'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: f2cbcf63957439dc8eaaae08a7e2c8c7
+  Ruleset: ETOPEN
+  Summary: This rule detects communication attempts to a staging domain associated with the RedHive malware family, specifically identifying the Server Name Indication (SNI) value "gitrm.cfd" within TLS traffic from an internal network to an external network.
+  Updated-Date: '2026_10_30'
+'2072607':
+  Created-Date: '2026_10_30'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: 936933eb808b8f2fa5c588badfaea4da
+  Ruleset: ETOPEN
+  Summary: This rule detects the use of a staging domain associated with the RedHive malware family in TLS Server Name Indication (SNI) traffic. It specifically looks for the domain "gitrm.sbs" within TLS encrypted communications that are directed from an internal client network towards an external network, indicating possible command-and-control activity. This detection is intended to identify and mitigate threats posed by RedHive, a type of malware that might use this domain for malicious purposes.
+  Updated-Date: '2026_10_30'
 '2100110':
   Created-Date: '2024_08_07'
   Custom-Edited: false
