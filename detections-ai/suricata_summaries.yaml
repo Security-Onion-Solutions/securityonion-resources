@@ -168210,10 +168210,10 @@
   Created-Date: '2024_08_07'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: 18a9b6f11955882b790ec514779bc82a
+  Rule-Body-Hash: a130be5fd7cb780efc42d7d752687319
   Ruleset: ETOPEN
-  Summary: "This rule detects an attempted exploitation of a stack overflow vulnerability in the Netgear WNR2000v5 router related to the CVE-2016-10174 issue. It identifies HTTP requests to the router\u2019s `/lang_check.html` page with specific parameters, including `timestamp=` and `&hidden_lang_avi=` within the request body. The rule checks if the data length is at least 36 bytes and also ensures that certain byte values are not present, preventing potential malicious activities that exploit this vulnerability."
-  Updated-Date: '2025_04_10'
+  Summary: This rule detects an attempted stack overflow exploit targeting the NETGEAR WNR2000v5 router by looking for a specific HTTP request pattern associated with the CVE-2016-10174 vulnerability. It identifies requests sent to the "/lang_check.html" URI within the router's interface that contain excessive data in the "hidden_lang_avi" parameter, which could be an indication of a buffer overflow attack aimed at gaining unauthorized administrative access to the router. This exploit attempts to leverage server-side vulnerabilities, posing a risk to client devices within the network.
+  Updated-Date: '2026_11_02'
 '2024122':
   Created-Date: '2024_08_06'
   Custom-Edited: false
@@ -361442,10 +361442,10 @@
   Created-Date: '2024_08_07'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: 763eb9d759cbda07b0b0bfedf8467fa7
+  Rule-Body-Hash: f5cac394c8a06178faf72cf5e3c1c6c7
   Ruleset: ETOPEN
-  Summary: 'This rule detects an attempted exploitation of a vulnerability in WS_FTP, specifically targeting a .NET deserialization issue identified by CVE-2023-40044. The rule triggers on an HTTP POST request directed to the endpoint "/AHT/AhtApiService.asmx/AuthUser" with a "multipart/form-data" content type. It looks for the presence of "Content-Disposition: form-data; name=" within the request body but ensures the absence of a "filename=" attribute within the first 400 bytes. This detection is aimed at identifying potential remote code execution attempts via improper data serialization, which could compromise FTP server security.'
-  Updated-Date: '2025_01_31'
+  Summary: This rule detects an attempt to exploit a vulnerability in WS_FTP (CVE-2023-40044) involving .NET deserialization. The attack is characterized by a POST request sent to a server, specifically targeting the URI path "/AHT/". The request uses a "multipart/form-data" content type and includes specific patterns in the request body related to form-data handling. Notably, it checks for the presence of certain serialized data indicators and the absence of a filename parameter within the first 400 bytes, aiming to identify potential unauthorized administrative actions against FTP servers running this software.
+  Updated-Date: '2026_11_02'
 '2048384':
   Created-Date: '2024_08_07'
   Custom-Edited: false
@@ -425218,10 +425218,10 @@
   Created-Date: '2024_10_01'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: bc96ca01c668d0352ce865df7700e849
+  Rule-Body-Hash: 7c88398edb0d38e4ccfc41b6937cfd5d
   Ruleset: ETOPEN
-  Summary: This rule detects an attempted remote code execution (RCE) exploit targeting Zimbra Collaboration software, specifically associated with the vulnerability CVE-2024-45519. The detection focuses on scanning inbound SMTP traffic to servers within a protected network for the presence of RCPT TO commands coupled with specific patterns in the email content, indicating a potential exploitation attempt. The aim is to identify malicious activities that could allow unauthorized access by exploiting public-facing applications.
-  Updated-Date: '2025_07_22'
+  Summary: This rule detects an attempt to exploit a remote code execution vulnerability, identified by CVE-2024-45519, in Zimbra through SMTP traffic. The attack targets SMTP servers by looking for specific patterns in the RCPT TO command that are indicative of an attempt to inject or manipulate data to execute unauthorized commands or access data. The vulnerability could potentially allow an attacker to gain initial access to the affected system by exploiting a public-facing application.
+  Updated-Date: '2026_11_02'
 '2056357':
   Created-Date: '2024_10_01'
   Custom-Edited: false
@@ -554866,10 +554866,10 @@
   Created-Date: '2026_10_27'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: f2c2844d4926c024d4159cf23fee1b6f
+  Rule-Body-Hash: 5e23e0d7657ce0e2e2f3d932adb156bb
   Ruleset: ETOPEN
-  Summary: This rule detects DNS queries for the domain "firebase.emeraldpineventuresllc.com," which is associated with the TA569 malware campaign known as Gholoader. Gholoader is a Trojan that facilitates Command and Control (C&C) communication, often used in malicious activities like exploiting vulnerabilities or distributing other malware. The presence of this domain in DNS lookups indicates potential Trojan activity linked to the SocGholish malware family, suggesting that a client's endpoint may be compromised through exploitation kits or other tactics used by this threat actor. This signaling implies a high-confidence threat targeting web browsers.
-  Updated-Date: '2026_10_27'
+  Summary: This rule detects DNS queries related to the TA569 Gholoader malware, specifically targeting a command-and-control (C2) domain "firebase.emeraldpineventuresllc.com". This lookup is suspicious as it is associated with the SocGholish malware family, indicating potential trojan activity and exploitation attempts from compromised websites. The rule suggests a high degree of confidence in identifying the C2 domain usage, which poses a significant threat to client endpoints when web browsers interact with these malicious sites.
+  Updated-Date: '2026_11_02'
 '2072575':
   Created-Date: '2026_10_27'
   Custom-Edited: false
@@ -554946,10 +554946,10 @@
   Created-Date: '2026_10_30'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: c7f0963dfee9ebb82ab63018f652354f
+  Rule-Body-Hash: 535c138fd377e2296953bfe626b3e02e
   Ruleset: ETOPEN
-  Summary: This rule detects a DNS query to the phishing domain "rsvpconnect-events.com". This domain has been identified as being used in social engineering attacks, possibly involving a fake promotional event. The detection aims to prevent users from being duped into scams, potentially involving false AI previews or other deceptive tactics, as outlined in the provided reference link.
-  Updated-Date: '2026_10_30'
+  Summary: This rule detects a DNS query directed towards the domain "rsvpconnect-events.com," which is associated with phishing activities. The alert triggers when a query ends with this domain name, disregarding case sensitivity. The rule highlights the potential use of this domain in social engineering attacks, such as those involving attempted manipulations via fake events or offers, referencing scenarios where employees might be lured into interacting with deceptive platforms.
+  Updated-Date: '2026_11_02'
 '2072585':
   Created-Date: '2026_10_30'
   Custom-Edited: false
@@ -555002,10 +555002,10 @@
   Created-Date: '2026_10_30'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: 0b9d086874f63580cd006bd4a9e2689b
+  Rule-Body-Hash: 4763eb13fe07dc420ec27ede91409b80
   Ruleset: ETOPEN
-  Summary: This rule detects DNS queries for the malicious domain "universal-api.algarveexportltd.com," which is associated with TA569's Gholoader command and control activity. Gholoader is a type of malware used to deliver payloads and conduct malicious operations on compromised systems. This detection focuses on identifying potential communication with the malware infrastructure, specifically targeting potential threats to client endpoints through web browsers.
-  Updated-Date: '2026_10_30'
+  Summary: This rule detects a Domain Name System (DNS) query for the command and control (C2) domain "universal-api.algarveexportltd.com," which is associated with the TA569 threat actor, known for using Gholoader malware. Gholoader is a trojan typically delivered via phishing or malicious websites and is used to load additional malicious payloads. The detection aims to identify potential compromised client endpoints making DNS lookups that signal the presence of SocGholish exploit kits or interactions with a known malicious infrastructure. The rule targets web browser traffic to ensure early detection and mitigation of this threat.
+  Updated-Date: '2026_11_02'
 '2072592':
   Created-Date: '2026_10_30'
   Custom-Edited: false
@@ -555090,18 +555090,18 @@
   Created-Date: '2026_10_30'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: c736bbcc19188caff4a47c78efdba0c8
+  Rule-Body-Hash: ae8e8db0c7da9701d0010ec0d5c4e1d1
   Ruleset: ETOPEN
-  Summary: This rule detects DNS queries for the domain ".gitview.sbs", which is associated with the RedHive malware family. RedHive is known for using command-and-control (C2) communications to control infected endpoints. The rule is configured to identify such malicious DNS lookups as part of mitigating threats targeting client endpoints on various Windows operating systems.
-  Updated-Date: '2026_10_30'
+  Summary: This rule detects DNS queries for the domain ".gitview.sbs," which is associated with the RedHive malware family. RedHive is known to utilize such domains for command and control (C2) communication, which is part of its mechanism for maintaining control over infected systems. This activity is indicative of potential RedHive-related threats, where the targeted environment may involve Windows operating systems and client endpoints used in diverse network scenarios.
+  Updated-Date: '2026_11_02'
 '2072603':
   Created-Date: '2026_10_30'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: 7e8983bd77f141898156c9a90d05c8ec
+  Rule-Body-Hash: 8e8e9623eec1affd6e92521dc09f8598
   Ruleset: ETOPEN
-  Summary: This rule detects DNS queries for domains associated with the RedHive malware, specifically targeting the domain "viewgit.sbs". RedHive is a malware family, and the activity it conducts falls under the command and control tactic, utilizing application layer protocols for communication. This rule is designed to monitor for indicators of compromise related to RedHive's network activity, focusing on client endpoints running various versions of Windows operating systems.
-  Updated-Date: '2026_10_30'
+  Summary: This rule detects DNS queries for domains associated with the RedHive malware, specifically targeting the domain ".viewgit.sbs". RedHive is a malware family that involves command and control (C2) activities, and this rule aims to identify attempts to contact these C2 domains. It is applicable to Windows operating systems, highlighting its relevance to client endpoints potentially compromised by this threat.
+  Updated-Date: '2026_11_02'
 '2072604':
   Created-Date: '2026_10_30'
   Custom-Edited: false
@@ -555134,6 +555134,38 @@
   Ruleset: ETOPEN
   Summary: This rule detects the use of a staging domain associated with the RedHive malware family in TLS Server Name Indication (SNI) traffic. It specifically looks for the domain "gitrm.sbs" within TLS encrypted communications that are directed from an internal client network towards an external network, indicating possible command-and-control activity. This detection is intended to identify and mitigate threats posed by RedHive, a type of malware that might use this domain for malicious purposes.
   Updated-Date: '2026_10_30'
+'2072608':
+  Created-Date: '2026_11_02'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: 5918d02a89d8e6d7379834c9ce4407bd
+  Ruleset: ETOPEN
+  Summary: This rule detects an HTTP communication from internal to external networks, specifically identifying a command-and-control (CnC) victim registration attempt by the RedHive malware family. The detection is triggered when an HTTP GET request is made to a path ending in `/start.php`, containing parameters like "pc", "country", "hwid", "os", "osbuild", "av", and "ps". The User-Agent header in these requests is required to match a specific pattern defined by a regular expression, consisting of lowercase alphabetical characters with a length between 90 to 120 characters. This activity is associated with a client endpoint running on Windows applications, suggesting an attempt to establish a connection to control or exfiltrate data from the compromised system.
+  Updated-Date: '2026_11_02'
+'2072609':
+  Created-Date: '2026_11_02'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: 060593b48513d8e5ea5d116c190bef0b
+  Ruleset: ETOPEN
+  Summary: This rule detects network traffic associated with the RedHive malware's command and control (CnC) activity, specifically the exfiltration of screenshots. It identifies HTTP POST requests sent from an internal network to an external network that target the URI path "/screen.php" and contain parameters like "pc=" and "country=". Additionally, the rule checks for an unusual user-agent string composed of lowercase alphabetic characters ranging from 90 to 120 characters in length, indicative of RedHive's malicious activity.
+  Updated-Date: '2026_11_02'
+'2072610':
+  Created-Date: '2026_11_02'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: 13b73013f286af7d2a8856bdb94609c4
+  Ruleset: ETOPEN
+  Summary: This rule detects potential command-and-control (C2) communications associated with RedHive malware. Specifically, it identifies an HTTP GET request to the endpoint "/end.php" from a client within the home network to an external server. The request is characterized by the inclusion of specific parameters such as "pc=", "country=", "hwid=", "os=", "osbuild=", "av=", and "ps=". Additionally, it checks for a user agent string comprised of lowercase alphabetical characters ranging from 90 to 120 characters in length. RedHive is a type of malware that registers victim systems with the C2 server, possibly as part of a larger botnet or cybercriminal infrastructure.
+  Updated-Date: '2026_11_02'
+'2072611':
+  Created-Date: '2026_11_02'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: 62471409d314b4db0c44cce6039f3c53
+  Ruleset: ETOPEN
+  Summary: This rule detects an HTTP request to an external network that uses a static and non-randomly generated WebSocket key nonce in the HTTP header. The detection occurs when a GET request is sent over an established connection to the server, and the WebSocket key matches the specific static pattern "dghlihnhbxbszsbub25jzq==". This behavior indicates a deviation from expected security practices for the WebSocket protocol, as outlined in the RFC 6455 specification, which could potentially suggest improper or insecure WebSocket client implementations.
+  Updated-Date: '2026_11_02'
 '2100110':
   Created-Date: '2024_08_07'
   Custom-Edited: false
