@@ -247802,10 +247802,10 @@
   Created-Date: '2024_08_06'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: 2409a90ac952e4a8ebf9170a8e256e1f
+  Rule-Body-Hash: fb8e8eafd269e000aa63ca4a77aea505
   Ruleset: ETOPEN
-  Summary: This rule detects an attempted exploit targeting Atlassian Confluence servers, specifically an attempt to read arbitrary files without authorization, associated with CVE-2021-26085. The attack involves an HTTP GET request to URLs containing specific directory patterns indicative of configuration or project files used by Confluence. The rule looks for the presence of URIs that include paths like "META-INF" or "WEB-INF," followed by file names such as "pom.xml," "seraph-config.xml," or "web.xml," which are known sensitive files. It also checks that the request lacks cookie or authorization headers, which would typically be present in legitimate requests, making this abnormal and potentially malicious. This detection aims to identify unauthorized access attempts on web applications, offering an opportunity to mitigate potential data exposure or security breaches on Confluence installations.
-  Updated-Date: '2026_09_03'
+  Summary: This rule detects an attempt to exploit a pre-authorization arbitrary file read vulnerability in Atlassian Confluence, specifically targeting CVE-2021-26085. The attack involves sending an HTTP GET request to a server, aimed at accessing sensitive files within the Confluence installation such as "META-INF," "WEB-INF," or configuration files like "pom.xml" and "web.xml." The request should lack specific headers such as "Cookie" and "Authorization," indicating an unauthenticated attempt. This vulnerability could potentially allow attackers to read arbitrary files on the server, leading to the exposure of sensitive information.
+  Updated-Date: '2026_11_03'
 '2034151':
   Created-Date: '2024_08_07'
   Custom-Edited: false
@@ -397986,10 +397986,10 @@
   Created-Date: '2024_08_07'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: 2a499f77fe9a87ff5b5f5a4cb4a8817e
+  Rule-Body-Hash: 8f62260783a0b84cc44697dff8ad0df6
   Ruleset: ETOPEN
-  Summary: This rule detects attempts to exploit an improper access control vulnerability in Joomla, identified as CVE-2023-23752. It specifically targets HTTP GET requests to the endpoint `/api/index.php/v1/config/application` with the `public=true` query, which may indicate unauthorized access to webservice endpoints. This vulnerability can potentially allow malicious actors to access sensitive configuration data within Joomla applications.
-  Updated-Date: '2025_08_12'
+  Summary: This rule detects an attempt to exploit a known vulnerability (CVE-2023-23752) in Joomla, a popular content management system. The vulnerability involves improper access control to web service endpoints, specifically through unauthorized access to the "/api/index.php/v1/config/application?public=true" URI. This access attempt is identified by an established HTTP GET request directed to a server, indicating potential exploitation of Joomla's web service improperly secured endpoints.
+  Updated-Date: '2026_11_03'
 '2052952':
   Created-Date: '2024_08_07'
   Custom-Edited: false
@@ -526418,10 +526418,10 @@
   Created-Date: '2026_04_28'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: f4f3b7ae0b3275a5a313baa346d8c3ff
+  Rule-Body-Hash: 61322f6df446f492391166f953733b52
   Ruleset: ETOPEN
-  Summary: This rule detects DNS queries to the domain "365-sender.com," which is associated with phishing activities targeting Microsoft 365 users. The intent is to identify attempts to reach this known phishing domain, indicating potential social engineering attacks against client endpoints.
-  Updated-Date: '2026_04_28'
+  Summary: This rule detects DNS queries made to the phishing domain "365-sender.com," which is associated with device code phishing attempts. The rule is intended to identify potential social engineering attacks targeting client endpoints by flagging DNS queries that match this specific malicious domain pattern.
+  Updated-Date: '2026_11_03'
 '2069010':
   Created-Date: '2026_04_28'
   Custom-Edited: false
@@ -530050,10 +530050,10 @@
   Created-Date: '2026_05_29'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: bb1e93c53e7a2aaa7fe4e92817d7e071
+  Rule-Body-Hash: 0290a175778e7be49c58f0ed1d6a4f4c
   Ruleset: ETOPEN
-  Summary: This rule detects a network communication pattern associated with a variant of the Gh0st RAT malware, specifically targeting its Command and Control (C&C) check-in attempts. Gh0st RAT is a remote access trojan that facilitates unauthorized control over an infected system, often used for cyber espionage. The rule triggers on specific packet content that indicates an established connection to a server from a client endpoint, recognizing a signature related to this malware family. The targeted environment includes several Windows operating systems, covering both 32-bit and 64-bit architectures.
-  Updated-Date: '2026_05_29'
+  Summary: This rule detects attempts by the Gh0st RAT variant to establish a command-and-control (CNC) check-in with an external server. It specifically looks for a unique pattern in the initial part of the TCP packet payload. The Gh0st RAT is a type of remote access trojan used primarily for gaining unauthorized control over Windows operating systems, including XP, Vista, 7, 8, 10, Server 32/64 Bit, and Windows 11. The rule is designed to catch this network activity when a connection is established from a client endpoint within the internal network to an external network.
+  Updated-Date: '2026_11_03'
 '2069466':
   Created-Date: '2026_05_29'
   Custom-Edited: false
@@ -553650,10 +553650,10 @@
   Created-Date: '2026_10_13'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: 68d678242fb3eaf766224e4ba1e5da81
+  Rule-Body-Hash: 903b81b29f07e712ed6348ae70c84445
   Ruleset: ETOPEN
-  Summary: This rule detects Domain Name System (DNS) queries associated with the command and control (C2) domain of the TryNodeRAT malware, specifically queries containing ".filedu.workers.dev". TryNodeRAT is a remote access trojan (RAT) that allows attackers to remotely control infected machines, typically exploiting client endpoints running Windows operating systems. The rule monitors for any attempts to resolve this domain, indicative of potential communication with a TryNodeRAT server, thereby signaling possible malware activity within the network.
-  Updated-Date: '2026_10_13'
+  Summary: This rule detects DNS queries for the command-and-control (C2) domain associated with the TryNodeRAT malware, specifically ".filedu.workers.dev". The TryNodeRAT is a type of Remote Access Trojan (RAT) that allows attackers to remotely control infected systems. This detection is crucial for identifying communication attempts between the malware and its C2 servers, which can be indicative of compromised systems in a network.
+  Updated-Date: '2026_11_03'
 '2072423':
   Created-Date: '2026_10_13'
   Custom-Edited: false
@@ -553746,10 +553746,10 @@
   Created-Date: '2026_10_14'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: 7361853774bcf63321d04d9847c5e0fd
+  Rule-Body-Hash: aa539b605d4ad8b859cb1f61774a6f36
   Ruleset: ETOPEN
-  Summary: This rule detects an attempted buffer overflow vulnerability in the TRENDnet network equipment, specifically targeting the `formWlanSetup` script through a POST request. The attack exploits the `enrollee` parameter with an overly long input, potentially leading to a buffer overflow condition. This vulnerability is identified as CVE-2026-10183. The rule monitors for HTTP requests containing `/goform/formWlanSetup` in the URI and checks the request body for the `enrollee` parameter with an input length surpassing 100 characters. This activity is characteristic of a web application attack aimed at exploiting public-facing applications, aligning with the initial access tactic as per MITRE's framework.
-  Updated-Date: '2026_10_14'
+  Summary: This rule detects an attempted buffer overflow attack targeting TRENDnet networking equipment through the formWlanSetup functionality, exploiting a vulnerability identified by CVE-2026-10183. The attack involves sending a specially crafted HTTP POST request with an excessively large 'enrollee' parameter to the server's '/goform/formWlanSetup' URI. The vulnerability potentially enables attackers to execute arbitrary code or cause a denial of service, specifically affecting TRENDnet products by exploiting this public-facing application flaw.
+  Updated-Date: '2026_11_03'
 '2072435':
   Created-Date: '2026_10_14'
   Custom-Edited: false
@@ -554882,10 +554882,10 @@
   Created-Date: '2026_10_27'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: 460acbba1ec38aa335cdbed357c43bdf
+  Rule-Body-Hash: 41c1c95810705dcdafd20cb566b04383
   Ruleset: ETOPEN
-  Summary: This rule detects a DNS query for a domain associated with TryNodeRAT command-and-control (CnC) infrastructure. Specifically, it looks for DNS lookups containing the domain ".ekkov.workers.dev". TryNodeRAT is a Remote Access Trojan (RAT) used by attackers to remotely control infected systems, and this rule helps identify potential communication attempts from an infected client to its CnC server.
-  Updated-Date: '2026_10_27'
+  Summary: This rule detects DNS queries for domains associated with the TryNodeRAT command and control infrastructure, specifically targeting the ".ekkov.workers.dev" domain. TryNodeRAT is a type of Remote Access Trojan (RAT) that enables attackers to remotely control infected systems. The rule aims to identify communication attempts between compromised client endpoints and malicious servers, which is indicative of potential malware activity related to TryNodeRAT.
+  Updated-Date: '2026_11_03'
 '2072577':
   Created-Date: '2026_10_27'
   Custom-Edited: false
@@ -554954,10 +554954,10 @@
   Created-Date: '2026_10_30'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: 08538886c47495c30dbf8ea40f88223c
+  Rule-Body-Hash: 2f98fdaaac6aeddf819d204d0d9b0a39
   Ruleset: ETOPEN
-  Summary: This rule detects a potential phishing attempt involving a suspicious domain observed in TLS Server Name Indication (SNI) headers. Specifically, it monitors for connections from internal to external networks where the SNI contains the domain suffix ".rsvpconnect-events.com". This domain is identified as being used for phishing activities, and the alert is triggered when a connection matching this pattern is established, indicating possible social engineering aimed at users or systems within the network.
-  Updated-Date: '2026_10_30'
+  Summary: This rule detects attempted connections from internal hosts to the domain "rsvpconnect-events.com" in the TLS Server Name Indication (SNI) field, suggesting possible phishing activity. This domain is associated with phishing attacks where malicious actors impersonate legitimate entities to deceive users. The rule triggers when there is an established connection from a home network to an external network, specifically targeting scenarios involving social engineering tactics aimed at client endpoints.
+  Updated-Date: '2026_11_03'
 '2072586':
   Created-Date: '2026_10_30'
   Custom-Edited: false
@@ -554970,10 +554970,10 @@
   Created-Date: '2026_10_30'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: 5b4b8dfe95d4d2d5f678d62422e41fc5
+  Rule-Body-Hash: de107e4dcfd7367087c6a33d9ffb30ae
   Ruleset: ETOPEN
-  Summary: This rule detects DNS queries from a home network to the malicious domain "krionificatronikal.com", indicating potential trojan activity. The detection targets client endpoints and is designed for perimeter deployment, with a high-confidence level and major severity to alert on possible malware threats.
-  Updated-Date: '2026_10_30'
+  Summary: This rule detects DNS queries made to the malicious domain "krionificatronikal.com." The presence of this domain in DNS queries is indicative of trojan activity, which could suggest that a malicious program is attempting to communicate with its command and control infrastructure, potentially for harmful purposes such as data exfiltration or further exploitation. The detection aids in identifying compromised client endpoints that might be participating in or targeted by malicious campaigns.
+  Updated-Date: '2026_11_03'
 '2072588':
   Created-Date: '2026_10_30'
   Custom-Edited: false
@@ -555074,18 +555074,18 @@
   Created-Date: '2026_10_30'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: d0b10b98767284d70b93133553e143a6
+  Rule-Body-Hash: daeb9c45ce110602451f0c44d2d9ffb1
   Ruleset: ETOPEN
-  Summary: This rule detects DNS lookup requests for a domain related to the RedHive malware family, specifically the domain ".gitrm.sbs". The presence of this domain in DNS queries may indicate command and control activity associated with RedHive, which is known for targeting Windows operating systems, including both client and server endpoints.
-  Updated-Date: '2026_10_30'
+  Summary: This rule detects DNS queries that involve the domain ".gitrm.sbs", which is associated with the RedHive malware. The detection focuses on identifying connections to a command and control domain used by this malware, highlighting potential communication with compromised systems running Windows operating systems across various versions. The rule looks for any DNS lookup attempt to this specific domain, indicating possible malicious activity related to the RedHive malware family.
+  Updated-Date: '2026_11_03'
 '2072601':
   Created-Date: '2026_10_30'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: c07f19b43e2577a3199b301636056033
+  Rule-Body-Hash: 980595ceb6b603a2b211924bb3753fef
   Ruleset: ETOPEN
-  Summary: This rule detects DNS queries to the domain "gitsl.xyz", which is associated with the RedHive malware. RedHive is known for its command and control (C2) activities, typically allowing attackers to manage compromised systems. The rule identifies the use of this domain in DNS lookups, which suggests potential communication with a control server, thus indicating malicious activity targeting client endpoints.
-  Updated-Date: '2026_10_30'
+  Summary: This rule detects DNS queries for the domain ".gitsl.xyz," which is associated with RedHive malware. RedHive is a malicious software family known to use domain-based command and control (C2) infrastructures. The detection is triggered by identifying any DNS lookup attempts that involve the specified domain, indicating potential command and control activity. This rule is applicable to various Windows operating systems and targets client endpoints.
+  Updated-Date: '2026_11_03'
 '2072602':
   Created-Date: '2026_10_30'
   Custom-Edited: false
@@ -555166,6 +555166,110 @@
   Ruleset: ETOPEN
   Summary: This rule detects an HTTP request to an external network that uses a static and non-randomly generated WebSocket key nonce in the HTTP header. The detection occurs when a GET request is sent over an established connection to the server, and the WebSocket key matches the specific static pattern "dghlihnhbxbszsbub25jzq==". This behavior indicates a deviation from expected security practices for the WebSocket protocol, as outlined in the RFC 6455 specification, which could potentially suggest improper or insecure WebSocket client implementations.
   Updated-Date: '2026_11_02'
+'2072612':
+  Created-Date: '2026_11_03'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: fe080a28efe3c354f71b95f20ae5b155
+  Ruleset: ETOPEN
+  Summary: This rule detects potential communication with a Redhive malware staging domain over TLS by identifying the Server Name Indication (SNI) value "gitrm.sbs" in traffic originating from an internal network and directed outward. Such activity is associated with command and control (C2) operations, indicating potential malicious behavior and communication attempts with external servers for purposes such as remote management or data exfiltration.
+  Updated-Date: '2026_11_03'
+'2072613':
+  Created-Date: '2026_11_03'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: 5fadac5cf9332b1cfb55c515717e6a38
+  Ruleset: ETOPEN
+  Summary: This rule detects potential malicious activity by identifying the domain "gitsl.xyz" in the Server Name Indication (SNI) field of a TLS packet. This domain is associated with Redhive, a type of malware that uses specific domains for command and control purposes. The alert is triggered when connections from the internal network to an external network are directed to a server with this SNI, which could indicate communication with a staging domain used by this malware.
+  Updated-Date: '2026_11_03'
+'2072614':
+  Created-Date: '2026_11_03'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: d0a001265b91861133f58e194f46c444
+  Ruleset: ETOPEN
+  Summary: This rule detects network traffic involving the use of the domain "gitview.sbs" within the Server Name Indication (SNI) field of TLS communication, which is associated with Redhive malware activities. The detection focuses on traffic that is outbound from a monitored network to external networks, indicating potential command-and-control domain usage by the malware.
+  Updated-Date: '2026_11_03'
+'2072615':
+  Created-Date: '2026_11_03'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: f27285a851adfb1f9c1f17eb84c514e0
+  Ruleset: ETOPEN
+  Summary: This rule detects the use of a suspicious domain, "viewgit.sbs," in the Server Name Indication (SNI) field of Transport Layer Security (TLS) traffic. It identifies potential communication with a command-and-control server associated with the Redhive malware by monitoring established connections from the internal network to external servers.
+  Updated-Date: '2026_11_03'
+'2072616':
+  Created-Date: '2026_11_03'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: dedf546063926ffdb23ea7f98aecb407
+  Ruleset: ETOPEN
+  Summary: This rule detects DNS queries to domains ending with ".chiemtinhviet.com," which are associated with dynamic DNS services. Dynamic DNS is often used for illicit purposes, such as enabling malicious actors to maintain control over infected systems by providing a constantly updated DNS entry pointing to their command and control servers. The rule is informative and focuses on identifying such queries to recognize potential command and control communications using dynamic DNS techniques.
+  Updated-Date: '2026_11_03'
+'2072617':
+  Created-Date: '2026_11_03'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: 8373fe00217e30d512340f70afce9d2a
+  Ruleset: ETOPEN
+  Summary: This rule detects HTTP requests to domains ending with ".chiemtinhviet.com," indicating potential use of dynamic DNS services often associated with suspicious or malicious activity. Dynamic DNS can be used in command and control operations to maintain persistent connections with compromised systems despite changing IP addresses. The rule focuses on HTTP requests within an established connection directed towards the server.
+  Updated-Date: '2026_11_03'
+'2072618':
+  Created-Date: '2026_11_03'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: 287ad845d8e2d285684155498c812f36
+  Ruleset: ETOPEN
+  Summary: This rule detects DNS queries to domains ending with ".9dejulio.gob.ar," which are associated with dynamic DNS services. Dynamic DNS is often used to facilitate communication in command and control scenarios by dynamically updating domain records. This behavior can be indicative of malicious activity, such as maintaining persistent access to compromised systems.
+  Updated-Date: '2026_11_03'
+'2072619':
+  Created-Date: '2026_11_03'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: dc859d18df07e02ade5b3af04d40c3f4
+  Ruleset: ETOPEN
+  Summary: This rule detects HTTP requests from internal networks to external networks targeting domains ending with ".9dejulio.gob.ar," indicating a potential use of dynamic DNS services associated with this domain. It evaluates established server-bound HTTP traffic for these specific hostnames, which may be indicative of command and control activities utilizing dynamic resolution as defined by certain MITRE tactics and techniques.
+  Updated-Date: '2026_11_03'
+'2072620':
+  Created-Date: '2026_11_03'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: 54c0a12cf5764f5883884566482489c2
+  Ruleset: ETOPEN
+  Summary: "This rule detects a DNS query for the domain \"rosaryconbo.fun,\" which is associated with the Win32/Lumma Stealer malware\u2014a type of malicious software focused on stealing sensitive information from infected systems. The rule helps identify potential command and control (CnC) activities related to this malware by flagging communication attempts between infected endpoints within a network and this suspicious domain. The detection mechanism operates on the principle that endpoints making DNS requests to this domain may be compromised or attempting to communicate with the Lumma Stealer's CnC infrastructure."
+  Updated-Date: '2026_11_03'
+'2072621':
+  Created-Date: '2026_11_03'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: 152e538c77c2a9e5b05818386c2bb70b
+  Ruleset: ETOPEN
+  Summary: This rule detects network traffic involving the domain "rosaryconbo.fun" used in a Transport Layer Security (TLS) Server Name Indication (SNI). It is associated with the Lumma Stealer, a type of malware that operates by extracting sensitive information from compromised systems. The rule is intended to identify instances where this domain is used as part of command and control communication, which is a critical step in the lifecycle of the malware. The rule targets traffic from the network's internal hosts to external servers, indicating potential malware activity that should be investigated.
+  Updated-Date: '2026_11_03'
+'2072622':
+  Created-Date: '2026_11_03'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: 6d127dd9385dce8a60d4e6021ae381fb
+  Ruleset: ETOPEN
+  Summary: This rule detects attempts to exploit a vulnerability in Joomla (CVE-2023-23752) that involves improper access control to web service endpoints. It specifically monitors HTTP GET requests directed at the "/api/index.php/v1/users?public=true" URI on a Joomla server. This activity is associated with efforts to gain unauthorized administrative access, potentially leading to remote code execution on the target web server.
+  Updated-Date: '2026_11_03'
+'2072623':
+  Created-Date: '2026_11_03'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: 9bd0cf1d76d3c650b9f1d13cc8430ee2
+  Ruleset: ETOPEN
+  Summary: This rule detects a DNS lookup for a command and control (C2) domain associated with the TA569 malware campaign, specifically targeting the Gholoader malware, which is part of the SocGholish malware family. The domain involved is "atl-ut.cannabisrootshub.com," indicating possible malicious activity attempting to exploit a client endpoint through the domain. Gholoader is known for being used by cybercriminals to distribute additional malware and execute various attacks on compromised systems.
+  Updated-Date: '2026_11_03'
+'2072624':
+  Created-Date: '2026_11_03'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: 317502f384fb6db6c9864c1126bad2c0
+  Ruleset: ETOPEN
+  Summary: This rule detects network traffic indicating potential communication with a command and control (CnC) server associated with the malware "Gholoader," which is part of the SocGholish malware family. The detection focuses on the Server Name Indication (SNI) field within a TLS handshake, specifically targeting the domain "atl-ut.cannabisrootshub.com." The traffic must be directed from an internal network to an external network and originate from an established connection to be flagged. SocGholish is typically involved in exploit kits, often using compromised websites to deliver the payload, seeking to execute malicious activities on client endpoints.
+  Updated-Date: '2026_11_03'
 '2100110':
   Created-Date: '2024_08_07'
   Custom-Edited: false
