@@ -157674,10 +157674,10 @@
   Created-Date: '2024_08_06'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: c7422f029b4cbebeaaf574d75aeb262b
+  Rule-Body-Hash: 6c8c758001f67989be7fa17de46bc83b
   Ruleset: ETOPEN
-  Summary: This rule detects inbound attempts to exploit a file deletion vulnerability in ImageMagick, specifically targeting HTTP servers. The rule identifies malicious requests that include the term "viewbox" followed by irregular spacing or characters, and the term "ephemeral," with case insensitivity. It utilizes a Perl Compatible Regular Expression (PCRE) to identify suspicious patterns at the start of the request body that may indicate an attempt to exploit the vulnerability tracked as CVE-2016-3715. This type of attack is classified as a web application attack.
-  Updated-Date: '2025_01_31'
+  Summary: This rule detects an attempt to exploit a vulnerability in ImageMagick, identified as CVE-2016-3715, which may lead to unauthorized file deletion on a server. The vulnerability can be triggered through a crafted HTTP request containing specific patterns and indicators within its request body. The rule searches for the presence of the term "viewbox" followed by "ephemeral" and checks for a specific pattern related to path traversal, which could indicate malicious intent. ImageMagick, widely used for image processing, is susceptible to this web application attack when handling such manipulated inputs. The detection has significant implications due to its ability to compromise files on affected servers, making it a critical issue to monitor for those using ImageMagick in web-facing applications.
+  Updated-Date: '2026_11_04'
 '2022793':
   Created-Date: '2024_08_06'
   Custom-Edited: false
@@ -191778,10 +191778,10 @@
   Created-Date: '2024_08_07'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: 5ccc651f185a8f9f29f7aad0bb4f49b2
+  Rule-Body-Hash: 6571fa07c4056b6c0af238085cf2518f
   Ruleset: ETOPEN
-  Summary: This rule detects an attempted remote code execution (RCE) exploit targeting the ZyXEL P660HN-T v1 router, associated with CVE-2017-18368. The malicious activity is identified by monitoring HTTP POST requests directed towards the "/cgi-bin/ViewLog.asp" URI within an established connection to the server. The request must contain specific parameters, specifically "remote_submit_Flag=" and "&remote_host=" in the HTTP request body, indicating an attempt to execute unauthorized commands on the device's operating system. Upon successful triggering, such an exploit could allow attackers to gain control over the router, posing significant security risks to the connected network.
-  Updated-Date: '2025_01_31'
+  Summary: This rule detects potential exploitation attempts aimed at the ZyXEL P660HN-T v1 router, specifically targeting a known remote code execution vulnerability identified as CVE-2017-18368. It triggers on HTTP POST requests directed to the "viewlog.asp" URI, and it looks for specific malicious patterns in the request body, such as shell metacharacters that might indicate an attempt to execute remote commands on the device. The rule leverages pattern matching to identify potential exploit attempts that could lead to unauthorized access or control over the affected networking equipment.
+  Updated-Date: '2026_11_04'
 '2027093':
   Created-Date: '2024_08_07'
   Custom-Edited: false
@@ -388994,10 +388994,10 @@
   Created-Date: '2024_08_07'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: 1cb2efcfd659419563c7dea619d05cd9
+  Rule-Body-Hash: 07268cc2779999bcbe11ae99920082ad
   Ruleset: ETOPEN
-  Summary: This rule detects an attempt to exploit a persistent cross-site scripting (XSS) vulnerability in RoundCube Webmail, specifically identified as CVE-2023-43770. The rule monitors SMTP traffic directed to mail servers or internal networks, identifying exploit attempts by looking for specific patterns in the email content that indicate malicious scripts or HTML tags used for XSS attacks.
-  Updated-Date: '2026_01_15'
+  Summary: This rule detects a persistent cross-site scripting (XSS) attack attempt targeting RoundCube Webmail, which is identified by CVE-2023-43770. The rule inspects SMTP traffic destined for SMTP servers or the internal network to identify an established flow towards a server that includes specific content patterns in 'text/plain' emails indicative of an XSS payload. This could involve script or iframe injection attempts applied to exploit vulnerabilities in RoundCube, a web-based email client.
+  Updated-Date: '2026_11_04'
 '2051828':
   Created-Date: '2024_08_07'
   Custom-Edited: false
@@ -469042,10 +469042,10 @@
   Created-Date: '2025_04_25'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: 015e9c1fec181d310faec0e62b8ca3c7
+  Rule-Body-Hash: 2c8c56c1e4b7e100668134518e7b89e5
   Ruleset: ETOPEN
-  Summary: This rule detects an attempted remote code execution vulnerability targeting Gladinet CentreStack and Triofox software through server-side deserialization with a hardcoded machine key, referenced as CVE-2025-30406. The attack involves an HTTP POST request to the URI "/portal/loginpage.aspx" with specific commands embedded in the HTTP header and request body, potentially leading to malicious code execution on the targeted server. This vulnerability enables an attacker to execute arbitrary commands remotely if successfully exploited, impacting web application security.
-  Updated-Date: '2025_04_25'
+  Summary: This rule detects a remote code execution vulnerability in Gladinet CentreStack and Triofox, which are software solutions for file server replacement and cloud migration. The vulnerability, identified as CVE-2025-30406, arises from server-side deserialization using a hardcoded machine key. An attacker can exploit this issue by sending a malicious POST request to the "/portal/loginpage.aspx" endpoint of the vulnerable server, potentially leading to unauthorized execution of arbitrary code. The rule inspects HTTP requests that match specific patterns indicative of this attack method, signaling potential exploitation attempts.
+  Updated-Date: '2026_11_04'
 '2061837':
   Created-Date: '2025_04_25'
   Custom-Edited: false
@@ -555010,10 +555010,10 @@
   Created-Date: '2026_10_30'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: 6f7f716a785229ff97235706f8039759
+  Rule-Body-Hash: 4b6372367c63fe7f233b9ecae872e2af
   Ruleset: ETOPEN
-  Summary: This rule detects network traffic associated with the TA569 malware campaign, specifically targeting communication involving the Gholoader malware. It identifies attempts to connect to a command-and-control (CnC) server by inspecting the Server Name Indication (SNI) field in TLS traffic. The rule matches on traffic where the SNI field contains the domain "universal-api.algarveexportltd.com," which is associated with malicious activities. This detection is crucial for identifying and blocking connections to potentially compromised websites involved in the distribution of SocGholish malware.
-  Updated-Date: '2026_10_30'
+  Summary: This rule detects network traffic indicating connection to a command and control (C&C) domain associated with the TA569 Gholoader malware within a TLS Server Name Indication (SNI). The specific domain targeted is "universal-api.algarveexportltd.com". Gholoader is a type of malware involved in delivering additional malicious payloads to compromised systems. The detection is based on examining established TLS connections from internal clients to external servers, and it specifically looks for the presence of this domain in the SNI field, which suggests potential malicious activity linked to the SocGholish malware family.
+  Updated-Date: '2026_11_04'
 '2072593':
   Created-Date: '2026_10_30'
   Custom-Edited: false
@@ -555210,18 +555210,18 @@
   Created-Date: '2026_11_03'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: 8373fe00217e30d512340f70afce9d2a
+  Rule-Body-Hash: 1770cb09ff46c1a4b8ce4f348a5efad2
   Ruleset: ETOPEN
-  Summary: This rule detects HTTP requests to domains ending with ".chiemtinhviet.com," indicating potential use of dynamic DNS services often associated with suspicious or malicious activity. Dynamic DNS can be used in command and control operations to maintain persistent connections with compromised systems despite changing IP addresses. The rule focuses on HTTP requests within an established connection directed towards the server.
-  Updated-Date: '2026_11_03'
+  Summary: This rule detects HTTP requests to domains ending with ".chiemtinhviet.com," which are associated with dynamic DNS services. This can indicate the use of a dynamic resolution technique for command and control purposes, often utilized in malicious activities to obfuscate the true origin of communication. The detection is applied to traffic from the internal network to external networks, triggering when a request to such a domain is observed, suggesting potential misuse or malicious intent.
+  Updated-Date: '2026_11_04'
 '2072618':
   Created-Date: '2026_11_03'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: 287ad845d8e2d285684155498c812f36
+  Rule-Body-Hash: 9c5f52b5b5b2cd2b45316f418e3bc506
   Ruleset: ETOPEN
-  Summary: This rule detects DNS queries to domains ending with ".9dejulio.gob.ar," which are associated with dynamic DNS services. Dynamic DNS is often used to facilitate communication in command and control scenarios by dynamically updating domain records. This behavior can be indicative of malicious activity, such as maintaining persistent access to compromised systems.
-  Updated-Date: '2026_11_03'
+  Summary: This rule detects DNS queries made to domains ending with ".9dejulio.gob.ar," which are associated with dynamic DNS services. These queries may indicate attempts to use a dynamic DNS service for potentially unauthorized or malicious actions, often related to command and control activities. The detection focuses on dynamic resolution, which is a technique used in managing online resources or potentially evading network security measures.
+  Updated-Date: '2026_11_04'
 '2072619':
   Created-Date: '2026_11_03'
   Custom-Edited: false
@@ -555266,10 +555266,74 @@
   Created-Date: '2026_11_03'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: 317502f384fb6db6c9864c1126bad2c0
+  Rule-Body-Hash: e0098b869b8852903b0d2d00fccae869
   Ruleset: ETOPEN
-  Summary: This rule detects network traffic indicating potential communication with a command and control (CnC) server associated with the malware "Gholoader," which is part of the SocGholish malware family. The detection focuses on the Server Name Indication (SNI) field within a TLS handshake, specifically targeting the domain "atl-ut.cannabisrootshub.com." The traffic must be directed from an internal network to an external network and originate from an established connection to be flagged. SocGholish is typically involved in exploit kits, often using compromised websites to deliver the payload, seeking to execute malicious activities on client endpoints.
-  Updated-Date: '2026_11_03'
+  Summary: This rule detects potential malware activity involving TA569's Gholoader command-and-control communication within a TLS session. It specifically targets traffic from an internal network to an external network where the Server Name Indication (SNI) field in TLS contains the domain "atl-ut.cannabisrootshub.com". This detection pattern is associated with the SocGholish malware, which is known to exploit web browsers and target client endpoints.
+  Updated-Date: '2026_11_04'
+'2072625':
+  Created-Date: '2026_11_04'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: a3e7902d920816e37baa3844f17bf805
+  Ruleset: ETOPEN
+  Summary: This rule detects attempts to exploit a vulnerability in ImageMagick, specifically CVE-2016-3715, which can lead to file deletion. The detection occurs when an FTP connection is established with a server inside the network, scanning for specific patterns in the data that match the "viewbox" and "ephemeral" keywords. This vulnerability exploits the ability to manipulate ImageMagick through crafted input, allowing an attacker to perform unauthorized file deletion on a vulnerable server by using maliciously crafted image files.
+  Updated-Date: '2026_11_04'
+'2072626':
+  Created-Date: '2026_11_04'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: d3b8f68cd2f604c2c377e6af8501934a
+  Ruleset: ETOPEN
+  Summary: This rule detects DNS queries to domains ending with ".naughtybaptistbrewery.com", which are associated with dynamic DNS services. Dynamic DNS is often used to facilitate dynamic IP address updates, making it easier to control remote systems, and it can be mobilized in command and control scenarios by malicious actors. This detection helps identify potential misuse related to command and control activities, aligning with the MITRE ATT&CK framework's techniques for dynamic resolution in command and control operations.
+  Updated-Date: '2026_11_04'
+'2072627':
+  Created-Date: '2026_11_04'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: bcd4a3bcd2adeaf8ac43b348dc52d40a
+  Ruleset: ETOPEN
+  Summary: This rule detects HTTP requests from an internal network to external domains ending with ".naughtybaptistbrewery.com," which are associated with dynamic DNS services. These types of requests can indicate the use of domains for potentially suspicious activities, such as command and control communications by malware using dynamic resolution techniques.
+  Updated-Date: '2026_11_04'
+'2072628':
+  Created-Date: '2026_11_04'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: 55d5de55e36b4ea77ea9a261bd409a9e
+  Ruleset: ETOPEN
+  Summary: This rule detects a DNS query for the domain "brightqhorizons.cloud," which is associated with the Win32/Lumma Stealer malware. The Lumma Stealer is a type of malware designed to infiltrate systems and steal sensitive information. The detection is triggered by a DNS lookup involving this domain, suspected to be used as a command-and-control (C2) channel for the malware, signifying malicious communication attempts. This rule is critical for identifying potential security breaches on client endpoints and alerting administrators to possible data exfiltration activities.
+  Updated-Date: '2026_11_04'
+'2072629':
+  Created-Date: '2026_11_04'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: aac055348d489aac3c8b9210a3649946
+  Ruleset: ETOPEN
+  Summary: This rule detects communication with a malicious domain related to the Win32/Lumma Stealer malware by identifying the presence of "brightqhorizons.cloud" in the Server Name Indication (SNI) field of TLS traffic. Lumma Stealer is a type of malware that can exfiltrate sensitive information from infected systems. The rule applies to traffic from an internal network toward any external server, focusing on an established connection where the given domain appears in TLS communications, suggesting a potential command and control activity.
+  Updated-Date: '2026_11_04'
+'2072630':
+  Created-Date: '2026_11_04'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: 499d9aae54d92f6d4045d2caf36ec475
+  Ruleset: ETOPEN
+  Summary: This rule detects an attempted command injection vulnerability targeting Zyxel devices by exploiting the CVE-2017-18370 flaw. The attack is executed via an HTTP POST request to the "/cgi-bin/pages/maintenance/logSetting/logset.asp" endpoint, specifically manipulating the "serverIP" parameter. The attack leverages various payloads, such as semicolons, newlines, and other special characters, indicating an injection attempt within the request body. This type of vulnerability can potentially allow unauthorized administrative access to the network equipment.
+  Updated-Date: '2026_11_04'
+'2072631':
+  Created-Date: '2026_11_04'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: 5811616d1fbaa6440cf56fb22bacf186
+  Ruleset: ETOPEN
+  Summary: This rule detects an attempted command injection vulnerability in Zyxel networking equipment, specifically targeting the "tools_time.asp" script via the "uiViewSNTPServer" parameter. This occurs when an attacker sends a crafted HTTP POST request designed to exploit CVE-2017-18372, allowing unauthorized administrative access by injecting commands that include malicious characters such as semicolons or other encoded symbols. This rule is intended to identify and alert on potential exploits of this vulnerability, which targets the server when an established connection is made.
+  Updated-Date: '2026_11_04'
+'2072632':
+  Created-Date: '2026_11_04'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: 2d8da6396b6db1123b7fb798aee00828
+  Ruleset: ETOPEN
+  Summary: This rule detects an attempted command injection vulnerability targeting Zyxel networking equipment via a POST request to the specific endpoint "adv_remotelog.asp". The detection focuses on the "syslogServerAddr" parameter within the request body, which may contain potentially malicious characters like semicolons, new lines, backticks, pipes, or dollar signs. The vulnerability is identified as CVE-2017-18369 and poses a risk to devices by potentially allowing unauthorized command execution through the crafted HTTP request.
+  Updated-Date: '2026_11_04'
 '2100110':
   Created-Date: '2024_08_07'
   Custom-Edited: false
