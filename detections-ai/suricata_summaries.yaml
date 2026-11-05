@@ -168098,10 +168098,10 @@
   Created-Date: '2024_08_07'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: 42526d508e5879ed03362e550961defb
+  Rule-Body-Hash: d83369ec3af6c0e91bfca8e917192344
   Ruleset: ETOPEN
-  Summary: 'This rule detects an attempt to exploit a remote code execution vulnerability in Microsoft Internet Information Services (IIS), specifically targeting CVE-2017-7269. It identifies malicious traffic directed to HTTP servers, focusing on established connections with a request header containing a lowercase variant that begins with "if: <", followed by a certain encoded character range. This exploitation could potentially allow attackers to execute arbitrary code on the web server, posing a serious threat to systems running vulnerable versions of Microsoft IIS.'
-  Updated-Date: '2025_01_31'
+  Summary: This rule detects an attempted remote code execution exploit targeting Microsoft IIS servers, specifically addressing vulnerability CVE-2017-7269. It triggers when an established connection to a server includes a specific HTTP header pattern that suggests the use of a crafted input capable of exploiting this vulnerability. This specific attack vector leverages a header structure that could enable unauthorized access and execution of code on the affected server.
+  Updated-Date: '2026_11_05'
 '2024108':
   Created-Date: '2024_08_07'
   Custom-Edited: false
@@ -191786,10 +191786,10 @@
   Created-Date: '2024_08_07'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: 2b71fbd951b6da03fceebb50e79a87a5
+  Rule-Body-Hash: 9793ed0540c106cb4f468af05c1b3514
   Ruleset: ETOPEN
-  Summary: This rule detects an attempted remote code execution (RCE) exploit targeting Netgear DGN2200 routers, specifically related to CVE-2017-6077. The rule focuses on HTTP requests using the POST method directed to the "/ping.cgi" URI and containing the header "DIAG_diag.htm" in the request. It looks for particular patterns in the body of the HTTP request, such as the presence of "&ping_IPAddr=" followed by a semicolon, which indicates an attempt to execute arbitrary commands on the device. The rule is used to identify potential exploitation activities leveraging vulnerabilities in this specific IoT device.
-  Updated-Date: '2025_01_31'
+  Summary: This rule detects an attempt to exploit a remote code execution vulnerability in Netgear DGN2200 routers, identified as CVE-2017-6077. The attack involves sending a POST request to the "/ping.cgi" URI with a specified "Referer" header from "/DIAG_diag.htm" and checks if the request body contains the parameter "ping_IPAddr=" followed by suspicious characters indicative of a potential exploit. This vulnerability can allow attackers to execute arbitrary commands on the affected router, targeting IoT environments.
+  Updated-Date: '2026_11_05'
 '2027094':
   Created-Date: '2024_08_07'
   Custom-Edited: false
@@ -194634,18 +194634,18 @@
   Created-Date: '2024_08_07'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: 03dd116bd69fd8521c0e4eca1ec4356f
+  Rule-Body-Hash: e207975cd20b2fe21fb976531d57456e
   Ruleset: ETOPEN
-  Summary: This rule detects an attempted remote command injection targeting Dell KACE systems through HTTP POST requests. It identifies outbound traffic where the URI matches "/krashrpt.php" and the request body begins with "kuid=|60|", indicating a potential exploitation attempt associated with CVE-2018-11138. The rule is designed to address security risks posed by a Mirai variant that expands its exploit capabilities to include additional IoT devices. The detection's context is within established connections to servers and is aligned with measures for lateral movement and exploitation of remote services.
-  Updated-Date: '2025_01_31'
+  Summary: This rule detects an attempt to exploit a remote command injection vulnerability in Dell KACE systems identified as CVE-2019-20504. It focuses on outbound HTTP traffic where a POST request is sent to the "/krashrpt.php" URI. The rule checks for suspicious patterns in the HTTP request body, which could indicate an attempt to execute unauthorized commands through specific characters or encoded representations used in such exploits. This vulnerability can be leveraged for lateral movement, particularly targeting Internet of Things (IoT) devices, which may be part of or managed by Dell KACE systems.
+  Updated-Date: '2026_11_05'
 '2027457':
   Created-Date: '2024_08_07'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: dc8389c32491c7dba9f466dc8cf0a514
+  Rule-Body-Hash: b70519e0847b73e0e2c37f347e303465
   Ruleset: ETOPEN
-  Summary: This rule detects an attempted remote command injection targeting Dell KACE systems by analyzing HTTP POST requests directed at servers. It specifically monitors requests to the "/krashrpt.php" URI with a request body starting with "kuid=|60|". The activity is associated with exploits noted in a Mirai variant that targets Internet of Things (IoT) devices and is linked to CVE-2018-11138. This rule helps identify potential malicious attempts to gain unauthorized administrative control over affected systems.
-  Updated-Date: '2025_01_31'
+  Summary: This rule detects an attempted remote command injection exploit targeting Dell KACE appliances, identified as CVE-2019-20504. This exploit occurs via an HTTP POST request to the endpoint "/krashrpt.php," where the request body contains malicious patterns intended for injection attacks. Specific characters and patterns in the payload signal the exploit attempt, potentially allowing an attacker to execute remote commands by exploiting the vulnerability. This rule is relevant for monitoring inbound traffic to efficiently detect and mitigate threats against IoT devices associated with Dell products.
+  Updated-Date: '2026_11_05'
 '2027458':
   Created-Date: '2024_08_06'
   Custom-Edited: false
@@ -227074,10 +227074,10 @@
   Created-Date: '2024_08_06'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: 56e8dc7688d6a9b8dfea55cdcc59f73a
+  Rule-Body-Hash: 6b550e241d16978d7b49d1f4bc537627
   Ruleset: ETOPEN
-  Summary: This rule detects an attempted remote code execution (RCE) exploit targeting SAP Solution Manager, specifically through its EEM Admin Service interface. The attack is identified by HTTP requests sent to a server with a particular URI path and a request body containing suspicious command patterns. This exploit takes advantage of the vulnerabilities documented under CVE-2020-6207, which can allow unauthorized system access and control.
-  Updated-Date: '2025_09_16'
+  Summary: This rule detects potential remote code execution attacks targeting SAP Solution Manager through the "/EemAdminService/EemAdmin" HTTP endpoint, exploiting the vulnerability identified as CVE-2020-6207. The attack is characterized by an HTTP request to this endpoint containing specific patterns in its request body, including the uploadResource designation and a command execution type. It particularly looks for usage of ProcessBuilder or getRuntime methods, which are indicative of attempts to execute arbitrary commands on the server. This rule alerts on malicious attempts to gain unauthorized administrative access by exploiting this vulnerability in SAP systems.
+  Updated-Date: '2026_11_05'
 '2031547':
   Created-Date: '2024_08_06'
   Custom-Edited: false
@@ -254802,10 +254802,10 @@
   Created-Date: '2024_08_07'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: a7d1536208d462400f01a3014eae2543
+  Rule-Body-Hash: ef8a8ae59b043fea5b0620afd8db3c8b
   Ruleset: ETOPEN
-  Summary: This rule detects an attempt to exploit a vulnerability in Apache Airflow, specifically an API authentication bypass identified as CVE-2020-13927. The rule triggers when a GET request is made to the "/api/experimental/test" endpoint on a server running Airflow, as part of an ongoing established connection directed towards a server. Apache Airflow is a platform to programmatically author, schedule, and monitor workflows. This particular vulnerability allows unauthorized access through the experimental API, posing a risk of unauthorized administrative actions on the server.
-  Updated-Date: '2025_09_08'
+  Summary: This rule detects an attempt to exploit an authentication bypass vulnerability in the Apache Airflow Experimental API, specifically targeting CVE-2020-13927. It monitors HTTP GET requests directed at the "/api/experimental/" URI on web servers within the network. The vulnerability allows attackers to potentially gain unauthorized access to the Apache Airflow system, posing a significant risk by enabling attempted administrative actions. This detection rule is part of an effort to identify threats that exploit public-facing applications.
+  Updated-Date: '2026_11_05'
 '2035038':
   Created-Date: '2024_08_07'
   Custom-Edited: false
@@ -553450,10 +553450,10 @@
   Created-Date: '2026_10_09'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: c2017f04c0b72a314b5ffdd3f4095e30
+  Rule-Body-Hash: 78acb70fd9db200e3eee089adb2770ca
   Ruleset: ETOPEN
-  Summary: This rule detects an attempted command injection vulnerability targeting the Hytec popen.cgi script via HTTP GET requests. The attack exploits the "command" parameter of this script, specifically by appending potentially malicious shell commands or operators, such as semicolons or newlines, to the parameter's value. This vulnerability is identified as CVE-2022-36553 and represents a security risk associated with certain Hytec networking equipment. The rule focuses on HTTP traffic directed to the "/cgi-bin/popen.cgi" endpoint and is designed to capture attempts at unauthorized administrative access to exposed web applications.
-  Updated-Date: '2026_10_09'
+  Summary: This rule detects an attempted command injection vulnerability targeting the Hytec application through its `popen.cgi` script, identified as CVE-2022-36553. The attack is executed by sending a specially crafted HTTP GET request to the `/cgi-bin/popen.cgi` endpoint containing a `command` parameter. The payload attempts to introduce shell metacharacters, such as semicolons, newlines, or other characters, that could lead to unauthorized command execution on the target system. This type of attack could enable an adversary to gain unauthorized administrative access to networking equipment utilizing the affected Hytec application. The rule is designed to identify these attempts with high confidence by closely monitoring traffic to servers hosting vulnerable endpoints.
+  Updated-Date: '2026_11_05'
 '2072398':
   Created-Date: '2026_10_09'
   Custom-Edited: false
@@ -554962,10 +554962,10 @@
   Created-Date: '2026_10_30'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: 8226d939f70059529f3b4659a78169be
+  Rule-Body-Hash: 8756dff7115caf60babda766a8461756
   Ruleset: ETOPEN
-  Summary: This rule detects network traffic indicative of a heartbeat communication from a victim machine that is using a Generic Rust Loader, potentially malicious software developed with the Rust programming language. The detection targets HTTP GET requests sent from an internal network to an external destination, characterized by specific patterns within the URI and headers. The request is expected to start with a known pattern and contain parameters that match predetermined numerical conditions. Additionally, the HTTP headers are checked for a particular sequence and a "Keep-Alive" connection directive, suggesting a possible Command and Control (C2) activity, which is commonly used by malware to maintain communication with its operator.
-  Updated-Date: '2026_10_30'
+  Summary: This rule detects network activity associated with a malware known as a "Generic Rust Loader," specifically looking for a victim's heartbeat signal. It triggers on HTTP GET requests that contain a specific URI pattern indicative of a beaconing attempt. The pattern includes parameters such as "/beacon?m=", followed by specific byte-test conditions in subsequent parameters, suggesting an encoded data exchange with the command-and-control server. The rule additionally examines HTTP header properties to identify connections that use keep-alive settings. This activity is typical of a command-and-control operation using a Rust-based malware loader on Windows client endpoints, aiming to maintain communication with the attacker-controlled external server.
+  Updated-Date: '2026_11_05'
 '2072587':
   Created-Date: '2026_10_30'
   Custom-Edited: false
@@ -555334,6 +555334,54 @@
   Ruleset: ETOPEN
   Summary: This rule detects an attempted command injection vulnerability targeting Zyxel networking equipment via a POST request to the specific endpoint "adv_remotelog.asp". The detection focuses on the "syslogServerAddr" parameter within the request body, which may contain potentially malicious characters like semicolons, new lines, backticks, pipes, or dollar signs. The vulnerability is identified as CVE-2017-18369 and poses a risk to devices by potentially allowing unauthorized command execution through the crafted HTTP request.
   Updated-Date: '2026_11_04'
+'2072633':
+  Created-Date: '2026_11_05'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: cf1466199e743544ec4f9d1ef8cb20f0
+  Ruleset: ETOPEN
+  Summary: This rule detects DNS queries associated with the TryNodeRAT malware, specifically targeting domains that end with ".relays-connects.com". TryNodeRAT is a Remote Access Trojan (RAT) known for its ability to establish a command and control (C2) channel with infected endpoints. The rule is designed to identify attempts by infected systems to resolve C2 domains, which are a key communication link between the malware and its operators. The rule applies to DNS traffic involving any host within the network.
+  Updated-Date: '2026_11_05'
+'2072634':
+  Created-Date: '2026_11_05'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: 9127cacb2679d6001acd4484addb1185
+  Ruleset: ETOPEN
+  Summary: This rule detects DNS queries associated with the TryNodeRAT malware, specifically targeting the command-and-control domain "relays-cf.workersp.dev". It focuses on identifying communication attempts by this remote access trojan, which is typically used to gain unauthorized access and control over infected systems. This rule is relevant for monitoring client endpoint security on Windows operating systems and assesses the domain used for potential malicious outbound communications.
+  Updated-Date: '2026_11_05'
+'2072635':
+  Created-Date: '2026_11_05'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: 44fddefd3f5b97890169a08ab5193f48
+  Ruleset: ETOPEN
+  Summary: This rule detects communication attempts with a TryNodeRAT command and control (C2) domain within the Server Name Indication (SNI) field of TLS traffic. It monitors for ".relays-connects.com" as the domain, indicating potential malware activity. TryNodeRAT is a remote access trojan that targets Windows operating systems, allowing attackers unauthorized access and control over infected systems. The rule is designed to identify compromised client endpoints initiating connections to this specific C2 domain, aiding in the detection and mitigation of malicious RAT activities.
+  Updated-Date: '2026_11_05'
+'2072636':
+  Created-Date: '2026_11_05'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: de5378f16bf45c2fb0870568db9a3bae
+  Ruleset: ETOPEN
+  Summary: This rule detects communication attempts with a command-and-control domain associated with the TryNodeRAT malware in TLS traffic. It specifically looks for connections where the Server Name Indication (SNI) in the TLS handshake contains the domain ".relays-cf.workersp.dev". TryNodeRAT is a type of Remote Access Trojan (RAT) that can compromise Windows systems, allowing attackers to control infected endpoints remotely. The rule identifies such suspicious activity within established connections directed towards external networks.
+  Updated-Date: '2026_11_05'
+'2072637':
+  Created-Date: '2026_11_05'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: 2a1bd91c90f7c03580fa14b42f8d7122
+  Ruleset: ETOPEN
+  Summary: This rule detects DNS queries for the domain "img3.centovinipolska.com," which is associated with command-and-control (CnC) activity related to the TA569 threat actor and the Gholoader malware. Gholoader is a loader that uses compromised websites to deliver its payloads, often as part of the SocGholish malware family. This detection is particularly relevant for systems or networks where web browsers are used and is indicative of potential trojan activity targeting client endpoints through exploit kits and compromised websites.
+  Updated-Date: '2026_11_05'
+'2072638':
+  Created-Date: '2026_11_05'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: 1c3fb22bf54e1584a33b4934bd53e1e4
+  Ruleset: ETOPEN
+  Summary: This rule detects communication with a command and control domain related to the Gholoader malware, specifically when the domain "img3.centovinipolska.com" is observed in the Server Name Indication (SNI) field of a TLS handshake. The Gholoader malware is associated with the SocGholish attack campaign and is known for its trojan activity, targeting client endpoints by leveraging compromised websites. This detection occurs when traffic is directed from an internal network to an external network and is part of an established session towards a server.
+  Updated-Date: '2026_11_05'
 '2100110':
   Created-Date: '2024_08_07'
   Custom-Edited: false
