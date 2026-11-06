@@ -191786,10 +191786,10 @@
   Created-Date: '2024_08_07'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: 9793ed0540c106cb4f468af05c1b3514
+  Rule-Body-Hash: c69ba3d27dd76435e243919a79f26813
   Ruleset: ETOPEN
-  Summary: This rule detects an attempt to exploit a remote code execution vulnerability in Netgear DGN2200 routers, identified as CVE-2017-6077. The attack involves sending a POST request to the "/ping.cgi" URI with a specified "Referer" header from "/DIAG_diag.htm" and checks if the request body contains the parameter "ping_IPAddr=" followed by suspicious characters indicative of a potential exploit. This vulnerability can allow attackers to execute arbitrary commands on the affected router, targeting IoT environments.
-  Updated-Date: '2026_11_05'
+  Summary: This rule detects an attempted remote code execution (RCE) exploit targeting the Netgear DGN2200 router, associated with the vulnerability CVE-2017-6077. It monitors HTTP POST requests to the "/ping.cgi" URI, specifically looking for injection patterns like semicolons or newline characters in the "ping_IPAddr" parameter within the request body. This pattern is indicative of command injection attempts aimed at gaining unauthorised control over the router's settings or operations through exposed APIs.
+  Updated-Date: '2026_11_06'
 '2027094':
   Created-Date: '2024_08_07'
   Custom-Edited: false
@@ -217042,10 +217042,10 @@
   Created-Date: '2024_08_07'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: 601fe80a561b61eb293b4af41a169f7b
+  Rule-Body-Hash: 0c26c76765adb10e321bedceb9aeb57f
   Ruleset: ETOPEN
-  Summary: This rule detects an attempted remote code execution exploitation targeting Netis WF2419 routers, specifically version 2.2.36123, by leveraging a vulnerability identified as CVE-2019-19356. The detection is triggered when an HTTP GET request is made to the "/cgi-bin-igd/netcore_set.cgi" URI with specific parameters within the request body that are typically used for this exploit, facilitating unauthorized administrative control over the device.
-  Updated-Date: '2025_09_19'
+  Summary: This rule detects an attempt to exploit a remote code execution vulnerability, identified as CVE-2019-19356, in the Netis WF2419 router firmware version 2.2.36123. The attack vector involves sending crafted HTTP GET requests to the target device's `/cgi-bin-igd/netcore_set.cgi` endpoint. The payload within the request contains potentially malicious commands that exhibit command injection patterns, such as specific shell metacharacters. This rule aims to identify unauthorized administrative access attempts, potentially compromising the security of the network equipment.
+  Updated-Date: '2026_11_06'
 '2030279':
   Created-Date: '2024_08_06'
   Custom-Edited: false
@@ -554194,10 +554194,10 @@
   Created-Date: '2026_10_16'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: 5279a5958b99d9cda7e226d08cfa9adc
+  Rule-Body-Hash: ad123af23e2054f4845a81c0f70ad313
   Ruleset: ETOPEN
-  Summary: This rule detects DNS queries for domains ending with ".akedo.gg," which are associated with AdFection malware. AdFection is known to exploit targeted advertisements as a vector for spyware, affecting web browsers, Android, and iOS devices. The detection is aimed at client endpoints and is intended to identify potential spyware activity by monitoring DNS lookups that suggest the exploitation of ad technology.
-  Updated-Date: '2026_10_16'
+  Summary: This rule detects DNS queries for the domain ".akedo.gg", which is associated with the AdFection malware. AdFection is known for transforming targeted advertising mechanisms into tools for distributing spyware. The rule applies to DNS lookups originating from within a home network to any external network, indicating potential spyware activity targeting client endpoints such as web browsers and mobile devices running Android and iOS.
+  Updated-Date: '2026_11_06'
 '2072491':
   Created-Date: '2026_10_16'
   Custom-Edited: false
@@ -555226,10 +555226,10 @@
   Created-Date: '2026_11_03'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: dc859d18df07e02ade5b3af04d40c3f4
+  Rule-Body-Hash: 952a9c52fc1eb9be09bf3627bd7e3420
   Ruleset: ETOPEN
-  Summary: This rule detects HTTP requests from internal networks to external networks targeting domains ending with ".9dejulio.gob.ar," indicating a potential use of dynamic DNS services associated with this domain. It evaluates established server-bound HTTP traffic for these specific hostnames, which may be indicative of command and control activities utilizing dynamic resolution as defined by certain MITRE tactics and techniques.
-  Updated-Date: '2026_11_03'
+  Summary: This rule detects HTTP requests to domains ending with ".9dejulio.gob.ar," which pertains to the use of dynamic DNS services, possibly indicating malicious activity such as command and control communications. The domain reference is linked to dynamic DNS, which can be misused by attackers to obscure their activities and maintain control over compromised systems.
+  Updated-Date: '2026_11_06'
 '2072620':
   Created-Date: '2026_11_03'
   Custom-Edited: false
@@ -555330,10 +555330,10 @@
   Created-Date: '2026_11_04'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: 2d8da6396b6db1123b7fb798aee00828
+  Rule-Body-Hash: 9f74e1f5420285ca7a5c94bacb3a52d7
   Ruleset: ETOPEN
-  Summary: This rule detects an attempted command injection vulnerability targeting Zyxel networking equipment via a POST request to the specific endpoint "adv_remotelog.asp". The detection focuses on the "syslogServerAddr" parameter within the request body, which may contain potentially malicious characters like semicolons, new lines, backticks, pipes, or dollar signs. The vulnerability is identified as CVE-2017-18369 and poses a risk to devices by potentially allowing unauthorized command execution through the crafted HTTP request.
-  Updated-Date: '2026_11_04'
+  Summary: This rule detects an attempt to exploit a command injection vulnerability in Zyxel devices through the adv_remotelog.asp script, specifically targeting the syslogServerAddr parameter. The attack involves sending a crafted HTTP POST request to potentially execute unauthorized commands. This vulnerability is identified as CVE-2017-18369 and can be leveraged for initial access or unauthorized administrative actions on the affected networking equipment.
+  Updated-Date: '2026_11_06'
 '2072633':
   Created-Date: '2026_11_05'
   Custom-Edited: false
@@ -555370,18 +555370,18 @@
   Created-Date: '2026_11_05'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: 2a1bd91c90f7c03580fa14b42f8d7122
+  Rule-Body-Hash: ff6e86fe468d51309729006e6799fde5
   Ruleset: ETOPEN
-  Summary: This rule detects DNS queries for the domain "img3.centovinipolska.com," which is associated with command-and-control (CnC) activity related to the TA569 threat actor and the Gholoader malware. Gholoader is a loader that uses compromised websites to deliver its payloads, often as part of the SocGholish malware family. This detection is particularly relevant for systems or networks where web browsers are used and is indicative of potential trojan activity targeting client endpoints through exploit kits and compromised websites.
-  Updated-Date: '2026_11_05'
+  Summary: This rule detects DNS queries that are indicative of communication with a Command-and-Control (C2) server associated with Gholoader, a delivery mechanism linked to malicious campaigns. Specifically, it looks for DNS lookups involving the domain "img3.centovinipolska.com." Gholoader is often employed by threat actors in the TA569 group to deliver additional malware by exploiting compromised websites, and it is part of larger exploit kits such as SocGholish. The detection targets DNS activity that suggests a connection to this infrastructure, often used to further malicious objectives on client endpoints.
+  Updated-Date: '2026_11_06'
 '2072638':
   Created-Date: '2026_11_05'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: 1c3fb22bf54e1584a33b4934bd53e1e4
+  Rule-Body-Hash: 6cd6d2b89931feda52c5d1a50785ab33
   Ruleset: ETOPEN
-  Summary: This rule detects communication with a command and control domain related to the Gholoader malware, specifically when the domain "img3.centovinipolska.com" is observed in the Server Name Indication (SNI) field of a TLS handshake. The Gholoader malware is associated with the SocGholish attack campaign and is known for its trojan activity, targeting client endpoints by leveraging compromised websites. This detection occurs when traffic is directed from an internal network to an external network and is part of an established session towards a server.
-  Updated-Date: '2026_11_05'
+  Summary: This rule detects attempts to connect to a malicious command and control (C2) server associated with the Gholoader malware, identified as part of the TA569 threat actor's activities. It triggers when a TLS request is made to the domain "img3.centovinipolska.com" in the Server Name Indication (SNI) header. This domain is linked to the SocGholish malware family, a suite of malicious software often delivered through compromised websites and used to execute various exploits on client endpoints.
+  Updated-Date: '2026_11_06'
 '2100110':
   Created-Date: '2024_08_07'
   Custom-Edited: false
