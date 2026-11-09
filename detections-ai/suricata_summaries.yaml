@@ -246242,10 +246242,10 @@
   Created-Date: '2024_08_07'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: 374d7329260cbe8e2dc65bda89372eba
+  Rule-Body-Hash: 03a0ca30035115516611465355a7e0d8
   Ruleset: ETOPEN
-  Summary: This rule detects an exploit attempt targeting Microsoft OMI (Open Management Infrastructure) Remote Code Execution vulnerability identified as CVE-2021-38647. It triggers on HTTP POST requests to the "/wsman" URI with a content type of "application/soap+xml" and specific patterns in the request body, such as "<p:ExecuteScript" and "<p:Script>". The rule is designed to capture unauthorized attempts to execute scripts, leveraging this vulnerability, which could lead to remote code execution on vulnerable servers.
-  Updated-Date: '2025_09_10'
+  Summary: This rule detects an exploit attempt targeting the Microsoft Open Management Infrastructure (OMI) for remote code execution, identified as CVE-2021-38647. The detection checks for an HTTP POST request that contains specific characteristics in its headers and body. It looks for the absence of an "Authorization" header and the presence of a content type "application/soap+xml" in the request to the server. Additionally, it searches for a script execution pattern within the SOAP content, which may indicate an attempt to execute unauthorized scripts on the server. This vulnerability allows attackers to execute arbitrary code on affected systems, posing a security risk to servers using Microsoft OMI.
+  Updated-Date: '2026_11_09'
 '2033953':
   Created-Date: '2024_08_07'
   Custom-Edited: false
@@ -246370,10 +246370,10 @@
   Created-Date: '2024_08_07'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: 68913cf023f74f6b5578e8ff2db3451f
+  Rule-Body-Hash: cd10fa5df7fc832bedd964818577fe8e
   Ruleset: ETOPEN
-  Summary: This rule detects an exploit attempt targeting Microsoft OMI (Open Management Infrastructure), specifically for remote code execution vulnerabilities identified as CVE-2021-38647. The exploit occurs when a client sends a specially crafted HTTP POST request to a server endpoint at "/wsman" without HTTP "Authorization" headers and uses the "application/soap+xml" content type. The request body includes elements such as "<p:ExecuteShellCommand>" and "<p:command>", which signal an attempt to execute unauthorized shell commands on the target server. This vulnerability is notable for affecting Microsoft Azure environments, and it allows attackers to execute arbitrary code on vulnerable systems.
-  Updated-Date: '2025_09_09'
+  Summary: This rule detects attempts to exploit a remote code execution vulnerability in Microsoft OMI (Open Management Infrastructure), specifically targeting CVE-2021-38647. It monitors established HTTP connections directed to a server, identifying suspicious POST requests with a content type of "application/soap+xml" that include specific SOAP XML elements indicative of an attempt to execute shell commands. The rule is designed to identify exploit attempts where authorization headers are absent, potentially signifying unauthorized access. This vulnerability could allow an attacker to execute arbitrary commands on the targeted server, posing a significant security risk.
+  Updated-Date: '2026_11_09'
 '2033969':
   Created-Date: '2024_08_07'
   Custom-Edited: false
@@ -251122,10 +251122,10 @@
   Created-Date: '2024_08_07'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: fe70571a42c910eb6b3ed1a3a6af8c9a
+  Rule-Body-Hash: e0542b5e27d17761b2c77377ed7026a4
   Ruleset: ETOPEN
-  Summary: This rule detects potential exploitation activity targeting Zoho ManageEngine ServiceDesk through a POST request to the "/RestAPI/ImportTechnicians" endpoint, which may indicate an attempt to exploit CVE-2021-44077. The rule specifically looks for a POST method HTTP request with a request body containing the string "filename=\"msiexec.exe\"". This activity is associated with a known vulnerability that allows unauthorized access and could be indicative of an initial access attempt via the exploitation of a public-facing application.
-  Updated-Date: '2025_01_31'
+  Summary: This rule detects potential exploitation activity targeting Zoho ManageEngine ServiceDesk through the use of the vulnerability CVE-2021-44077. This vulnerability involves a POST request to the "/RestAPI/ImportTechnicians" URI, with a request body containing specific parameters indicative of the exploit attempt, such as "name=\"theFile\"" and "filename=". The rule monitors established connections to the server for these patterns, which are associated with unauthorized administrative operations. The activity is noted as part of a broader alert issued by CISA, highlighting its significance in identifying potential exploitation of this public-facing application.
+  Updated-Date: '2026_11_09'
 '2034578':
   Created-Date: '2024_08_06'
   Custom-Edited: false
@@ -284714,10 +284714,10 @@
   Created-Date: '2024_08_07'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: 2dd99cb4af7b3befeca65fd173b8a0d8
+  Rule-Body-Hash: c206b1654ff35135fdcf0a793304aa55
   Ruleset: ETOPEN
-  Summary: This rule detects an attempted remote code execution vulnerability targeting D-Link devices, specifically associated with CVE-2022-26258. The rule identifies HTTP POST requests that are directed to a specific URI ("/get_set.ccp") and contain a request body starting with "ccp_act=set&old_ip=". The attack pattern involves downloading a file via the `wget` command followed by changing file permissions using "chmod 777". Additionally, it checks for a parameter relating to "dlink&lanHostCfg_AlwaysBroadcast_". This attack is linked to exploit activities that could potentially allow unauthorized remote access to vulnerable D-Link devices.
-  Updated-Date: '2025_09_02'
+  Summary: This rule detects an attempted remote code execution on D-Link devices, specifically exploiting the vulnerability identified as CVE-2022-26258. It monitors HTTP POST requests directed to servers within a specified network, focusing on requests that target the "/get_set.ccp" URI and include the parameter "ccp_act=set" in the HTTP request body. The rule is designed to identify potentially malicious command injection patterns within these requests, which could indicate an attempt to exploit the vulnerability. This exploitation attempt can lead to unauthorized control over the affected D-Link device, presenting a significant security threat.
+  Updated-Date: '2026_11_09'
 '2038782':
   Created-Date: '2024_08_07'
   Custom-Edited: false
@@ -378514,10 +378514,10 @@
   Created-Date: '2024_08_06'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: aaeb410641afa0435bd94b9112f4ea2b
+  Rule-Body-Hash: bf52bb4fbf8f43ea20ee4bacdc416f50
   Ruleset: ETOPEN
-  Summary: This rule detects an unauthenticated remote code execution (RCE) attempt targeting Jenkins servers through a specific HTTP POST request pattern, associated with the vulnerability CVE-2024-23897. The rule triggers on established connections directed to a server when a HTTP POST method is used, specifically targeting a URI that begins with "/cli?remoting=". It further inspects the request body for particular byte sequences within specified byte ranges. This detection is associated with attempts to gain unauthorized administrative access to the Jenkins server via exploitation of publicly facing applications, categorized under the MITRE ATT&CK Initial Access tactic and the Exploit Public-Facing Application technique.
-  Updated-Date: '2025_01_31'
+  Summary: This rule detects an attempt to exploit an unauthenticated remote code execution (RCE) vulnerability in Jenkins, identified as CVE-2024-23897. The detection triggers when an established HTTP POST request targets a server, specifically looking for a URI that starts with "/cli?remoting=". Additionally, the request body must contain specific patterns, including a byte sequence "|00|" and the "@" character within close proximity, suggesting an exploit attempt. Jenkins is automation software used for building, testing, and deploying applications, and this rule aims to identify malicious activities targeting known vulnerabilities in Jenkins that could compromise server security.
+  Updated-Date: '2026_11_09'
 '2050518':
   Created-Date: '2024_08_06'
   Custom-Edited: false
@@ -441858,10 +441858,10 @@
   Created-Date: '2024_12_23'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: 929af3be05b469ef8ecbdb8bd157ad40
+  Rule-Body-Hash: 16be6cf1158da09170eedcae2f5bd6a3
   Ruleset: ETOPEN
-  Summary: This rule detects an attempted remote code execution vulnerability through template path injection in Craft CMS, identified as CVE-2024-56145. The detection is triggered by a specific GET request URI designed to exploit this vulnerability by injecting a URL path (`ftp://`) via the `templatesPath` parameter. Craft CMS is a popular content management system, and exploitation of this vulnerability could allow attackers to execute arbitrary code on a target web server, posing significant security risks.
-  Updated-Date: '2024_12_23'
+  Summary: This rule detects attempts to exploit a remote code execution (RCE) vulnerability in Craft CMS, specifically by targeting a template path injection flaw identified as CVE-2024-56145. The detection involves monitoring HTTP traffic for malicious URIs that contain a specific pattern related to manipulating the templatesPath to point to an FTP location. This indicates an attempted administrative action on a web server running Craft CMS, potentially allowing attackers to execute arbitrary code.
+  Updated-Date: '2026_11_09'
 '2058437':
   Created-Date: '2024_12_23'
   Custom-Edited: false
@@ -455242,10 +455242,10 @@
   Created-Date: '2025_02_17'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: 5ed547d0a5ad75da066ee7175df60a23
+  Rule-Body-Hash: 144a9daf454a6df0881ee504032ecd9f
   Ruleset: ETOPEN
-  Summary: This rule detects an authenticated HTTP command injection vulnerability in Zyxel DSL Customer Premises Equipment (CPE), identified as CVE-2024-40890. It monitors for HTTP POST requests directed to the endpoint "/pages/tabFW/disagnostic-general.cgi" which contain specific patterns in the request body that signify an attempt to exploit this vulnerability. The vulnerability can potentially allow an attacker to execute arbitrary commands on the affected networking equipment, impacting the security and operation of the devices.
-  Updated-Date: '2025_02_21'
+  Summary: This rule detects an attempt to exploit a command injection vulnerability in Zyxel DSL CPE devices, specifically targeting the authenticated HTTP interface. The vulnerability, identified as CVE-2024-40890, involves sending a maliciously crafted HTTP POST request to the endpoint "/pages/tabFW/disagnostic-general.cgi". Attackers can inject unauthorized commands by manipulating the request body parameter "diagAddr". The rule triggers on established connections with traffic directed to a server, identifying a request structured to exploit this vulnerability.
+  Updated-Date: '2026_11_09'
 '2060110':
   Created-Date: '2025_02_17'
   Custom-Edited: false
@@ -502562,10 +502562,10 @@
   Created-Date: '2025_12_05'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: ed94f6ba58e741e6099ff2f93ae4a835
+  Rule-Body-Hash: b39fb6e7007ca9345522ed19fe95c86e
   Ruleset: ETOPEN
-  Summary: This rule detects an exploit attempt targeting React Server Components via React2Shell, aiming to access unsafe flight protocol properties. The attack is identified by inspecting HTTP POST requests to server applications and looks for specific headers and content types associated with the exploit. It checks for multipart/form-data content and searches for patterns that indicate unauthorized attempts to manipulate properties like `__proto__`, `constructor`, or `Module`, which are related to potential security vulnerabilities, specifically CVE-2025-55182. The rule is designed to catch these attacks on servers running Next.js or React, with SSL decryption enabled when needed.
-  Updated-Date: '2026_05_01'
+  Summary: This rule detects an exploit attempt targeting React Server Components by identifying unauthorized access through the unsafe Flight Protocol Property. It specifically aims to uncover a vulnerability in Next.js and React applications known as React2Shell, as described in CVE-2025-55182. The rule monitors HTTP POST requests directed to a server, looking for particular patterns in the "multipart/form-data" request headers and body content. It checks for specific obfuscation tactics associated with property access, such as the use of "__proto__", "constructor", or "Module", within potentially malicious payloads. The detection helps mitigate the risk of web application attacks by identifying these exploitative behaviors targeting servers.
+  Updated-Date: '2026_11_09'
 '2066028':
   Created-Date: '2025_12_05'
   Custom-Edited: false
@@ -530266,10 +530266,10 @@
   Created-Date: '2026_06_02'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: 3cc687c9dc76f21e4cdff7890efb0ed1
+  Rule-Body-Hash: 2a4987655f476ac9666a78d520fdf862
   Ruleset: ETOPEN
-  Summary: This rule detects DNS queries for the domain "careerpulsynk.xyz," which is associated with phishing activities. The detection is based on the presence of this specific domain in the DNS query, and it is designed to identify attempts to access a potentially malicious site used for social engineering attacks. The rule targets the initial access phase of an attack, indicating the potential use of this domain for phishing, thereby posing a significant threat to client endpoints.
-  Updated-Date: '2026_06_02'
+  Summary: This rule detects DNS queries to the domain "careerpulsynk.xyz," which is associated with phishing activities. The rule is designed to identify potential social engineering attacks targeting client endpoints across various versions of Windows operating systems. The creation date and update indicate ongoing monitoring, and the context ties this activity to initial access techniques typically used in phishing schemes.
+  Updated-Date: '2026_11_09'
 '2069493':
   Created-Date: '2026_06_02'
   Custom-Edited: false
@@ -554986,10 +554986,10 @@
   Created-Date: '2026_10_30'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: fc87f98cabc1bd2a7b0dca07e85569c0
+  Rule-Body-Hash: 98bf6940154a4c43f5b7c7232ec9ddc1
   Ruleset: ETOPEN
-  Summary: This rule detects the use of a known malicious domain, "krionificatronikal.com," during an encrypted TLS session. It triggers when the Server Name Indication (SNI) field in the TLS handshake matches this domain, indicating potential trojan activity as the traffic is directed to a risky external network.
-  Updated-Date: '2026_10_30'
+  Summary: This rule detects potential malicious activity by identifying connections to the domain "krionificatronikal.com" through the TLS Server Name Indication (SNI) field. The rule is designed to monitor established connections from internal networks to external destinations, flagging them when the specified suspicious domain is detected in the communication, indicating possible involvement with malware activity, such as a trojan.
+  Updated-Date: '2026_11_09'
 '2072590':
   Created-Date: '2026_10_30'
   Custom-Edited: false
@@ -555106,10 +555106,10 @@
   Created-Date: '2026_10_30'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: 0e3e23b68ba6ed867db11d4e23d12cd3
+  Rule-Body-Hash: bd94485856d432ee41729f0092bbd3ce
   Ruleset: ETOPEN
-  Summary: This rule detects DNS lookup requests for a domain associated with the RedHive malware, specifically targeting queries involving the ".mops.to" domain. RedHive is a malware family involved in command and control activities, and this detection aims to identify infected clients attempting to communicate with potentially malicious servers. The rule is intended to trigger an alert when such suspicious domain requests are observed, indicating possible compromise of the client's endpoint.
-  Updated-Date: '2026_10_30'
+  Summary: This rule detects DNS queries associated with the RedHive malware by identifying requests for domains ending with ".mops.to". RedHive is part of a malware family that uses certain domain patterns for command-and-control activities, where compromised endpoints communicate with malicious servers. The rule functions by examining DNS query records and targeting these specific domain requests, highlighting an attempt by malware to establish communication, potentially for further malicious activities.
+  Updated-Date: '2026_11_09'
 '2072605':
   Created-Date: '2026_10_30'
   Custom-Edited: false
@@ -555354,10 +555354,10 @@
   Created-Date: '2026_11_05'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: 44fddefd3f5b97890169a08ab5193f48
+  Rule-Body-Hash: 8ff2ce0e924c49821f542c98badc9164
   Ruleset: ETOPEN
-  Summary: This rule detects communication attempts with a TryNodeRAT command and control (C2) domain within the Server Name Indication (SNI) field of TLS traffic. It monitors for ".relays-connects.com" as the domain, indicating potential malware activity. TryNodeRAT is a remote access trojan that targets Windows operating systems, allowing attackers unauthorized access and control over infected systems. The rule is designed to identify compromised client endpoints initiating connections to this specific C2 domain, aiding in the detection and mitigation of malicious RAT activities.
-  Updated-Date: '2026_11_05'
+  Summary: This rule detects communication attempts with a command and control (CnC) server associated with the TryNodeRAT malware by identifying the presence of the domain "relays-connects.com" in the TLS Server Name Indication (SNI) field of outgoing connections from a monitored network to external networks. These connections are typically established by infected client endpoints running Windows operating systems, which could potentially indicate the presence of the TryNodeRAT remote access trojan on the network.
+  Updated-Date: '2026_11_09'
 '2072636':
   Created-Date: '2026_11_05'
   Custom-Edited: false
@@ -555382,6 +555382,126 @@
   Ruleset: ETOPEN
   Summary: This rule detects attempts to connect to a malicious command and control (C2) server associated with the Gholoader malware, identified as part of the TA569 threat actor's activities. It triggers when a TLS request is made to the domain "img3.centovinipolska.com" in the Server Name Indication (SNI) header. This domain is linked to the SocGholish malware family, a suite of malicious software often delivered through compromised websites and used to execute various exploits on client endpoints.
   Updated-Date: '2026_11_06'
+'2072639':
+  Created-Date: '2026_11_09'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: 145c2ba1eb9a2c22d4119fed12eb535f
+  Ruleset: ETOPEN
+  Summary: This rule detects TCP SYN packets sent from an external network to an internal network that include the IPv4 Record Route option. The detection is relevant due to a vulnerability identified as CVE-2026-98432, which involves a remote use-after-free (UAF) scenario in the Linux kernel's TCP stack. This vulnerability can potentially lead to unauthorized administrative actions on affected Linux systems.
+  Updated-Date: '2026_11_09'
+'2072640':
+  Created-Date: '2026_11_09'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: 3ab570407baaac8382cddcefd07e35b6
+  Ruleset: ETOPEN
+  Summary: This rule detects attempts to exploit a vulnerability in Linux kernels related to a remote use-after-free (UAF) condition within the TCP stack, identified by CVE-2026-98432. It looks for TCP SYN packets featuring the IPv4 Timestamp option originating from an external network and directed towards an internal network, indicating potential unauthorized administrative access attempts.
+  Updated-Date: '2026_11_09'
+'2072641':
+  Created-Date: '2026_11_09'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: ba8a6217e0d567d9e797a80cb57884bf
+  Ruleset: ETOPEN
+  Summary: This rule detects TCP SYN packets with the IPv4 Loose Source and Record Route (LSRR) option, which can be used for traffic analysis or network reconnaissance. The rule is triggered by packets from external networks targeting internal systems that have not yet established a connection. The use of the LSRR option allows an attacker to specify an explicit path for packet routing, often bypassing security measures. This technique is noteworthy for those monitoring unusual network behavior or potential reconnaissance activities.
+  Updated-Date: '2026_11_09'
+'2072642':
+  Created-Date: '2026_11_09'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: 17faa2971652eb1bf4a62709683be95f
+  Ruleset: ETOPEN
+  Summary: This rule detects an attempt to establish a TCP connection using a SYN packet that includes the IPv4 Source Route option (SSRR), which is a potential indication of reconnaissance activity. It focuses on incoming traffic to the protected network that is not part of an established connection and is intended for servers. The rule leverages the identification of SSRR options in IP headers to identify suspicious routing behavior that might be used to bypass security controls or study the network topology.
+  Updated-Date: '2026_11_09'
+'2072643':
+  Created-Date: '2026_11_09'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: 922070dead58446cea7df43c3b532921
+  Ruleset: ETOPEN
+  Summary: This rule detects the presence of a compromised eMudhra Intermediate Certificate Authority (CA) TLS certificate in network traffic. It monitors established TLS connections directed towards clients within the internal network and checks the certificate issuer details for the specific common name "CN=EM DV TLS CA - G3B." This activity can indicate potential misuse of a compromised CA certificate, which poses security risks to encrypted communications.
+  Updated-Date: '2026_11_09'
+'2072644':
+  Created-Date: '2026_11_09'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: eddb8f43c10d72640c9dfc588a7577ab
+  Ruleset: ETOPEN
+  Summary: This rule detects the presence of a TLS certificate issued by the compromised eMudhra Intermediate Certificate Authority (CA) in network traffic directed towards internal networks. Specifically, it identifies the certificate with the issuer common name "CN=EM DV TLS CA - G3C," which suggests potential misuse of digital identity due to CA compromise. This can indicate a security issue, as compromised CA certificates can be exploited for malicious activities such as man-in-the-middle attacks or unauthorized data decryption in established TLS sessions.
+  Updated-Date: '2026_11_09'
+'2072645':
+  Created-Date: '2026_11_09'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: 1d13e05066a1524fa9192173ff4acf7e
+  Ruleset: ETOPEN
+  Summary: This rule detects the presence of a TLS certificate issued by a compromised eMudhra Intermediate Certificate Authority, specifically one with the issuer common name "EM OV TLS CA - G3B." It triggers when such a certificate is observed in TLS traffic directed to a client within the protected network, indicating potential misuse of a legitimate certificate, which could compromise secure communications.
+  Updated-Date: '2026_11_09'
+'2072646':
+  Created-Date: '2026_11_09'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: 510c27d190dfca57fa2afe728d4230ef
+  Ruleset: ETOPEN
+  Summary: This rule detects the presence of a TLS certificate issued by a compromised eMudhra Intermediate Certificate Authority (CA) being transmitted within an established TLS connection to a client. The specific certificate issuer name checked is "CN=EM OV TLS CA - G3C". Detecting such certificates can help identify potentially unauthorized or malicious use of compromised digital certificates.
+  Updated-Date: '2026_11_09'
+'2072647':
+  Created-Date: '2026_11_09'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: b9d8784091cac083b0257deedc2eaaff
+  Ruleset: ETOPEN
+  Summary: This rule detects the presence of a TLS certificate issued by a potentially compromised eMudhra Intermediate Certificate Authority (CA), identified as "CN=EM EV TLS CA - G3B". The rule triggers when encrypted traffic is detected from an external network to the protected home network, as it involves certificates from this specific CA, which may indicate suspicious or malicious activity due to the issuer's compromised status.
+  Updated-Date: '2026_11_09'
+'2072648':
+  Created-Date: '2026_11_09'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: 560bfc147f0211be665726c342e68409
+  Ruleset: ETOPEN
+  Summary: This rule detects the usage of a compromised eMudhra Intermediate Certificate Authority (CA) TLS certificate. It identifies traffic where the issued certificate has a Common Name (CN) match for "EM EV TLS CA - G3C" in the certificate issuer field, which may indicate a security incident involving compromised certificate credentials.
+  Updated-Date: '2026_11_09'
+'2072649':
+  Created-Date: '2026_11_09'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: 25b5540a44352ff698f3cc5632bcd0e2
+  Ruleset: ETOPEN
+  Summary: This rule detects an attempted command injection exploit targeting the Zyxel Telnet service, specifically related to a vulnerability identified as CVE-2024-40891. It monitors established TCP connections directed toward the internal network on port 23, which is used by Telnet, looking for shell command patterns such as "cat," "ifconfig," "ping," among others, that could signify malicious activity. This pattern of exploitation often ends with a path related to "/usr/" indicating an attempt to gain unauthorized administrative access to network servers that use Zyxel devices.
+  Updated-Date: '2026_11_09'
+'2072650':
+  Created-Date: '2026_11_09'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: ad6b83f78866c1a830f527f3b1f4967b
+  Ruleset: ETOPEN
+  Summary: 'This rule detects an HTTP GET request indicative of a generic cryptocurrency miner payload. It targets outbound traffic where the request''s URI matches a specific pattern, potentially indicating malicious command or control activity. The request is noteworthy for utilizing "WindowsPowerShell" as the User-Agent and includes specific HTTP headers, such as "Connection: Keep-Alive," arranged in a particular sequence. The rule employs pattern matching to identify these characteristics, suggesting an attempt to harness computing resources illicitly for mining cryptocurrency.'
+  Updated-Date: '2026_11_09'
+'2072651':
+  Created-Date: '2026_11_09'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: 498d287c34d4eab502ecd220d3360389
+  Ruleset: ETOPEN
+  Summary: This rule detects DNS queries targeting domains with the suffix ".irm.st," which is associated with cryptocurrency mining activity. The presence of such queries could indicate that a system within the monitored network is attempting to communicate with a crypto miner domain, possibly suggesting the presence of unauthorized crypto mining software or malware.
+  Updated-Date: '2026_11_09'
+'2072652':
+  Created-Date: '2026_11_09'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: dfa501b401f3c296d406f63b7379089c
+  Ruleset: ETOPEN
+  Summary: This rule detects network traffic that involves a TLS Server Name Indication (SNI) containing the domain ".irm.st", which is associated with crypto mining activity. The rule applies to traffic from the internal network to external networks and is designed to identify potential crypto miner domains during established TLS connections. This detection is significant in identifying malicious activity related to unauthorized coin mining operations.
+  Updated-Date: '2026_11_09'
+'2072653':
+  Created-Date: '2026_11_09'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: b46425453b0b526d2703ef87ff9bf7ba
+  Ruleset: ETOPEN
+  Summary: This rule detects inbound network traffic containing a potential payload associated with a generic cryptocurrency mining operation. It triggers on HTTP responses directed to the internal network and looks for specific command sequences indicative of malicious mining activity. The rule examines the HTTP response body for particular strings, such as "Test-CommandExists," "Get-PropValue," and a sequence related to direct execution of an executable without certain PowerShell commands. This detection suggests that the mining malware is targeting Windows client systems.
+  Updated-Date: '2026_11_09'
 '2100110':
   Created-Date: '2024_08_07'
   Custom-Edited: false
