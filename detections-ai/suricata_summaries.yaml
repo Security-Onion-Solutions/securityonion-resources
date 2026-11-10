@@ -239266,18 +239266,18 @@
   Created-Date: '2024_08_06'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: 3207538f812c277147185fce347dfb8d
+  Rule-Body-Hash: a0211fbfbc5bf3ca3072ac0f731c4aa7
   Ruleset: ETOPEN
-  Summary: This rule detects an attempted exploitation of the Laravel framework through a Remote Code Execution vulnerability identified as CVE-2021-3129. The rule specifically targets HTTP POST requests with a URI path of "/_ignition/execute-solution/" and a request body containing certain patterns indicative of an attack. These patterns include encoded strings related to the Ignition component used by Laravel for error handling and solutions that can be manipulated to execute unauthorized code. This vulnerability allows attackers to potentially execute arbitrary code on affected systems, posing a significant threat to web servers running the Laravel framework.
-  Updated-Date: '2025_01_31'
+  Summary: This rule detects an attempt to exploit a remote code execution vulnerability in Laravel, specifically targeting CVE-2021-3129. The attack involves sending a crafted HTTP POST request to the server's "/_ignition/execute-solution" URI, attempting to clear logs by exploiting the Laravel Ignition component. The request contains specific patterns in the body, such as encoded references to the "Facade\Ignition\Solutions\MakeViewVariableOptionalSolution" class and a potential PHP inclusion attempt, indicating an attempt to execute malicious code on the server.
+  Updated-Date: '2026_11_10'
 '2033080':
   Created-Date: '2024_08_07'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: 4ac93a4a925276335b3279ad21fb5177
+  Rule-Body-Hash: b1f10249f70ac9f38cb3c9e78ca27eff
   Ruleset: ETOPEN
-  Summary: This rule detects an attempt to exploit a remote code execution vulnerability in Laravel applications, specifically targeting CVE-2021-3129. It triggers on incoming HTTP POST requests to the "/_ignition/execute-solution/" URI path, when the request body contains specific patterns associated with the Laravel Ignition "MakeViewVariableOptionalSolution" and references a "phar" protocol. This vulnerability allows attackers to execute arbitrary code on the server, posing a significant security risk to web applications using the affected Laravel components.
-  Updated-Date: '2025_01_31'
+  Summary: This rule detects an attempt to exploit a remote code execution vulnerability known as CVE-2021-3129 in the Laravel framework. The attack is characterized by an HTTP POST request to a URI containing "/_ignition/execute-solution", indicating an attempt to execute a solution within the Laravel application. The request body includes obfuscated content related to PHP Phar archives and specific patterns associated with the Facade Ignition component. This vulnerability can allow an attacker to execute arbitrary code on the server, targeting applications using the Laravel framework.
+  Updated-Date: '2026_11_10'
 '2033081':
   Created-Date: '2024_08_07'
   Custom-Edited: false
@@ -503954,10 +503954,10 @@
   Created-Date: '2025_12_10'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: fa0db2744b28f3a7320caceb4e0e6558
+  Rule-Body-Hash: 1d0d969dd3b40015a1bf65caaa649a56
   Ruleset: ETOPEN
-  Summary: This rule detects an attempted authentication bypass vulnerability in Zoho ManageEngine ServiceDesk Plus software, identified as CVE-2021-37415. The rule triggers when a specific HTTP request, targeting the "/app/" URI and containing "/api/v3/requests" in the header, is made without an authorization header. This attack could allow unauthorized users to gain access to sensitive functions of the ServiceDesk Plus application.
-  Updated-Date: '2025_12_12'
+  Summary: This rule detects an attempt to exploit an authentication bypass vulnerability (CVE-2021-37415) in Zoho ManageEngine ServiceDesk Plus. It monitors HTTP traffic directed towards certain networks or servers in an established connection to identify requests targeting the "/api/v3/" URI. The rule uses specific patterns within the URL to match potential bypass scenarios and checks for the absence of an authorization header in incoming requests. This vulnerability can allow unauthorized access, posing a risk to web applications running this software.
+  Updated-Date: '2026_11_10'
 '2066202':
   Created-Date: '2025_12_10'
   Custom-Edited: false
@@ -529634,10 +529634,10 @@
   Created-Date: '2026_05_27'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: 6516110ccd9a8f3f7199e1f30db1e260
+  Rule-Body-Hash: 5b052513f441929f1eae4b7e215c2e08
   Ruleset: ETOPEN
-  Summary: This rule detects DNS queries for the domain "crystalrocketlab.top," which is associated with exploit kit activity. Exploit kits are tools used by attackers to deliver malware by exploiting vulnerabilities on a victim's computer, often through malicious or compromised websites. This rule is particularly relevant to identifying initial access attempts through drive-by compromise tactics, where users could unknowingly visit a malicious site, leading to their browser being used to exploit vulnerabilities automatically.
-  Updated-Date: '2026_05_27'
+  Summary: This rule detects DNS lookup queries for the domain "crystalrocketlab.top", which is associated with exploit kit activity. Exploit kits are malicious tools used by attackers to deliver malware through compromised websites, often as part of a drive-by compromise attack. This specific rule is designed to recognize attempts to connect to a known malicious domain used in such attacks.
+  Updated-Date: '2026_11_10'
 '2069414':
   Created-Date: '2026_05_27'
   Custom-Edited: false
@@ -552346,10 +552346,10 @@
   Created-Date: '2026_09_28'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: 1d06cf93b7abbb0d8bfe5e8405607fd7
+  Rule-Body-Hash: 3a6affb43ba32f2c0544b872cafd1877
   Ruleset: ETOPEN
-  Summary: This rule detects an attempted authenticated remote code execution vulnerability in the IBM Langflow software, specifically targeting the "/api/v1/custom_component" endpoint. It is designed to match HTTP requests that include an "Authorization" header with a Bearer token and look for certain code patterns in the request body. The rule triggers when the request body contains the key "code" followed by specific content suggesting malicious code import attempts, indicative of exploitation of CVE-2026-17633. This rule is highly confident and focused on identifying web application attacks to obtain initial access by exploiting a public-facing application.
-  Updated-Date: '2026_09_28'
+  Summary: This rule detects a potential exploit targeting IBM Langflow OSS through an authenticated remote code execution vulnerability, identified as CVE-2026-17633. The detection is triggered when an HTTP request is made to the "/api/v1/custom_component" URI within an established connection to the server. The request must include an authorization header with a bearer token and a request body containing a code block. Specifically, the rule looks for code execution attempts that involve unauthorized imports within the provided code snippet. The vulnerability could allow attackers to execute arbitrary code on the server by leveraging improperly sanitized inputs.
+  Updated-Date: '2026_11_10'
 '2072260':
   Created-Date: '2026_09_28'
   Custom-Edited: false
@@ -555066,10 +555066,10 @@
   Created-Date: '2026_10_30'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: 454a525f683914f18becb6e50938bad4
+  Rule-Body-Hash: 9ad4d7516fd2810c95a3b27d7b6e785a
   Ruleset: ETOPEN
-  Summary: This rule detects DNS queries for domains associated with the RedHive malware, specifically targeting domains ending with ".gitrm.cfd". RedHive is known for its capabilities in establishing command and control (C2) communications, which are common techniques used by attackers to interact with compromised systems. The rule is applicable to various Windows operating systems and focuses on protecting client endpoints from C2 activities linked to RedHive malware.
-  Updated-Date: '2026_10_30'
+  Summary: This rule detects DNS queries for domains associated with the RedHive malware, specifically those ending with ".gitrm.cfd". RedHive is a type of malware that potentially impacts Windows operating systems, including versions from Windows XP through Windows 10 and Server editions on both 32-bit and 64-bit platforms. The rule is designed to identify command and control activities that facilitate communication between compromised endpoints and the attacker's infrastructure. The detection involves monitoring DNS lookups to capture suspicious domain activity that matches known patterns of RedHive's command and control mechanisms.
+  Updated-Date: '2026_11_10'
 '2072600':
   Created-Date: '2026_10_30'
   Custom-Edited: false
@@ -555170,10 +555170,10 @@
   Created-Date: '2026_11_03'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: fe080a28efe3c354f71b95f20ae5b155
+  Rule-Body-Hash: 60757d2093d6e34a3a0fdfd623b52c89
   Ruleset: ETOPEN
-  Summary: This rule detects potential communication with a Redhive malware staging domain over TLS by identifying the Server Name Indication (SNI) value "gitrm.sbs" in traffic originating from an internal network and directed outward. Such activity is associated with command and control (C2) operations, indicating potential malicious behavior and communication attempts with external servers for purposes such as remote management or data exfiltration.
-  Updated-Date: '2026_11_03'
+  Summary: This rule detects communication attempts using TLS where the Server Name Indication (SNI) field contains the domain "gitrm.sbs" at the end. This activity is associated with the Redhive malware, which uses this domain as a staging point in its command and control infrastructure, indicating an attempt to establish a connection to a potentially malicious external server for further malicious operations.
+  Updated-Date: '2026_11_10'
 '2072613':
   Created-Date: '2026_11_03'
   Custom-Edited: false
@@ -555202,10 +555202,10 @@
   Created-Date: '2026_11_03'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: dedf546063926ffdb23ea7f98aecb407
+  Rule-Body-Hash: bd3b6282666023d7704c84a30e042ef1
   Ruleset: ETOPEN
-  Summary: This rule detects DNS queries to domains ending with ".chiemtinhviet.com," which are associated with dynamic DNS services. Dynamic DNS is often used for illicit purposes, such as enabling malicious actors to maintain control over infected systems by providing a constantly updated DNS entry pointing to their command and control servers. The rule is informative and focuses on identifying such queries to recognize potential command and control communications using dynamic DNS techniques.
-  Updated-Date: '2026_11_03'
+  Summary: This rule detects DNS queries for domains ending in ".chiemtinhviet.com," indicative of potential interactions with Dynamic DNS services linked to this domain. These services could be used for command and control activities, leveraging dynamic resolution techniques that might facilitate malicious operations or communications.
+  Updated-Date: '2026_11_10'
 '2072617':
   Created-Date: '2026_11_03'
   Custom-Edited: false
@@ -555258,10 +555258,10 @@
   Created-Date: '2026_11_03'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: 9bd0cf1d76d3c650b9f1d13cc8430ee2
+  Rule-Body-Hash: fbc671d6d2f49b8f96e9cde74709ea85
   Ruleset: ETOPEN
-  Summary: This rule detects a DNS lookup for a command and control (C2) domain associated with the TA569 malware campaign, specifically targeting the Gholoader malware, which is part of the SocGholish malware family. The domain involved is "atl-ut.cannabisrootshub.com," indicating possible malicious activity attempting to exploit a client endpoint through the domain. Gholoader is known for being used by cybercriminals to distribute additional malware and execute various attacks on compromised systems.
-  Updated-Date: '2026_11_03'
+  Summary: This rule detects a DNS query to a specific domain associated with the malware Gholoader used by the threat actor group TA569. The domain "atl-ut.cannabisrootshub.com" in the DNS lookup is indicative of command-and-control (CnC) activity related to the SocGholish malware family. This behavior is typically linked to trojan and exploit kit activities, potentially targeting client endpoints and indicating a compromised website scenario. The detection has a high confidence level and significant impact given its major signature severity.
+  Updated-Date: '2026_11_10'
 '2072624':
   Created-Date: '2026_11_03'
   Custom-Edited: false
@@ -555362,10 +555362,10 @@
   Created-Date: '2026_11_05'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: de5378f16bf45c2fb0870568db9a3bae
+  Rule-Body-Hash: cb49a8134b75124515e4a946a1b9219a
   Ruleset: ETOPEN
-  Summary: This rule detects communication attempts with a command-and-control domain associated with the TryNodeRAT malware in TLS traffic. It specifically looks for connections where the Server Name Indication (SNI) in the TLS handshake contains the domain ".relays-cf.workersp.dev". TryNodeRAT is a type of Remote Access Trojan (RAT) that can compromise Windows systems, allowing attackers to control infected endpoints remotely. The rule identifies such suspicious activity within established connections directed towards external networks.
-  Updated-Date: '2026_11_05'
+  Summary: This rule detects communication with a command and control (CnC) domain associated with the TryNodeRAT malware in Transport Layer Security (TLS) Server Name Indication (SNI) traffic. Specifically, it identifies connections to domains ending with ".relays-cf.workersp.dev," which indicates potential TryNodeRAT activity. TryNodeRAT is a type of Remote Access Trojan (RAT) that infects client endpoints, allowing attackers to remotely control compromised systems, potentially leading to unauthorized data access or manipulation.
+  Updated-Date: '2026_11_10'
 '2072637':
   Created-Date: '2026_11_05'
   Custom-Edited: false
@@ -555502,6 +555502,30 @@
   Ruleset: ETOPEN
   Summary: This rule detects inbound network traffic containing a potential payload associated with a generic cryptocurrency mining operation. It triggers on HTTP responses directed to the internal network and looks for specific command sequences indicative of malicious mining activity. The rule examines the HTTP response body for particular strings, such as "Test-CommandExists," "Get-PropValue," and a sequence related to direct execution of an executable without certain PowerShell commands. This detection suggests that the mining malware is targeting Windows client systems.
   Updated-Date: '2026_11_09'
+'2072654':
+  Created-Date: '2026_11_10'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: ba9f78ab76475ec6fb5c60a40db8e643
+  Ruleset: ETOPEN
+  Summary: This rule detects a DNS query for the domain "ritzytaxypigefow.pw," which is associated with command and control (CnC) activity related to the Win32/Lumma Stealer malware. Lumma Stealer is known for its data theft capabilities, often used by attackers to exfiltrate sensitive information from infected systems. The detection focuses on the presence of this specific domain in DNS lookups, indicating potential malware communication as part of a command and control tactic.
+  Updated-Date: '2026_11_10'
+'2072655':
+  Created-Date: '2026_11_10'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: dffb82f64714d7e59d65048408fa1d25
+  Ruleset: ETOPEN
+  Summary: This rule detects communication attempts from a network to a domain related to the Lumma Stealer malware, indicated by the presence of the domain "ritzytaxypigefow.pw" in the TLS Server Name Indication (SNI) field. The Lumma Stealer is a type of malware designed to steal sensitive information from infected systems. The rule triggers when the specific domain is observed in an established TLS session directed to a server, suggesting potential command and control activities. The rule is part of efforts to identify and mitigate threats involving information-stealing malware.
+  Updated-Date: '2026_11_10'
+'2072656':
+  Created-Date: '2026_11_10'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: 257cce2c207c49aca607377f6c12ac46
+  Ruleset: ETOPEN
+  Summary: 'This rule detects an inbound HTTP request to a web server that uses Brotli compression and is sent with the "application/octet-stream" content type. Brotli compression is indicated by the presence of "content-encoding: br" in the HTTP headers. The rule is related to a potential security vulnerability that could lead to remote code execution, with further details available through an associated CVE and a blog post discussing the exploit.'
+  Updated-Date: '2026_11_10'
 '2100110':
   Created-Date: '2024_08_07'
   Custom-Edited: false
