@@ -553458,10 +553458,10 @@
   Created-Date: '2026_10_09'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: 7a8e73070f5b84120dde86d3753a1bbc
+  Rule-Body-Hash: 924545b8f7146e051c7bd63105ee0872
   Ruleset: ETOPEN
-  Summary: This rule detects an attempted command injection attack targeting the MeiG specific application via the SetRemoteAccessCfg function. The attack utilizes a vulnerability identified as CVE-2026-36356 and is executed when a specially crafted HTTP POST request is sent to the "/action/SetRemoteAccessCfg" URI. The request contains an improperly validated "password" parameter, which may include delimiter characters to introduce unauthorized commands. This vulnerability could potentially allow attackers to gain administrative access or execute commands on the affected network equipment.
-  Updated-Date: '2026_10_09'
+  Summary: This rule detects an attempted command injection attack targeting the "SetRemoteAccessCfg" functionality in MeiG devices, specifically via a manipulation of the "password" parameter. The exploit involves sending a crafted HTTP POST request to the "/action/SetRemoteAccessCfg" URI path, which may include malicious characters intended to exploit a vulnerability identified as CVE-2026-36356. This vulnerability could potentially allow an attacker to gain unauthorized access to networking equipment running vulnerable MeiG software by executing arbitrary commands.
+  Updated-Date: '2026_11_11'
 '2072399':
   Created-Date: '2026_10_09'
   Custom-Edited: false
@@ -553962,10 +553962,10 @@
   Created-Date: '2026_10_16'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: c4d8f47242a35466c194c13b230ef0d4
+  Rule-Body-Hash: e0371ddf8e2a499d1cca8b606c870ec5
   Ruleset: ETOPEN
-  Summary: This rule detects DNS queries for the domain "tracookiepixel.xyz," which is associated with the AdFection malware family. AdFection is known to exploit targeted advertising mechanisms and potentially deliver spyware. This detection specifically targets DNS lookups involving web browsers, Android, and iOS client endpoints, indicating an effort to monitor and prevent connections to known malicious infrastructure. The rule is designed for use at the network perimeter with a focus on mitigating minor threats related to spyware distribution through advertising channels.
-  Updated-Date: '2026_10_16'
+  Summary: This rule detects DNS queries for the domain "tracookiepixel.xyz," which is associated with the AdFection malware. AdFection is known for turning targeted ads into a delivery mechanism for spyware, impacting web browsers, Android, and iOS client endpoints. The rule is intended for perimeter deployment and carries a high-confidence level, indicating a minor severity threat related to advertising exploitation and potential spyware activity.
+  Updated-Date: '2026_11_11'
 '2072462':
   Created-Date: '2026_10_16'
   Custom-Edited: false
@@ -555338,10 +555338,10 @@
   Created-Date: '2026_11_05'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: cf1466199e743544ec4f9d1ef8cb20f0
+  Rule-Body-Hash: 879ce4359ad85f19668b7bed740dfd33
   Ruleset: ETOPEN
-  Summary: This rule detects DNS queries associated with the TryNodeRAT malware, specifically targeting domains that end with ".relays-connects.com". TryNodeRAT is a Remote Access Trojan (RAT) known for its ability to establish a command and control (C2) channel with infected endpoints. The rule is designed to identify attempts by infected systems to resolve C2 domains, which are a key communication link between the malware and its operators. The rule applies to DNS traffic involving any host within the network.
-  Updated-Date: '2026_11_05'
+  Summary: This rule detects DNS queries to the domain "relays-connects.com," which is associated with TryNodeRAT malware's command and control (C2) activities. TryNodeRAT is a type of Remote Access Trojan that allows an attacker to remotely control an infected machine. This specific domain is indicative of potential communications with the malware's infrastructure, thereby signaling possible compromise or malicious activity involving this RAT. The rule applies to network traffic from internal hosts and is engineered to identify indicators of this RAT on client endpoints running various Windows operating systems.
+  Updated-Date: '2026_11_11'
 '2072634':
   Created-Date: '2026_11_05'
   Custom-Edited: false
@@ -555526,6 +555526,38 @@
   Ruleset: ETOPEN
   Summary: 'This rule detects an inbound HTTP request to a web server that uses Brotli compression and is sent with the "application/octet-stream" content type. Brotli compression is indicated by the presence of "content-encoding: br" in the HTTP headers. The rule is related to a potential security vulnerability that could lead to remote code execution, with further details available through an associated CVE and a blog post discussing the exploit.'
   Updated-Date: '2026_11_10'
+'2072657':
+  Created-Date: '2026_11_11'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: b6f85f6075adebb12846e055184bafe4
+  Ruleset: ETOPEN
+  Summary: This rule detects DNS queries for the domain "livestveblog.live," which is associated with Win32/Lumma Stealer, a type of malware. Lumma Stealer is known for its functionality to steal sensitive data from infected systems, operating as part of command and control (CnC) communication. The detection focuses on traffic originating from client endpoints, identifying potential instances of this malware attempting to communicate with its control servers, with a high level of confidence.
+  Updated-Date: '2026_11_11'
+'2072658':
+  Created-Date: '2026_11_11'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: b6aec231a32935ef40559ab2e46128d7
+  Ruleset: ETOPEN
+  Summary: This rule detects traffic involving a known domain associated with Win32/Lumma Stealer malware, a malicious software designed to steal sensitive information. It specifically monitors TLS connections where the Server Name Indication (SNI) contains "livestveblog.live". This alert is triggered when a TLS session is established from the internal network to any external server, indicating possible command and control communication associated with the Lumma Stealer.
+  Updated-Date: '2026_11_11'
+'2072659':
+  Created-Date: '2026_11_11'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: 25e5d63c4c430fc81e0aec9132b769ed
+  Ruleset: ETOPEN
+  Summary: This rule detects DNS queries for the domain "spideri.pics," which is associated with the Win32/Lumma Stealer malware. The Lumma Stealer is a type of malicious software designed to steal sensitive information, and this rule identifies communication attempts with its command and control (CnC) infrastructure through DNS lookups. The detection is case-insensitive, ensuring it matches any variation in query capitalization, to facilitate broader detection of potential malicious activity.
+  Updated-Date: '2026_11_11'
+'2072660':
+  Created-Date: '2026_11_11'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: 1f9b17f9850e2f0471c455c1bbef20f7
+  Ruleset: ETOPEN
+  Summary: This rule detects network traffic attempting to establish a TLS connection to the domain "spideri.pics", which is associated with the Win32/Lumma Stealer malware. Lumma Stealer is a malicious software designed to steal sensitive information from compromised computers. The rule triggers when a connection is initiated from a protected network to this domain, indicating potential command-and-control activities related to the malware. The detection is based on the presence of "spideri.pics" within the Server Name Indication (SNI) field of the TLS handshake, and this activity is identified as part of the tactic and technique for command-and-control using application layer protocols.
+  Updated-Date: '2026_11_11'
 '2100110':
   Created-Date: '2024_08_07'
   Custom-Edited: false
