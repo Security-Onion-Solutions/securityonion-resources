@@ -457842,338 +457842,338 @@
   Created-Date: '2025_03_03'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: 8be8b3d0fe1e61992d5d59037faed5d2
+  Rule-Body-Hash: c0ffdf19bb2e8e504a1f054e7a3af1dd
   Ruleset: ETOPEN
-  Summary: This rule detects malicious SSL certificates associated with the PolarEdge Botnet, particularly targeting Internet of Things (IoT) devices. The detection mechanism is triggered when a TLS connection with a specific certificate issuer, identified as "dcnd|40|qqqqc.com," is established with a client. The PolarEdge Botnet represents a security threat as it uses SSL certificates to facilitate command and control communication over encrypted channels. This activity is classified under the MITRE ATT&CK framework as employing the "Command and Control" tactic and "Encrypted Channel" technique.
-  Updated-Date: '2025_07_25'
+  Summary: This rule detects TLS traffic from an external network to a home network that contains an SSL certificate issuer associated with the PolarEdge botnet, specifically using the domain "dcnd|40|qqqqc.com". The PolarEdge botnet is linked to malicious activities such as IoT device exploitation and is capable of functioning as a residential proxy service. The rule targets a command-and-control tactic using encrypted channels in IoT environments, indicative of trojan activity. The intent is to identify and mitigate threats associated with this botnet's communication methods.
+  Updated-Date: '2026_11_12'
 '2060437':
   Created-Date: '2025_03_03'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: 2ec4e24473de6835e1a81c6181864760
+  Rule-Body-Hash: 70d5e1b377bc31cc27576b815adf2cd7
   Ruleset: ETOPEN
-  Summary: This rule detects a malicious SSL certificate issued by an entity identified as "EE|40|gmail," which is associated with the PolarEdge botnet. The PolarEdge botnet is an IoT-focused malware network, and this rule is triggered when observing SSL traffic from an external network to a home network where the SSL certificate issuer matches this pattern. The detection typically occurs over an established encrypted channel, allowing identification of potential threats related to command and control activities.
-  Updated-Date: '2025_07_25'
+  Summary: This rule detects the use of a malicious SSL certificate associated with the PolarEdge botnet, which is known for targeting Internet of Things (IoT) devices. The rule specifically identifies traffic where the issuer of the SSL certificate contains the string "EE|40|gmail". PolarEdge is part of an IoT botnet operation that utilizes SSL certificates for encrypted command and control (C&C) communication. This activity aligns with tactics and techniques such as encrypted channels for C&C, as described in MITRE's command and control category. The rule aims to identify and prevent malicious communications attempting to exploit residential proxy services within networks.
+  Updated-Date: '2026_11_12'
 '2060438':
   Created-Date: '2025_03_03'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: 9d395cadbf801813e962126ab7d66733
+  Rule-Body-Hash: d5874e0fc80c04b71b7440d4ac0b91ff
   Ruleset: ETOPEN
-  Summary: This rule detects the usage of a malicious SSL certificate associated with the PolarEdge Botnet, specifically noted as "M3." PolarEdge is identified as an IoT botnet, highlighting its involvement in malicious activities targeting Internet of Things devices. The detection leverages an established TLS connection from an external network towards a home network client, focusing on the SSL certificate issuer field containing the string "|40|gmail.com." This rule is associated with command and control tactics, utilizing encrypted communication channels as a technique for maintaining malicious operations.
-  Updated-Date: '2025_07_25'
+  Summary: This rule detects the presence of a malicious SSL certificate associated with the PolarEdge botnet, specifically targeting IoT devices. The rule is triggered when a TLS connection towards the client in an established session contains an SSL certificate issued with "tr|40|gmail.com". The PolarEdge botnet is known for utilizing compromised IoT devices for malicious activities, including acting as a residential proxy, which can be leveraged for obfuscating malicious traffic. The rule indicates a high confidence level of the botnet's command and control activity through encrypted channels, mapping to MITRE's techniques and tactics for command and control via encrypted channels.
+  Updated-Date: '2026_11_12'
 '2060439':
   Created-Date: '2025_03_03'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: 59e4570f10fa4685dc4ae96c10859fed
+  Rule-Body-Hash: 99df686b06933fd088a75e7b6461eb64
   Ruleset: ETOPEN
-  Summary: This rule detects communication involving a malicious SSL certificate associated with the PolarEdge botnet, specifically targeting Internet of Things (IoT) devices. The rule examines established TLS traffic from external networks to internal networks and looks for an SSL certificate issuer containing "vviw@gmail.com." PolarEdge is a botnet known for exploiting IoT devices, and this detection helps identify its command and control activities via encrypted channels.
-  Updated-Date: '2025_07_25'
+  Summary: This rule detects the presence of a malicious SSL certificate linked to the PolarEdge botnet, particularly identifying when the certificate issuer contains the string "vviw@gmail.com". PolarEdge is recognized as an IoT botnet known for malicious command and control activities. The detection is triggered for network traffic flowing from an external network to a home network, specifically in an established connection directed to the client side. This activity is indicative of potential Trojan activity as the malicious SSL certificate is associated with residential proxy services used in botnet operations. The rule aims to identify and mitigate threats involving encrypted channels used for command and control by the PolarEdge malware family.
+  Updated-Date: '2026_11_12'
 '2060440':
   Created-Date: '2025_03_03'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: 2b340aafaa1d8b8dc46a225ef0795d4d
+  Rule-Body-Hash: 7f602b46b8a4864fc80f70ff1ce095e9
   Ruleset: ETOPEN
-  Summary: This rule detects an attempt to install the PolarEdge webshell, which is associated with malware activities, by targeting servers with CGI scripts. It identifies HTTP requests made to a server within the targeted network where the Uniform Resource Identifier (URI) starts with "/cgi-bin/" and includes certain patterns indicative of a PolarEdge webshell installation attempt, such as specific encoded sequences in the HTTP headers and URL parameters. PolarEdge is an IoT botnet known for exploiting public-facing applications, posing a risk to networking equipment.
-  Updated-Date: '2025_03_03'
+  Summary: This rule detects an attempt to install the PolarEdge Webshell, indicative of malicious activity targeting network equipment through the HTTP protocol. It specifically recognizes requests to a web server's CGI-BIN directory, looking for certain exploit files with names beginning with "config" or "config_mirror." The rule triggers when the HTTP request includes specific patterns in the URI and headers, such as encoded gzip content indicative of a command being executed. The PolarEdge malware is known for its use in IoT botnets, often exploiting publicly accessible applications to gain initial access, with potential impacts on residential proxy services.
+  Updated-Date: '2026_11_12'
 '2060441':
   Created-Date: '2025_03_03'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: d2b716461747e2cdc52168383ba32944
+  Rule-Body-Hash: 84a4d41857d574e9f8ebcd06731bac95
   Ruleset: ETOPEN
-  Summary: 'This rule detects potential PolarEdge webshell activity targeting IoT devices by examining HTTP traffic directed toward the server. Specifically, it triggers on requests for the "/cgi-bin/userLogin.cgi" URI containing headers with specific strings like "PASSHASH: " and "XCMD: ". The activity is indicative of malicious webshell exploitation attempts, associated with the PolarEdge malware family, which is known for hijacking networking equipment to further its botnet activities. The detection strategy focuses on plaintext communication to identify unauthorized lateral movement or remote service exploitation within a network.'
-  Updated-Date: '2025_03_03'
+  Summary: 'This rule detects activity associated with the PolarEdge web shell, a type of malware targeting IoT devices, specifically networking equipment. It triggers when an HTTP connection is established towards a server with requests including the URI pattern "/cgi-bin/userLogin.cgi" and specific HTTP headers containing the strings "PASSHASH: " and "XCMD: ". PolarEdge is involved in lateral movement, exploiting remote services, and is linked to residential proxy services.'
+  Updated-Date: '2026_11_12'
 '2060442':
   Created-Date: '2025_03_03'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: da1db5753d3c9c30b04a2401d3893ee4
+  Rule-Body-Hash: 336e4664e0b97ab9009f481be141f015
   Ruleset: ETOPEN
-  Summary: This rule detects an attempted installation of the PolarEdge TLS Backdoor, a form of malware targeting IoT devices. The rule triggers when a connection is made using HTTP to a server, specifically when the URI begins with "/cgi-bin/" and contains certain exploit patterns associated with the PolarEdge malware. These patterns include attempts to access or modify files in the "/tmp" directory using tools like "busybox" and "ftpget". The presence of a "Referer" header that includes an HTTPS URL ending with ".htm" is also part of the detection criteria. This activity aligns with known behaviors of the PolarEdge IoT botnet, which seeks to exploit public-facing applications for unauthorized access and control over networked equipment.
-  Updated-Date: '2025_03_03'
+  Summary: This rule detects an attempted installation of the PolarEdge TLS Backdoor malware through HTTP traffic. It targets devices within a network and watches for HTTP requests directed to URLs under "/cgi-bin/" that start with "config.exp?" or "config_mirror.exp?". Additionally, the requests contain specific patterns like "ftpget" and reference to URLs with ".htm" files working as potential command and control or download mechanisms. The rule points towards activities indicative of malicious configuration file transfer or manipulation, aimed at IoT and networking equipment, initiating through web servers, and signifying early stages of unauthorized access. The backdoor installation attempts exploit public-facing applications, and this alert suggests high confidence in spotting an attempted administration action by the PolarEdge malware linked to IoT botnet activities.
+  Updated-Date: '2026_11_12'
 '2060443':
   Created-Date: '2025_03_03'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: 599e3fb2c15d084729f1c2a592764fbf
+  Rule-Body-Hash: 640f0c30dab76b12c5f1ceab28bd1028
   Ruleset: ETOPEN
-  Summary: This rule detects network traffic associated with the PolarEdge malware, specifically focusing on command and control (CnC) check-in activity. The rule triggers when an HTTP request from an internal network to an external network contains URI parameters that match specific patterns, including "ip=", "version=", "module=", "cmd=putdata", "data=BRAND", "PORT=", "PWD=", and "MAC=". These parameters are indicative of PolarEdge's behavior, a botnet targeting Internet of Things (IoT) devices, known for using encrypted channels to communicate with its command and control servers. The activity suggests potential trojan involvement targeting networking equipment.
-  Updated-Date: '2025_03_03'
+  Summary: This rule detects HTTP traffic from internal to external networks that indicates a check-in to a command-and-control server associated with the PolarEdge malware. PolarEdge is linked to an IoT botnet, and the detected traffic contains key identifiers such as "ip", "version", "module", "cmd=putdata", "data=BRAND", "PORT", "PWD", and "MAC" in the URI. This rule highlights communication used by the malware for command and control over compromised devices, particularly targeting IoT and networking equipment.
+  Updated-Date: '2026_11_12'
 '2060444':
   Created-Date: '2025_03_03'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: 3f0c98375ac6f0ffd312231fdd8f4e59
+  Rule-Body-Hash: 1a8ddf8a042630c850167d4f5ebe71c3
   Ruleset: ETOPEN
-  Summary: This rule detects DNS queries for the domain "suiteiol.cc," which is associated with command and control communication for the PolarEdge IoT botnet. PolarEdge is a type of malware that compromises Internet of Things (IoT) devices to create a botnet for malicious activities such as data exfiltration. The rule is designed to identify attempts by infected devices to communicate with the botnet's command and control server, aiding in early detection and mitigation of the botnet's activities. The detection is aimed at safeguarding IoT environments from this particular malware threat.
-  Updated-Date: '2025_11_10'
+  Summary: This rule detects a Domain Name System (DNS) query for the domain "suiteiol.cc," which is associated with the PolarEdge malware. PolarEdge is an Internet of Things (IoT) botnet known to engage in command and control (C2) activities, particularly operating as a residential proxy service. The detection of this domain indicates potential communication with a C2 server, which can be used for data exfiltration or remote control of infected devices.
+  Updated-Date: '2026_11_12'
 '2060445':
   Created-Date: '2025_03_03'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: da7a93148a0b6a0ec2b427843068a825
+  Rule-Body-Hash: e9c24a850bfd1c261ce2c184c6898736
   Ruleset: ETOPEN
-  Summary: This rule detects DNS queries for the domain "longlog.cc," which is associated with the PolarEdge malware, a known IoT botnet. The detection indicates potential command and control (C2) communication, characterized by this domain, as part of the PolarEdge malware operations. The rule targets IoT devices and signifies a command and control tactic, specifically exfiltration over a C2 channel.
-  Updated-Date: '2025_11_10'
+  Summary: This rule detects DNS queries for the domain "longlog.cc," which is associated with the PolarEdge botnet's command and control (CnC) activities. PolarEdge is an Internet of Things (IoT) botnet that utilizes residential proxy services, enabling its operators to mask activities through legitimate residential networks. This detection pertains to malicious communications indicative of botnet-related threats leveraging DNS for exfiltration over C2 channels.
+  Updated-Date: '2026_11_12'
 '2060446':
   Created-Date: '2025_03_03'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: 263d5160f1de8333bcf625294d9929e5
+  Rule-Body-Hash: 30b2ae75c9b5744a121f55f1f6291474
   Ruleset: ETOPEN
-  Summary: This rule detects DNS queries for the domain "aipricadd.top," which is associated with the PolarEdge malware. PolarEdge is an IoT botnet, and the queried domain is used as a command and control (CnC) domain, facilitating communication between infected devices and the botnet's operators. The rule is indicative of potential command and control activity within IoT environments.
-  Updated-Date: '2025_11_10'
+  Summary: This rule detects a DNS query for the domain "aipricadd.top," which is associated with the PolarEdge malware. PolarEdge is an Internet of Things (IoT) botnet characterized by its use of residential proxy services for command and control operations. The detection of such a domain name in DNS traffic can indicate the potential presence of botnet activity attempting to exfiltrate data over a command-and-control channel. The rule aims to identify and mitigate this threat, which poses risks to affected IoT devices by ensuring they do not communicate with this known malicious infrastructure.
+  Updated-Date: '2026_11_12'
 '2060447':
   Created-Date: '2025_03_03'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: b5ca123396082b1e852f35341f567c18
+  Rule-Body-Hash: 8f8b551eb203051c89ddb0c48380a148
   Ruleset: ETOPEN
-  Summary: This rule detects DNS queries associated with the PolarEdge malware, specifically looking for the command-and-control domain "ssofhoseuegsgrfnu.ru". PolarEdge is recognized as an IoT botnet, and this detection aims to identify attempts by infected devices to communicate with their command-and-control infrastructure. The rule is designed to target network traffic for any devices within a specified network, identifying efforts to establish exfiltration channels over the DNS protocol.
-  Updated-Date: '2025_11_10'
+  Summary: This rule detects DNS queries that involve the domain "ssofhoseuegsgrfnu.ru," which is associated with command and control (CnC) activities of the PolarEdge malware. PolarEdge is noted for being an uncovered botnet targeting Internet of Things (IoT) devices and can be used as a residential proxy service, facilitating malicious activities over a network. The rule aims to identify and potentially mitigate threats associated with this malware family by flagging communications with suspicious domains that could indicate an ongoing compromise or exfiltration over a C2 channel.
+  Updated-Date: '2026_11_12'
 '2060448':
   Created-Date: '2025_03_03'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: d8ff1ebf9c1b487f2740dab70b4d6e96
+  Rule-Body-Hash: 8b272a525cfc541f091cfe0ed984e75b
   Ruleset: ETOPEN
-  Summary: This rule detects a DNS query for the domain "hitchil.cc," which is associated with the PolarEdge malware, a type of IoT botnet. PolarEdge is known for using command-and-control (C&C) techniques to facilitate communication between infected devices and its operators. The rule targets potential network traffic involving Internet of Things devices attempting to reach this malicious domain, which may indicate illicit exfiltration activities. The detection focuses on queries of a specific size to enhance accuracy.
-  Updated-Date: '2025_11_10'
+  Summary: This rule detects DNS queries for the domain "hitchil.cc," which is associated with the PolarEdge command and control (CnC) infrastructure. PolarEdge is an IoT botnet that can function as a residential proxy service, enabling malicious actors to exfiltrate data over command and control channels. The detection targets IoT devices within a home network environment, aiming to identify and mitigate potential security threats related to this malware family.
+  Updated-Date: '2026_11_12'
 '2060449':
   Created-Date: '2025_03_03'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: 40493e04e226d56b70919ee5a567a97f
+  Rule-Body-Hash: 69b6d986fb662d090040439f2c4e297d
   Ruleset: ETOPEN
-  Summary: This rule detects DNS queries for the domain "headached.cc," which is associated with the PolarEdge malware. PolarEdge is identified as an Internet of Things (IoT) botnet. The rule flags domain name system lookups that likely indicate communication with a command and control (CnC) server used by this malware to execute command-and-control operations, which are tactics utilized for exfiltration over a C2 channel as outlined by MITRE. The rule targets IoT devices potentially compromised by the PolarEdge botnet, aiming to catch malicious network traffic indicative of this specific malware activity.
-  Updated-Date: '2025_11_10'
+  Summary: This rule detects DNS queries for the domain "headached.cc," which is associated with the PolarEdge malware command and control (CnC) infrastructure. This malware is linked to an IoT botnet, revealing its involvement in residential proxy services. The payload size in the DNS query is 12 bytes, and the detection is case-insensitive. PolarEdge is known for command and control communication, specifically for exfiltration over C2 channels, posing a substantial threat to IoT environments.
+  Updated-Date: '2026_11_12'
 '2060450':
   Created-Date: '2025_03_03'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: b136649ea8d8c5b2ce8f5cb23bf3c42c
+  Rule-Body-Hash: b7a97d5ef2d04251ef4c086f952353fa
   Ruleset: ETOPEN
-  Summary: This rule detects a DNS lookup for the domain "landim.cc", associated with the PolarEdge malware, a type of botnet that targets Internet of Things (IoT) devices. PolarEdge is known for command and control (CnC) activities, which involve the use of identified domains for coordinating and controlling compromised devices. The detection of this specific domain helps identify and mitigate potential exfiltration efforts using CnC channels.
-  Updated-Date: '2025_11_10'
+  Summary: This rule detects a DNS lookup attempt for the domain "landim.cc," which is associated with the PolarEdge malware. PolarEdge is identified as an IoT botnet involved in command and control (C2) communication. The rule triggers when a DNS query contains this specific domain, suggesting potential involvement in malicious activities related to the PolarEdge botnet's operations. The detection is linked to residential proxy services and is marked as having a high confidence level and low performance impact.
+  Updated-Date: '2026_11_12'
 '2060451':
   Created-Date: '2025_03_03'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: 6229395f10b3f6bfeb5fbb80908690bb
+  Rule-Body-Hash: e705cc9eccaa5cafbc0bf34273a527e7
   Ruleset: ETOPEN
-  Summary: This rule detects a DNS query for a domain associated with the PolarEdge malware Command and Control (C2) infrastructure. Specifically, it monitors for queries containing "icecreand.cc," which is known to be linked to the PolarEdge IoT botnet. PolarEdge is a type of malware that targets Internet of Things (IoT) devices to create a botnet capable of executing various cyber attacks. The detection focuses on identifying communication attempts with this specific C2 domain to help mitigate potential exfiltration activities that might occur via this channel.
-  Updated-Date: '2025_11_10'
+  Summary: This rule detects a DNS lookup attempt querying for the domain "icecreand.cc," which is associated with the PolarEdge IoT botnet. PolarEdge is known to exploit devices for use in a command and control (C&C) infrastructure, often functioning as a residential proxy service. This specific rule aims to identify potential C&C communications used by the malware, indicating a possible exfiltration of data over a command-and-control channel. The rule is specifically designed to monitor traffic for signs of this particular domain, which is linked to malicious activity targeting IoT devices.
+  Updated-Date: '2026_11_12'
 '2060452':
   Created-Date: '2025_03_03'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: 34226b2496c7adbce42f1913674cdaec
+  Rule-Body-Hash: 3a30f89ba594c987226389e5ff1be806
   Ruleset: ETOPEN
-  Summary: This rule detects DNS queries to the domain "largeroofs.top," which is associated with the PolarEdge malware, an Internet of Things (IoT) botnet. The detection signifies that there may be a Command and Control (CnC) communication attempt as part of a malicious operation, targeting IoT devices. PolarEdge is known for leveraging IoT devices for malicious activities, and the rule aims to spot an exfiltration over a Command and Control channel, using DNS as a communication method.
-  Updated-Date: '2025_11_10'
+  Summary: This rule detects DNS queries for the domain "largeroofs.top," which is associated with the PolarEdge malware. PolarEdge is an IoT botnet that uses command and control (C&C) domains for communication, often acting as a residential proxy service. The detection is significant as the domain is used for command and control operations, which involve exfiltration over a C2 channel. The presence of such queries may indicate compromise or misuse of IoT devices within a given network.
+  Updated-Date: '2026_11_12'
 '2060453':
   Created-Date: '2025_03_03'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: 394573882542057a5ac7670cf5c645ac
+  Rule-Body-Hash: 83d4ff8310896b6814565fafa17e6ecb
   Ruleset: ETOPEN
-  Summary: This rule detects a DNS query to the domain "asustordownload.com," which is associated with the PolarEdge malware. PolarEdge is an Internet of Things (IoT) botnet that utilizes this domain for command and control (C2) communications, potentially indicating malicious activity.
-  Updated-Date: '2025_11_10'
+  Summary: This rule detects a DNS query for the domain "asustordownload.com," which is associated with the PolarEdge malware, a known IoT botnet. The detection targets command and control (C2) communications used to manage infected devices, potentially turning them into part of a residential proxy network. The presence of this domain in a DNS lookup is indicative of potential malicious activity linked to botnet operations, specifically related to data exfiltration and C2 communication tactics. PolarEdge represents a serious threat, particularly to IoT devices, due to its ability to facilitate large-scale network exploitation.
+  Updated-Date: '2026_11_12'
 '2060454':
   Created-Date: '2025_03_03'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: 418ecff26bcedfdc5985abd21a8ec3f2
+  Rule-Body-Hash: f30524b567346942b46c3d0f7a11379e
   Ruleset: ETOPEN
-  Summary: This rule detects DNS lookup attempts for the domain "gardensc.cc," which is associated with the PolarEdge malware. PolarEdge is an Internet of Things (IoT) botnet, and such a domain in a DNS query suggests potential command and control (C2) communication indicative of malware activity. The rule targets any DNS query to this domain, helping identify potential C2 traffic linked to PolarEdge.
-  Updated-Date: '2025_11_10'
+  Summary: This rule detects a DNS query for the domain "gardensc.cc," which is associated with the PolarEdge malware's command and control (CnC) communication. PolarEdge is identified as an Internet of Things (IoT) botnet, which may utilize this domain for exfiltration activities. The detection note is made in the context of a larger campaign involving residential proxy services that support malicious activities by facilitating network traffic through compromised IoT devices.
+  Updated-Date: '2026_11_12'
 '2060455':
   Created-Date: '2025_03_03'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: dee7595f0a6cd384239f321cc417d552
+  Rule-Body-Hash: fc9bff52e81a9df9c13e6471fd5589f4
   Ruleset: ETOPEN
-  Summary: This rule detects attempts to access a command-and-control (CnC) domain associated with the PolarEdge malware by inspecting DNS queries. PolarEdge is an uncovered IoT botnet known for using specific domains for CnC communication. The rule is triggered by DNS lookups that query the domain "siotherlentsearsitech.shop" and suggests potential communication attempts between compromised IoT devices and the PolarEdge botnet infrastructure. The detection helps identify and mitigate malicious activities involving this threat.
-  Updated-Date: '2025_11_10'
+  Summary: This rule detects a DNS lookup for the domain "siotherlentsearsitech.shop," which is associated with the PolarEdge malware known for controlling command-and-control (C2) infrastructure. PolarEdge is linked to an IoT botnet operation and residential proxy services, posing a major threat severity with high confidence. The activity aligns with exfiltration over command-and-control channels according to MITRE's command and control tactic.
+  Updated-Date: '2026_11_12'
 '2060456':
   Created-Date: '2025_03_03'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: 1af4724a1b3f523b622d00e549e96ea4
+  Rule-Body-Hash: 6fe82b569ec839969f3946324364a8a5
   Ruleset: ETOPEN
-  Summary: This rule detects DNS lookups for the domain "firebasesafer.top," which is associated with the command and control activities of the PolarEdge malware. PolarEdge is an IoT botnet, and the rule is designed to identify attempts by compromised devices to communicate with this domain, indicating potential botnet CnC communication. The signature is specifically targeting exfiltration activities over the C2 channel and highlights the threat within IoT environments.
-  Updated-Date: '2025_11_10'
+  Summary: This rule detects a DNS query for the domain "firebasesafer.top," which is associated with command and control (CnC) activities of the PolarEdge malware. PolarEdge is an IoT botnet that utilizes this domain for its communication infrastructure, facilitating command and control operations over compromised devices. The presence of this domain in network queries indicates potential botnet activity, specifically linked to residential proxy services, posing a significant threat by exfiltrating data over C2 channels. This detection is crucial in identifying and mitigating the influence of the PolarEdge IoT botnet.
+  Updated-Date: '2026_11_12'
 '2060457':
   Created-Date: '2025_03_03'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: 32dfc93de4f098169668f0c489a358b6
+  Rule-Body-Hash: 5d030c9ca77901d44982bcf30d255ef0
   Ruleset: ETOPEN
-  Summary: This rule detects DNS queries to the domain "centrequ.cc," which is associated with the command and control (CnC) infrastructure of the PolarEdge malware. PolarEdge is identified as an Internet of Things (IoT) botnet, and this activity is indicative of efforts to establish communication with or receive commands from a CnC server. The detection aims to identify potentially malicious exfiltration attempts as part of the malware's use of a C2 channel.
-  Updated-Date: '2025_11_10'
+  Summary: This rule detects DNS queries for the domain "centrequ.cc," associated with the PolarEdge malware, which is known for being part of an IoT botnet infrastructure. PolarEdge is a malware family involved in command and control (CnC) activities, typically utilizing residential proxy services to exfiltrate data over C2 channels. The rule effectively recognizes attempts to resolve this domain, highlighting potential malware activity targeting Internet of Things devices.
+  Updated-Date: '2026_11_12'
 '2060458':
   Created-Date: '2025_03_03'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: 838ef4d1cb68775b307c4aec88d4a296
+  Rule-Body-Hash: 84021cf22d87b8d5657d3f7a6ce54100
   Ruleset: ETOPEN
-  Summary: This rule detects DNS queries associated with the command and control (C&C) domain "durianlink.cc" used by the PolarEdge malware, which targets IoT devices. PolarEdge is identified as part of an IoT botnet infrastructure, and the detection focuses on DNS lookups that contain this specific domain, suggesting potential malicious communication activity related to this IoT threat.
-  Updated-Date: '2025_11_10'
+  Summary: This rule detects a DNS lookup for the domain "durianlink.cc," which is associated with the PolarEdge malware's command and control (C2) activity. PolarEdge is known to operate as an Internet of Things (IoT) botnet, possibly utilized as part of a residential proxy service. The detection focuses on identifying traffic indicative of malware communication from infected devices attempting to connect with the botnet's C2 infrastructure. The rule evaluates DNS query data and matches the specific domain name, which is a known indicator of C2 activity for this threat. The intention is to identify and mitigate potential data exfiltration over the C2 channel linked to PolarEdge.
+  Updated-Date: '2026_11_12'
 '2060459':
   Created-Date: '2025_03_03'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: 7234bd85343f1323fbddec6ce626a82d
+  Rule-Body-Hash: 61402fd72b58ed2ea3f347f79664103b
   Ruleset: ETOPEN
-  Summary: This rule detects DNS queries for the domain "logchim.cc," which is associated with command-and-control (C2) activity for the PolarEdge IoT botnet. PolarEdge is known for exploiting Internet of Things (IoT) devices, allowing attackers to control these devices remotely. The rule aims to identify communication attempts with this C2 domain, indicating potential botnet activity involving exfiltration over a C2 channel.
-  Updated-Date: '2025_11_10'
+  Summary: This rule detects a DNS query for the domain "logchim.cc," which is associated with the PolarEdge malware, an uncovered IoT botnet. PolarEdge reportedly uses this domain in its command and control (CnC) communications, classified as an exfiltration over a C2 channel, aligning with MITRE technique T1041. The rule relates to IoT devices being targeted and involves a residential proxy service. It is noted to have a low performance impact and high confidence in detection. The rule addresses potential command and control activities linked to the PolarEdge malware family.
+  Updated-Date: '2026_11_12'
 '2060460':
   Created-Date: '2025_03_03'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: 6066548f2504e9510680a094806e1679
+  Rule-Body-Hash: 1c4eab428b4c261606265e095d673db3
   Ruleset: ETOPEN
-  Summary: This rule detects DNS queries for the domain "nternetd.cc", which is associated with the PolarEdge malware's command and control (C2) infrastructure. PolarEdge is identified as an IoT botnet, posing a threat to IoT devices. The rule aims to identify potential communication attempts between infected devices and the botnet's C2 servers, a key step in executing the exfiltration of data over a command and control channel.
-  Updated-Date: '2025_11_10'
+  Summary: This rule detects a DNS query for the domain "nternetd.cc," which is associated with a command and control (C2) domain used by the PolarEdge malware. PolarEdge is a botnet known to target Internet of Things (IoT) devices. The detection is significant for identifying potential malicious activity related to data exfiltration and command and control communication within IoT environments. The rule is part of efforts to identify and mitigate threats involving malware-controlled residential proxy services.
+  Updated-Date: '2026_11_12'
 '2060461':
   Created-Date: '2025_03_03'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: ceff1a9addad6415641c8dbb7f5f432d
+  Rule-Body-Hash: 14a9afb66de39c9fb36c519dde6d4efe
   Ruleset: ETOPEN
-  Summary: This rule detects TLS traffic containing the domain "suiteiol.cc" in the Server Name Indication (SNI) field, indicative of activity related to the PolarEdge malware. PolarEdge is known for targeting Internet of Things (IoT) devices as part of a botnet infrastructure. This detection is part of efforts to identify and mitigate command-and-control communications, specifically focusing on the exfiltration of data over such channels.
-  Updated-Date: '2025_11_10'
+  Summary: This rule detects network traffic where the Server Name Indication (SNI) in a TLS handshake contains the domain "suiteiol.cc," which is associated with the PolarEdge malware. PolarEdge is an IoT botnet used for malicious activities, including acting as a residential proxy service for command and control operations. The detection helps identify potential exfiltration activities over command and control channels linked to IoT devices.
+  Updated-Date: '2026_11_12'
 '2060462':
   Created-Date: '2025_03_03'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: 10b121524c9c51158fc3371c2b92b9a0
+  Rule-Body-Hash: 4998843e461e334c7982e0313f269d4b
   Ruleset: ETOPEN
-  Summary: This rule detects network traffic to a domain associated with the PolarEdge IoT botnet, specifically when the Server Name Indication (SNI) in a TLS handshake contains "longlog.cc". This indicates a potential command and control communication channel, as PolarEdge is known to exploit IoT devices for malicious activities. The rule is designed to identify and alert on such communication attempts as part of efforts to mitigate and monitor botnet threats.
-  Updated-Date: '2025_11_10'
+  Summary: This rule detects network traffic where a device within the internal network attempts to communicate with an external server using Transport Layer Security (TLS), specifically targeting the domain "longlog.cc" in the Server Name Indication (SNI) field. This activity is associated with the PolarEdge malware, an IoT botnet primarily used for command and control purposes, leveraging residential proxies. The detection is focused on communications originating from established connections directed to an external server, indicating potential exfiltration or C2 channel usage by the malware.
+  Updated-Date: '2026_11_12'
 '2060463':
   Created-Date: '2025_03_03'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: 219352d5819efb45eeb2fb98093fce99
+  Rule-Body-Hash: 281c3ea742d4b691a13f409003e37ed4
   Ruleset: ETOPEN
-  Summary: This rule detects connections involving the PolarEdge IoT botnet by identifying the domain "aipricadd.top" within the Server Name Indication (SNI) field of TLS traffic. PolarEdge is a malware family known for its command and control capabilities, particularly targeting IoT devices. The rule focuses on outbound traffic traveling from internal or home networks to external destinations, leveraging the established TLS connections to identify potential malicious activity linked to this domain.
-  Updated-Date: '2025_11_10'
+  Summary: This rule detects network traffic involving the PolarEdge IoT botnet, specifically targeting TLS sessions where the server name indication (SNI) contains the domain "aipricadd.top". PolarEdge is identified as a malware family leveraging IoT devices for command and control purposes, often used in residential proxy services to exfiltrate data. The rule monitors established connections from a home network to external networks, indicating potential command and control activity associated with the PolarEdge botnet.
+  Updated-Date: '2026_11_12'
 '2060464':
   Created-Date: '2025_03_03'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: 66ecf66cded1ff15aef2b72695369cc0
+  Rule-Body-Hash: de0e7caa6b8aab694d721c71a69e7d79
   Ruleset: ETOPEN
-  Summary: This rule detects network traffic involving the PolarEdge malware, specifically identifying a command and control (C2) domain within TLS Server Name Indication (SNI) fields. The rule matches traffic from an internal network to external networks if the SNI field contains the domain "ssofhoseuegsgrfnu.ru". PolarEdge is a known malware associated with IoT botnets, and the detection of this domain may indicate command and control communication originating from compromised IoT devices. The detection is based on established connections, suggesting an active exfiltration attempt over the identified C2 channel.
-  Updated-Date: '2025_11_10'
+  Summary: This rule detects network traffic to a known domain associated with the PolarEdge IoT botnet, specifically the domain "ssofhoseuegsgrfnu.ru" observed in the TLS Server Name Indication (SNI) during an established connection to a server. PolarEdge is a botnet that targets Internet of Things (IoT) devices, utilizing compromised devices as part of a residential proxy service, which can facilitate covert communication and data exfiltration. The rule focuses on recognizing command and control activities related to this botnet, categorized under the tactic of exfiltrating data over command and control channels.
+  Updated-Date: '2026_11_12'
 '2060465':
   Created-Date: '2025_03_03'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: e484bb86e4a724bc031fd9387716751e
+  Rule-Body-Hash: 91e64ac9b8667c87d713765afa5e42bf
   Ruleset: ETOPEN
-  Summary: This rule detects network traffic that involves a TLS connection from a monitored internal network to an external network where the server name indication (SNI) includes the domain "hitchil.cc." This behavior is associated with the PolarEdge malware, an IoT botnet, and suggests potential command and control (C2) communication with a malicious domain.
-  Updated-Date: '2025_11_10'
+  Summary: This rule detects traffic associated with the PolarEdge IoT botnet by identifying the domain "hitchil.cc" in the Server Name Indication (SNI) field of TLS connections. PolarEdge is known for operating as a residential proxy service, and the presence of this domain suggests potential command and control (C2) communication linked to this malware family. The rule is triggered when traffic matches the specified SNI pattern in established TLS connections going from the internal network to external destinations, indicating potential exfiltration activity over a C2 channel. This detection is critical in monitoring unauthorized or malicious use of Internet of Things devices within a network.
+  Updated-Date: '2026_11_12'
 '2060466':
   Created-Date: '2025_03_03'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: 9509dd4ac20e4ca767ba4b3bc8742272
+  Rule-Body-Hash: 5c7fdee0f38211d142a2b67f738a87d4
   Ruleset: ETOPEN
-  Summary: This rule detects network traffic to a domain associated with the PolarEdge IoT botnet by monitoring for the presence of "headached.cc" in the TLS Server Name Indication (SNI) field. The PolarEdge botnet is known for targeting IoT devices and is linked to command and control activities. The rule is designed to identify potential exfiltration via command and control channels, as part of the adversarial technique outlined by MITRE under the ID T1041.
-  Updated-Date: '2025_11_10'
+  Summary: This rule detects network traffic associated with the PolarEdge IoT botnet by identifying the usage of the domain "headached.cc" within the TLS Server Name Indication (SNI) during an established connection from a home network to an external network. PolarEdge is known for using residential proxy services as part of its command and control infrastructure for potentially malicious activity. The detection is specifically focused on identifying command and control communication, which is crucial for exfiltration activities conducted over the C2 channel.
+  Updated-Date: '2026_11_12'
 '2060467':
   Created-Date: '2025_03_03'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: ddd4ff4c63ea328a13119aca983bae58
+  Rule-Body-Hash: 0167ec291d81f830c55dc513e3bbd23e
   Ruleset: ETOPEN
-  Summary: This rule detects network traffic to an external server that contains the domain "landim.cc" in the TLS Server Name Indication (SNI) field. This activity is associated with the PolarEdge malware, which is identified as an Internet of Things (IoT) botnet. The rule monitors established connections going to the server and triggers an alert when the specific domain is observed, indicating potential command and control communication. The PolarEdge botnet is recognized for its capabilities in exfiltration over command and control channels, aligning with known tactics and techniques for malicious IoT exploitation.
-  Updated-Date: '2025_11_10'
+  Summary: This rule detects network traffic attempting to establish a connection to an external domain identified as "landim.cc" in the TLS Server Name Indication (SNI) field. The domain is associated with the PolarEdge malware, which is an IoT botnet involved in command and control activities. PolarEdge is linked to malicious activities that include exfiltration over command and control channels, commonly exploiting Internet of Things (IoT) devices. The detection is part of efforts to identify and mitigate threats related to residential proxy services and potential data exfiltration attempts.
+  Updated-Date: '2026_11_12'
 '2060468':
   Created-Date: '2025_03_03'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: 6076cb403e9c4d1aa5b58cb69d0cc1bb
+  Rule-Body-Hash: a013dc5347b75ca7b30e43d1db071560
   Ruleset: ETOPEN
-  Summary: This rule detects the use of a specific domain, "icecreand.cc," in the Server Name Indication (SNI) field of TLS traffic, indicating potential communication with the PolarEdge IoT botnet. The rule is focused on identifying established connections from the internal network to external hosts where this domain is observed, suggesting an association with malware command and control activity. PolarEdge is associated with targeting Internet of Things (IoT) devices for malicious purposes.
-  Updated-Date: '2025_11_10'
+  Summary: This rule detects network traffic involving the PolarEdge malware by identifying a specific domain used in its operations. The rule triggers on a Transport Layer Security (TLS) Server Name Indication (SNI) that includes the domain "icecreand.cc," which is associated with the PolarEdge Internet of Things (IoT) botnet. The detection applies to traffic established to external servers and aims to identify potential command and control communication channels used for exfiltration. PolarEdge is known for leveraging residential proxy services in its architecture, posing a threat to IoT devices by facilitating unauthorized access and data exfiltration.
+  Updated-Date: '2026_11_12'
 '2060469':
   Created-Date: '2025_03_03'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: 8ead08c0a5397e55b50820ab5d92d919
+  Rule-Body-Hash: 05c51038578486f3f39045ceed46a102
   Ruleset: ETOPEN
-  Summary: This rule detects network traffic where the Transport Layer Security (TLS) Server Name Indication (SNI) field contains the domain "largeroofs.top." This domain is associated with the PolarEdge malware, an uncovered IoT botnet. The rule is triggered when a device on the protected network attempts to establish a TLS connection with a server using this domain, indicating potential command and control (C2) activity. The detection aligns with efforts to identify exfiltration over C2 channels, which is a known tactic and technique in the realm of cybersecurity threats.
-  Updated-Date: '2025_11_10'
+  Summary: This rule detects network traffic related to the PolarEdge malware family, specifically by identifying the domain "largeroofs.top" in the Server Name Indication (SNI) field of TLS traffic. The rule is set to monitor outbound traffic from the internal network to external servers, looking for an established connection where "largeroofs.top" is present in the TLS SNI value. PolarEdge is associated with an IoT botnet, and this detection is indicative of command and control activity, which is a known method for exfiltration over a C2 channel.
+  Updated-Date: '2026_11_12'
 '2060470':
   Created-Date: '2025_03_03'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: 52cb534182da9da8e597a4712d0c9b18
+  Rule-Body-Hash: 5959a74dd2a2f20e09ec3ee685e5b4bc
   Ruleset: ETOPEN
-  Summary: This rule detects network traffic where a device within the home network communicates with an external network using the "asustordownload.com" domain in the TLS Server Name Indication (SNI) field. This domain is associated with the PolarEdge malware, which targets IoT devices, and this communication indicates possible command-and-control (C2) activity. PolarEdge is known to be part of a botnet infrastructure, and detection of this traffic suggests potential compromise or malicious activity involving IoT devices.
-  Updated-Date: '2025_11_10'
+  Summary: This rule detects network traffic indicating a connection to a known PolarEdge domain through the use of TLS Server Name Indication (SNI) featuring "asustordownload.com". PolarEdge is associated with a botnet that leverages Internet of Things (IoT) devices, and this domain is involved in command and control communications for malicious purposes. The detection is aimed at identifying potential exfiltration activities over a command and control channel within such environments.
+  Updated-Date: '2026_11_12'
 '2060471':
   Created-Date: '2025_03_03'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: 1ce55a7d368170544b719b71a86894df
+  Rule-Body-Hash: 40d0e2961630f38e43bdf3255ce4a4ab
   Ruleset: ETOPEN
-  Summary: This rule detects network traffic associated with the PolarEdge IoT botnet by identifying connections to the suspicious domain "gardensc.cc" in the TLS Server Name Indication (SNI) field. The detection occurs when there is established traffic from internal to external networks, signaling potential command and control activities linked to the PolarEdge malware family, which targets IoT devices.
-  Updated-Date: '2025_11_10'
+  Summary: This rule detects TLS traffic involving the domain "gardensc.cc" within the Server Name Indication (SNI) field, which is associated with the PolarEdge malware family. PolarEdge is a known IoT botnet that may use this domain for command and control (C2) purposes. This detection involves established traffic from a monitored internal network to an external network, indicating possible exfiltration activities over a C2 channel.
+  Updated-Date: '2026_11_12'
 '2060472':
   Created-Date: '2025_03_03'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: 0d6622584d9493e9e5ba4bc40340709e
+  Rule-Body-Hash: 6f5704d8940141e5341092ecf566e6f4
   Ruleset: ETOPEN
-  Summary: This rule detects network traffic that involves a connection to a specific domain, "siotherlentsearsitech.shop," observed in the Server Name Indication (SNI) field of a TLS handshake. The domain is associated with PolarEdge, an IoT botnet that engages in command and control activities. The rule monitors established connections from a home network to external networks to identify potential communications with PolarEdge, a malware identified to exploit IoT devices for malicious purposes. The detection is part of efforts to monitor and mitigate threats through exfiltration over command and control channels.
-  Updated-Date: '2025_11_10'
+  Summary: This rule detects network traffic involving a known malicious domain, "siotherlentsearsitech.shop," within the TLS Server Name Indication (SNI) field of a TLS connection. It is associated with the PolarEdge malware, which is an Internet of Things (IoT) botnet responsible for facilitating a residential proxy service used in command and control, as well as data exfiltration activities. The rule monitors for connections that are established from any source within the monitored network towards any external destination, indicating potential involvement in malicious botnet operations.
+  Updated-Date: '2026_11_12'
 '2060473':
   Created-Date: '2025_03_03'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: 14c712bf19495eec1505b4e40709269d
+  Rule-Body-Hash: e269b461c88c9f9e35763436ee705c24
   Ruleset: ETOPEN
-  Summary: This rule detects potential malicious activity associated with the PolarEdge malware by monitoring for the domain "firebasesafer.top" within the Server Name Indication (SNI) field of TLS connections. PolarEdge is an IoT botnet known for using domain-based command and control (C2) channels to potentially exfiltrate data. The rule triggers when an established connection from an internal network to an external network contains this specific domain, indicating possible involvement in command and control activities related to malware operations.
-  Updated-Date: '2025_11_10'
+  Summary: "This rule detects network traffic where the Transport Layer Security (TLS) Server Name Indication (SNI) field contains the domain \"firebasesafer.top,\" associated with PolarEdge malware activity. PolarEdge is identified as a botnet targeting Internet of Things (IoT) devices, often utilized for residential proxy services. By monitoring TLS traffic for this specific domain in connections from the internal network to external servers, the rule helps identify potential command and control (C2) communications indicative of the malware\u2019s presence."
+  Updated-Date: '2026_11_12'
 '2060474':
   Created-Date: '2025_03_03'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: 76189c038bcf972045ba2b1750534ab8
+  Rule-Body-Hash: 48cd9d9f2358c984d750487d794fa141
   Ruleset: ETOPEN
-  Summary: This rule detects potential communication to a known PolarEdge IoT botnet command and control server by identifying traffic to the domain "centrequ.cc" in the TLS Server Name Indication (SNI) field. PolarEdge is recognized for compromising IoT devices to form botnets for malicious activities. The rule is triggered by outbound traffic from the internal network to external destinations when the specified domain is encountered, indicating possible command and control activity.
-  Updated-Date: '2025_11_10'
+  Summary: This rule detects network traffic indicative of the PolarEdge malware family, specifically identifying communications to the domain "centrequ.cc" within the TLS Server Name Indication (SNI) field. The rule triggers on outbound traffic from a monitored internal network to external destinations once a connection is established. PolarEdge is associated with IoT botnet activities and may utilize affected devices as part of a command-and-control (C2) infrastructure. This detection highlights potential exfiltration over C2 channels using a known malicious domain linked to residential proxy services.
+  Updated-Date: '2026_11_12'
 '2060475':
   Created-Date: '2025_03_03'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: 748bad8be0e9f247631f5dd19870707d
+  Rule-Body-Hash: f0410ca0347d0f72e2386b1926079aa9
   Ruleset: ETOPEN
-  Summary: This rule detects network traffic attempting to establish a connection from the home network to an external network using TLS, specifically targeting instances where the Server Name Indication (SNI) in the TLS handshake contains the domain "durianlink.cc". This domain is associated with the PolarEdge malware, an IoT botnet known for command-and-control communication. The detection is part of efforts to monitor and mitigate potential security threats involving IoT devices being manipulated for malicious purposes, with a focus on preventing unauthorized data exfiltration.
-  Updated-Date: '2025_11_10'
+  Summary: This rule detects network traffic indicating communication with the domain "durianlink.cc" observed in the TLS Server Name Indication (SNI) field, which is associated with the PolarEdge malware. PolarEdge is known to be part of an Internet of Things (IoT) botnet, which uses compromised devices for various malicious activities, such as acting as residential proxies for command-and-control (C2) communications. The rule identifies established connections from internal to external networks where this domain is present, which may indicate potential exfiltration over a C2 channel.
+  Updated-Date: '2026_11_12'
 '2060476':
   Created-Date: '2025_03_03'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: ef10f79daa00c39d7a0c7043df5e5087
+  Rule-Body-Hash: ccbd2d46034fee5b7edb4f4339262131
   Ruleset: ETOPEN
-  Summary: This rule detects network traffic associated with the PolarEdge IoT botnet by identifying TLS server name indication (SNI) fields containing the domain "Logchim.cc" during connections from internal to external networks. PolarEdge is a type of malware that targets Internet of Things (IoT) devices, and the rule is designed to identify potential command and control communication from infected devices attempting to reach this domain.
-  Updated-Date: '2025_11_10'
+  Summary: This rule detects network traffic where a device from the internal network is attempting to establish a connection to an external network using the TLS protocol, specifically looking for the Server Name Indication (SNI) field containing the domain "Logchim.cc." This activity is associated with the PolarEdge malware, which is an IoT botnet leveraging residential proxy services for command and control purposes. The rule identifies potential malicious communications, focusing on exfiltration activities over a command-and-control channel.
+  Updated-Date: '2026_11_12'
 '2060477':
   Created-Date: '2025_03_03'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: 9b9aaf0d706ee045549a7e0802cf6370
+  Rule-Body-Hash: 50393c6a6bef9a331d40edf12c7a8d3d
   Ruleset: ETOPEN
-  Summary: This rule detects communication with a malicious domain associated with the PolarEdge malware, specifically monitoring for the domain "nternetd.cc" in the TLS Server Name Indication (SNI) header. PolarEdge is an IoT botnet malware, and this detection helps identify potential command and control traffic targeting Internet of Things devices, which may be used for data exfiltration or other malicious purposes. The rule triggers when an established connection from a monitored internal network attempts to communicate with this suspicious domain, indicating a potential compromise.
-  Updated-Date: '2025_11_10'
+  Summary: This rule detects traffic that establishes a connection to a server using Transport Layer Security (TLS) and includes a specific domain name, "nternetd.cc," in the Server Name Indication (SNI) extension. The activity is associated with the PolarEdge malware family, which targets Internet of Things (IoT) devices and may operate as a residential proxy service. PolarEdge is linked to command and control activities, suggesting its use in botnet operations to exfiltrate data.
+  Updated-Date: '2026_11_12'
 '2060478':
   Created-Date: '2025_03_03'
   Custom-Edited: false
@@ -465938,10 +465938,10 @@
   Created-Date: '2025_04_11'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: e03c48a3d295da39c75164fda33af760
+  Rule-Body-Hash: ac4ad93d4fbf3d7e8e63db9d5278543d
   Ruleset: ETOPEN
-  Summary: This rule detects unauthorized attempts to execute remote code on a Langflow AI server through a specific code validation endpoint. The attack leverages vulnerabilities outlined in CVE-2025-3248 by targeting the "/api/v1/validate/code" endpoint with a POST request. The rule specifically looks for patterns indicating the use of the "import" command in a manner that suggests exploitation via Python's exec function, a technique that can allow attackers to execute arbitrary code remotely. This type of attack is classified as a web application attack.
-  Updated-Date: '2025_04_11'
+  Summary: This rule detects an attempt to exploit remote code execution vulnerabilities (CVE-2025-3248, CVE-2026-93674) in Langflow AI through unauthenticated access to the code validation endpoint. It triggers on HTTP POST requests to the specific URI path "/api/v1/validate/code" sent to the server, where the HTTP headers lack "authorization" or "cookie" fields, indicating unauthenticated access. The request body should contain a JSON structure with the key "code," and the presence of a Python "import" statement is detected via a regular expression pattern. These conditions highlight potential misuse of the code validation functionality, which can lead to unauthorized execution of arbitrary code on the server.
+  Updated-Date: '2026_11_12'
 '2061449':
   Created-Date: '2025_04_14'
   Custom-Edited: false
@@ -515162,226 +515162,226 @@
   Created-Date: '2026_02_12'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: ab0052b9b7825ce8dd5a584663a0de0b
+  Rule-Body-Hash: aed0d852c4e9c8c73e66f278bd7923e1
   Ruleset: ETOPEN
-  Summary: This rule detects outbound TCP traffic from a home network to external networks on specific ports (1000, 1001, 1002) that is indicative of communication with a command-and-control (C2) server associated with the upStage malware, known for turning home PCs into residential proxy nodes. The detection is triggered by the presence of the string "heroLV" in network traffic, which signals a check-in attempt from the upStage malware. This malicious activity is tied to fake 7-Zip downloads that covertly install malware, transforming the affected system into a proxy node for unauthorized purposes. The rule is specifically focused on traffic that is part of an established connection and uses a small data size to optimize detection efficiency.
-  Updated-Date: '2026_02_13'
+  Summary: This rule detects traffic from a compromised host within a home network attempting to communicate with an external command and control server, associated with the upStage Residential Proxy malware. It specifically identifies a check-in to the server by looking for an established TCP session with packet data smaller than 30 bytes, containing the keyword "heroLV." The upStage malware is known to transform residential machines into proxy nodes, often exploiting users who download deceptive software like fake 7-Zip installers.
+  Updated-Date: '2026_11_12'
 '2067603':
   Created-Date: '2026_02_12'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: acf76d9ffb22913653c72e6e9bcb496e
+  Rule-Body-Hash: 32ca5430bd9ee44a7e8e57740f9a6598
   Ruleset: ETOPEN
-  Summary: This rule detects command and control (CnC) responses from the upStage Residential Proxy, which is associated with a malware campaign. This malicious activity typically involves turning home PCs into proxy nodes by exploiting users who have downloaded a fake 7-Zip installer. The rule specifically looks for small data packets with certain content, indicating communication from the malware's CnC server back to an infected client on a user's network. The rule is relevant to various Windows operating systems and focuses on exfiltration over a command and control channel.
-  Updated-Date: '2026_02_13'
+  Summary: This rule detects a response from the command and control server associated with the upStage Residential Proxy malware, targeting clients within a network. The rule monitors established TCP connections from specific external ports to internal networks and looks for a response with a payload size of less than 50 bytes. It specifically searches for the presence of the keyword "ipsa" near the beginning of the packet's payload. The upStage Residential Proxy malware is involved in converting compromised machines into proxy nodes, which can be used for malicious purposes such as hiding the true origin of internet traffic. This threat is often distributed via fake software installers, notably fake 7-Zip downloads.
+  Updated-Date: '2026_11_12'
 '2067604':
   Created-Date: '2026_02_12'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: df26c05932289e167ef46ccaa9774027
+  Rule-Body-Hash: f67749f2ec09a2584d1066ddb5198d21
   Ruleset: ETOPEN
-  Summary: This rule detects network traffic characteristic of the upStage Proxy Heartbeat used by the DesckVB Remote Access Trojan (RAT). It triggers on a TCP session established from a home network to any external network using specific ports (1000, 1001, or 1002) and identifies a data size of 2 bytes with a specific content pattern "|05 00|". The rule limits the alert to a maximum of 5 occurrences within a 120-second window to minimize noise. This traffic pattern indicates potential command and control communication related to a proxy mechanism utilized by the malware. DesckVB RAT is associated with malicious activities like remote control and data exfiltration from infected Windows systems.
-  Updated-Date: '2026_02_12'
+  Summary: This rule detects a specific communication pattern associated with the upStage Proxy Heartbeat, which is indicative of malicious activity from the DesckVB Remote Access Trojan (RAT). The rule triggers on established TCP connections directed to external networks and looks for a data size of 2 bytes containing the byte sequence "|05 00|". This pattern is consistent with a heartbeat signal used by the malware to maintain command and control channels. The detection is rate-limited to manage false positives, only alerting if the pattern is observed five times within 120 seconds. The context of the rule indicates a focus on Windows operating systems and highlights the malware's use of residential proxy services for maintaining stealth in its activities.
+  Updated-Date: '2026_11_12'
 '2067605':
   Created-Date: '2026_02_12'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: 617d568068e55c738809096410afbe00
+  Rule-Body-Hash: 478d68f40014613dbe8142c80a76d282
   Ruleset: ETOPEN
-  Summary: This rule detects DNS queries associated with the upStage Proxy Command and Control (CnC) activity by identifying lookups for the domain "pulse.herosms.cc." This activity is related to a malware operation that masquerades as a legitimate 7-Zip installer, converting compromised home computers into proxy nodes. This detection is significant due to the potential transformation of infected devices into parts of a larger proxy network, which may be used for illicit activities without the user's consent. The rule focuses on monitoring for specific domain queries to identify the presence and attempt to mitigate the threat posed by the upStage malware family.
-  Updated-Date: '2026_02_12'
+  Summary: This rule detects a DNS query for the domain "pulse.herosms.cc," associated with the upStage malware, known for turning personal computers into proxy nodes. The domain functions as a command and control (CnC) server for the upStage proxy malware. This detection is crucial given the threat posed by fake software installers, specifically fake 7-Zip downloads, which compromise systems by incorporating them into a botnet for residential proxy services, allowing illicit activities using the user's network resources. The rule targets both client and server systems across various Windows operating systems.
+  Updated-Date: '2026_11_12'
 '2067606':
   Created-Date: '2026_02_12'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: 8726b7c1b40e232c058a4a2a4d358d8f
+  Rule-Body-Hash: 4dc9df534eb305086a637a6c1a15a18c
   Ruleset: ETOPEN
-  Summary: This rule detects DNS queries for the domain "spark.herosms.io," which is associated with the upStage malware family. upStage malware is known for turning compromised PCs into proxy nodes, often distributed through fake software installations like a fake 7-Zip installer. The rule monitors DNS traffic for queries related to this domain as an indicator of a potential command and control (C2) server communication attempt by the malware, used for resource development activities.
-  Updated-Date: '2026_02_12'
+  Summary: This rule detects DNS queries for the domain "spark.herosms.io," which is associated with the upStage malware's command and control infrastructure. upStage is known to convert infected PCs into residential proxy nodes by leveraging fake software installers such as counterfeit 7-Zip downloads. When this domain is queried, it indicates a potential attempt by the malware to establish communication with its control servers.
+  Updated-Date: '2026_11_12'
 '2067607':
   Created-Date: '2026_02_12'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: 0d6adc0a32589418c38c87fdd6e0f98e
+  Rule-Body-Hash: e864dd5ec976f08581d2cebb8c2cb0b0
   Ruleset: ETOPEN
-  Summary: This rule detects DNS queries for the domain "mint.smshero.com," which is associated with the upStage malware. upStage is known for turning home PCs into proxy nodes by using fake 7-Zip downloads to infiltrate systems. It communicates with command and control (CnC) servers using this domain, thus compromising affected machines, which can include a range of Windows versions on both client and server configurations.
-  Updated-Date: '2026_02_12'
+  Summary: This rule detects DNS queries to the domain "mint.smshero.com," which is associated with the upStage malware's command and control (C2) communications. The upStage malware is known to exploit fake software downloads, specifically targeting users with counterfeit 7-Zip installers, to convert compromised home PCs into proxy nodes. The detection aims to identify attempts by the malware to resolve this C2 domain name, which facilitates its communication with its command server, potentially indicating an infection that uses residential proxy services as part of its infrastructure.
+  Updated-Date: '2026_11_12'
 '2067608':
   Created-Date: '2026_02_12'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: e7678b6c4fa734c41850b8ee2271ddeb
+  Rule-Body-Hash: cfea4cf8846a24b6c411db8d2e17aca3
   Ruleset: ETOPEN
-  Summary: This rule detects DNS queries for the domain "zest.hero-sms.ai," which is associated with the upStage proxy malware's command and control activities. The upStage malware disguises itself as legitimate software, such as 7-Zip, to convert infected home PCs into proxy nodes, potentially for malicious purposes such as data theft or network abuse. This specific domain lookup could indicate an infected system attempting to communicate with the malware's control infrastructure.
-  Updated-Date: '2026_02_12'
+  Summary: This rule detects DNS queries associated with the upStage proxy malware, specifically targeting the domain "zest.hero-sms.ai." The rule identifies communication with this domain, which is indicative of command and control activity. The upStage proxy malware is known to turn compromised home PCs into proxy nodes, often using fake 7-Zip downloads as an infection vector. The connection to this domain serves as an indicator of possible compromise by this particular malware family, posing a security risk to both client and server environments on various Windows operating systems.
+  Updated-Date: '2026_11_12'
 '2067609':
   Created-Date: '2026_02_12'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: c3753181cde9a0c23a3072d43501ce62
+  Rule-Body-Hash: 82a09bba4ee07ed9976817e7eb5d4727
   Ruleset: ETOPEN
-  Summary: This rule detects DNS queries associated with the upStage malware's command and control (CnC) activities. It specifically targets the domain "neo.herosms.co," which is known to be used in proxy operations related to this malware. The upStage malware is known for turning home PCs into proxy nodes often disguised through fake software installers, such as a 7-Zip download, to facilitate malicious activities. The detection focuses on DNS lookups containing this domain as a method of identifying potentially compromised systems participating in these proxy operations.
-  Updated-Date: '2026_02_12'
+  Summary: This rule detects a DNS lookup query for the domain "neo.herosms.co," which is associated with the upStage proxy malware's command and control (C&C) infrastructure. UpStage is known to use residential proxy tactics, potentially turning compromised home PCs into proxy nodes. This activity is linked to fraudulent 7-Zip installers that facilitate such infections. The detection aims to identify potential misuse or exploitation within a network by monitoring for outbound DNS queries to this suspicious domain, indicating compromised systems attempting to communicate with the malicious infrastructure.
+  Updated-Date: '2026_11_12'
 '2067610':
   Created-Date: '2026_02_12'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: ae92f937c49d9c5cb6d23849f1b68cd7
+  Rule-Body-Hash: 3b8c4e48c2496c3c7f887eac11eaae00
   Ruleset: ETOPEN
-  Summary: This rule detects a DNS query to the domain "flux.smshero.co," which is associated with the upStage malware family's command and control (C2) activities. The upStage malware exploits systems by turning them into proxy nodes, as part of its operation to establish an illicit network infrastructure, often disguised as legitimate software like fake 7-Zip installers. By identifying this specific domain in DNS lookups, the rule helps recognize potential engagements in unauthorized proxy activities and ongoing malware infections aimed at systems ranging from Windows XP to Windows Server versions.
-  Updated-Date: '2026_02_12'
+  Summary: This rule detects DNS queries for the domain "flux.smshero.co," which is associated with the upStage malware acting as a proxy command and control (CnC) domain. The upStage malware is known to transform compromised home PCs into proxy nodes, which involves redirecting traffic through those systems. This is often linked to fake software installers, such as fraudulent 7-Zip downloads, which leverage these proxy nodes for malicious activities. The goal is to identify attempts to resolve this domain, which is used for malicious command and control purposes.
+  Updated-Date: '2026_11_12'
 '2067611':
   Created-Date: '2026_02_12'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: f890f48280756d6faffe3e2c5106ed6a
+  Rule-Body-Hash: 29ed75baec6fd4565b1df73ee912b234
   Ruleset: ETOPEN
-  Summary: This rule detects DNS queries involving the domain "prime.herosms.vip," which is associated with the upStage malware. This malware is known for turning compromised home PCs into proxy nodes, contributing to a command-and-control infrastructure. The suspicious activity aligns with tactics of acquiring infrastructure for malicious purposes. The rule targets traffic involving both client and server systems and is relevant to a range of Windows operating systems.
-  Updated-Date: '2026_02_12'
+  Summary: This rule detects DNS queries for the domain "prime.herosms.vip," which is associated with the upStage Proxy command and control (CnC) infrastructure. This activity suggests that a Windows system may be compromised by malware that uses the domain in question to convert home PCs into proxy nodes, as part of a network exploited by fake software installers, specifically fraudulent 7-Zip downloads. Such behavior indicates malicious use of residential proxy services for illicit activities.
+  Updated-Date: '2026_11_12'
 '2067612':
   Created-Date: '2026_02_12'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: d08f243fae61c807c90b44480b74e5d9
+  Rule-Body-Hash: 62d81cb1c018f303b856a3f5e0ea70a5
   Ruleset: ETOPEN
-  Summary: This rule detects a DNS query for the domain "apex.herosms.ai," which is associated with command and control (C&C) communications of the upStage proxy malware. UpStage is known for turning compromised home computers into proxy nodes, often distributed through fake software installers, such as fake 7-Zip downloads. This activity is indicative of infrastructure acquisition tactics used in malware operations.
-  Updated-Date: '2026_02_12'
+  Summary: This rule detects DNS queries associated with the upStage malware, specifically targeting the domain "apex.herosms.ai." UpStage is known for converting infected home PCs into proxy nodes, essentially harnessing them to serve as intermediaries in broader network communication schemes without the user's consent. This malware is often distributed via fake software installers, such as counterfeit 7-Zip downloads. It is designed to exploit multiple Windows platforms and has implications for both client and server systems, posing substantial risks if not identified and mitigated promptly.
+  Updated-Date: '2026_11_12'
 '2067613':
   Created-Date: '2026_02_12'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: 70969060b3c599466337dd22f6b54275
+  Rule-Body-Hash: 8a416d0db6097728215841623d592ac1
   Ruleset: ETOPEN
-  Summary: This rule detects DNS queries for the domain "vivid.smshero.vip," which is associated with the upStage malware family. UpStage is known for turning personal computers into proxy nodes by leveraging fake applications, such as counterfeit 7-Zip installers, to facilitate command and control (CnC) communications. This activity poses a threat to both client and server systems running a variety of Windows operating systems.
-  Updated-Date: '2026_02_12'
+  Summary: This rule detects DNS queries for the domain "vivid.smshero.vip," which is associated with the upStage malware's command and control (CnC) activity. The upStage malware is known for transforming compromised machines into proxy nodes for malicious activities. This detection involves identifying network traffic indicative of attempts to communicate with this domain, which suggests a connection to a residential proxy service managed by the malware. The rule is applicable to a range of Windows operating systems and targets both clients and servers, highlighting its design to monitor and mitigate risks in diverse network environments.
+  Updated-Date: '2026_11_12'
 '2067614':
   Created-Date: '2026_02_12'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: 45b2595e890587efda278068d79b1432
+  Rule-Body-Hash: 563ddcc3f1fdeccbbf5264fbb50a5b9f
   Ruleset: ETOPEN
-  Summary: This rule detects DNS queries for the domain "glide.smshero.cc," which is associated with the upStage malware family used for command and control (CnC) communication. The upStage malware is known for turning compromised home PCs into proxy nodes, often distributed through fake software installers like counterfeit versions of 7-Zip. This particular detection targets threats that affect various Windows operating systems, with high confidence in the identification of this domain as part of malicious activities.
-  Updated-Date: '2026_02_12'
+  Summary: This rule detects DNS lookups for the domain associated with upStage malware, specifically "glide.smshero.cc". This domain is linked to the upStage proxy malware, which turns infected systems into proxy nodes. It is known to be distributed through fake 7-Zip downloads, potentially impacting various Windows systems by enabling malicious actors to exploit the affected machine's network connection for proxy services. The rule is designed to identify this Command and Control (CnC) domain in DNS traffic, indicating the presence of the malware on the network.
+  Updated-Date: '2026_11_12'
 '2067615':
   Created-Date: '2026_02_12'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: 232f4a04a353335a70192607428d06e8
+  Rule-Body-Hash: aa0ccec0662d9eaf9da3520faa44cb1b
   Ruleset: ETOPEN
-  Summary: This rule detects DNS queries for the domain "nova.smshero.ai," which is associated with the upStage malware proxy command and control (C2) infrastructure. The upStage malware can transform compromised home PCs into proxy nodes, causing them to unknowingly participate in malicious activity by rerouting traffic through their networks. This activity is often linked to fake software downloads, such as counterfeit 7-Zip installers. The rule targets traffic from a designated internal network to any external destination, indicating potential communication with known hostile infrastructure.
-  Updated-Date: '2026_02_12'
+  Summary: This rule detects DNS queries for the domain "nova.smshero.ai," which is associated with the "upStage" malware acting as a proxy command-and-control (CnC) server. This domain is linked to malicious activity involving fake 7-Zip downloads that convert home PCs into proxy nodes, likely as part of a residential proxy service scheme. The rule is relevant for both client and server systems running various versions of Windows, and the detection targets infrastructure acquisition tactics used to develop resources for malicious purposes.
+  Updated-Date: '2026_11_12'
 '2067616':
   Created-Date: '2026_02_12'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: 1b7df3aac1f0025f7983c160876da5f3
+  Rule-Body-Hash: 127d00d37cb8aec244c7ac86eb1cd1ab
   Ruleset: ETOPEN
-  Summary: This rule detects communication with a command and control domain associated with the upStage malware, specifically targeting the domain "apex.herosms.ai" in the Server Name Indication (SNI) field of a TLS handshake. upStage malware is known for converting infected home PCs into proxy nodes used for malicious activity. The rule identifies this behavior when a connection is established from a monitored internal network to an external network, looking for the specified domain name in the TLS traffic.
-  Updated-Date: '2026_02_12'
+  Summary: This rule detects communication with a command-and-control (CnC) domain associated with the upStage proxy malware by identifying the specific Server Name Indication (SNI) value "apex.herosms.ai" in TLS traffic. The identified domain is used in schemes related to fake 7-Zip installers that turn home PCs into proxy nodes. The rule is designed to recognize this behavior as malware-related, contributing to the protection of systems from being exploited as part of a proxy network.
+  Updated-Date: '2026_11_12'
 '2067617':
   Created-Date: '2026_02_12'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: 97ad34357c1d861b7fe5ce5490bb58d4
+  Rule-Body-Hash: a35df14c8b006bf2cb9f6b718ab1ccb0
   Ruleset: ETOPEN
-  Summary: This rule detects communication with a Command and Control (CnC) domain associated with the upStage malware, specifically targeting the domain "flux.smshero.co" found in the TLS Server Name Indication (SNI) field. This domain is linked to malicious activities where fake software installers, such as counterfeit 7-Zip downloads, are used to transform personal computers into proxy nodes for the malware's infrastructure. The detection is part of efforts to identify and mitigate threats from the upStage malware family, particularly those that exploit systems running various Windows operating systems.
-  Updated-Date: '2026_02_12'
+  Summary: This rule detects communication attempts to a command and control domain related to the upStage malware in TLS server name indication (SNI) traffic. Specifically, it identifies when the domain "flux.smshero.co" is accessed, which is associated with the upStage malware involved in turning compromised PCs into proxy nodes. This activity often stems from fake 7-Zip installations, suggesting a tactic of leveraging deceptive downloads to incorporate home PCs into a proxy network for malicious purposes.
+  Updated-Date: '2026_11_12'
 '2067618':
   Created-Date: '2026_02_12'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: c96f2bc26dc269e2c0c8fbe071592fba
+  Rule-Body-Hash: 77003d0cfc9e8d1918bf07d943214014
   Ruleset: ETOPEN
-  Summary: This rule detects network traffic indicative of communication with a command and control (C2) domain used by the upStage malware, specifically targeting the domain "neo.herosms.co" found in the Server Name Indication (SNI) of a TLS handshake. The upStage malware is known for turning compromised systems into proxy nodes, which can be exploited to mask malicious activities. This behavior has been associated with fake software installers, such as counterfeit 7-Zip downloads, which surreptitiously convert user machines into parts of a Residential Proxy network. The detection focuses on traffic flowing to server destinations and is applicable to a range of Windows operating systems.
-  Updated-Date: '2026_02_12'
+  Summary: This rule detects network traffic involving the command and control (CnC) domain "neo.herosms.co" used by the upStage malware. This malware is associated with converting personal computers into proxy nodes, often disguised through fake software downloads such as counterfeit 7-Zip installers. When the specified domain appears in the Server Name Indication (SNI) of a TLS connection, the traffic is flagged for potential malicious activity, suggesting that a host within the monitored network might be compromised and participating in unauthorized proxy activities. The detection is part of efforts to identify and counteract residential proxy malware.
+  Updated-Date: '2026_11_12'
 '2067619':
   Created-Date: '2026_02_12'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: bc0fdf9fe6e11d43002d9fe2e6ad3f26
+  Rule-Body-Hash: df6ee2debac64457c336111f8abe7fd0
   Ruleset: ETOPEN
-  Summary: This rule detects communication with a command-and-control (CnC) domain associated with the upStage proxy malware in encrypted TLS traffic. Specifically, it looks for the Server Name Indication (SNI) field in TLS connections to contain "mint.smshero.com," which is a known domain used by this malware. UpStage is linked to malicious activities where fake 7-Zip downloads transform home computers into proxy nodes, implicating compromised PCs in malicious infrastructure development.
-  Updated-Date: '2026_02_12'
+  Summary: This rule detects communication with an upStage Proxy command and control domain "mint.smshero.com" via TLS Server Name Indication (SNI) in network traffic. The upStage malware family is associated with transforming home PCs into proxy nodes, often through fake 7-Zip downloads, which are covered in detailed threat intelligence reports. The rule is triggered when established connections from internal to external networks carry the specified domain in their TLS negotiation. The detection mechanism specifically targets malicious communication suspected to be part of residential proxy services, flagging such traffic as high-confidence indications of compromise linked to infrastructure acquisition techniques.
+  Updated-Date: '2026_11_12'
 '2067620':
   Created-Date: '2026_02_12'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: d7067c11d5c4cb66ecb04f601acf4e68
+  Rule-Body-Hash: 8c4bee77ad2c6dfe00541c60f05a08a4
   Ruleset: ETOPEN
-  Summary: This rule detects network activity indicative of the upStage proxy malware communicating with a command and control (C2) domain via TLS. It targets the domain "spark.herosms.io" within the Server Name Indication (SNI) field during an established connection from an internal network to an external network. The upStage malware is known for turning personal computers into proxy nodes, often distributed through fake 7-Zip installers, as detailed in the referenced threat intelligence reports.
-  Updated-Date: '2026_02_12'
+  Summary: This rule detects a command and control (CnC) communication attempt associated with the upStage proxy malware, which utilizes the domain "spark.herosms.io" in a TLS Server Name Indication (SNI) field. The upStage malware is known to infect machines through deceptive software downloads, such as fake 7-Zip installers, turning them into residential proxy nodes. This activity involves an established connection from an internal network to an external network, indicating potential malicious traffic aimed at operating under the guise of legitimate software to facilitate unwanted proxy services.
+  Updated-Date: '2026_11_12'
 '2067621':
   Created-Date: '2026_02_12'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: 19af8e6ad2bcab33e8087f216d2fd3fd
+  Rule-Body-Hash: 1c5930892a155025f6a46011d9d7eb41
   Ruleset: ETOPEN
-  Summary: This rule detects communication with a known command-and-control (C2) domain used by the upStage malware. Specifically, it identifies traffic where the server name indication (SNI) in the TLS handshake contains the domain "soc.hero-sms.co". This activity is associated with a malicious operation involving fake 7-Zip downloads that convert home computers into proxy nodes. The rule alerts on outgoing traffic from a protected network to external networks when there is an established connection to a server using this domain in its SNI, indicating potential involvement in this proxy C2 infrastructure.
-  Updated-Date: '2026_02_12'
+  Summary: This rule detects traffic associated with the 'upStage' proxy malware from a compromised client to a command-and-control (CnC) domain via a TLS connection. Specifically, it identifies the domain "soc.hero-sms.co" in the Server Name Indication (SNI) field of the TLS handshake. The rule highlights how fake 7-Zip downloads can be used to transform home PCs into proxy nodes, facilitating unauthorized network access and data routing. This activity is linked to malicious software affecting various Windows versions, and its presence in network traffic indicates a potential security threat involving residential proxy services.
+  Updated-Date: '2026_11_12'
 '2067622':
   Created-Date: '2026_02_12'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: 2032c03d4be7e22c0926284aaa339218
+  Rule-Body-Hash: 80550dfe025d55e01c75572aa080898f
   Ruleset: ETOPEN
-  Summary: This rule detects the use of the domain "vivid.smshero.vip" within the Server Name Indication (SNI) field of TLS traffic, associated with upStage Proxy Command and Control (C2) communications. This malicious activity involves PCs being turned into proxy nodes through fake 7-Zip downloads, which allows attackers to leverage compromised machines for proxy services. The detection targets traffic destined for external networks from internal networks, indicating a high-confidence, major severity threat using the malware family known as upStage, which converts personal and server systems into residential proxies.
-  Updated-Date: '2026_02_12'
+  Summary: This rule detects communication with a command and control (C2) domain associated with the upStage malware, which turns compromised PCs into proxy nodes. Specifically, it targets TLS traffic and identifies the presence of "vivid.smshero.vip" in the Server Name Indication (SNI) field of the TLS handshake. This activity suggests that the malware is actively using the infected machine as part of a proxy service, often installed through deceptive methods such as fake software installers, exemplified by fake 7-Zip downloads. The rule helps to identify and mitigate threats involving unauthorized proxy services that exploit residential networks.
+  Updated-Date: '2026_11_12'
 '2067623':
   Created-Date: '2026_02_12'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: 99ec82a28a3938a8ad2511c884fc705e
+  Rule-Body-Hash: 7124fd8fae41424e33a5f49353e8be97
   Ruleset: ETOPEN
-  Summary: This rule detects network traffic indicating communication with a command and control (C2) server associated with the upStage malware, specifically targeting the domains "prime.herosms.vip" within the TLS Server Name Indication (SNI) header. The upStage malware is known for turning compromised PCs into proxy nodes that can be used for malicious purposes, such as disguising the origin of network traffic. The detection is triggered when this specific domain is observed in the TLS SNI, indicating potential covert communications between an infected host within a network and its C2 server.
-  Updated-Date: '2026_02_12'
+  Summary: This rule detects network traffic associated with the upStage proxy malware communicating with a command-and-control (C2) domain using the TLS Server Name Indication (SNI). The rule identifies connections from within the internal network to external servers where the TLS SNI contains "prime.herosms.vip." The upStage malware may be utilized to surreptitiously convert home PCs into proxy nodes, commonly disguising itself as a legitimate software download, such as a fake 7-Zip installer. This detection pertains to a range of Windows operating systems and is relevant to threats that involve both clients and servers.
+  Updated-Date: '2026_11_12'
 '2067624':
   Created-Date: '2026_02_12'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: 48273ce362080876f351b46117ed8c73
+  Rule-Body-Hash: 73ad6419eb2bed5b92633724b9edcd9b
   Ruleset: ETOPEN
-  Summary: This rule detects traffic to a command and control (C2) domain associated with the upStage malware, which uses the domain "nova.smshero.ai" as part of its communication in the server name indication (SNI) field of TLS traffic. The upStage malware is known for transforming personal computers into proxy nodes, exploiting fake 7-Zip installers, and posing threats to both client and server systems running Windows operating systems. The rule identifies such malicious activity to prevent potential misuse of infrastructure as part of the upStage residential proxy network.
-  Updated-Date: '2026_02_12'
+  Summary: This rule detects communication with the domain "nova.smshero.ai" in TLS Server Name Indication (SNI) fields, associated with the upStage proxy malware's command and control (C&C) infrastructure. The upStage malware is known for transforming compromised home PCs into proxy nodes, often disguised as fake software downloads like 7-Zip. This network traffic indicates malicious interaction, potentially related to residential proxy services. The detection is relevant for systems running various versions of Windows and highlights a significant security threat with high confidence and major severity.
+  Updated-Date: '2026_11_12'
 '2067625':
   Created-Date: '2026_02_12'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: a4935948c58e20b9554dcb8bd70b1146
+  Rule-Body-Hash: ce2d329743bcd01d5039368a8acf7166
   Ruleset: ETOPEN
-  Summary: This rule detects network traffic indicative of communication with a command and control (C2) domain associated with the upStage malware, specifically targeting domains associated with the URL "pulse.herosms.cc" in TLS Server Name Indication (SNI) fields. UpStage is a type of malware known to turn home PCs into proxy nodes by exploiting fake software installers, such as illegitimate 7-Zip downloads. The rule triggers on outbound TLS connections from a monitored network to the specified domain, suggesting potential compromise by proxy-based malware.
-  Updated-Date: '2026_02_12'
+  Summary: This rule detects communication attempts involving the command-and-control (CnC) domain "pulse.herosms.cc" in the TLS Server Name Indication (SNI) field, indicating activity related to the upStage malware. This malware is known for turning home PCs into proxy nodes. The rule targets traffic from internal networks to external networks, identifying potential malware-related activity by monitoring established connections to this specific domain. The rule includes references to documented analyses of this threat, which involve fake software downloads, specifically fake 7-Zip installers, used to compromise systems. This detection targets environments utilizing versions of Windows from XP through Server editions, highlighting both client and server system vulnerabilities exploited by the upStage malware family.
+  Updated-Date: '2026_11_12'
 '2067626':
   Created-Date: '2026_02_12'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: e9f7dd8a7021a891e505014c52cf3e9a
+  Rule-Body-Hash: b3baeb2df81bbbefab173d1377f0ca79
   Ruleset: ETOPEN
-  Summary: This rule detects communication with a command and control (C2) domain associated with the "upStage" proxy malware, specifically targeting the domain "glide.smshero.cc" through the TLS Server Name Indication (SNI) field. "UpStage" is known for turning home PCs into proxy nodes by leveraging fake software installers, such as fraudulent 7-Zip downloads, to facilitate malicious activities. This detection aids in identifying compromised systems engaging with this C2 infrastructure.
-  Updated-Date: '2026_02_12'
+  Summary: This rule detects communication associated with the upStage Proxy malware by identifying TLS Server Name Indication (SNI) traffic destined for the domain "glide.smshero.cc". The upStage Proxy malware is associated with fake 7-Zip installer downloads that convert home computers into proxy nodes, potentially facilitating malicious activities. This rule targets such communications in an attempt to intercept and mitigate the use of devices as part of a proxy infrastructure utilized by attackers.
+  Updated-Date: '2026_11_12'
 '2067627':
   Created-Date: '2026_02_12'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: a4f5dd29ed227d97c3b71cc24d8530de
+  Rule-Body-Hash: 98c9a3b29548ce45f7c7493aef10de13
   Ruleset: ETOPEN
-  Summary: This rule detects network traffic associated with the upStage proxy malware by identifying TLS traffic that includes the Server Name Indication (SNI) "zest.hero-sms.ai". The upStage malware is known for turning home computers into proxy nodes, potentially as part of a command and control (CnC) infrastructure. This activity is flagged when the traffic is directed from an internal network to an external network, signifying that a device within the network could be compromised and participating in malicious proxy operations. The rule aims to identify and mitigate the risks of proxy-based malware communications.
-  Updated-Date: '2026_02_12'
+  Summary: This rule detects network traffic associated with the "upStage" malware, specifically targeting communications with a Command and Control (CnC) server using the domain "zest.hero-sms.ai" within the TLS Server Name Indication (SNI) field. It identifies attempts by potentially compromised systems to connect to this domain in an established TLS session, indicating the presence of the upStage malware, which is known for transforming home PCs into proxy nodes, likely through the use of a fake 7-Zip installer.
+  Updated-Date: '2026_11_12'
 '2067628':
   Created-Date: '2026_02_12'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: ad913d8aa5841243b988e07393098bba
+  Rule-Body-Hash: 56b3ed84417e6eb9272834e9334fc1bc
   Ruleset: ETOPEN
-  Summary: This rule detects DNS queries associated with the upStage malware, specifically targeting domains with the ".7zip.cloud" suffix. The rule identifies attempts to deliver malicious payloads disguised as a legitimate 7zip installer, which exploits social engineering tactics to infiltrate systems running various Windows operating systems. By monitoring for such DNS lookups, the rule aims to detect command and control activities related to this malware.
-  Updated-Date: '2026_02_12'
+  Summary: This rule detects DNS queries for domains ending with ".7zip.cloud," which are associated with the upStage malware's payload delivery mechanism. The malware uses these domains in its social engineering attacks, attempting to disguise its activities as related to 7zip, a legitimate file compression software. The detection is part of efforts to identify compromised systems engaging in command and control communications typical of the upStage malware family and residential proxy services. The rule is relevant for systems running Windows operating systems and applies to both client and server environments, indicating a high confidence level in identifying potentially harmful activity.
+  Updated-Date: '2026_11_12'
 '2067629':
   Created-Date: '2026_02_12'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: d2be3e010016cedf6685e18be0f652d6
+  Rule-Body-Hash: 7b8efa6c16eef8eb3738d4c11dff1301
   Ruleset: ETOPEN
-  Summary: This rule detects network activity indicative of the upStage malware delivering its payload from a domain ending in ".7zip.cloud" within the TLS Server Name Indication (SNI) during an established connection to a server. This activity is associated with social engineering tactics, where attackers might use deceptive domains to distribute malicious payloads disguised as legitimate software, such as a fake 7zip installer.
-  Updated-Date: '2026_02_12'
+  Summary: This rule detects the use of a potentially malicious domain observed in the delivery of the upStage malware payload during TLS communication. The rule examines the server name indicator (SNI) field for domains ending with ".7zip.cloud," which have been associated with social engineering attacks involving fake 7zip installers. These domains indicate a possible attempt to install malware on affected systems, specifically targeting the Windows operating system family. This detection is part of a larger effort to identify and mitigate command and control activities leveraging web services and residential proxy services as part of the upStage malware's operation.
+  Updated-Date: '2026_11_12'
 '2067630':
   Created-Date: '2026_02_12'
   Custom-Edited: false
@@ -555558,6 +555558,710 @@
   Ruleset: ETOPEN
   Summary: This rule detects network traffic attempting to establish a TLS connection to the domain "spideri.pics", which is associated with the Win32/Lumma Stealer malware. Lumma Stealer is a malicious software designed to steal sensitive information from compromised computers. The rule triggers when a connection is initiated from a protected network to this domain, indicating potential command-and-control activities related to the malware. The detection is based on the presence of "spideri.pics" within the Server Name Indication (SNI) field of the TLS handshake, and this activity is identified as part of the tactic and technique for command-and-control using application layer protocols.
   Updated-Date: '2026_11_11'
+'2072661':
+  Created-Date: '2026_11_12'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: 5bc12fc1593be0667f08e2e260820c69
+  Ruleset: ETOPEN
+  Summary: This rule detects attempts to exploit a vulnerability in Langflow, identified as CVE-2026-9198. The exploit involves minting an auto-login token through an HTTP request to the endpoint "/api/v1/auto_login" on a server. The malicious activity is characterized by the absence of "authorization" and "cookie" headers in the request, indicating an attempt to bypass standard authentication mechanisms. This vulnerability could allow unauthorized access to systems using Langflow, potentially compromising server security.
+  Updated-Date: '2026_11_12'
+'2072662':
+  Created-Date: '2026_11_12'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: ea8fbc304b2f05d5d08013d71906fb92
+  Ruleset: ETOPEN
+  Summary: This rule detects DNS queries for the domain "pic-st.championboerboel.com," which is associated with the TA569 attack group and Gholoader, a malware used for command and control (C2) communication. The rule specifically identifies this domain in DNS lookups to help mitigate the threat posed by SocGholish, an exploit kit that targets client endpoints.
+  Updated-Date: '2026_11_12'
+'2072663':
+  Created-Date: '2026_11_12'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: 8acce995ba065de4a11d64497c749a53
+  Ruleset: ETOPEN
+  Summary: This rule detects network traffic associated with the SocGholish malware family by identifying a specific command and control (CnC) domain in the Server Name Indication (SNI) field of TLS communication. The rule is triggered when a client from the internal network communicates with the external network using the TLS protocol and the domain "pic-st.championboerboel.com" is present in the SNI, indicating potential trojan activity and exploitation related to the TA569 threat group.
+  Updated-Date: '2026_11_12'
+'2072664':
+  Created-Date: '2026_11_12'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: 18ebfd7855c77d3b5f163fd0a7ee8314
+  Ruleset: ETOPEN
+  Summary: This rule detects a DNS query for the domain "basefilebox.com," which is associated with the TryNodeRAT malware's command and control (C2) operations. TryNodeRAT is a type of Remote Access Trojan (RAT) known for targeting various versions of Windows operating systems. The presence of a DNS query for this domain may indicate an attempt by an infected system to communicate with its C2 server, suggesting potential malware activity on the network.
+  Updated-Date: '2026_11_12'
+'2072665':
+  Created-Date: '2026_11_12'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: 3de6cb88b8e46fe87c1915ed37bbca51
+  Ruleset: ETOPEN
+  Summary: This rule detects a DNS query attempting to resolve the domain ".connect-apis.workers.dev," which is associated with the TryNodeRAT malware. TryNodeRAT is a Remote Access Trojan (RAT) that allows attackers to control compromised systems remotely. This rule specifically targets command-and-control (C2) communication by identifying queries to suspicious domains indicative of this malware activity.
+  Updated-Date: '2026_11_12'
+'2072666':
+  Created-Date: '2026_11_12'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: 5d9504ecd53d02a4da587bee89bd699c
+  Ruleset: ETOPEN
+  Summary: This rule detects communication to a command-and-control (CnC) domain associated with the TryNodeRAT malware within the Server Name Indication (SNI) field of TLS traffic. It specifically targets connections to any domain ending in ".basefilebox.com" established from internal to external networks. TryNodeRAT is a Remote Access Trojan (RAT) that allows for unauthorized remote control and access to infected client endpoints. This rule aims to identify potentially compromised systems reaching out to known malicious infrastructure.
+  Updated-Date: '2026_11_12'
+'2072667':
+  Created-Date: '2026_11_12'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: 54093cfb5ff32c569ccdfe52c55a9ef6
+  Ruleset: ETOPEN
+  Summary: This rule detects attempts to establish a connection to a Command and Control (CnC) server used by TryNodeRAT malware via the Server Name Indication (SNI) field in TLS traffic. The specific domain ".connect-apis.workers.dev" is associated with TryNodeRAT, a Remote Access Trojan (RAT) that targets Windows operating systems and allows attackers to remotely control infected endpoints. The detection focuses on TLS traffic flowing from internal networks to external networks, indicating potential malicious activity related to this type of malware.
+  Updated-Date: '2026_11_12'
+'2072668':
+  Created-Date: '2026_11_12'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: 51d50737f8522962863893ed34479b4d
+  Ruleset: ETOPEN
+  Summary: This rule detects a DNS query for a command-and-control (C&C) domain associated with the TryNodeRAT malware. It specifically looks for DNS lookups that end with the domain ".filestorage.a.pinggy.link" and operates in a case-insensitive manner. This detection helps identify potential communication attempts by the TryNodeRAT, a type of Remote Access Trojan (RAT) that allows unauthorized remote control over an affected client endpoint, potentially targeting Windows operating systems.
+  Updated-Date: '2026_11_12'
+'2072669':
+  Created-Date: '2026_11_12'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: 2a769783d8e34099a7eabbfc0217d9a8
+  Ruleset: ETOPEN
+  Summary: This rule detects communication with a Command and Control (CnC) domain associated with the TryNodeRAT malware over TLS by identifying the Server Name Indication (SNI) extension in the TLS handshake containing the domain "filestorage.a.pinggy.link". TryNodeRAT is a type of Remote Access Trojan (RAT) that potentially compromises client endpoints running various versions of Windows. The detection focuses on outbound traffic from the internal network to external destinations, specifically looking for established connections directed to a server.
+  Updated-Date: '2026_11_12'
+'2072670':
+  Created-Date: '2026_11_12'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: fd2734fb5113b90ec8cb82bb2a1ddf74
+  Ruleset: ETOPEN
+  Summary: "This rule detects an attempt to exploit a known authentication bypass vulnerability (CVE-2024-53704) in SonicOS\u2019s SSLVPN service through a specific pattern in HTTP requests. The detection is triggered when an established HTTP GET request is made to the server, targeting the URI path containing \u201C/sessionstatus?cookie=\u201D and further analyzing the request for encoded characteristics, specifically identifying a null byte pattern after base64 decoding. The vulnerability could allow unauthorized access by manipulating session cookies, making it a critical security risk for networks using SonicOS SSLVPN."
+  Updated-Date: '2026_11_12'
+'2072671':
+  Created-Date: '2026_11_12'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: 60e7b12129547ff39804f844df8f851e
+  Ruleset: ETOPEN
+  Summary: This rule detects a DNS query for domains ending with ".it123.net," which are commonly associated with dynamic DNS services often used for command and control (C2) communication. This type of activity may be related to techniques that use dynamic resolution to manage C2 infrastructure, posing potential security concerns for clients and servers.
+  Updated-Date: '2026_11_12'
+'2072672':
+  Created-Date: '2026_11_12'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: bc637ebae05df7718511e150fb0e07a2
+  Ruleset: ETOPEN
+  Summary: This rule detects an HTTP request to a domain ending with ".it123.net," which is associated with dynamic DNS services. These types of domains can often be used in malicious activities, such as command and control communications, as part of more extensive attack strategies like those involving dynamic domain name resolution. The rule specifically targets traffic from internal networks to external networks, looking for hostnames in HTTP headers that match this pattern.
+  Updated-Date: '2026_11_12'
+'2072673':
+  Created-Date: '2026_11_12'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: 242435bc67be2c94aa5a97f33ba0e964
+  Ruleset: ETOPEN
+  Summary: This rule detects DNS queries for the domain "nippydxmnwquo.shop," which is associated with the Lumma Stealer malware. Lumma Stealer is a type of software designed to steal sensitive information from infected systems. The rule is triggered by any DNS lookup involving this suspicious domain, which is indicative of potential communication with a command-and-control server involved in malicious activities. The detection specifically targets client endpoints that may be compromised and attempting to connect to this known malicious domain as part of a command-and-control communication.
+  Updated-Date: '2026_11_12'
+'2072674':
+  Created-Date: '2026_11_12'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: 52772c8198a829d89b4d0a98e817c662
+  Ruleset: ETOPEN
+  Summary: This rule detects network traffic to a domain associated with the Lumma Stealer malware, specifically targeting the domain "nippydxmnwquo.shop" observed during a TLS handshake. The Lumma Stealer is a form of malware used for data theft and communication with command-and-control servers. This detection focuses on connections that are established from a host within a monitored network to any external server and is triggered by the presence of the specified domain name in the Server Name Indication (SNI) field of the TLS protocol, indicating potential malicious activity.
+  Updated-Date: '2026_11_12'
+'2072675':
+  Created-Date: '2026_11_12'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: 9035594b1ce4d0af47b1ca03141ad3d1
+  Ruleset: ETOPEN
+  Summary: This rule detects DNS queries for the domain "bdrv7wlbszfotkqf.uk," which is associated with IPIDEA's residential proxy service, a known malware network. Residential proxies like those from IPIDEA are often used to obscure the origin of internet traffic, facilitating malicious activities. The rule aims to identify and alert on potential trojan activity involving this infrastructure by inspecting DNS traffic for queries containing the specified domain.
+  Updated-Date: '2026_11_12'
+'2072676':
+  Created-Date: '2026_11_12'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: b83f220b0b0566a603279975667e42f9
+  Ruleset: ETOPEN
+  Summary: This rule detects DNS queries related to the IPIDEA residential proxy service by searching for the specific domain pattern ".6b86b273ff34fce1.online". Residential proxies are often used to disguise the origin of internet traffic by routing requests through residential internet connections, thus providing anonymity. The rule is created to identify potential malicious activities involving this proxy network, which is known to be part of a larger threat network. By flagging these queries, it helps in monitoring and potentially mitigating malicious activities related to infrastructure acquisition tactics used by adversaries.
+  Updated-Date: '2026_11_12'
+'2072677':
+  Created-Date: '2026_11_12'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: 2fa80c35d26758e3b7e967eac31c5011
+  Ruleset: ETOPEN
+  Summary: This rule detects DNS queries for domains associated with the IPIDEA Residential Proxy service, specifically targeting the domain "af4760df2c08896a9638e26e7dd20aae.com". The IPIDEA service is linked to using residential proxies, which can disguise illicit activities by routing malicious traffic through residential IP addresses. Identifying these queries is vital for uncovering potential misuse of this infrastructure resource.
+  Updated-Date: '2026_11_12'
+'2072678':
+  Created-Date: '2026_11_12'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: 9feaa805a6d2b2f2f45241cf00454ec3
+  Ruleset: ETOPEN
+  Summary: This rule detects DNS queries associated with the IPIDEA Residential Proxy, specifically looking for a domain within the query that includes ".a8d3b9e1f5c7024d6e0b7a2c9f1d83e5.com". IPIDEA is a service known for providing residential proxy infrastructure, which can be utilized by malware to acquire residential IP addresses and disguise malicious activities as legitimate residential web traffic. The rule identifies such domain queries as indicators of potential trojan activity, helping to uncover attempts at resource development through acquiring unauthorized infrastructure.
+  Updated-Date: '2026_11_12'
+'2072679':
+  Created-Date: '2026_11_12'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: d96804cef0935f584ddfdd282acd695c
+  Ruleset: ETOPEN
+  Summary: This rule detects a DNS query for a domain associated with the IPIDEA residential proxy service, specifically the domain ".8f00b204e9800998.com". IPIDEA is known for providing residential proxy services that can be used for malicious activities, including evading detection and hiding the origin of traffic. The rule identifies DNS traffic involving this domain, which may indicate potential use of a residential proxy network for resource development and infrastructure acquisition as described in threat intelligence reports. The detection offers insights into potential trojan activities by recognizing queries to known malicious domains.
+  Updated-Date: '2026_11_12'
+'2072680':
+  Created-Date: '2026_11_12'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: 471436cd014e6fdcb74025adb2797278
+  Ruleset: ETOPEN
+  Summary: This rule detects DNS queries for domains associated with IPIDEA, a residential proxy service known for facilitating malicious activities. It specifically targets queries that match the pattern ".e4f8c1b9a2d7e3f6c0b5a8d9e2f1c4d.com" and identifies this behavior as part of techniques for acquiring infrastructure in resource development activities. The detection aims to pinpoint potential trojan activity by recognizing DNS lookups linked to the IPIDEA proxy network, which can be used to disguise malicious traffic through residential proxy IP addresses.
+  Updated-Date: '2026_11_12'
+'2072681':
+  Created-Date: '2026_11_12'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: 00e73b67ba3416362b49a07ba2f6d525
+  Ruleset: ETOPEN
+  Summary: This rule detects a DNS query for a domain associated with IPIDEA, a residential proxy service. The domain ".a7b37115ce3cc2eb.com" is indicative of malware activity as it pertains to a proxy network used for potentially malicious purposes. The presence of this domain in a DNS lookup suggests the potential use of infrastructure related to residential proxy services, highlighting the risk of unauthorized access and misuse. The detection is significant due to its high confidence level and low performance impact, and it is associated with threat development and acquisition of infrastructure tactics under the MITRE framework.
+  Updated-Date: '2026_11_12'
+'2072682':
+  Created-Date: '2026_11_12'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: 1aa97658a655795dd21b8ef5066f7610
+  Ruleset: ETOPEN
+  Summary: This rule detects DNS lookup queries for domains associated with the IPIDEA Residential Proxy service, specifically targeting the domain "packetsdk .io". Residential proxies like IPIDEA allow users to route internet requests through a network of legitimate residential IP addresses, often used for illicit activities such as circumventing geo-restrictions or evading detection by web services. The rule identifies these domain queries as potentially indicative of malware or unauthorized proxy usage and is tagged as significant due to the possible involvement in trojan-like activities.
+  Updated-Date: '2026_11_12'
+'2072683':
+  Created-Date: '2026_11_12'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: 21c962f9c4d590928f9cec58e494c1df
+  Ruleset: ETOPEN
+  Summary: This rule detects DNS queries related to the IPIDEA Residential Proxy service by identifying lookups for the domain "0aa0cf0637d66c0d.com". IPIDEA is associated with residential proxy networks, which can be used to obscure the origin of internet traffic by routing it through residential IP addresses. The detection is notable for its potential involvement in trojan activity and recognizing such patterns helps in mitigating threats related to resource development and infrastructure acquisition by malicious entities.
+  Updated-Date: '2026_11_12'
+'2072684':
+  Created-Date: '2026_11_12'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: 8fca032a32ec37fcec17c09775982cda
+  Ruleset: ETOPEN
+  Summary: This rule detects DNS queries for domains associated with the IPIDEA Residential Proxy service, specifically the domain "willmam.com". Residential proxy services like IPIDEA can be used by attackers to disguise malicious traffic by routing it through residential IP addresses, making the traffic appear legitimate. This rule seeks to identify potential misuse of such services by looking for this domain in DNS traffic, which could indicate unauthorized use of a residential proxy network.
+  Updated-Date: '2026_11_12'
+'2072685':
+  Created-Date: '2026_11_12'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: e4247930aad5db59c5f558b420183585
+  Ruleset: ETOPEN
+  Summary: This rule detects DNS queries that include the domain "hexsdk.com", which is associated with the IPIDEA residential proxy service. Residential proxies like IPIDEA can be used to route network traffic through residential IP addresses, potentially disguising malicious activity and bypassing network security measures. The presence of this query may indicate attempts to acquire infrastructure for malicious purposes as part of resource development tactics.
+  Updated-Date: '2026_11_12'
+'2072686':
+  Created-Date: '2026_11_12'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: 9ea21542582a8cb38f6aa7375cebf54b
+  Ruleset: ETOPEN
+  Summary: This rule detects DNS queries for domains ending with ".packetsdk.xyz," associated with IPIDEA, which operates a controversial residential proxy service. Residential proxies are often used to route internet traffic through residential networks, possibly for anonymizing requests or circumventing geographical restrictions. The rule aims to identify potential abuse of this service, which may indicate malicious activities such as botnet operations or traffic masking. This detection is of high confidence and is considered a significant threat due to the major severity level assigned to the rule.
+  Updated-Date: '2026_11_12'
+'2072687':
+  Created-Date: '2026_11_12'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: 172a461e95ec4a0f9c53be2782163a12
+  Ruleset: ETOPEN
+  Summary: This rule detects DNS queries for a domain associated with the IPIDEA Residential Proxy service. The domain in question is "442fe7151fb1e9b5.com," which is part of a network known for facilitating residential proxy operations. Residential proxies are often used to disguise a user's true IP address by routing traffic through residential IP addresses. Such networks can be utilized for a range of illegitimate activities, including evading detection and conducting large-scale automated activities. This rule helps identify attempts to access or use IPIDEA's proxy services to develop or acquire infrastructure for potentially malicious operations, aligning with tactics and techniques related to resource development.
+  Updated-Date: '2026_11_12'
+'2072688':
+  Created-Date: '2026_11_12'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: 9fb5156def371f9de350799eb0a84b67
+  Ruleset: ETOPEN
+  Summary: This rule detects DNS lookups for domains associated with the IPIDEA Residential Proxy service, specifically targeting the domain "7x2k9n4p1q0r5s8t3v6w0y2z4u7b9.com". The IPIDEA service is known for creating a large network of residential proxies, which can be used maliciously for purposes such as bypassing security measures or conducting untraceable web activity. By identifying queries to this specific domain, the rule highlights potential use of proxy networks indicative of unauthorized or harmful activities, particularly aligning with tactics for infrastructure acquisition as outlined in certain threat intelligence frameworks.
+  Updated-Date: '2026_11_12'
+'2072689':
+  Created-Date: '2026_11_12'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: e8988fb24639c5dff71ca97ba9e816cf
+  Ruleset: ETOPEN
+  Summary: This rule detects DNS queries involving the domain "00857cca77b615c369f48ead5f8eb7f3.com," which is associated with the IPIDEA Residential Proxy service. The rule flags this domain since it's part of a network often used for malicious activities like operating as a residential proxy, which can facilitate various nefarious tasks by masking the true origin of traffic. Such infrastructure is commonly leveraged in threat campaigns, making it a target for security monitoring.
+  Updated-Date: '2026_11_12'
+'2072690':
+  Created-Date: '2026_11_12'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: 777de32447f4216326aa342a702c2346
+  Ruleset: ETOPEN
+  Summary: This rule detects attempts to resolve a domain associated with IPIDEA, a residential proxy network, in DNS queries. The specific domain in question is "31d58c226fc5a0aa976e13ca9ecebcc8.com". Residential proxies like IPIDEA are often used to mask malicious activities by routing traffic through legitimate residential connections, complicating efforts to trace these activities back to the original source. This rule is designed to identify such queries, which may be indicative of potentially unwanted or malicious activity related to acquiring infrastructure for resource development purposes.
+  Updated-Date: '2026_11_12'
+'2072691':
+  Created-Date: '2026_11_12'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: 0fd98c0b2cff84d9f5286c4f8f8250e9
+  Ruleset: ETOPEN
+  Summary: This rule detects DNS queries for domains associated with the "packetsdk.net" domain, which is linked to the IPIDEA Residential Proxy service. Residential proxies are often used to mask a user's true IP address by redirecting internet traffic through a network of residential devices, potentially facilitating malicious activities. The rule identifies queries that end with ".packetsdk.net" in a case-insensitive manner, highlighting potential use or interaction with this proxy network for nefarious purposes such as infrastructure acquisition within the context of cyber threat activities.
+  Updated-Date: '2026_11_12'
+'2072692':
+  Created-Date: '2026_11_12'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: b4744b76ab98e2da9086ede095f2dcd2
+  Ruleset: ETOPEN
+  Summary: This rule detects DNS lookups for a domain associated with the IPIDEA Residential Proxy service, characterized by the specific domain pattern ".b5e9a2d7f4c8e3b1a0d6f2e9c5b8a7d.com". Residential proxy networks, such as those offered by IPIDEA, are often utilized by malicious actors to disguise their online activities behind legitimate residential IP addresses, making detection and attribution more challenging. This specific detection aims to identify potential use of this proxy network, highlighting a significant concern in the development and acquisition of malicious infrastructure.
+  Updated-Date: '2026_11_12'
+'2072693':
+  Created-Date: '2026_11_12'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: 75d233ebfe9bcd72362b3d2d64081d4f
+  Ruleset: ETOPEN
+  Summary: This rule detects DNS queries for a domain associated with the IPIDEA Residential Proxy service, which can be indicative of malware activity. The domain in question is part of a large residential proxy network used for potentially malicious purposes, such as bypassing security measures by exploiting residential addresses. The detection focuses on DNS lookups for this specific domain pattern, which is identified as possibly related to trojan activity, highlighting its significance in threat intelligence against residential proxy networks.
+  Updated-Date: '2026_11_12'
+'2072694':
+  Created-Date: '2026_11_12'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: 36cb82810a4a478a9355d17ff177c04d
+  Ruleset: ETOPEN
+  Summary: This rule detects DNS queries that include a specific domain associated with the IPIDEA Residential Proxy service, identified by the presence of "aa86a52a98162b7d.com" within a DNS lookup query. Residential proxy networks like IPIDEA are often leveraged to route traffic through residential IP addresses to disguise the origin of malicious activities, providing infrastructure for threat actors. The rule is designed to identify and disrupt these activities by flagging potential misuse or unauthorized use of such proxy domains in network traffic.
+  Updated-Date: '2026_11_12'
+'2072695':
+  Created-Date: '2026_11_12'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: 18e3184c601a19ba0cde288f8d46138d
+  Ruleset: ETOPEN
+  Summary: This rule detects DNS queries associated with the IPIDEA Residential Proxy service by identifying the domain "v46wd6uramzkmeeo.in" in DNS lookups. IPIDEA is involved in providing a residential proxy network, which can be used for malicious activities, including disguising the origin of traffic and bypassing restrictions. The rule aims to identify potential trojan activity linked to the acquisition of infrastructure for resource development within this context.
+  Updated-Date: '2026_11_12'
+'2072696':
+  Created-Date: '2026_11_12'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: 92e56eea6d41ccc69c150e504889a085
+  Ruleset: ETOPEN
+  Summary: This rule detects the presence of a domain associated with the IPIDEA residential proxy service during a DNS lookup. IPIDEA is a known residential proxy network that can be misused for malicious activities by providing users with IP addresses that appear residential. The specific domain being monitored ends with ".8b21a945159f23b740c836eb50953818.com". This detection helps identify potential abuses involving IPIDEA's infrastructure for unauthorized activities, indicative of trojan activity or resource acquisition tactics.
+  Updated-Date: '2026_11_12'
+'2072697':
+  Created-Date: '2026_11_12'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: 3cd0f94c4ccaf9f9e235ea3230dc950c
+  Ruleset: ETOPEN
+  Summary: This rule detects DNS queries to a domain associated with IPIDEA, a residential proxy service, indicating potential malware activity. It targets domains that end with ".cfe47df26c8eaf0a7c136b50c703e173.com", which are linked to the operation of a proxy network. The detection alerts when such queries are made, utilizing this domain pattern to identify possible misuse of infrastructure development tactics often associated with malicious activities.
+  Updated-Date: '2026_11_12'
+'2072698':
+  Created-Date: '2026_11_12'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: 5187fe03245650767d77e3fdbb2c3eed
+  Ruleset: ETOPEN
+  Summary: This rule detects traffic indicating the use of an IPIDEA residential proxy by identifying a specific domain (bdrv7wlbszfotkqf.uk) in the TLS Server Name Indication (SNI) field of a TLS handshake. Residential proxies, such as those provided by IPIDEA, are commonly used to route internet traffic through residential IP addresses, often to obscure the true origin of traffic in various malicious activities. The rule targets outbound TLS connection attempts from the internal network to the external network, signaling possible trojan activity involving residential proxy services.
+  Updated-Date: '2026_11_12'
+'2072699':
+  Created-Date: '2026_11_12'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: 259659255916cbf4ef8689bead328346
+  Ruleset: ETOPEN
+  Summary: This rule detects the use of a domain associated with the IPIDEA residential proxy service, specifically targeting network traffic where the Server Name Indication (SNI) in TLS connections includes the suffix ".6b86b273ff34fce1.online". This domain is indicative of activities tied to proxy networks, which are often utilized for malicious purposes such as hiding the origin of attacks or facilitating unauthorized access. The rule triggers on traffic from an internal network to external addresses and is aimed at identifying potential malicious infrastructure acquisition aligned with known threat tactics.
+  Updated-Date: '2026_11_12'
+'2072700':
+  Created-Date: '2026_11_12'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: ae39c6b9a282651118c890db451d074d
+  Ruleset: ETOPEN
+  Summary: This rule detects network traffic where the Server Name Indication (SNI) in a TLS handshake contains a specific domain associated with IPIDEA, a residential proxy service. This service appears in the SNI as a distinctive domain, ".af4760df2c08896a9638e26e7dd20aae.com". The presence of this domain may indicate potential misuse of proxy infrastructure for malicious activities, as residential proxies are often used to mask the true source of traffic. The rule signifies activity related to the acquisition of infrastructure, potentially linked to unauthorized or harmful operations.
+  Updated-Date: '2026_11_12'
+'2072701':
+  Created-Date: '2026_11_12'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: de00fdefba7f3d3728444018a5fbc11d
+  Ruleset: ETOPEN
+  Summary: This rule detects network traffic directed towards external servers that contain a specific domain associated with IPIDEA, a residential proxy service, in the Server Name Indication (SNI) field of a TLS connection. The presence of this domain suggests the use of the IPIDEA residential proxy network, which is implicated in malicious activities such as hiding the origin of requests by routing them through residential IP addresses. This technique can be leveraged by threat actors to facilitate various types of cyber attacks by masking the true source of the traffic.
+  Updated-Date: '2026_11_12'
+'2072702':
+  Created-Date: '2026_11_12'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: 0b19b9cc8519e7539e16cfb3d10480cf
+  Ruleset: ETOPEN
+  Summary: This rule detects network traffic associated with the IPIDEA Residential Proxy service by identifying connections where the Server Name Indication (SNI) in Transport Layer Security (TLS) traffic matches a specific domain pattern (".8f00b204e9800998.com"). IPIDEA is linked to residential proxy networks, which can be misused for malicious activities. The rule examines TLS traffic from internal to external networks to flag such potential threats, indicating the presence of residential proxy infrastructure potentially being exploited for malicious purposes.
+  Updated-Date: '2026_11_12'
+'2072703':
+  Created-Date: '2026_11_12'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: 1ef48b1efda55aa02cf43340b4ecf071
+  Ruleset: ETOPEN
+  Summary: This rule detects network traffic involving a connection to a domain associated with the IPIDEA Residential Proxy service, specifically the domain ".e4f8c1b9a2d7e3f6c0b5a8d9e2f1c4d.com" observed in the TLS Server Name Indication (SNI) field. The IPIDEA service is known for being part of a residential proxy network that can be exploited for malicious activities by providing anonymity to users through routing their internet traffic via residential IP addresses. The rule identifies this activity by inspecting established TLS connections from internal to external networks, aiming to detect and mitigate potential misuse of the service for purposes such as hiding the true origin of questionable internet traffic.
+  Updated-Date: '2026_11_12'
+'2072704':
+  Created-Date: '2026_11_12'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: e1cb97cfb57e9e12e7f0911608e47aff
+  Ruleset: ETOPEN
+  Summary: This rule detects traffic involving the use of a specific domain associated with IPIDEA Residential Proxy within TLS Server Name Indication (SNI) fields. The presence of this domain suggests potential engagement with a service that utilizes residential IP addresses for proxy operations, which can be leveraged for obscuring malicious activities or bypassing regional restrictions. By monitoring connections to such domains, the rule aims to identify and mitigate possible trojan activity linked to the IPIDEA Residential Proxy.
+  Updated-Date: '2026_11_12'
+'2072705':
+  Created-Date: '2026_11_12'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: 2670d291caa531743188106395e58845
+  Ruleset: ETOPEN
+  Summary: This rule detects network traffic indicative of communication with the IPIDEA residential proxy service by identifying the domain "packetsdk.io" in the TLS Server Name Indication (SNI) of the connection. Such activity suggests potential use of residential proxy networks often associated with masking malicious operations. The rule triggers when a connection is established from within a specified home network to any external network, targeting residential proxy-related domains, which can be exploited for illicit purposes such as evading security measures or distributing malware. This detection is part of efforts to disrupt significant residential proxy networks.
+  Updated-Date: '2026_11_12'
+'2072706':
+  Created-Date: '2026_11_12'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: bce3ae86b93e8aa14494b5636d0881de
+  Ruleset: ETOPEN
+  Summary: This rule detects network traffic where a client from a home network attempts to establish a TLS connection to an external network using a specific Server Name Indication (SNI) ending with ".0aa0cf0637d66c0d.com". This domain is associated with the IPIDEA Residential Proxy, a service implicated in providing proxy infrastructure that can be exploited for malicious activities. The detection is designed to identify potential abuses of residential proxy services, a tactic often used in resource development by malicious actors seeking to disguise their activities.
+  Updated-Date: '2026_11_12'
+'2072707':
+  Created-Date: '2026_11_12'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: 7a2a7a0f4f0e8ade1a4f44c796a33612
+  Ruleset: ETOPEN
+  Summary: This rule detects TLS traffic where the Server Name Indication (SNI) field contains the domain ".willmam.com," which is associated with the IPIDEA Residential Proxy service. This service enables users to route internet traffic through residential IP addresses, often used for masking the origin of traffic and supporting anonymous browsing. The rule is triggered when an established connection from the internal network to an external network is observed, indicating potential use of this proxy network, which is considered malicious activity as part of resource development tactics.
+  Updated-Date: '2026_11_12'
+'2072708':
+  Created-Date: '2026_11_12'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: 35d2056f2c31a640ff962b3666425ca7
+  Ruleset: ETOPEN
+  Summary: This rule detects the use of a domain associated with IPIDEA, a service known for providing residential proxy networks, by matching the Server Name Indication (SNI) value in TLS connections containing ".hexsdk.com". It focuses on traffic from a home network to an external network when an established connection is made to the server, indicating potential trojan activity involving infrastructure acquisition tactics. Residential proxies like those provided by IPIDEA can be used maliciously to disguise and distribute online traffic, facilitating anonymity for cyber activities.
+  Updated-Date: '2026_11_12'
+'2072709':
+  Created-Date: '2026_11_12'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: 2fdb561b20600f2c912f5fe74edebacc
+  Ruleset: ETOPEN
+  Summary: This rule detects network traffic involving the use of the domain "packetsdk.xyz" as a Server Name Indication (SNI) in TLS traffic. This domain is associated with IPIDEA, a known residential proxy service. Residential proxy services can be utilized by attackers to obscure their tracks, making malicious activities harder to trace. The rule is designed to identify such traffic patterns in an established connection to an external network, as these requests could indicate attempts to use or interact with these proxy services, possibly signifying trojan activity or resource development tactics consistent with infrastructure acquisition.
+  Updated-Date: '2026_11_12'
+'2072710':
+  Created-Date: '2026_11_12'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: ab67626af4f5fd576b2cc966a14b4876
+  Ruleset: ETOPEN
+  Summary: This rule detects network traffic that involves the use of a specific domain associated with IPIDEA Residential Proxy services. The detection looks for communication from internal to external networks using distinct domain patterns within the TLS Server Name Indication (SNI) field. The domain pattern ".442fe7151fb1e9b5.com" is indicative of activity pertaining to residential proxy services, which can be leveraged by malicious actors for unauthorized purposes. The rule aims to identify and alert on the misuse of such services that may facilitate covert operations or mask illegitimate activities under ordinary-looking browsing behavior, thereby posing a threat to network security by acquiring infrastructure for adversarial actions.
+  Updated-Date: '2026_11_12'
+'2072711':
+  Created-Date: '2026_11_12'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: 5103aa7024503157fc0c01c10d60d698
+  Ruleset: ETOPEN
+  Summary: This rule detects traffic involving the use of a residential proxy service linked to the domain "7x2k9n4p1q0r5s8t3v6w0y2z4u7b9.com" observed in the TLS Server Name Indication (SNI) field. It identifies connections from internal networks to external destinations where this domain is being accessed, indicative of involvement with the IPIDEA residential proxy network. Such networks can facilitate anonymous browsing and potentially malicious activities, as they provide a means to disguise the true origin of internet traffic. This detection is part of efforts to identify and disrupt large networks that could be used for unauthorized or illicit purposes.
+  Updated-Date: '2026_11_12'
+'2072712':
+  Created-Date: '2026_11_12'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: 431b8ab6d19a10db977b84e8e8464a2c
+  Ruleset: ETOPEN
+  Summary: This rule detects traffic involving the IPIDEA Residential Proxy service by identifying a specific domain name (.00857cca77b615c369f48ead5f8eb7f3.com) within the TLS Server Name Indication (SNI) field in outbound connections from a home network to external servers. Such domains are associated with residential proxy networks, which can be used for masking the origin of traffic by routing it through residential IP addresses, making them potentially indicative of malicious activity such as botnets or fraudulent schemes. The rule is focused on established connections where the communication is directed towards the server.
+  Updated-Date: '2026_11_12'
+'2072713':
+  Created-Date: '2026_11_12'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: 597fe82f8604f5d9688e4cab79e40209
+  Ruleset: ETOPEN
+  Summary: This rule detects network traffic associated with the IPIDEA Residential Proxy service by identifying a specific domain within the TLS Server Name Indication (SNI) field, which matches ".31d58c226fc5a0aa976e13ca9ecebcc8.com". The presence of this domain suggests the use of a residential proxy network, which is of interest because such services can be misused by malware to disguise malicious activities by routing them through residential IP addresses. The detection occurs when there is an established connection from an internal to an external network.
+  Updated-Date: '2026_11_12'
+'2072714':
+  Created-Date: '2026_11_12'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: 8a94557dee9302c2ec72e0df28caaa37
+  Ruleset: ETOPEN
+  Summary: This rule detects connections to the domain "packetsdk.net" in the TLS Server Name Indication (SNI) field, which is indicative of activity associated with the IPIDEA Residential Proxy network. Residential proxies are often used to disguise the true origin of internet traffic by routing it through residential IP addresses, making it appear as if the traffic is originating from a typical household rather than a data center or known proxy network. This type of behavior is typically related to malicious activities such as circumventing IP-based restrictions or conducting fraudulent activities. By identifying these connections, the rule aims to uncover potential trojan activity linked to the use of residential proxy services.
+  Updated-Date: '2026_11_12'
+'2072715':
+  Created-Date: '2026_11_12'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: 46bf1f9ff267df02d91176a29bca770a
+  Ruleset: ETOPEN
+  Summary: "This rule detects traffic towards a domain associated with the IPIDEA Residential Proxy service, specifically when a TLS Server Name Indication (SNI) matches the pattern \".b5e9a2d7f4c8e3b1a0d6f2e9c5b8a7d.com\". Such traffic is indicative of trojan-like activity related to malicious residential proxy networks. These networks can be utilized for hiding malicious activities, by disguising traffic through residential IP addresses, contributing to infrastructure acquisition techniques as highlighted by MITRE\u2019s framework on resource development."
+  Updated-Date: '2026_11_12'
+'2072716':
+  Created-Date: '2026_11_12'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: ec7075e24f2d848e2718fa9b785f768f
+  Ruleset: ETOPEN
+  Summary: This rule detects network traffic indicating the use of an IPIDEA Residential Proxy service by identifying connections where the TLS Server Name Indication (SNI) field contains the specific domain pattern ".3k7m1n9p4q2r6s8t0v5w2x4y6z8u9.com". Residential proxy services can be used for malicious activities, such as hiding the origin of traffic or facilitating unauthorized access. This detection is part of monitoring and defending against trojan activity and aims to identify potential unauthorized use of residential proxy networks, drawing attention to a specific infrastructure acquisition tactic associated with this type of service.
+  Updated-Date: '2026_11_12'
+'2072717':
+  Created-Date: '2026_11_12'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: 00c376e7234ceb0a69d3d84315915a3f
+  Ruleset: ETOPEN
+  Summary: This rule detects communications involving the IPIDEA Residential Proxy service by identifying a specific domain pattern (".aa86a52a98162b7d.com") in the Server Name Indication (SNI) field during a TLS handshake. These communications are indicative of a residential proxy network, which is a service that routes internet traffic through residential IP addresses to mask the origin of traffic for various purposes, often illicit. The rule flags any traffic from the internal network to external addresses when this domain is in use, suggesting potential malicious activity related to infrastructure acquisition commonly associated with residential proxy services.
+  Updated-Date: '2026_11_12'
+'2072718':
+  Created-Date: '2026_11_12'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: 2eff9fa4b07c14849313a16f1cc363ee
+  Ruleset: ETOPEN
+  Summary: This rule detects the use of a particular domain associated with IPIDEA's residential proxy service in the TLS Server Name Indication (SNI) field. The domain ".v46wd6uramzkmeeo.in" has been identified as part of the infrastructure utilized by residential proxy malware. Residential proxies are often used to mask the origin of internet traffic by routing it through residential IP addresses, which can be exploited for various malicious activities. The rule triggers when traffic to this domain is observed in an established connection from a client to a server, potentially indicating the presence of IPIDEA-related malicious activity or infrastructure acquisition efforts.
+  Updated-Date: '2026_11_12'
+'2072719':
+  Created-Date: '2026_11_12'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: d057a648af935edbdb57b3896f67f19e
+  Ruleset: ETOPEN
+  Summary: This rule detects network traffic aimed at identifying a connection to a domain associated with the IPIDEA Residential Proxy service, particularly focusing on the domain pattern "8b21a945159f23b740c836eb50953818.com" observed in the TLS Server Name Indication (SNI) during an established connection from an internal to an external network. This domain is linked to activities utilizing residential proxy services, which are often employed for dubious purposes such as masking the origin of malicious activities by routing traffic through residential IP addresses. The rule alerts when such a domain is encountered, indicating potential involvement in malicious resource development activities.
+  Updated-Date: '2026_11_12'
+'2072720':
+  Created-Date: '2026_11_12'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: 3bdc4f69377f9f31ac7c7334b9dc0024
+  Ruleset: ETOPEN
+  Summary: This rule detects traffic involving the IPIDEA Residential Proxy network by identifying a specific domain (cfe47df26c8eaf0a7c136b50c703e173.com) in the TLS Server Name Indication (SNI) field. IPIDEA is a proxy service that provides residential IP addresses, often used to facilitate anonymity and could be associated with malicious activities such as the operation of large-scale proxy networks. Detection occurs when a connection is established and directed towards external servers, indicative of attempts to leverage these proxy services. The rule is focused on identifying these patterns to prevent potential misuse of infrastructure for unauthorized activities.
+  Updated-Date: '2026_11_12'
+'2072721':
+  Created-Date: '2026_11_12'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: 8fa9c1aed0d8d1dd769a19931321ef0c
+  Ruleset: ETOPEN
+  Summary: This rule detects DNS queries for the domain "360proxy.com", which is associated with the IPIDEA residential proxy service. Residential proxies like IPIDEA offer proxy networks that utilize residential IP addresses, which can be used to mask a user's real IP address or for conducting activities such as web scraping and accessing geo-restricted content. This particular domain's presence in DNS lookup suggests potential involvement with malicious activities, including the acquisition and use of surrogate infrastructure for operational anonymity.
+  Updated-Date: '2026_11_12'
+'2072722':
+  Created-Date: '2026_11_12'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: ea4bd3c8720938cf14b3a33cde4ce22b
+  Ruleset: ETOPEN
+  Summary: This rule detects DNS queries associated with the domain "radishvpn.com," which is linked to the IPIDEA Residential Proxy service. Residential proxies are often used in malicious activities to mask the true origin of network traffic. This particular domain has been identified as part of a residential proxy network, which can facilitate unauthorized access and obfuscate malicious traffic by routing it through residential IP addresses. The detection is crucial for identifying and mitigating threats involving resource development and infrastructure acquisition tactics.
+  Updated-Date: '2026_11_12'
+'2072723':
+  Created-Date: '2026_11_12'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: fe77ec54458ca2b138485d46d7decddf
+  Ruleset: ETOPEN
+  Summary: This rule detects DNS queries for the domain "tabproxy.com," which is associated with the IPIDEA residential proxy service. Residential proxies are used to route internet traffic through residential IP addresses, often for the purpose of anonymity or bypassing restrictions. The detection of this domain in DNS lookups may indicate potential malware activity or misuse of the residential proxy network.
+  Updated-Date: '2026_11_12'
+'2072724':
+  Created-Date: '2026_11_12'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: 444a7e9c2655b2e068193ed38e5c2066
+  Ruleset: ETOPEN
+  Summary: This rule detects DNS queries to domains ending with ".pyproxy.com," which are associated with the IPIDEA residential proxy service. This service is often leveraged for malicious activities, as it provides a network of residential IP addresses that can be used to disguise the origin of internet traffic. The rule aims to identify the use of this infrastructure by spotting such domain lookups, suggesting potential misuse of the IPIDEA service for activities related to resource development in malicious operations.
+  Updated-Date: '2026_11_12'
+'2072725':
+  Created-Date: '2026_11_12'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: c1530285b1e5a99fc350db70714d4b91
+  Ruleset: ETOPEN
+  Summary: This rule detects DNS queries for the domain "922proxy.com," which is associated with the IPIDEA Residential Proxy service. Residential proxies like IPIDEA are used to route internet traffic through residential IP addresses, often to obscure the origin of requests or bypass geographic restrictions. The rule is aimed at identifying potential malicious activity involving the use of such proxy services, which could indicate efforts to acquire infrastructure for cyber operations.
+  Updated-Date: '2026_11_12'
+'2072726':
+  Created-Date: '2026_11_12'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: 87ba5425fef3a68c8ac8e3846c643641
+  Ruleset: ETOPEN
+  Summary: This rule detects DNS queries for the domain "galleonvpn.com," which is associated with the IPIDEA residential proxy service. IPIDEA operates a residential proxy network that provides users with proxy services through residential IP addresses. This type of service can be misused for malicious activities, such as disguising the true origin of web traffic. The detection focuses on identifying DNS lookups indicative of attempts to utilize the IPIDEA residential proxy network.
+  Updated-Date: '2026_11_12'
+'2072727':
+  Created-Date: '2026_11_12'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: 75810a447e8332614817ef05a6236925
+  Ruleset: ETOPEN
+  Summary: This rule detects DNS queries for domains associated with the IPIDEA residential proxy service, specifically targeting the domain "doorvpn.com." Residential proxy services are often used for masking the true origin of internet requests by routing traffic through a variety of residential IP addresses. This particular service has been highlighted for its potential use in illicit activities, as it can disguise malicious behavior making detection and attribution more challenging. The rule aims to identify attempts to resolve this domain, indicating possible usage of the IPIDEA service for unauthorized or malicious infrastructure development.
+  Updated-Date: '2026_11_12'
+'2072728':
+  Created-Date: '2026_11_12'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: a0d8af9c3f8854abaebefefdd6c7b5b4
+  Ruleset: ETOPEN
+  Summary: This rule detects DNS queries to domains associated with the IPIDEA Residential Proxy service, specifically targeting the domain "abcproxy.com". Residential proxies are typically used to disguise the origin of internet traffic, often employed in malicious activities such as circumventing restrictions or conducting large-scale data scraping. The detection focuses on identifying if the query contains the domain in question, signaling potential use of this proxy service which is linked to resource development tactics for acquiring infrastructure as per MITRE's ATT&CK framework. The rule is designed for major severity attacks and has a high confidence level, with low performance impact on the system.
+  Updated-Date: '2026_11_12'
+'2072729':
+  Created-Date: '2026_11_12'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: 5b428ac428369aeb3dfc753b5b340c6e
+  Ruleset: ETOPEN
+  Summary: This rule detects DNS queries for domains ending with ".ipidea.io," which is associated with IPIDEA, a residential proxy service. Residential proxies like IPIDEA are often used to disguise the true origin of internet traffic by routing it through residential IP addresses. Such services can be leveraged by malicious actors for activities including botnets, scraping, and other forms of illicit online behavior. The rule aims to identify potential misuse by monitoring for these specific DNS queries, indicating the resolution of a domain that may be part of this residential proxy network.
+  Updated-Date: '2026_11_12'
+'2072730':
+  Created-Date: '2026_11_12'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: f9ece5965319b88d598832226172f0bb
+  Ruleset: ETOPEN
+  Summary: This rule detects a DNS query to the domain "lunaproxy.com," which is associated with the IPIDEA Residential Proxy software. Residential proxies like IPIDEA are commonly used for obscuring the true IP addresses of users by routing traffic through various residential IP addresses. Lunaproxy.com is identified as part of this proxy network, which has been linked to malicious activities. The detection aims to identify and mitigate the risk posed by such services being used for unauthorized or harmful purposes within a network.
+  Updated-Date: '2026_11_12'
+'2072731':
+  Created-Date: '2026_11_12'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: fd70feccc78df77a0aa80c86fee3ab8c
+  Ruleset: ETOPEN
+  Summary: This rule detects DNS queries related to the domain "piaproxy.com", which is associated with IPIDEA's residential proxy services. These services are part of a larger proxy network that can be used for illicit activities, such as masking the origin of traffic. The rule is intended to identify potential trojan activity by monitoring DNS lookups for this specific domain, indicating that a client or server may be participating in or communicating with a proxy network utilized for malicious purposes.
+  Updated-Date: '2026_11_12'
+'2072732':
+  Created-Date: '2026_11_12'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: 5e53707b8ef76176ce0cfa6a72244b30
+  Ruleset: ETOPEN
+  Summary: This rule detects DNS queries associated with the domain "ip2world.com," which is linked to IPIDEA's residential proxy service, a network used for acquiring proxy connections that may be abused for malicious activities. The detection triggers when a DNS query resolves to the specified domain, indicating potential use of a proxy service network that facilitates trojan activity and infrastructure acquisition.
+  Updated-Date: '2026_11_12'
+'2072733':
+  Created-Date: '2026_11_12'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: 91e0b751b3ffcef63b0b6c2dbd8062e5
+  Ruleset: ETOPEN
+  Summary: This rule detects DNS queries related to the use of IPIDEA's residential proxy service by looking for the domain "cherryproxy.com" in DNS lookups. Residential proxy services like cherryproxy.com are often used to mask malicious activities by routing traffic through residential IP addresses, making it difficult to trace the original source. The rule targets both client and server interactions and flags this activity as major due to its association with illicit activities such as acquiring infrastructure for malicious purposes.
+  Updated-Date: '2026_11_12'
+'2072734':
+  Created-Date: '2026_11_12'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: 351994069b237fa10064c7a7d63d594b
+  Ruleset: ETOPEN
+  Summary: This rule detects the use of the IPIDEA residential proxy service by identifying the domain "360proxy.com" within the Server Name Indication (SNI) field of TLS traffic. It specifically targets traffic originating from within a network to an external network, indicating a connection to "360proxy.com," a domain associated with a large residential proxy network. Residential proxies are often used for masking originating IP addresses, providing anonymity, or bypassing geographical restrictions, and can be leveraged in various malicious activities. The rule aims to alert when such a proxy domain is used in TLS communication, suggesting potential involvement in infrastructure acquisition for malicious purposes.
+  Updated-Date: '2026_11_12'
+'2072735':
+  Created-Date: '2026_11_12'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: dd1bf17e4c407e87c867423edfdee44b
+  Ruleset: ETOPEN
+  Summary: This rule detects the use of a domain associated with IPIDEA Residential Proxy services, specifically identifying the domain ".radishvpn.com" within the Server Name Indication (SNI) field of TLS traffic. The rule helps identify potentially malicious activity using the Radish VPN service for residential proxy purposes, indicating the involvement of such infrastructure in unauthorized network activities. This detection is part of a broader effort to recognize and mitigate the misuse of residential proxy networks, which can be leveraged for disguising the origin of malicious traffic.
+  Updated-Date: '2026_11_12'
+'2072736':
+  Created-Date: '2026_11_12'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: 4a30fcddfdbb110453cc9c9409e0a767
+  Ruleset: ETOPEN
+  Summary: This rule detects TLS traffic that involves connections to domains associated with the IPIDEA Residential Proxy service, specifically those using the domain ".tabproxy.com" in the Server Name Indication (SNI). Residential proxies, like those provided by IPIDEA, are often used by malicious actors to disguise the origin of their network traffic, making it appear as if it is coming from residential IP addresses. The rule is designed to target traffic from the internal network to external networks where such suspicious proxy activity is identified, aiding in the detection of potential malicious infrastructure development activities.
+  Updated-Date: '2026_11_12'
+'2072737':
+  Created-Date: '2026_11_12'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: 08ad151aa709a929aefb71982838b3c6
+  Ruleset: ETOPEN
+  Summary: This rule detects network traffic indicating the use of a proxy service associated with the domain "pyproxy.com" within the TLS Server Name Indication (SNI). This domain is connected with IPIDEA's Residential Proxy services, which operate by routing internet traffic through residential IP addresses, potentially masking malicious activities as benign. The rule identifies this behavior in outgoing traffic from a monitored network to an external network, suggesting potential proxy usage that could be associated with resource development tactics, such as acquiring infrastructure for further malicious activity.
+  Updated-Date: '2026_11_12'
+'2072738':
+  Created-Date: '2026_11_12'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: 5979cff1058066fb662798182350c402
+  Ruleset: ETOPEN
+  Summary: This rule detects network traffic involving a connection from an internal network to an external network, specifically targeting a TLS-based communication where the Server Name Indication (SNI) field in the TLS handshake contains the domain "922proxy.com". This domain is associated with IPIDEA, a residential proxy service, which is sometimes leveraged by malware for proxying network traffic through residential IP addresses to disguise malicious activities. This detection is configured to identify such traffic, suggesting possible trojan activity related to infrastructure acquisition techniques used in cybercriminal operations.
+  Updated-Date: '2026_11_12'
+'2072739':
+  Created-Date: '2026_11_12'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: d5aacd54d2bedf95e4c283ad956a32b6
+  Ruleset: ETOPEN
+  Summary: This rule detects network traffic indicating potential use of a residential proxy service linked to IPIDEA through the domain name "galleonvpn.com" observed in TLS Server Name Indication (SNI). This activity suggests the presence of a residential proxy service, which can be used for various malicious purposes, such as evading detection by routing malicious traffic through residential networks. The rule identifies such traffic when a connection is established from an internal network to an external network and the specified domain is detected in the TLS SNI field. The detection is flagged because "galleonvpn.com" is associated with potentially malicious infrastructure, as documented in threat intelligence research.
+  Updated-Date: '2026_11_12'
+'2072740':
+  Created-Date: '2026_11_12'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: 92e2dacb28536e084eae8138b85912cc
+  Ruleset: ETOPEN
+  Summary: This rule detects traffic involving a domain associated with IPIDEA Residential Proxy networks, specifically targeting the ".doorvpn.com" domain within the Server Name Indication (SNI) field of TLS traffic. Residential proxies like those operated by IPIDEA are often used to disguise the true origin of internet requests, potentially facilitating malicious activities. The rule is triggered for established traffic from within the home network reaching out to external destinations when the suspicious domain is identified.
+  Updated-Date: '2026_11_12'
+'2072741':
+  Created-Date: '2026_11_12'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: d4b46c2655b8ce9927617dcc6d17c3ab
+  Ruleset: ETOPEN
+  Summary: This rule detects network traffic indicative of the use of a residential proxy service associated with the domain "abcproxy.com" in the TLS Server Name Indication (SNI) field. The detection is designed to identify communications where the client from the internal network is establishing a secure connection to a server, potentially as part of a malicious activity using residential proxies for disguising traffic. Residential proxies like those associated with IPIDEA are often used for various activities, including circumventing content restrictions or hiding the real IP address of users. The rule flags such traffic due to its potential relevance to trojan or infrastructure acquisition activities.
+  Updated-Date: '2026_11_12'
+'2072742':
+  Created-Date: '2026_11_12'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: 1063aa2c4fbfdee4af3fa3fbce868f17
+  Ruleset: ETOPEN
+  Summary: This rule detects network traffic involving the usage of a known residential proxy service associated with IPIDEA. It specifically targets communication where the Server Name Indication (SNI) in TLS traffic ends with ".ipidea.io". Such domains are indicative of the IPIDEA residential proxy service, which can be utilized to mask the origin of internet traffic by routing it through residential IP addresses, often for purposes that include evasion of detection in malicious activities. The rule is designed to monitor established connections from within a network to external destinations, flagging potential misuse of infrastructure resources.
+  Updated-Date: '2026_11_12'
+'2072743':
+  Created-Date: '2026_11_12'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: b387f1589f3e5e4687dd6ba3c9693921
+  Ruleset: ETOPEN
+  Summary: This rule detects an attempt to establish a connection to a domain associated with the IPIDEA residential proxy service, specifically targeting the domain "lunaproxy.com" when observed in the TLS Server Name Indication (SNI) field. Such residential proxy services can be used maliciously for concealing the origin of various types of traffic through a network of residential IP addresses. This detection highlights the potential misuse of infrastructure that impedes traceability in cyber operations. It aims to identify and mitigate the risk associated with unauthorized proxy activity within network traffic to maintain network security.
+  Updated-Date: '2026_11_12'
+'2072744':
+  Created-Date: '2026_11_12'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: fea992d6d0efa981e3851b60ea5c25ac
+  Ruleset: ETOPEN
+  Summary: This rule detects traffic involving the use of IPIDEA Residential Proxy services by monitoring TLS connections for the presence of "piaproxy.com" in the Server Name Indication (SNI) field during established connections directed to external networks. This activity is associated with the misuse of residential proxy networks, which can facilitate malicious operations such as masquerading IP addresses for illicit purposes, as identified in threat intelligence research.
+  Updated-Date: '2026_11_12'
+'2072745':
+  Created-Date: '2026_11_12'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: f14a6ecb7e8c27803ffd530c82f4164d
+  Ruleset: ETOPEN
+  Summary: This rule detects TLS traffic that includes the domain "ip2world.com" in the Server Name Indication (SNI) field, which is indicative of a connection to the IPIDEA Residential Proxy service. The rule is triggered on outgoing, established TLS connections from the internal network to external servers where the domain is found at the end of the SNI, suggesting potential malicious activity related to the operable residential proxy service. The detection aims to identify and flag usage of this service, often associated with proxy activity that could be used for fraudulent purposes, unauthorized access, or resource development tactics as specified in threat intelligence reports.
+  Updated-Date: '2026_11_12'
+'2072746':
+  Created-Date: '2026_11_12'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: 412d18b6ed3abdd225b5366590f19e89
+  Ruleset: ETOPEN
+  Summary: This rule detects network traffic involving the use of a specific domain associated with the IPIDEA Residential Proxy service. The presence of "cherryproxy.com" in the TLS Server Name Indication (SNI) during an established connection indicates potential use of a residential proxy network, which can be a part of malicious activities such as masking the true origin of traffic. The rule targets connections from a monitored network to any external network where this domain appears in the connection request, identifying possible unauthorized use of proxy services that facilitate anonymity and infrastructure acquisition for malicious purposes.
+  Updated-Date: '2026_11_12'
+'2072747':
+  Created-Date: '2026_11_12'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: 3637359b97d8a9ebbdb8c97d7af8d69c
+  Ruleset: ETOPEN
+  Summary: This rule detects communication indicative of a check-in to the command and control (CnC) servers associated with the IPIDEA residential proxy network, categorized under malware activities. The rule triggers on HTTP requests originating from a home network towards external networks when specific patterns are identified in the communication, such as "os=3d", "sn=3d", "tag=3d", "key=3d", and "n=3dtlaunch". The activity is linked to a significant threat actor utilizing residential proxies, which are often abused in cyber operations to mask the true origin of traffic and engage in malicious activities under the guise of legitimate residential IP addresses.
+  Updated-Date: '2026_11_12'
+'2072748':
+  Created-Date: '2026_11_12'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: 7c8f36e2b7df8577b99767bb105cea0c
+  Ruleset: ETOPEN
+  Summary: This rule detects a network communication pattern associated with IPIDEA, a known residential proxy service. Specifically, it identifies a command-and-control (C&C) response from the IPIDEA Tier 1 residential proxy network, which may involve malicious activities such as proxying malicious traffic through compromised residential networks. The detection triggers on an HTTP response containing specific JSON-structured fields such as "code", "data", "schedule", "thread", "heartbeat", and "ip", which are indicative of a C&C check-in operation. This activity is linked to resource development tactics, where malicious actors acquire infrastructure for nefarious uses.
+  Updated-Date: '2026_11_12'
 '2100110':
   Created-Date: '2024_08_07'
   Custom-Edited: false
