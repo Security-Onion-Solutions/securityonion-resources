@@ -555290,10 +555290,10 @@
   Created-Date: '2026_11_04'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: bcd4a3bcd2adeaf8ac43b348dc52d40a
+  Rule-Body-Hash: 8e32a06b0430504829d555d45ee198c7
   Ruleset: ETOPEN
-  Summary: This rule detects HTTP requests from an internal network to external domains ending with ".naughtybaptistbrewery.com," which are associated with dynamic DNS services. These types of requests can indicate the use of domains for potentially suspicious activities, such as command and control communications by malware using dynamic resolution techniques.
-  Updated-Date: '2026_11_04'
+  Summary: This rule detects HTTP requests to domains ending with ".naughtybaptistbrewery.com", which are associated with dynamic DNS services often used for malicious purposes. The rule triggers when a client in the internal network initiates an established connection to such external domains, indicating potential use of dynamic DNS for command and control activities.
+  Updated-Date: '2026_11_13'
 '2072628':
   Created-Date: '2026_11_04'
   Custom-Edited: false
@@ -555570,10 +555570,10 @@
   Created-Date: '2026_11_12'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: ea8fbc304b2f05d5d08013d71906fb92
+  Rule-Body-Hash: 0a42c2e5e4cc836ea8006c24ea4658c2
   Ruleset: ETOPEN
-  Summary: This rule detects DNS queries for the domain "pic-st.championboerboel.com," which is associated with the TA569 attack group and Gholoader, a malware used for command and control (C2) communication. The rule specifically identifies this domain in DNS lookups to help mitigate the threat posed by SocGholish, an exploit kit that targets client endpoints.
-  Updated-Date: '2026_11_12'
+  Summary: This rule detects DNS queries for the domain "pic-st.championboerboel.com," which is associated with the command and control infrastructure of the Gholoader malware. Gholoader is often linked to the SocGholish malware family, which is known for its involvement in malicious activities such as distributing ransomware or other types of malware. This specific domain is indicative of the TA569 threat group, which uses compromised websites to spread malware. The rule targets client endpoints and is relevant to web browser activities, aiming to identify potential trojan activity in network traffic with a high confidence level.
+  Updated-Date: '2026_11_13'
 '2072663':
   Created-Date: '2026_11_12'
   Custom-Edited: false
@@ -555586,18 +555586,18 @@
   Created-Date: '2026_11_12'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: 18ebfd7855c77d3b5f163fd0a7ee8314
+  Rule-Body-Hash: d7a60976545b87a9e67ad2d95a08e6e9
   Ruleset: ETOPEN
-  Summary: This rule detects a DNS query for the domain "basefilebox.com," which is associated with the TryNodeRAT malware's command and control (C2) operations. TryNodeRAT is a type of Remote Access Trojan (RAT) known for targeting various versions of Windows operating systems. The presence of a DNS query for this domain may indicate an attempt by an infected system to communicate with its C2 server, suggesting potential malware activity on the network.
-  Updated-Date: '2026_11_12'
+  Summary: This rule detects a DNS query involving the domain "basefilebox.com," which is associated with the TryNodeRAT malware's command and control (CnC) operations. TryNodeRAT is a remote access trojan that allows attackers to control infected systems remotely. The rule applies to any DNS query from a monitored network and aims to identify potential malicious communication attempts with the TryNodeRAT infrastructure by targeting this specific domain.
+  Updated-Date: '2026_11_13'
 '2072665':
   Created-Date: '2026_11_12'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: 3de6cb88b8e46fe87c1915ed37bbca51
+  Rule-Body-Hash: 7722efd026b1768a1a9a9947a6d307be
   Ruleset: ETOPEN
-  Summary: This rule detects a DNS query attempting to resolve the domain ".connect-apis.workers.dev," which is associated with the TryNodeRAT malware. TryNodeRAT is a Remote Access Trojan (RAT) that allows attackers to control compromised systems remotely. This rule specifically targets command-and-control (C2) communication by identifying queries to suspicious domains indicative of this malware activity.
-  Updated-Date: '2026_11_12'
+  Summary: This rule detects DNS queries to the domain ".connect-apis.workers.dev," which is associated with the TryNodeRAT malware command and control (C2) infrastructure. TryNodeRAT is a Remote Access Trojan (RAT) that can potentially affect various Windows operating systems, and this rule aims to identify attempts to communicate with its C2 servers, which could indicate malicious activity or an infected endpoint.
+  Updated-Date: '2026_11_13'
 '2072666':
   Created-Date: '2026_11_12'
   Custom-Edited: false
@@ -555650,10 +555650,10 @@
   Created-Date: '2026_11_12'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: bc637ebae05df7718511e150fb0e07a2
+  Rule-Body-Hash: 34a960bbc60b4abf624eb2dec2c7fc16
   Ruleset: ETOPEN
-  Summary: This rule detects an HTTP request to a domain ending with ".it123.net," which is associated with dynamic DNS services. These types of domains can often be used in malicious activities, such as command and control communications, as part of more extensive attack strategies like those involving dynamic domain name resolution. The rule specifically targets traffic from internal networks to external networks, looking for hostnames in HTTP headers that match this pattern.
-  Updated-Date: '2026_11_12'
+  Summary: This rule detects HTTP requests from an internal network to an external network that involve access to subdomains of *.it123.net. This traffic is associated with dynamic DNS services, which are often used for legitimate purposes but can be exploited for malicious activities, such as disguising command and control traffic. The rule uses HTTP host detection for traffic to such domains to identify potential threats involving dynamic resolution, which can be indicative of command and control tactics according to the MITRE framework.
+  Updated-Date: '2026_11_13'
 '2072673':
   Created-Date: '2026_11_12'
   Custom-Edited: false
@@ -556262,6 +556262,30 @@
   Ruleset: ETOPEN
   Summary: This rule detects a network communication pattern associated with IPIDEA, a known residential proxy service. Specifically, it identifies a command-and-control (C&C) response from the IPIDEA Tier 1 residential proxy network, which may involve malicious activities such as proxying malicious traffic through compromised residential networks. The detection triggers on an HTTP response containing specific JSON-structured fields such as "code", "data", "schedule", "thread", "heartbeat", and "ip", which are indicative of a C&C check-in operation. This activity is linked to resource development tactics, where malicious actors acquire infrastructure for nefarious uses.
   Updated-Date: '2026_11_12'
+'2072749':
+  Created-Date: '2026_11_13'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: 5f983d2783bab866684bf86d945e87d7
+  Ruleset: ETOPEN
+  Summary: This rule detects DNS queries for the domain "sentinel.cryptodigitalsupport.com," which is associated with the TA569 Gholoader command and control (C&C) activity, indicating potential involvement with the SocGholish malware family. This domain lookup suggests that a compromised client endpoint might be contacting a malicious server as part of a broader exploit kit-driven attack. The detection is significant for identifying and mitigating trojan activity aimed at infiltrating or exploiting client systems.
+  Updated-Date: '2026_11_13'
+'2072750':
+  Created-Date: '2026_11_13'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: 35c777f7c7ef6eb566ec0544209dcc0e
+  Ruleset: ETOPEN
+  Summary: This rule detects network traffic associated with the TA569 threat actor using Gholoader malware, specifically targeting command and control (C2) domain activity through the TLS Server Name Indication (SNI) field containing "sentinel.cryptodigitalsupport.com". This indicator suggests potential involvement in malicious activities by identifying and monitoring for the presence of this domain within network communications, implicating its operation as part of the SocGholish malware campaign, which often uses compromised websites as part of its delivery method.
+  Updated-Date: '2026_11_13'
+'2072751':
+  Created-Date: '2026_11_13'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: f599130809add36ef2bbe7b697b3d042
+  Ruleset: ETOPEN
+  Summary: This rule detects network traffic indicative of a command and control (C2) beacon associated with a generic Rust-based loader malware. The activity is identified through an established HTTP session where the client sends a GET request. The request URI includes a specific pattern following the "GET /beacon?m=" format, starting with a 16-character alphanumeric string followed by an encoded ampersand. The communication headers feature the "Keep-Alive" connection directive along with a certain sequence of headers, utilizing a threshold to limit alerts to one occurrence per 300 seconds per source IP. This pattern is often associated with trojan activity aiming at client endpoints, possibly indicating resource hijacking for malicious purposes.
+  Updated-Date: '2026_11_13'
 '2100110':
   Created-Date: '2024_08_07'
   Custom-Edited: false
