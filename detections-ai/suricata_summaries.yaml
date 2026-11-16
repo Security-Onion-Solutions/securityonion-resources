@@ -555522,10 +555522,10 @@
   Created-Date: '2026_11_10'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: 257cce2c207c49aca607377f6c12ac46
+  Rule-Body-Hash: 94a47bd49ffd73b81acc26479398efba
   Ruleset: ETOPEN
-  Summary: 'This rule detects an inbound HTTP request to a web server that uses Brotli compression and is sent with the "application/octet-stream" content type. Brotli compression is indicated by the presence of "content-encoding: br" in the HTTP headers. The rule is related to a potential security vulnerability that could lead to remote code execution, with further details available through an associated CVE and a blog post discussing the exploit.'
-  Updated-Date: '2026_11_10'
+  Summary: 'This rule detects an inbound HTTP request to a network''s web servers that uses Brotli compression, identified by the "content-encoding: br" header, and is accompanied by the MIME type "application/octet-stream." This request type has been associated with potential remote code execution vulnerabilities, highlighting the need for monitoring and potential mitigation of such HTTP traffic. The specific threat is linked to a vulnerability covered in a blog post by Imperva, detailing how Brotli compressed data could lead to exploitation.'
+  Updated-Date: '2026_11_16'
 '2072657':
   Created-Date: '2026_11_11'
   Custom-Edited: false
@@ -555578,10 +555578,10 @@
   Created-Date: '2026_11_12'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: 8acce995ba065de4a11d64497c749a53
+  Rule-Body-Hash: 2e8adc15cd727b7bb0997f0449272962
   Ruleset: ETOPEN
-  Summary: This rule detects network traffic associated with the SocGholish malware family by identifying a specific command and control (CnC) domain in the Server Name Indication (SNI) field of TLS communication. The rule is triggered when a client from the internal network communicates with the external network using the TLS protocol and the domain "pic-st.championboerboel.com" is present in the SNI, indicating potential trojan activity and exploitation related to the TA569 threat group.
-  Updated-Date: '2026_11_12'
+  Summary: This rule detects network traffic associated with the TA569 Gholoader malware, specifically targeting the use of a Command and Control (C2) domain in the Server Name Indication (SNI) field of a TLS connection. The detected domain is "pic-st.championboerboel.com" and is identified when there is an established connection to an external server. The rule helps to identify potential malicious activities related to the SocGholish malware family, which typically targets web browsers on client endpoints.
+  Updated-Date: '2026_11_16'
 '2072664':
   Created-Date: '2026_11_12'
   Custom-Edited: false
@@ -555602,10 +555602,10 @@
   Created-Date: '2026_11_12'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: 5d9504ecd53d02a4da587bee89bd699c
+  Rule-Body-Hash: 44c848a2fbdf428b2ee430547026e173
   Ruleset: ETOPEN
-  Summary: This rule detects communication to a command-and-control (CnC) domain associated with the TryNodeRAT malware within the Server Name Indication (SNI) field of TLS traffic. It specifically targets connections to any domain ending in ".basefilebox.com" established from internal to external networks. TryNodeRAT is a Remote Access Trojan (RAT) that allows for unauthorized remote control and access to infected client endpoints. This rule aims to identify potentially compromised systems reaching out to known malicious infrastructure.
-  Updated-Date: '2026_11_12'
+  Summary: This rule detects network traffic intended for a command and control (CnC) domain associated with the TryNodeRAT malware, specifically when the domain "basefilebox.com" appears in the Server Name Indication (SNI) field of a TLS handshake. TryNodeRAT is a Remote Access Trojan (RAT) that gives attackers control over infected systems. The rule triggers when a connection from the internal network to an external network is established, indicating potential communication with a malware CnC server, which could compromise security of client endpoints across various Windows operating systems.
+  Updated-Date: '2026_11_16'
 '2072667':
   Created-Date: '2026_11_12'
   Custom-Edited: false
@@ -556274,10 +556274,10 @@
   Created-Date: '2026_11_13'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: 35c777f7c7ef6eb566ec0544209dcc0e
+  Rule-Body-Hash: 9c764aa8126c435fe5a5540754130c3e
   Ruleset: ETOPEN
-  Summary: This rule detects network traffic associated with the TA569 threat actor using Gholoader malware, specifically targeting command and control (C2) domain activity through the TLS Server Name Indication (SNI) field containing "sentinel.cryptodigitalsupport.com". This indicator suggests potential involvement in malicious activities by identifying and monitoring for the presence of this domain within network communications, implicating its operation as part of the SocGholish malware campaign, which often uses compromised websites as part of its delivery method.
-  Updated-Date: '2026_11_13'
+  Summary: This rule detects communication with a command-and-control (C2) server associated with the TA569 threat actor group, specifically targeting an indicator of the Gholoader malware. The detection is triggered by the presence of the domain "sentinel.cryptodigitalsupport.com" in the Server Name Indication (SNI) field of a TLS handshake. This domain is part of the network infrastructure used for nefarious communications related to the SocGholish malware family. The Gholoader malware is known for delivering and executing additional malicious payloads on infected systems. The condition targets outbound traffic from internal networks towards external destinations, focusing on established connections where a potential compromise might occur through manipulated web activities.
+  Updated-Date: '2026_11_16'
 '2072751':
   Created-Date: '2026_11_13'
   Custom-Edited: false
@@ -556286,6 +556286,30 @@
   Ruleset: ETOPEN
   Summary: This rule detects network traffic indicative of a command and control (C2) beacon associated with a generic Rust-based loader malware. The activity is identified through an established HTTP session where the client sends a GET request. The request URI includes a specific pattern following the "GET /beacon?m=" format, starting with a 16-character alphanumeric string followed by an encoded ampersand. The communication headers feature the "Keep-Alive" connection directive along with a certain sequence of headers, utilizing a threshold to limit alerts to one occurrence per 300 seconds per source IP. This pattern is often associated with trojan activity aiming at client endpoints, possibly indicating resource hijacking for malicious purposes.
   Updated-Date: '2026_11_13'
+'2072752':
+  Created-Date: '2026_11_16'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: 49b7c3d995a66c75e86a09145d078241
+  Ruleset: ETOPEN
+  Summary: This rule detects the presence of a vulnerable version of OpenSSH software by identifying specific version banners that are associated with CVE-2026-123158 during an established SSH session directed towards a client. The detection focuses on SSH protocol version 2.0 and checks if the OpenSSH version falls within a certain vulnerable range, specifically versions from 1.x to 10.6, including minor updates p0 and p1. This vulnerability could potentially be exploited during a reconnaissance attempt on servers running affected versions of OpenSSH.
+  Updated-Date: '2026_11_16'
+'2072753':
+  Created-Date: '2026_11_16'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: 48382391a864545e7164365e859c5912
+  Ruleset: ETOPEN
+  Summary: 'This rule detects communication attempts from an internal network to an external network consistent with the command and control check-in of the RedFlick malware using the DNSObserver HTTP method. It identifies the HTTP GET request that begins with a specific pattern in the URI: "/dns/request?ui=", followed by a character string resembling encoded data. The HTTP User-Agent header should contain "DNSObserver," which is indicative of the malware''s behavior. RedFlick is a malware family that uses such network traffic for command and control activities, potentially identified on endpoints like Windows clients through TLS-decrypted traffic.'
+  Updated-Date: '2026_11_16'
+'2072754':
+  Created-Date: '2026_11_16'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: 794d2f5d39ac70b61560e0f825975a40
+  Ruleset: ETOPEN
+  Summary: This rule detects an HTTP request from a client to an external network indicating the presence of the RedFlick malware, specifically identifying the user-agent string "DNSObserver" in the request headers. RedFlick is associated with trojan activity, and this signature helps to identify malicious communication from the malware, which is known to mimic legitimate traffic to evade detection. The detection is supported by research into spearphishing campaigns targeting Ukrainian organizations, highlighting the malware's use in sophisticated attacks.
+  Updated-Date: '2026_11_16'
 '2100110':
   Created-Date: '2024_08_07'
   Custom-Edited: false
