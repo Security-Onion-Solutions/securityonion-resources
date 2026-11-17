@@ -555346,10 +555346,10 @@
   Created-Date: '2026_11_05'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: 9127cacb2679d6001acd4484addb1185
+  Rule-Body-Hash: d5af4a277c193b9a47d10cf8faaf18de
   Ruleset: ETOPEN
-  Summary: This rule detects DNS queries associated with the TryNodeRAT malware, specifically targeting the command-and-control domain "relays-cf.workersp.dev". It focuses on identifying communication attempts by this remote access trojan, which is typically used to gain unauthorized access and control over infected systems. This rule is relevant for monitoring client endpoint security on Windows operating systems and assesses the domain used for potential malicious outbound communications.
-  Updated-Date: '2026_11_05'
+  Summary: This rule detects DNS queries attempting to resolve domains associated with the command and control infrastructure of TryNodeRAT malware. Specifically, it looks for DNS lookups that end with ".relays-cf.workersp.dev". TryNodeRAT is a type of Remote Access Trojan (RAT) that can allow attackers to take control of infected systems, typically used to exfiltrate data or perform other malicious activities. The rule targets systems running various versions of Windows and is designed to protect client endpoints from this threat.
+  Updated-Date: '2026_11_17'
 '2072635':
   Created-Date: '2026_11_05'
   Custom-Edited: false
@@ -555618,10 +555618,10 @@
   Created-Date: '2026_11_12'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: 51d50737f8522962863893ed34479b4d
+  Rule-Body-Hash: ea9ccca959f44dfd5420cdd161f023f8
   Ruleset: ETOPEN
-  Summary: This rule detects a DNS query for a command-and-control (C&C) domain associated with the TryNodeRAT malware. It specifically looks for DNS lookups that end with the domain ".filestorage.a.pinggy.link" and operates in a case-insensitive manner. This detection helps identify potential communication attempts by the TryNodeRAT, a type of Remote Access Trojan (RAT) that allows unauthorized remote control over an affected client endpoint, potentially targeting Windows operating systems.
-  Updated-Date: '2026_11_12'
+  Summary: This rule detects DNS queries indicative of the TryNodeRAT malware, specifically targeting domains associated with command and control activities by referring to the domain "filestorage.a.pinggy.link". TryNodeRAT is a type of Remote Access Trojan (RAT) that allows attackers to remotely control infected systems, potentially leading to unauthorized access and data exfiltration. The rule is aimed at identifying potential compromises on Windows client endpoints by monitoring for specific domain-based communications commonly used by this malware.
+  Updated-Date: '2026_11_17'
 '2072669':
   Created-Date: '2026_11_12'
   Custom-Edited: false
@@ -556266,10 +556266,10 @@
   Created-Date: '2026_11_13'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: 5f983d2783bab866684bf86d945e87d7
+  Rule-Body-Hash: 272388d73345f268abb0ae2692ef3849
   Ruleset: ETOPEN
-  Summary: This rule detects DNS queries for the domain "sentinel.cryptodigitalsupport.com," which is associated with the TA569 Gholoader command and control (C&C) activity, indicating potential involvement with the SocGholish malware family. This domain lookup suggests that a compromised client endpoint might be contacting a malicious server as part of a broader exploit kit-driven attack. The detection is significant for identifying and mitigating trojan activity aimed at infiltrating or exploiting client systems.
-  Updated-Date: '2026_11_13'
+  Summary: This rule detects DNS queries for the domain "sentinel.cryptodigitalsupport.com," which is associated with the malware family known as SocGholish, also referred to as TA569 or Gholoader. This malware conducts command and control (C2) communications and is typically involved in malicious activities including exploit kits and compromised websites. The detection is aimed at monitoring DNS lookups that match the specific domain, indicating potential infection or malicious activity targeting client endpoints through web browsers.
+  Updated-Date: '2026_11_17'
 '2072750':
   Created-Date: '2026_11_13'
   Custom-Edited: false
@@ -556310,6 +556310,54 @@
   Ruleset: ETOPEN
   Summary: This rule detects an HTTP request from a client to an external network indicating the presence of the RedFlick malware, specifically identifying the user-agent string "DNSObserver" in the request headers. RedFlick is associated with trojan activity, and this signature helps to identify malicious communication from the malware, which is known to mimic legitimate traffic to evade detection. The detection is supported by research into spearphishing campaigns targeting Ukrainian organizations, highlighting the malware's use in sophisticated attacks.
   Updated-Date: '2026_11_16'
+'2072755':
+  Created-Date: '2026_11_17'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: 342ff9cf05c4d59778e4c2bb39e5e5cc
+  Ruleset: ETOPEN
+  Summary: This rule detects DNS queries to domains ending with ".tb2.net," which are associated with dynamic DNS services. Dynamic DNS can be used by attackers for command and control purposes by frequently changing the IP address to evade detection. The rule checks for domain names that match this pattern and can help identify potentially malicious activities related to dynamic resolution techniques.
+  Updated-Date: '2026_11_17'
+'2072756':
+  Created-Date: '2026_11_17'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: a238da4d6a73cd318a4642bf757a7e39
+  Ruleset: ETOPEN
+  Summary: This rule detects an HTTP request originating from a protected network to an external network, specifically targeting domains ending in ".tb2.net". Such domains are associated with dynamic DNS services, which can be used for establishing command and control channels in cyber attacks. This behavior can indicate the use of dynamic DNS for malicious purposes, such as maintaining persistent access or disguising network traffic as legitimate.
+  Updated-Date: '2026_11_17'
+'2072757':
+  Created-Date: '2026_11_17'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: 9c65de7137eb4536203bc4c9b13e27ef
+  Ruleset: ETOPEN
+  Summary: This rule detects a DNS query for the domain "drbettere.live," which is associated with the Win32/Lumma Stealer malware. The Lumma Stealer is a type of malicious software used for stealing sensitive information from infected systems. This detection pertains to potential Command and Control (CnC) communications initiated by the Lumma Stealer through DNS lookups. It aims to identify infected client endpoints by monitoring outgoing DNS requests for indicators of compromise related to this malware family. The rule uses case-insensitive pattern matching to flag any DNS query that includes this specific domain.
+  Updated-Date: '2026_11_17'
+'2072758':
+  Created-Date: '2026_11_17'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: 1bbe297a95dca50a0260bf76257ef08b
+  Ruleset: ETOPEN
+  Summary: This rule detects network traffic involving a suspicious domain, "drbettere.live," observed in the TLS Server Name Indication (SNI) field, which is associated with the Lumma Stealer malware. Lumma Stealer is a type of malicious software designed to steal sensitive information from infected systems. The rule specifically monitors established TLS connections to identify potential command and control (C2) communication attempts by matching the domain name in the SNI field of the TLS packets.
+  Updated-Date: '2026_11_17'
+'2072759':
+  Created-Date: '2026_11_17'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: 43e9af42e4df94836108855718413ce4
+  Ruleset: ETOPEN
+  Summary: This rule detects the presence of a payload obfuscator associated with the PS SecureLoader malware in HTTP response bodies delivered to client endpoints. It identifies the specific pattern of obfuscation by matching a sequence of equal signs (`==`) often used in obfuscation methods along with the strings "PS Secure Loader." This traffic is typically inbound from an external network to a protected home network, suggesting a potential compromise of Windows client systems in scenarios related to command and control activities using ingress tool transfers.
+  Updated-Date: '2026_11_17'
+'2072760':
+  Created-Date: '2026_11_17'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: 8387530d04d9684d0ea710896c043a13
+  Ruleset: ETOPEN
+  Summary: This rule detects inbound HTTP traffic containing a specific obfuscated payload associated with the SecureLoader malware. The payload uses multi-stage decryption and memory execution techniques, indicative of an advanced obfuscation method designed to avoid detection. This activity is characterized by its delivery of an encrypted payload, targeting vulnerable Windows client endpoints. The rule monitors established connections and examines HTTP response bodies for content patterns linked to this malicious operation, which is part of command and control tactics used in malware campaigns.
+  Updated-Date: '2026_11_17'
 '2100110':
   Created-Date: '2024_08_07'
   Custom-Edited: false
