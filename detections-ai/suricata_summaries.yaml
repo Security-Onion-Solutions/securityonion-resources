@@ -170946,10 +170946,10 @@
   Created-Date: '2024_08_07'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: 5254be950bccefea264ad2bcdfbbc229
+  Rule-Body-Hash: 846ddb7b4d32390f8af679b508233144
   Ruleset: ETOPEN
-  Summary: This rule detects an attempted exploitation of a vulnerability known as CVE-2017-9791, which is associated with OGNL Expression Injection in Apache Struts2, identified as S2-048. The attack targets web servers by sending a malicious HTTP POST request containing specific multipart/form-data with indicators like "ognl.OgnlContext" and "DEFAULT_MEMBER_ACCESS", as well as the use of "java.lang.ProcessBuilder.start". This attempt is indicative of an attacker trying to leverage this vulnerability for remote code execution on the target web server.
-  Updated-Date: '2025_01_31'
+  Summary: This rule detects an exploit attempt against an Apache Struts2 application involving OGNL Expression Injection, identified as CVE-2017-9791. The attack is characterized by an HTTP POST request containing specific malicious payloads such as "ognl.OgnlContext," "DEFAULT_MEMBER_ACCESS," and "java.lang." This vulnerability can allow an attacker to execute remote code on a server running vulnerable versions of Apache Struts2, posing a significant threat to web server integrity.
+  Updated-Date: '2026_11_18'
 '2024469':
   Created-Date: '2024_08_07'
   Custom-Edited: false
@@ -191794,10 +191794,10 @@
   Created-Date: '2024_08_07'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: 66d6b7da4b71a05ef15ae6707f442b07
+  Rule-Body-Hash: 5f8b86b9a45d5a43fa14a590de941659
   Ruleset: ETOPEN
-  Summary: This rule detects a potential remote code execution attempt targeting Netgear DGN2200 devices, specifically exploiting a vulnerability identified as CVE-2017-6334. The attack involves an HTTP POST request to the "/dnslookup.cgi" URI, with a specific HTTP header and request body structure. The request body starts with "host_name=" followed by a semicolon, indicating an attempt to execute unauthorized commands. This type of attack targets Internet of Things (IoT) devices, and the detection rule is designed to identify suspicious network traffic that could compromise the affected Netgear routers.
-  Updated-Date: '2025_01_31'
+  Summary: This rule detects an attempted exploitation of a remote code execution vulnerability (CVE-2017-6334) in Netgear DGN2200 routers. It is triggered by an established HTTP POST request to the server, specifically targeting requests directed to "/dnslookup.cgi". The rule searches for malicious payloads within the request body containing the parameter "host_name=", which may include potentially dangerous characters or encoded values that are indicative of an exploit attempt. The vulnerability allows attackers to execute arbitrary commands via crafted input, posing a significant security risk to affected devices.
+  Updated-Date: '2026_11_18'
 '2027095':
   Created-Date: '2024_08_07'
   Custom-Edited: false
@@ -496298,10 +496298,10 @@
   Created-Date: '2025_10_21'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: ed9967e62614b1c840f6e2f798d6a775
+  Rule-Body-Hash: e99312e34c54ef99c81c0481b0fd60ab
   Ruleset: ETOPEN
-  Summary: This rule detects a DNS query for the domain "muld.org," which is associated with the TA569 middleware server and the SocGholish malware family. SocGholish is known for exploiting web browsers and targeting client endpoints. The specific detection concerns potentially malicious activity related to a compromised website, with high confidence in its threat potential and critical severity. This rule is part of efforts to identify and mitigate trojan activity, especially that linked with exploit kits.
-  Updated-Date: '2026_06_09'
+  Summary: This rule detects DNS lookups for the domain "muld.org," which is associated with the TA569 group and the SocGholish malware, a known exploit kit often used in malicious campaigns. This malware typically targets client endpoints via compromised websites.
+  Updated-Date: '2026_11_18'
 '2065245':
   Created-Date: '2025_10_21'
   Custom-Edited: false
@@ -496346,10 +496346,10 @@
   Created-Date: '2025_10_21'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: 67e7fceff6e2e76c57415515f762e80b
+  Rule-Body-Hash: 76df5d110c8fe78ee8f8bbec87d3fe48
   Ruleset: ETOPEN
-  Summary: This rule detects network traffic containing the domain "muld.org" in the Server Name Indication (SNI) field of TLS connections, indicating potential communication with a server associated with the TA569 threat group. The domain is linked to malicious middleware server activity and is related to the SocGholish malware, known for exploiting compromised websites to deliver payloads to client endpoints, typically via web browsers. The rule targets traffic from a protected internal network to external networks, particularly focusing on established connections to servers.
-  Updated-Date: '2026_06_09'
+  Summary: This rule detects network traffic where the TLS Server Name Indication (SNI) field contains the domain "muld.org," which is associated with the TA569 malware group. This specific rule is designed for scenarios where an internal network device is establishing a connection to an external server that includes this malicious domain in its TLS handshake. The presence of the domain indicates potential involvement in SocGholish malware activity, which is known to exploit compromised websites to disseminate malware, marking the traffic as potentially part of a trojan's operations.
+  Updated-Date: '2026_11_18'
 '2065251':
   Created-Date: '2025_10_21'
   Custom-Edited: false
@@ -556282,10 +556282,10 @@
   Created-Date: '2026_11_13'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: f599130809add36ef2bbe7b697b3d042
+  Rule-Body-Hash: fa43952d3574af4302c22d94c8caf32d
   Ruleset: ETOPEN
-  Summary: This rule detects network traffic indicative of a command and control (C2) beacon associated with a generic Rust-based loader malware. The activity is identified through an established HTTP session where the client sends a GET request. The request URI includes a specific pattern following the "GET /beacon?m=" format, starting with a 16-character alphanumeric string followed by an encoded ampersand. The communication headers feature the "Keep-Alive" connection directive along with a certain sequence of headers, utilizing a threshold to limit alerts to one occurrence per 300 seconds per source IP. This pattern is often associated with trojan activity aiming at client endpoints, possibly indicating resource hijacking for malicious purposes.
-  Updated-Date: '2026_11_13'
+  Summary: This rule detects an HTTP command-and-control beacon related to FenBot malware activity. It identifies a suspicious GET request containing a specific pattern in the URI, starting with "/beacon?m=", and matches additional characteristics such as a "Keep-Alive" connection in the header. The rule indicates the potential use of application-layer protocol techniques for maintaining command and control, associated with malicious activities on Windows client endpoints.
+  Updated-Date: '2026_11_18'
 '2072752':
   Created-Date: '2026_11_16'
   Custom-Edited: false
@@ -556322,10 +556322,10 @@
   Created-Date: '2026_11_17'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: a238da4d6a73cd318a4642bf757a7e39
+  Rule-Body-Hash: 52dedacf44fe160faea13a9053defe0d
   Ruleset: ETOPEN
-  Summary: This rule detects an HTTP request originating from a protected network to an external network, specifically targeting domains ending in ".tb2.net". Such domains are associated with dynamic DNS services, which can be used for establishing command and control channels in cyber attacks. This behavior can indicate the use of dynamic DNS for malicious purposes, such as maintaining persistent access or disguising network traffic as legitimate.
-  Updated-Date: '2026_11_17'
+  Summary: This rule detects HTTP requests directed towards domains ending in ".tb2.net," which are associated with dynamic DNS activity. Dynamic DNS is often used for nefarious purposes, such as command and control operations, enabling attackers to rapidly change IP addresses while maintaining the same domain name. This detection can indicate potential malicious communication attempts from an internal network to external servers.
+  Updated-Date: '2026_11_18'
 '2072757':
   Created-Date: '2026_11_17'
   Custom-Edited: false
@@ -556358,6 +556358,534 @@
   Ruleset: ETOPEN
   Summary: This rule detects inbound HTTP traffic containing a specific obfuscated payload associated with the SecureLoader malware. The payload uses multi-stage decryption and memory execution techniques, indicative of an advanced obfuscation method designed to avoid detection. This activity is characterized by its delivery of an encrypted payload, targeting vulnerable Windows client endpoints. The rule monitors established connections and examines HTTP response bodies for content patterns linked to this malicious operation, which is part of command and control tactics used in malware campaigns.
   Updated-Date: '2026_11_17'
+'2072761':
+  Created-Date: '2026_11_18'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: 12ece29284a6ac4d62f33cebc499cb3f
+  Ruleset: ETOPEN
+  Summary: This rule detects communication from a Command and Control (C2) check-in for the SocketflowRAT, a type of remote access trojan. It identifies an established TCP connection directed toward a client, where specific strings and sequences are present within the payload, indicative of the SocketflowRAT check-in protocol. These strings include JSON-like structures with keys such as "type", "__server_ready__", "ok", "true", and "protocol_version". This pattern is consistent with the behavior of SocketflowRAT, designed to establish and control compromised devices for malicious purposes.
+  Updated-Date: '2026_11_18'
+'2072762':
+  Created-Date: '2026_11_18'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: ad82b9986315accae0ac70cbdc50c277
+  Ruleset: ETOPEN
+  Summary: This rule detects a check-in activity from a client infected with SocketflowRAT, a type of Remote Access Trojan (RAT) designed to give attackers control over compromised systems. This detection occurs over an established TCP connection from an internal network to an external network. The rule specifically looks for a JSON structure and an authorization pattern within the initial bytes of communication that are characteristic of SocketflowRAT command and control (C&C) traffic.
+  Updated-Date: '2026_11_18'
+'2072763':
+  Created-Date: '2026_11_18'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: b1b5e629dfffcbdc9f021899bc66ec23
+  Ruleset: ETOPEN
+  Summary: This rule detects the server-side handshake communication of SocketflowRAT, a Remote Access Trojan (RAT) that can potentially compromise client endpoints. The rule identifies this specific malware activity by inspecting established TCP traffic flowing to the client using a sequence of precise content checks, matching patterns indicating a handshake message exchanged between the server and client. The detection looks for JSON-like patterns, including certain keys and values, within the payload to confirm the presence of SocketflowRAT involved in the communication.
+  Updated-Date: '2026_11_18'
+'2072764':
+  Created-Date: '2026_11_18'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: ff6860aa30ca26a0f295d1ab6ec5776a
+  Ruleset: ETOPEN
+  Summary: This rule detects network traffic indicative of a SocketflowRAT handshake from a client to a server. SocketflowRAT is a remote access trojan (RAT) that can be used by attackers to gain unauthorized access and control over a target system. The rule specifically looks for a certain string pattern in established TCP connections initiated from the internal network to any external network, indicating a potential communication attempt from an infected client. The traffic is expected to originate from a client endpoint possibly running Windows and is aimed at detecting unauthorized or malicious activity associated with this particular RAT.
+  Updated-Date: '2026_11_18'
+'2072765':
+  Created-Date: '2026_11_18'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: bf3cb4b65f9ea7f16927abd157559b21
+  Ruleset: ETOPEN
+  Summary: This rule detects network traffic indicative of the SocketflowRAT, a type of remote access trojan (RAT), by identifying an authentication acknowledgement exchanged by the server. The rule looks for a specific set of patterns in the TCP data, such as JSON-like structured strings containing keywords and sequence markers like "__auth_ack__", "ok", and "true", among others. Additionally, it recognizes a specific UUID pattern and fields like "path", "wait_response", and "compressed" within the data. This RAT impacts Windows systems and poses a threat to client endpoints by allowing unauthorized remote access and control.
+  Updated-Date: '2026_11_18'
+'2072766':
+  Created-Date: '2026_11_18'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: e0c2ec8c15f304c5ad47cb9564278e9e
+  Ruleset: ETOPEN
+  Summary: This rule detects network traffic indicative of the SocketflowRAT malware used as a Remote Access Trojan (RAT), specifically monitoring for a keepalive message from the client. The communication pattern involves established TCP connections directed towards external destinations. The signature looks for specific JSON-formatted data that includes the keywords "__ping__", which is used by the malware as a keepalive mechanism. The rule aims to identify client endpoints running Windows operating systems that are compromised and sending these keepalive signals to potentially malicious servers. SocketflowRAT is known to facilitate unauthorized remote control by attackers, allowing them to perform various functions on the infected machine.
+  Updated-Date: '2026_11_18'
+'2072767':
+  Created-Date: '2026_11_18'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: 8cf444b1aae26b43e54e0519832ffb6c
+  Ruleset: ETOPEN
+  Summary: This rule detects network traffic indicative of SocketflowRAT malware, specifically by identifying a keepalive message from the server to the client. It searches for TCP traffic containing JSON-like data patterns, including the strings associated with a type indicator and a "pong" message wrapped in underscores, within the first 20 bytes of the payload. These characteristics suggest communication behavior typical for maintaining a connection used by the SocketflowRAT, a Remote Access Trojan known to target various Windows systems. The rule focuses on distinguishing established connections directed to client endpoints within the protected network.
+  Updated-Date: '2026_11_18'
+'2072768':
+  Created-Date: '2026_11_18'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: e96dd3c8e672965ba340471f0a1e3b85
+  Ruleset: ETOPEN
+  Summary: This rule detects the presence of network traffic associated with the Heyiwei/LTM malware's command and control (C2) communication, specifically the LTM2 variant. It identifies TCP packets with a data size of 104 bytes that include the "LTM2CHLO" string at the start of the payload. This pattern is used by the malware during its initial client-hello communication with a remote server, indicating potential compromise of a client endpoint running on a Linux system. The rule is designed to intercept traffic that might indicate a backdoor remote access tool (RAT) is active, exhibiting behavior typical of trojan activity.
+  Updated-Date: '2026_11_18'
+'2072769':
+  Created-Date: '2026_11_18'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: f0ff66425d2b3f0b336fcb66f9614fae
+  Ruleset: ETOPEN
+  Summary: This rule detects communication with a command and control server associated with the Heyiwei/LTM LTM2 malware. It looks for a specific 'LTM2SHLO' message sent over an established TCP connection to a client, with a data size of 72 bytes. The detection helps identify potential Trojan activity related to Heyiwei, which is a type of Remote Access Trojan (RAT) targeting Linux client endpoints. This communication occurs in plaintext, allowing the rule to identify the pattern effectively and flag it as malicious.
+  Updated-Date: '2026_11_18'
+'2072770':
+  Created-Date: '2026_11_18'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: d16641ec324f6321c7c870fc309ddf85
+  Ruleset: ETOPEN
+  Summary: This rule detects Domain Name System (DNS) queries associated with the Heyiwei Internet of Things (IoT) botnet, specifically targeting the ".heyiwei.net" domain, which is linked to command and control (C&C) activities. Heyiwei is a malware family that targets Linux and IoT devices, and the detection is designed to identify potential exfiltration of data over a command and control channel, as indicated by DNS lookups for this domain. The rule utilizes pattern matching for the domain to identify potential malicious communication.
+  Updated-Date: '2026_11_18'
+'2072771':
+  Created-Date: '2026_11_18'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: 9057a6b5a81b7b4587491b985edf7240
+  Ruleset: ETOPEN
+  Summary: This rule detects DNS queries to the domain "ios-hack.icu," which is associated with the OPTIMJACK malware family. The detection is aimed at identifying potential exploit kit activities, as this domain is known to be part of a malicious network that leverages DNS queries for exploitative purposes. This rule targets client endpoints to help mitigate the risk of malware infections associated with the referenced attack campaign.
+  Updated-Date: '2026_11_18'
+'2072772':
+  Created-Date: '2026_11_18'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: 8c2fb0cf6cc3c238f21f2ad6095c018d
+  Ruleset: ETOPEN
+  Summary: This rule detects DNS queries to the domain "gm38duxoihbmy5o.icu," which is associated with the OPTIMJACK exploit kit. OPTIMJACK is a type of malware designed to compromise systems by exploiting vulnerabilities, and the presence of DNS queries to this domain may indicate an active infection or attempted exploitation. The detection is achieved by identifying query requests containing this specific domain name, and the rule operates without case sensitivity to ensure detection regardless of letter casing.
+  Updated-Date: '2026_11_18'
+'2072773':
+  Created-Date: '2026_11_18'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: 4f29e877100c31015dc6d0bef2966c01
+  Ruleset: ETOPEN
+  Summary: This rule detects DNS queries to a domain associated with the OPTIMJACK malware campaign. It specifically monitors for queries ending with ".je4ft3gn8vxudum.icu," indicating potential communication with infrastructure used by the malware. The OPTIMJACK malware is known for its involvement in large-scale exploit kit operations, and this rule aids in identifying systems potentially compromised by or interacting with such malicious activity.
+  Updated-Date: '2026_11_18'
+'2072774':
+  Created-Date: '2026_11_18'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: 9751ab7caefe7f619eef8ef04042d3b1
+  Ruleset: ETOPEN
+  Summary: This rule detects DNS queries made to a domain associated with the OPTIMJACK exploit kit, specifically targeting the ".p55abnw2pnsz0bo.icu" domain. The exploit kit is known for its use in malicious activities, potentially involving malware distribution or other cyber threats. The detection rule is configured to identify queries to this domain, regardless of case sensitivity, ensuring comprehensive monitoring of network traffic for signs of compromise linked to the OPTIMJACK family.
+  Updated-Date: '2026_11_18'
+'2072775':
+  Created-Date: '2026_11_18'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: ac801e172c9e254d49e96e1097e24a5b
+  Ruleset: ETOPEN
+  Summary: This rule detects DNS queries to a specific domain associated with the OPTIMJACK exploit kit, characterized by the domain "5vobauua3ojpklx.icu". The OPTIMJACK malware is known for leveraging DNS to facilitate its activities, and this particular domain is flagged as part of its malicious infrastructure. The detection targets client endpoints, highlighting potential exposure to exploit-related threats upon querying this domain.
+  Updated-Date: '2026_11_18'
+'2072776':
+  Created-Date: '2026_11_18'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: 9658344365ec7fcf4b980547916032d5
+  Ruleset: ETOPEN
+  Summary: This rule detects DNS queries to the domain "k68k.xyz," which is associated with the OPTIMJACK exploit kit. This exploit kit is known for delivering malware by exploiting vulnerabilities to compromise client endpoints. The rule triggers when a DNS query ends with the specified domain, highlighting potential malware activity linked to this threat.
+  Updated-Date: '2026_11_18'
+'2072777':
+  Created-Date: '2026_11_18'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: 2f8c0798c87f6f23fd497c5851521c28
+  Ruleset: ETOPEN
+  Summary: This rule detects a DNS query to a domain associated with the OPTIMJACK malware family. OPTIMJACK is known for being part of an exploit kit chain, potentially compromising large brands' security systems. The rule targets a specific domain pattern ".l7bcsnwc7nzr3uo.icu" and alerts if detected, highlighting the potential engagement in a malware distribution activity linked to this domain.
+  Updated-Date: '2026_11_18'
+'2072778':
+  Created-Date: '2026_11_18'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: e3b6a43e26e6cae842bde658dd75375f
+  Ruleset: ETOPEN
+  Summary: This rule detects a DNS query to a domain ending with ".webshell.lol," associated with the OPTIMJACK exploit kit. This exploit kit targets client endpoints and is related to malware distribution via compromised popular brands. The rule indicates a high confidence level of malicious activity involving this domain suffix used in potential webshell-based attacks.
+  Updated-Date: '2026_11_18'
+'2072779':
+  Created-Date: '2026_11_18'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: f0e5447f80ce0619c44e4b0fe228b3cf
+  Ruleset: ETOPEN
+  Summary: This rule detects a DNS query to a domain associated with the OPTIMJACK exploit kit, specifically targeting the domain ".1688360.cc". This domain is part of a known malware distribution chain, and the detection aids in identifying potential malware infection attempts via DNS queries. The rule is designed to safeguard client endpoints by flagging communication that could indicate exploit kit activity.
+  Updated-Date: '2026_11_18'
+'2072780':
+  Created-Date: '2026_11_18'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: 8f72106fb63fe941a809913cde654963
+  Ruleset: ETOPEN
+  Summary: This rule detects DNS queries to the domain "blogforge.vu" as part of identifying potential activity related to the OPTIMJACK exploit kit. It involves monitoring DNS traffic for queries to this specific domain, which has been associated with malware distribution. The presence of such queries could indicate that a client's endpoint might be targeted or involved in a malicious campaign leveraging the OPTIMJACK malware. This is crucial for identifying compromised systems and preventing the spread of the exploit kit.
+  Updated-Date: '2026_11_18'
+'2072781':
+  Created-Date: '2026_11_18'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: 6089d86b00a93890af6f906fe42528bf
+  Ruleset: ETOPEN
+  Summary: This rule detects DNS queries to domains ending with ".netvigator.cc," which are associated with the malware family OPTIMJACK. The presence of such a query can indicate the potential use of an exploit kit, possibly targeting client endpoints. The rule helps identify malicious activities linked to this domain, which has been documented in security research noting its association with major brands being infected through malicious operations.
+  Updated-Date: '2026_11_18'
+'2072782':
+  Created-Date: '2026_11_18'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: 5986833693c95be678df31348399fe94
+  Ruleset: ETOPEN
+  Summary: This rule detects DNS queries to a domain associated with the OPTIMJACK exploit kit, specifically the domain "q1ls1ho9x7wsxlu.icu". The OPTIMJACK exploit kit is linked to malware infections affecting various brands. Detection is based on identifying queries that end with the specified domain name in a case-insensitive manner.
+  Updated-Date: '2026_11_18'
+'2072783':
+  Created-Date: '2026_11_18'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: 281867f2b1d9fd1765b981298c1feddb
+  Ruleset: ETOPEN
+  Summary: This rule detects DNS queries for domains ending with ".linkforge.cc," which are associated with the OPTIMJACK malware. OPTIMJACK is an exploit kit used to deliver malicious software by exploiting vulnerabilities in client endpoints. The detection focuses on identifying attempts to query these domains, which are linked to documented malicious activities where major brands were targeted with malware. The rule aims to protect against potential compromise by monitoring suspicious DNS activities linked to this exploit kit.
+  Updated-Date: '2026_11_18'
+'2072784':
+  Created-Date: '2026_11_18'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: 526cbe605d381cbbbeb8a63796c6b04b
+  Ruleset: ETOPEN
+  Summary: This rule detects DNS queries from a monitored network to the domain "moubpagedocs.cc," which is associated with the OPTIMJACK exploit kit. The OPTIMJACK exploit kit is a type of malware used to compromise clients by leveraging vulnerabilities. The detection is triggered by any queries ending with the specified domain, indicating potential communication with malicious infrastructure. This is a serious security concern as it indicates possible infection or attempted exploitation involving the OPTIMJACK malware family.
+  Updated-Date: '2026_11_18'
+'2072785':
+  Created-Date: '2026_11_18'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: a60f924edbf21150a9046eaa1be26043
+  Ruleset: ETOPEN
+  Summary: This rule detects DNS queries to the domain "moiubpagedocs.cc," which is associated with the OPTIMJACK malware family. This malware employs exploit kits to infiltrate systems, often using compromised domains as part of its attack chain. The rule analyzes DNS traffic for queries that end with ".moiubpagedocs.cc" to identify potential infection attempts linked to this domain.
+  Updated-Date: '2026_11_18'
+'2072786':
+  Created-Date: '2026_11_18'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: c1db0fc2b7db5931807b23f1c6691de8
+  Ruleset: ETOPEN
+  Summary: This rule detects a DNS query to a domain associated with the OPTIMJACK exploit kit, specifically targeting the domain "1y69gy2mdzaltz1.icu". The detection indicates potential exploitation activity, as the domain is linked to a known malware campaign that compromises high-profile brands through malicious scripts. The rule aims to identify traffic related to this exploit kit, which is part of a broader attack chain involving the injection of malicious code.
+  Updated-Date: '2026_11_18'
+'2072787':
+  Created-Date: '2026_11_18'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: e7c651ce98b5c3da82cdc1a4d0a81c37
+  Ruleset: ETOPEN
+  Summary: This rule detects a DNS query to a domain associated with the OPTIMJACK exploit kit, specifically targeting the domain "eil786npto9u5bq.icu". The rule is designed to identify potential instances where a client's endpoint may be compromised by this particular malware, which is known to exploit vulnerabilities in systems for malicious purposes. Additionally, the rule includes references to detailed descriptions and analyses of the threat posed by the OPTIMJACK exploit kit.
+  Updated-Date: '2026_11_18'
+'2072788':
+  Created-Date: '2026_11_18'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: 3695ec5b07067df180126537274ff9de
+  Ruleset: ETOPEN
+  Summary: This rule detects network traffic directed to domains with the ".ios-hack.icu" suffix in the TLS Server Name Indication (SNI) field, which is associated with the OPTIMJACK malware family. Such traffic is indicative of the OPTIMJACK exploit kit, and this rule is triggered when a client endpoint establishes a connection to a server with this domain in the SNI, suggesting potential exploitation attempts via malicious domains. The rule analyzes established connections to external networks and identifies this pattern as part of a potential malicious activity linked to known exploit kits.
+  Updated-Date: '2026_11_18'
+'2072789':
+  Created-Date: '2026_11_18'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: 47c4c0fcfb70fb164280849ffe446fa7
+  Ruleset: ETOPEN
+  Summary: This rule detects potential connections to a malicious domain related to the OPTIMJACK exploit kit by observing the Server Name Indication (SNI) in TLS traffic for the presence of the domain "gm38duxoihbmy5o.icu". The OPTIMJACK exploit kit is known for leveraging domains in attacks to potentially distribute malware. The rule is triggered when traffic from an internal network to an external network includes the specified domain in the SNI of TLS connections during an established flow to a server.
+  Updated-Date: '2026_11_18'
+'2072790':
+  Created-Date: '2026_11_18'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: 16510b898a22cdfe7cdbcfb4e4475ac5
+  Ruleset: ETOPEN
+  Summary: This rule detects potential exploitation activity associated with the OPTIMJACK malware kit by identifying traffic where the Server Name Indication (SNI) in a TLS handshake matches the domain "je4ft3gn8vxudum.icu." The rule focuses on traffic from internal to external networks, indicating communication from a client endpoint possibly compromised by this malware family. The detection of this specific domain suggests an attempt to exploit vulnerabilities using the OPTIMJACK exploit kit.
+  Updated-Date: '2026_11_18'
+'2072791':
+  Created-Date: '2026_11_18'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: 4d2a05147c04ff83a26c7939b4de95e0
+  Ruleset: ETOPEN
+  Summary: This rule detects traffic indicating potential contact with the OPTIMJACK exploit kit by identifying a specific domain (p55abnw2pnsz0bo.icu) in the TLS Server Name Indication (SNI) extension. This domain is associated with malicious activity, and the alert is triggered when a client from a monitored network establishes a connection to this domain, signaling possible exploitation efforts targeted at client endpoints. The rule helps in identifying and preventing the compromise of systems by exploiting known vulnerabilities through crafted domains used in attack campaigns.
+  Updated-Date: '2026_11_18'
+'2072792':
+  Created-Date: '2026_11_18'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: 91b6b4f92012d054d31ee030607bc8b9
+  Ruleset: ETOPEN
+  Summary: This rule detects TLS connections from an internal network to an external network that involve a server name indicator (SNI) matching a specific domain associated with the OPTIMJACK malware campaign. The rule targets traffic where the SNI field ends with ".5vobauua3ojpklx.icu," which is indicative of an exploit kit being used as part of malicious activities linked to OPTIMJACK. The rule applies to established connections directed towards servers, serving as a mechanism to identify potential exploitation attempts or infections related to this particular malicious domain.
+  Updated-Date: '2026_11_18'
+'2072793':
+  Created-Date: '2026_11_18'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: 1a1a93f13a07512f96ce42fea8bba26c
+  Ruleset: ETOPEN
+  Summary: This rule detects potential malicious activity associated with the OPTIMJACK exploit kit by identifying traffic to domains that include "k68k.xyz" in the TLS Server Name Indication (SNI). The presence of this domain in the SNI is indicative of communications with a known exploit kit, which is used to deliver malware. The rule triggers when an established connection from an internal to an external network contains a specific domain pattern, possibly indicating that the client endpoint is attempting to access or has been redirected to a malicious site.
+  Updated-Date: '2026_11_18'
+'2072794':
+  Created-Date: '2026_11_18'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: 6c5149dd94c076a34328476f1354af13
+  Ruleset: ETOPEN
+  Summary: This rule detects network traffic that involves a TLS session with a Server Name Indication (SNI) matching the domain pattern ".l7bcsnwc7nzr3uo.icu". This domain is associated with the OPTIMJACK exploit kit, which is used for distributing malware. The rule triggers when an established connection from an internal network to an external destination uses this specific domain in the SNI, indicating a potential malicious activity as part of an exploit kit operation.
+  Updated-Date: '2026_11_18'
+'2072795':
+  Created-Date: '2026_11_18'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: a9fc7518eba85530d06c32f1d29a82bd
+  Ruleset: ETOPEN
+  Summary: This rule detects the presence of the OPTIMJACK exploit kit by observing a specific domain pattern in the Server Name Indicator (SNI) field of TLS traffic. It targets traffic from internal to external networks and specifically looks for the ".webshell.lol" domain pattern, which is associated with malicious activity. The existence of this domain in the TLS handshake indicates a potential exploitation attempt using the OPTIMJACK malware, known to leverage webshells for malicious purposes.
+  Updated-Date: '2026_11_18'
+'2072796':
+  Created-Date: '2026_11_18'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: 0722358fde8b96fb51afdff711220a0c
+  Ruleset: ETOPEN
+  Summary: This rule detects the presence of an OPTIMJACK exploit kit by observing specific domain patterns within the Server Name Indication (SNI) field of TLS traffic. The rule is triggered when a connection is made from the internal network to an external network using a TLS SNI that ends with ".1688360.cc", indicating potential malware activity associated with the OPTIMJACK domain. This pattern is often linked to malware distribution activities, potentially compromising client endpoints.
+  Updated-Date: '2026_11_18'
+'2072797':
+  Created-Date: '2026_11_18'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: adb01a796fa6531bbe4b3e9805bc6947
+  Ruleset: ETOPEN
+  Summary: This rule detects attempts to exploit a vulnerability involving the OPTIMJACK malware by observing the domain "blogforge.vu" in the TLS Server Name Indication (SNI) field of network traffic. The presence of this specific domain may indicate that the OPTIMJACK exploit kit is being utilized, which aligns with known malicious activity involving the compromise of brands through malware delivered via the Optimizely platform. The detection is triggered when a connection is established from an internal to an external network and the domain suffix appears in the SNI of the TLS handshake.
+  Updated-Date: '2026_11_18'
+'2072798':
+  Created-Date: '2026_11_18'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: 3f792bae8aa5c433080b077dd5517728
+  Ruleset: ETOPEN
+  Summary: This rule detects potential activity related to the OPTIMJACK exploit kit by monitoring for TLS traffic that contains the domain ".netvigator.cc" in the Server Name Indication (SNI) field. This domain is associated with malicious activity, and the detection is triggered on traffic flowing from an internal network to an external network, specifically targeting established connections going to a server. The presence of this domain could indicate the involvement of a system in malicious communications or campaigns outlined by OPTIMJACK.
+  Updated-Date: '2026_11_18'
+'2072799':
+  Created-Date: '2026_11_18'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: f9af04d5da0d85518c868bfa50c38d8e
+  Ruleset: ETOPEN
+  Summary: This rule detects TLS traffic where the Server Name Indicator (SNI) matches the domain pattern ".q1ls1ho9x7wsxlu.icu", indicating potential communication with a domain associated with the OPTIMJACK exploit kit. This exploit kit is known for being involved in malware distribution, and the rule triggers on an established connection from a client within the home network to an external server.
+  Updated-Date: '2026_11_18'
+'2072800':
+  Created-Date: '2026_11_18'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: d09841e6a679ea6b71fe0f02aa756f0f
+  Ruleset: ETOPEN
+  Summary: This rule detects network traffic involving a domain associated with the OPTIMJACK exploit kit using the Transport Layer Security (TLS) Server Name Indication (SNI) field. It specifically targets communication where the domain ends with ".linkforge.cc," which indicates potential malicious activity related to the OPTIMJACK malware family. This detection is based on the observation of these domains being leveraged in cyber attacks where this exploit kit was utilized.
+  Updated-Date: '2026_11_18'
+'2072801':
+  Created-Date: '2026_11_18'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: 5a7bcaef1c63c537e875dd92214a382e
+  Ruleset: ETOPEN
+  Summary: This rule detects network traffic where a domain associated with the OPTIMJACK exploit kit, specifically "moubpagedocs.cc," appears in the Server Name Indication (SNI) field of a TLS connection. The OPTIMJACK exploit kit is malware that has been used to compromise various systems, possibly through redirects or malicious scripts, impacting client endpoints by targeting their connections. The detection occurs when there is established traffic from home network addresses to external networks, indicating potential communication with a malicious domain.
+  Updated-Date: '2026_11_18'
+'2072802':
+  Created-Date: '2026_11_18'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: a6d8bc9ae0a9799984e527a2685d326b
+  Ruleset: ETOPEN
+  Summary: This rule detects the presence of a domain associated with the OPTIMJACK exploit kit by identifying the TLS Server Name Indicator (SNI) field containing ".moiubpagedocs.cc" during a session from an internal network to an external network. The OPTIMJACK exploit kit is known for delivering malware to unsuspecting users by exploiting vulnerabilities in web applications. This detection aids in identifying potential malicious activity associated with this exploit kit by leveraging the analysis of encrypted traffic.
+  Updated-Date: '2026_11_18'
+'2072803':
+  Created-Date: '2026_11_18'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: d15a7e72d6960737e369dbb0c11a7a39
+  Ruleset: ETOPEN
+  Summary: This rule detects the presence of the OPTIMJACK exploit kit by identifying traffic where the TLS Server Name Indication (SNI) ends with the domain ".1y69gy2mdzaltz1.icu". When a device from a protected network attempts to communicate with external networks using this domain in the established connection, it suggests potential exploitation. The OPTIMJACK exploit kit is associated with delivering malware and has been noted for targeting well-known brands to propagate malware infections.
+  Updated-Date: '2026_11_18'
+'2072804':
+  Created-Date: '2026_11_18'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: e5a5fe4c77d1878c565a04c68b963102
+  Ruleset: ETOPEN
+  Summary: This rule detects network traffic involving a domain linked to the OPTIMJACK exploit kit, specifically identifying traffic where the TLS Server Name Indication (SNI) field contains the domain "eil786npto9u5bq.icu". The rule is concerned with established connections from internal to external networks, indicating a potential compromise or malicious activity involving this exploit kit, which is associated with malware infection and distribution.
+  Updated-Date: '2026_11_18'
+'2072805':
+  Created-Date: '2026_11_18'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: 1a61b66e8e2a8f68301fd2b7933a1cd6
+  Ruleset: ETOPEN
+  Summary: This rule detects traffic involving the OPTIMJACK exploit kit, specifically identifying when a crypto wallet is observed in the HTTP response body. The detection is based on a specific pattern associated with the malicious activity linked to the OPTIMJACK malware family, which is known for compromising websites to target client endpoints for initial access via drive-by compromises.
+  Updated-Date: '2026_11_18'
+'2072806':
+  Created-Date: '2026_11_18'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: 47fbf1f926a5ce7a4c49bffa1c8d8c95
+  Ruleset: ETOPEN
+  Summary: This rule detects activity associated with the OPTIMJACK exploit kit, which is relevant to crypto wallet activities. The rule triggers when there is an established HTTP connection to a client, specifically looking for response bodies that contain the specific Ethereum wallet address "0x7005b45DE07e1b70DCD38eE3A708CFD88A6c7f8e". OPTIMJACK is identified as malware involved in compromising websites, potentially as part of a drive-by compromise attack technique. This detection method involves monitoring traffic that may suggest the initial access phase of an attack targeting client endpoints through browsers.
+  Updated-Date: '2026_11_18'
+'2072807':
+  Created-Date: '2026_11_18'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: 84b2b55f5388100bdf7dfd233c632b3f
+  Ruleset: ETOPEN
+  Summary: This rule detects the presence of the OPTIMJACK Crypto Wallet associated with exploit kits when a client receives an HTTP response that contains a specific Ethereum wallet address. This indicates potential infection or compromise by the OPTIMJACK malware, which is delivered as part of a drive-by compromise attack on clients accessing compromised websites. The rule is designed to identify malicious activity targeting client endpoints, signifying critical security threats leveraging compromised online platforms.
+  Updated-Date: '2026_11_18'
+'2072808':
+  Created-Date: '2026_11_18'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: 0e3cd2633c06e22ddd124e7126dc5add
+  Ruleset: ETOPEN
+  Summary: This rule detects a specific crypto wallet address associated with the OPTIMJACK malware, observed in HTTP responses that are directed toward the client. The presence of this wallet address indicates potential involvement in an exploit kit campaign, which may compromise websites through a drive-by download attack. This activity is associated with OPTIMJACK, a malware family implicated in infecting websites, including those of major brands, possibly resulting in subsequent unauthorized crypto transactions. The rule is designed to identify and mitigate such attacks by monitoring established connections and analyzing the content of HTTP responses received by web browsers within the network.
+  Updated-Date: '2026_11_18'
+'2072809':
+  Created-Date: '2026_11_18'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: 217966431ed7e4916d523e7372272cd7
+  Ruleset: ETOPEN
+  Summary: This rule detects an occurrence of the OPTIMJACK exploit kit associated with the presence of a specific cryptocurrency wallet address in HTTP response bodies being sent to a client's network. It focuses on identifying a known pattern indicative of malicious activity related to the OPTIMJACK malware family, which is linked to compromised websites used for illicit purposes. This detection aims to prevent unauthorized access to client endpoints and mitigate the risk of exploitation through drive-by compromise techniques.
+  Updated-Date: '2026_11_18'
+'2072810':
+  Created-Date: '2026_11_18'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: ba06b99d19d80dd555a81bced31c8823
+  Ruleset: ETOPEN
+  Summary: This rule detects traffic related to the OPTIMJACK exploit kit, which targets crypto wallets. The detection occurs when a specific string, indicative of the exploit kit, is observed in the body of an HTTP response directed towards a client within the network. The rule aims to identify attempts by the exploit kit to compromise client endpoints by leveraging known vulnerabilities in web browsers, potentially resulting in unauthorized access to crypto wallets.
+  Updated-Date: '2026_11_18'
+'2072811':
+  Created-Date: '2026_11_18'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: 152d49f32b61b67ffdf9fd4c0195e186
+  Ruleset: ETOPEN
+  Summary: This rule detects the presence of the OPTIMJACK exploit kit by identifying specific patterns in an HTTP response body indicative of crypto wallet activity. It is designed to monitor traffic from external networks to internal networks, focusing on established connections directed to client endpoints. The detection is triggered by the occurrence of the specified content string within the response body, signifying a potential Drive-by Compromise attack, which is part of the Initial Access tactic. This activity is linked to compromised websites that have been infected with malware, posing a significant threat to web browsers on client systems.
+  Updated-Date: '2026_11_18'
+'2072812':
+  Created-Date: '2026_11_18'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: 1e96012ded4cce17a4593ce9eca2650b
+  Ruleset: ETOPEN
+  Summary: This rule detects the presence of the OPTIMJACK exploit kit, which specifically targets cryptocurrency wallets, by identifying a unique pattern within HTTP response bodies directed towards internal networks from external sources. Exploit kits like OPTIMJACK are typically used to deliver malware by exploiting vulnerabilities in web browsers or related software upon visiting a compromised or malicious website. The detection relies on the presence of a specific sequence of bytes, which indicates potential compromise linked to this exploit kit. This signature is associated with an attack pattern characterized by initial access techniques where a victim can be compromised through a drive-by download scenario, highlighting the strategic use of compromised websites to deliver malicious payloads.
+  Updated-Date: '2026_11_18'
+'2072813':
+  Created-Date: '2026_11_18'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: a84b6e508863f67644c46d41fa5db726
+  Ruleset: ETOPEN
+  Summary: This rule detects the presence of the OPTIMJACK exploit kit, which is associated with crypto wallet theft, by monitoring HTTP responses for a specific pattern indicating the kit's activity. The detection targets client endpoints and is concerned with traffic from external networks to internal networks, focusing on established connections. The rule specifically looks for a signature in the HTTP response body related to the OPTIMJACK malware family, known for leveraging compromised websites as an initial access vector through a drive-by compromise technique.
+  Updated-Date: '2026_11_18'
+'2072814':
+  Created-Date: '2026_11_18'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: a8c062194dcca70ca74214a599e729ff
+  Ruleset: ETOPEN
+  Summary: This rule detects network traffic associated with the OPTIMJACK exploit kit, specifically when a compromised web page includes a certain sequence of characters (|27|TFRQz28WJ8tNjj3Spin1ZkcENwjhnGdouW|27|) in an HTTP response body. This pattern is linked to the distribution of malicious content that targets web browsers. The traffic is identified as originating from external sources towards an internal network on connections that are already established and directed at client endpoints. This detection is used to identify attempts to gain initial access through drive-by compromise, which involves users unknowingly downloading malware by visiting compromised websites.
+  Updated-Date: '2026_11_18'
+'2072815':
+  Created-Date: '2026_11_18'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: 0bf14823550353e31e233e49fe66b0e3
+  Ruleset: ETOPEN
+  Summary: This rule detects the presence of the OPTIMJACK exploit kit, specifically related to the observation of a crypto wallet associated with the attack. It triggers on established HTTP responses from external networks targeting internal networks. The detection relies on identifying a specific content pattern within the HTTP response body, which references the OPTIMJACK malware family. This attack is associated with compromised websites and poses a threat primarily to client endpoints, capitalizing on drive-by compromise techniques to gain initial access.
+  Updated-Date: '2026_11_18'
+'2072816':
+  Created-Date: '2026_11_18'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: 79b055dd0847bfee95520685967265a8
+  Ruleset: ETOPEN
+  Summary: This rule detects HTTP responses that indicate the presence of the OPTIMJACK exploit kit, which is associated with the compromise of crypto wallets through malicious activities. The detection is triggered by a specific value, "|27|THvs6p56XkUiMkJeSc51cAP64u2RsTYqxa|27|", observed in the HTTP response body during established connections to clients. The rule is designed to identify instances where client endpoints may be exposed to this exploit, potentially via drive-by compromise techniques, as outlined in the associated references.
+  Updated-Date: '2026_11_18'
+'2072817':
+  Created-Date: '2026_11_18'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: 90ccbbc58d1217cbe941c353a734efc6
+  Ruleset: ETOPEN
+  Summary: This rule detects the presence of the OPTIMJACK exploit kit by identifying specific content within HTTP response bodies. This link to OPTIMJACK malware focuses on crypto wallet security and is associated with compromised websites delivering malicious payloads to client endpoints. It monitors traffic where an established connection exists to the client, and the specified pattern matches within the TLS-decrypted HTTP response body. This detection aids in identifying potential drive-by compromises on client endpoints, exploiting vulnerabilities in web browsers to obtain unauthorized access.
+  Updated-Date: '2026_11_18'
+'2072818':
+  Created-Date: '2026_11_18'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: 3d474410265b4dc8df7b6239b494f84f
+  Ruleset: ETOPEN
+  Summary: This rule detects activity associated with the OPTIMJACK exploit kit, specifically the presence of a crypto wallet string in HTTP response bodies indicating a potential compromise. OPTIMJACK is known for infecting websites and affecting web browsers on client endpoints during an established connection. The detection points to a tactic of initial access through drive-by compromise, highlighting involvement with compromised websites where unsuspecting users' interactions could expose them to malware.
+  Updated-Date: '2026_11_18'
+'2072819':
+  Created-Date: '2026_11_18'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: cd0976a6a404609a54798fc132095e27
+  Ruleset: ETOPEN
+  Summary: This rule detects the presence of the OPTIMJACK exploit kit by searching for specific content in HTTP response bodies. The exploit kit is associated with the infection of crypto wallets and has been documented as being used to compromise websites, leading to drive-by compromise attacks. The rule matches content within the HTTP responses from external networks directed to internal clients, indicating a potential security threat related to compromised websites. The involvement of major brands in malware infections via platforms like Optimizely has been reported, highlighting the significance of this detection in maintaining security.
+  Updated-Date: '2026_11_18'
+'2072820':
+  Created-Date: '2026_11_18'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: da1b82c296e11a943ed6a271641348ec
+  Ruleset: ETOPEN
+  Summary: This rule detects the presence of the OPTIMJACK cryptocurrency wallet malware within HTTP response bodies directed at the protected network. The detection is based on identifying a specific sequence of characters associated with this exploit kit. The OPTIMJACK malware is known for compromising web browsers and targeting client endpoints, often through drive-by compromise techniques. The attack is facilitated via a malicious web infrastructure, as noted in documented instances of world-renowned brands being compromised through similar campaigns.
+  Updated-Date: '2026_11_18'
+'2072821':
+  Created-Date: '2026_11_18'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: 396daff291148b3e96b3b109cf5bc3ca
+  Ruleset: ETOPEN
+  Summary: This rule detects traffic associated with the OPTIMJACK exploit kit, specifically when a crypto wallet reference is observed in HTTP response bodies that are sent from external networks to internal client endpoints. The presence of a particular string pattern suggests that the client may have been exposed to a drive-by compromise, potentially linked to the OPTIMJACK malware family, which is known to compromise websites and target client endpoints.
+  Updated-Date: '2026_11_18'
+'2072822':
+  Created-Date: '2026_11_18'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: d22c548f5e112a1aae57dc865f8238cd
+  Ruleset: ETOPEN
+  Summary: This rule detects traffic associated with the OPTIMJACK crypto wallet malware. It identifies an exploit kit activity by inspecting HTTP response bodies for specific content patterns indicative of this malware. The rule is aimed at identifying potential infections on client endpoints when browsing, leveraging compromised websites to deliver the malicious payload. The detection of this specific pattern suggests an attempt to compromise user systems for initial access through drive-by download techniques. The rule is tailored for monitoring traffic from external networks to internal networks and functions in a context where TLS decryption is possible, focusing on web browser activities.
+  Updated-Date: '2026_11_18'
+'2072823':
+  Created-Date: '2026_11_18'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: 930cf0fd25d7f47666bc5be71d26a9c3
+  Ruleset: ETOPEN
+  Summary: This rule detects the presence of the OPTIMJACK malware, specifically targeting crypto wallet information via a compromised website. It identifies an established HTTP flow directed to the client containing a specific pattern in the response body, which indicates the involvement of malicious activity linked to the OPTIMJACK exploit kit. The rule is designed to recognize traffic involving cryptographic threats and drive-by compromise techniques as part of an initial access tactic in a cyber attack scenario.
+  Updated-Date: '2026_11_18'
+'2072824':
+  Created-Date: '2026_11_18'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: 4bd5168e93f3768e3390aab51f20bcf1
+  Ruleset: ETOPEN
+  Summary: This rule detects the presence of a specific pattern in a JavaScript payload delivered via HTTP. The pattern pertains to the OPTIMJACK exploit kit, which interacts with crypto wallets. It searches for keywords related to cryptocurrency transactions, such as "address," "wallet," "deposit," and currency-related terms like "bitcoin" and "ethereum." The rule targets HTTP responses directed towards client endpoints, signaling potential compromise and facilitating initial access via drive-by downloads on compromised websites. It is a significant threat due to its capability to exploit vulnerabilities in web browsers, potentially leading to unauthorized access to sensitive financial information. The detection is part of monitoring activities to safeguard against such malicious activities.
+  Updated-Date: '2026_11_18'
+'2072825':
+  Created-Date: '2026_11_18'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: 54b676fd1996524aaf10d0410ec2a2f7
+  Ruleset: ETOPEN
+  Summary: This rule detects a JavaScript payload associated with the OPTIMJACK exploit kit, specifically targeting web browsers on client endpoints. The payload contains code that deals with financial data manipulation, suggesting functionalities related to the normalization of credit card expiry dates and handling potential credit card numbers in 16-digit formats. It also identifies unlabelled Primary Account Numbers (PANs) in scenarios where both expiry and CVV details are present, indicating a potential credit card stealer operation. The detection is linked with compromised websites and highlights the danger of infected webpages distributing malicious scripts to unsuspecting users.
+  Updated-Date: '2026_11_18'
+'2072826':
+  Created-Date: '2026_11_18'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: 641eda866452cf4f9e9b486e5b468c96
+  Ruleset: ETOPEN
+  Summary: This rule detects network traffic indicative of the OPTIMJACK exploit kit, particularly focusing on exfiltration attempts via HTTP POST requests containing specific cookie and image information. The detection is triggered by requests sent to the server with the URI "/hit.php" and a lack of "referer" and "user-agent" headers in the HTTP request, which suggests potential obfuscation or evasion techniques. The rule inspects the request body for JSON-like structures starting with certain characters, aligning with known patterns associated with this malware family, to identify infection attempts and data exfiltration activities from compromised client endpoints.
+  Updated-Date: '2026_11_18'
 '2100110':
   Created-Date: '2024_08_07'
   Custom-Edited: false
