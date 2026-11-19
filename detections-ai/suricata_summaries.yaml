@@ -388994,10 +388994,10 @@
   Created-Date: '2024_08_07'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: 07268cc2779999bcbe11ae99920082ad
+  Rule-Body-Hash: d5669e84f78997b2e7111559c4b4b5f2
   Ruleset: ETOPEN
-  Summary: This rule detects a persistent cross-site scripting (XSS) attack attempt targeting RoundCube Webmail, which is identified by CVE-2023-43770. The rule inspects SMTP traffic destined for SMTP servers or the internal network to identify an established flow towards a server that includes specific content patterns in 'text/plain' emails indicative of an XSS payload. This could involve script or iframe injection attempts applied to exploit vulnerabilities in RoundCube, a web-based email client.
-  Updated-Date: '2026_11_04'
+  Summary: This rule detects an attempt to exploit a persistent cross-site scripting (XSS) vulnerability in RoundCube Webmail, identified as CVE-2023-43770. The detection involves monitoring SMTP traffic to servers within a specified home network or list of SMTP servers, looking for specific patterns in email content that may indicate an XSS attempt. The rule analyzes the email's structure and content type, searching for suspicious scripting or iframe activities that could lead to malicious script execution within a webmail environment. This type of exploitation can allow attackers to execute arbitrary scripts in the context of a user's webmail session, potentially leading to data theft or account compromise.
+  Updated-Date: '2026_11_19'
 '2051828':
   Created-Date: '2024_08_07'
   Custom-Edited: false
@@ -504474,10 +504474,10 @@
   Created-Date: '2025_12_12'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: 16b826241eee83898b3eeaca3cc94b64
+  Rule-Body-Hash: d63cf1cf55f1c0796c8a07a31ffc7f0e
   Ruleset: ETOPEN
-  Summary: This rule detects a phishing attempt associated with the TA393 threat actor, involving HTTP redirect responses. It specifically identifies HTTP 302 status codes and redirects that contain a URL encoded with a specific pattern typical of TA393 activity. The rule checks for a combination of specific URL parameters within the HTTP location header, indicating a potential phishing redirection intended to mislead users by disguising the destination URL. The detection is aimed at safeguarding client endpoints from these phishing redirects by identifying these suspicious characteristics in HTTP traffic.
-  Updated-Date: '2026_08_24'
+  Summary: This rule detects a phishing attack involving a redirect, specifically associated with threat actor group TA393. The detection is triggered by monitoring HTTP traffic responses with a 302 status code that include a location header of significant length, followed by a specific pattern in the URL. This indicates a possibly malicious redirect likely intended for phishing purposes.
+  Updated-Date: '2026_11_19'
 '2066267':
   Created-Date: '2025_12_12'
   Custom-Edited: false
@@ -556458,10 +556458,10 @@
   Created-Date: '2026_11_18'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: 4f29e877100c31015dc6d0bef2966c01
+  Rule-Body-Hash: 77929f5e46678106b9493d5a469f59ac
   Ruleset: ETOPEN
-  Summary: This rule detects DNS queries to a domain associated with the OPTIMJACK malware campaign. It specifically monitors for queries ending with ".je4ft3gn8vxudum.icu," indicating potential communication with infrastructure used by the malware. The OPTIMJACK malware is known for its involvement in large-scale exploit kit operations, and this rule aids in identifying systems potentially compromised by or interacting with such malicious activity.
-  Updated-Date: '2026_11_18'
+  Summary: This rule detects DNS queries to the domain "je4ft3gn8vxudum.icu," which is associated with the OPTIMJACK malware family. This malware is linked to exploit kits that target client endpoints. The detection is based on observing DNS requests with a specific domain suffix, indicating a possible threat from this particular campaign.
+  Updated-Date: '2026_11_19'
 '2072774':
   Created-Date: '2026_11_18'
   Custom-Edited: false
@@ -556490,10 +556490,10 @@
   Created-Date: '2026_11_18'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: 2f8c0798c87f6f23fd497c5851521c28
+  Rule-Body-Hash: 536b3999f06726c6cc7d6259c2079a22
   Ruleset: ETOPEN
-  Summary: This rule detects a DNS query to a domain associated with the OPTIMJACK malware family. OPTIMJACK is known for being part of an exploit kit chain, potentially compromising large brands' security systems. The rule targets a specific domain pattern ".l7bcsnwc7nzr3uo.icu" and alerts if detected, highlighting the potential engagement in a malware distribution activity linked to this domain.
-  Updated-Date: '2026_11_18'
+  Summary: This rule detects a DNS query to a domain associated with the OPTIMJACK malware, which is typically used in exploit kits. The rule targets DNS traffic, indicating a potential compromise by malware that uses domain generation algorithms or specific domains like "l7bcsnwc7nzr3uo.icu" to communicate. References are provided for more information about how major brands have been affected by such malware campaigns and the broader context of the OPTIMJACK threat.
+  Updated-Date: '2026_11_19'
 '2072778':
   Created-Date: '2026_11_18'
   Custom-Edited: false
@@ -556530,18 +556530,18 @@
   Created-Date: '2026_11_18'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: 5986833693c95be678df31348399fe94
+  Rule-Body-Hash: 9df3f8b664190d5fed3ff0e7d5385139
   Ruleset: ETOPEN
-  Summary: This rule detects DNS queries to a domain associated with the OPTIMJACK exploit kit, specifically the domain "q1ls1ho9x7wsxlu.icu". The OPTIMJACK exploit kit is linked to malware infections affecting various brands. Detection is based on identifying queries that end with the specified domain name in a case-insensitive manner.
-  Updated-Date: '2026_11_18'
+  Summary: This rule detects a DNS query to a domain associated with the OPTIMJACK exploit kit, which uses the domain "q1ls1ho9x7wsxlu.icu." This exploit kit has been documented to infect significant global brands with malware, often using compromised digital services as vectors for distribution. The rule is intended to identify potential malicious activity originating from this specific domain, aiding in the detection of client endpoint attacks. The inclusion of reference URLs indicates documented instances and analysis of this ongoing threat.
+  Updated-Date: '2026_11_19'
 '2072783':
   Created-Date: '2026_11_18'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: 281867f2b1d9fd1765b981298c1feddb
+  Rule-Body-Hash: d4cd3414c460cf43a4ca587597563138
   Ruleset: ETOPEN
-  Summary: This rule detects DNS queries for domains ending with ".linkforge.cc," which are associated with the OPTIMJACK malware. OPTIMJACK is an exploit kit used to deliver malicious software by exploiting vulnerabilities in client endpoints. The detection focuses on identifying attempts to query these domains, which are linked to documented malicious activities where major brands were targeted with malware. The rule aims to protect against potential compromise by monitoring suspicious DNS activities linked to this exploit kit.
-  Updated-Date: '2026_11_18'
+  Summary: This rule detects DNS queries to a domain associated with the OPTIMJACK exploit kit, specifically targeting the domain "linkforge.cc". The detection is based on the presence of this domain within DNS query traffic. The OPTIMJACK exploit kit is a type of malware that targets client endpoints, and its activity is characterized by querying certain domains as part of its operation. This detection is significant due to its high confidence level in identifying malicious activity.
+  Updated-Date: '2026_11_19'
 '2072784':
   Created-Date: '2026_11_18'
   Custom-Edited: false
@@ -556570,10 +556570,10 @@
   Created-Date: '2026_11_18'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: e7c651ce98b5c3da82cdc1a4d0a81c37
+  Rule-Body-Hash: 6338311cefea84f115ecebad35e8a051
   Ruleset: ETOPEN
-  Summary: This rule detects a DNS query to a domain associated with the OPTIMJACK exploit kit, specifically targeting the domain "eil786npto9u5bq.icu". The rule is designed to identify potential instances where a client's endpoint may be compromised by this particular malware, which is known to exploit vulnerabilities in systems for malicious purposes. Additionally, the rule includes references to detailed descriptions and analyses of the threat posed by the OPTIMJACK exploit kit.
-  Updated-Date: '2026_11_18'
+  Summary: This rule detects DNS queries to the domain associated with the OPTIMJACK exploit kit, specifically the domain "eil786npto9u5bq.icu". The OPTIMJACK exploit kit is known for its involvement in malicious activities targeting client endpoints. The rule is designed to identify DNS requests indicative of potential malware communications with infrastructure related to this exploit kit.
+  Updated-Date: '2026_11_19'
 '2072788':
   Created-Date: '2026_11_18'
   Custom-Edited: false
@@ -556602,10 +556602,10 @@
   Created-Date: '2026_11_18'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: 4d2a05147c04ff83a26c7939b4de95e0
+  Rule-Body-Hash: 7e7e79c7a5495ceb0e1138966e56c1f4
   Ruleset: ETOPEN
-  Summary: This rule detects traffic indicating potential contact with the OPTIMJACK exploit kit by identifying a specific domain (p55abnw2pnsz0bo.icu) in the TLS Server Name Indication (SNI) extension. This domain is associated with malicious activity, and the alert is triggered when a client from a monitored network establishes a connection to this domain, signaling possible exploitation efforts targeted at client endpoints. The rule helps in identifying and preventing the compromise of systems by exploiting known vulnerabilities through crafted domains used in attack campaigns.
-  Updated-Date: '2026_11_18'
+  Summary: This rule detects a potential threat associated with the OPTIMJACK exploit kit by identifying the domain "p55abnw2pnsz0bo.icu" in the Server Name Indication (SNI) field of TLS traffic. The traffic must be established and directed to a server for the rule to trigger. The detection of this specific domain in a TLS connection suggests possible malicious activity related to the distribution of malware via this exploit kit.
+  Updated-Date: '2026_11_19'
 '2072792':
   Created-Date: '2026_11_18'
   Custom-Edited: false
@@ -556618,10 +556618,10 @@
   Created-Date: '2026_11_18'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: 1a1a93f13a07512f96ce42fea8bba26c
+  Rule-Body-Hash: 12b8a02fc3ff56a67d9228669f198158
   Ruleset: ETOPEN
-  Summary: This rule detects potential malicious activity associated with the OPTIMJACK exploit kit by identifying traffic to domains that include "k68k.xyz" in the TLS Server Name Indication (SNI). The presence of this domain in the SNI is indicative of communications with a known exploit kit, which is used to deliver malware. The rule triggers when an established connection from an internal to an external network contains a specific domain pattern, possibly indicating that the client endpoint is attempting to access or has been redirected to a malicious site.
-  Updated-Date: '2026_11_18'
+  Summary: This rule detects traffic to domains associated with the OPTIMJACK exploit kit, specifically targeting network connections where the TLS Server Name Indication (SNI) includes the domain "k68k.xyz". The rule monitors established connections from internal to external networks, searching for this domain in the TLS handshake, indicating potential exposure to malware activity linked with OPTIMJACK.
+  Updated-Date: '2026_11_19'
 '2072794':
   Created-Date: '2026_11_18'
   Custom-Edited: false
@@ -556642,10 +556642,10 @@
   Created-Date: '2026_11_18'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: 0722358fde8b96fb51afdff711220a0c
+  Rule-Body-Hash: 13c68c175138bc532aeb8b21d732b9b5
   Ruleset: ETOPEN
-  Summary: This rule detects the presence of an OPTIMJACK exploit kit by observing specific domain patterns within the Server Name Indication (SNI) field of TLS traffic. The rule is triggered when a connection is made from the internal network to an external network using a TLS SNI that ends with ".1688360.cc", indicating potential malware activity associated with the OPTIMJACK domain. This pattern is often linked to malware distribution activities, potentially compromising client endpoints.
-  Updated-Date: '2026_11_18'
+  Summary: This rule detects network traffic patterns associated with the Optimjack exploit kit by identifying the presence of the domain "1688360.cc" in the TLS Server Name Indication (SNI) during an established connection from internal to external networks. The appearance of this domain in network communications can indicate potential malware activity, as it is tied to the Optimjack malware family, which is known for infecting systems via compromised domains. The rule is designed to identify these specific exploit kit activities to alert network administrators and security teams to potential threats targeting client endpoints.
+  Updated-Date: '2026_11_19'
 '2072797':
   Created-Date: '2026_11_18'
   Custom-Edited: false
@@ -556674,10 +556674,10 @@
   Created-Date: '2026_11_18'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: d09841e6a679ea6b71fe0f02aa756f0f
+  Rule-Body-Hash: 4eb0c78e80cc309858e93f8ba3b10dec
   Ruleset: ETOPEN
-  Summary: This rule detects network traffic involving a domain associated with the OPTIMJACK exploit kit using the Transport Layer Security (TLS) Server Name Indication (SNI) field. It specifically targets communication where the domain ends with ".linkforge.cc," which indicates potential malicious activity related to the OPTIMJACK malware family. This detection is based on the observation of these domains being leveraged in cyber attacks where this exploit kit was utilized.
-  Updated-Date: '2026_11_18'
+  Summary: This rule detects network communication that involves an observed domain related to the OPTIMJACK malware, specifically when the domain ".linkforge.cc" appears in the Server Name Indication (SNI) field of TLS traffic. The rule triggers on established connections from internal clients to external servers, aimed at identifying communication patterns associated with this exploit kit, which has been linked to malware infections via domain associations.
+  Updated-Date: '2026_11_19'
 '2072801':
   Created-Date: '2026_11_18'
   Custom-Edited: false
@@ -556886,6 +556886,70 @@
   Ruleset: ETOPEN
   Summary: This rule detects network traffic indicative of the OPTIMJACK exploit kit, particularly focusing on exfiltration attempts via HTTP POST requests containing specific cookie and image information. The detection is triggered by requests sent to the server with the URI "/hit.php" and a lack of "referer" and "user-agent" headers in the HTTP request, which suggests potential obfuscation or evasion techniques. The rule inspects the request body for JSON-like structures starting with certain characters, aligning with known patterns associated with this malware family, to identify infection attempts and data exfiltration activities from compromised client endpoints.
   Updated-Date: '2026_11_18'
+'2072827':
+  Created-Date: '2026_11_19'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: dae93c14038c4b56c604b07729fccaa0
+  Ruleset: ETOPEN
+  Summary: This rule detects a DNS query for the domain "mng.digafertiliser.com," which is associated with the Gholoader command-and-control (C2) infrastructure tied to the TA569 threat actor group. Gholoader is part of the SocGholish malware family, known for distributing malware by using drive-by downloads from compromised websites. The detection of such a query indicates potential trojan activity targeting client endpoints, with an exploit kit possibly being involved in this threat vector.
+  Updated-Date: '2026_11_19'
+'2072828':
+  Created-Date: '2026_11_19'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: dd8278c6ea55636c05fc261100284b37
+  Ruleset: ETOPEN
+  Summary: This rule detects communication attempts to a command and control domain associated with the TA569 group using the malware GhoLoader, observed in the TLS Server Name Indication (SNI) field of network traffic. The specific domain targeted is "mng.digafertiliser.com," indicating potential malicious activity by compromised client endpoints accessing this domain through established TLS sessions. The signature specifically aims to identify such behaviors as part of ongoing efforts to monitor and mitigate threats associated with the SocGholish malware family.
+  Updated-Date: '2026_11_19'
+'2072829':
+  Created-Date: '2026_11_19'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: af3d2fe02f2e8cccb4be3aa8055b5e99
+  Ruleset: ETOPEN
+  Summary: This rule detects an exploit attempt targeting servers by identifying a specific pattern in HTTP User-Agent headers that matches "java4shell-". This pattern is associated with a Proof of Concept (POC) exploit for a vulnerability identified as CVE-2026-114938. The rule is designed to monitor inbound HTTP requests to detect potential exploitation efforts against susceptible servers. It is intended to provide early warning signs of attempted attacks leveraging this exploit method.
+  Updated-Date: '2026_11_19'
+'2072830':
+  Created-Date: '2026_11_19'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: 8a4f0f005612d70059c7f2afa06bcd2d
+  Ruleset: ETOPEN
+  Summary: This rule detects a potential exploit attempt targeting OpenJDK vulnerabilities, specifically aiming to identify a proof-of-concept payload associated with CVE-2026-114938, known as Java4Shell. The rule is triggered by HTTP traffic destined for servers within a monitored network that contains a specific pattern of 64 repeated 'A' characters followed by an equal sign, which is indicative of the exploit. This traffic pattern points towards an attempted exploitation of web applications using this CVE.
+  Updated-Date: '2026_11_19'
+'2072831':
+  Created-Date: '2026_11_19'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: 6702ccfe414286f187d0925366c29b77
+  Ruleset: ETOPEN
+  Summary: This rule detects an attempted exploitation of a vulnerability known as Java4Shell in OpenJDK, tagged as CVE-2026-114938. The rule specifically identifies a Proof-of-Concept payload used for exploiting this vulnerability. It targets web applications by analyzing HTTP traffic directed towards internal servers. The payload is characterized by a repeated sequence of 128 "A" characters followed by an equals sign, indicative of malicious activity leveraging this flaw to potentially gain access to systems running vulnerable OpenJDK versions.
+  Updated-Date: '2026_11_19'
+'2072832':
+  Created-Date: '2026_11_19'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: 8ba7a4dfa148700b191a3e21ad8582f5
+  Ruleset: ETOPEN
+  Summary: This rule detects a potential exploitation attempt associated with the Java4Shell vulnerability (CVE-2026-114938). It focuses on identifying suspicious HTTP URIs containing non-standard Base64 encoding sequences, which may include trailing fragments not conforming to RFC specifications. The detection mechanism is activated when there is an established connection to a server, indicating possible malicious activity targeting web applications. The rule leverages Perl-compatible regular expressions (PCRE) to match patterns typical of obfuscated exploit payloads, thereby signaling a potential exploitation of public-facing applications using affected versions of Java.
+  Updated-Date: '2026_11_19'
+'2072833':
+  Created-Date: '2026_11_19'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: 9b66ea0d5baa8fbf92ab35b229f50411
+  Ruleset: ETOPEN
+  Summary: This rule detects potential exploitation attempts of a vulnerability identified by the CVE-2026-114938, commonly known as Java4Shell. It targets HTTP headers that contain unusually formatted non-RFC compliant Base64 encoded data fragments. The detection focuses on patterns that could indicate attempts to exploit Java-based applications over HTTP connections, specifically when communications are from an external network to a home network or HTTP servers. The alert is triggered when such suspicious data patterns are observed within established connections directed to a server, suggesting a web application attack.
+  Updated-Date: '2026_11_19'
+'2072834':
+  Created-Date: '2026_11_19'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: c13877752b9af2b4499895bc04d792ed
+  Ruleset: ETOPEN
+  Summary: This rule detects attempts to exploit the Java4Shell vulnerability, identified as CVE-2026-114938, by analyzing HTTP request bodies for non-RFC compliant Base64 encoded data with trailing fragments. The rule is triggered when such encoding is found, indicating a potential web application attack targeting Java applications on server environments.
+  Updated-Date: '2026_11_19'
 '2100110':
   Created-Date: '2024_08_07'
   Custom-Edited: false
