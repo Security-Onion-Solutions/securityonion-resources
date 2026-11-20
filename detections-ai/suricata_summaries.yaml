@@ -223242,10 +223242,10 @@
   Created-Date: '2024_08_07'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: b995b7f9010de21588f657222a145fc4
+  Rule-Body-Hash: 326e4b28b88fbe1c536710687c59f513
   Ruleset: ETOPEN
-  Summary: This rule detects an attempt to exploit a vulnerability (CVE-2020-8193) in Citrix systems, specifically aimed at bypassing authentication mechanisms. The threat is identified when inbound HTTP POST requests contain specific parameters and patterns that suggest a login challenge sid associated with the username 'nsroot', alongside an application firewall profile tag in the request body. This activity is associated with efforts to gain unauthorized access, consistent with known vulnerabilities in Citrix products often targeted for exploitation.
-  Updated-Date: '2025_09_16'
+  Summary: This rule detects an attempted authentication bypass exploit targeting Citrix Application Delivery Controller vulnerabilities, specifically CVE-2020-8193. This exploit involves a crafted HTTP POST request directed at servers, containing specific content that indicates an attempt to bypass authentication using the username "nsroot" and manipulating a login challenge session ID. The rule focuses on detecting HTTP requests with particular attributes related to Citrix product vulnerabilities aimed at gaining unauthorized administrative access to the targeted server.
+  Updated-Date: '2026_11_20'
 '2031068':
   Created-Date: '2024_08_07'
   Custom-Edited: false
@@ -247810,18 +247810,18 @@
   Created-Date: '2024_08_07'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: 36913e5f15fd7006a2ae25907db10b68
+  Rule-Body-Hash: b637af4b3b2943a6d45fbd88a104e9b5
   Ruleset: ETOPEN
-  Summary: This rule detects a potential exploitation attempt targeting Atlassian Confluence Server, specifically an attempt to read the seraph-config.xml file without authorization. This attack leverages a vulnerability identified as CVE-2021-26085, where an attacker can make an HTTP GET request to specific URI patterns that, if successful, would allow unauthorized access to sensitive configuration files. The rule triggers when such a request is made without including typical headers like "Cookie" or "Authorization," indicating a possible malicious attempt to exploit the vulnerability in Confluence.
-  Updated-Date: '2026_09_03'
+  Summary: This rule detects an attempt to exploit a known vulnerability in Atlassian Confluence, identified as CVE-2021-26085. This exploitation involves a pre-authorization arbitrary file read capability, which allows an attacker to request files from the server without proper authorization. The rule looks for HTTP GET requests aimed at server paths containing the specific sequence "/_;/web-inf/", which indicates an attempt to read sensitive files stored on the server. It targets HTTP requests where neither "cookie" nor "authorization" headers are present, reflecting an unauthenticated status. This is a serious security threat as it can lead to unauthorized access to private and potentially sensitive data on Atlassian Confluence servers.
+  Updated-Date: '2026_11_20'
 '2034152':
   Created-Date: '2024_08_07'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: 016adeca0721388c613aa5ae05c2d29c
+  Rule-Body-Hash: e0f620a82c9df0bbeee9acdd74ec8b42
   Ruleset: ETOPEN
-  Summary: This rule detects a potential exploit attempt targeting Atlassian Confluence, specifically aiming to read arbitrary files before authorization. The exploit is associated with CVE-2021-26085, where attackers try to access the "pom.properties" file located in the Confluence web application. This detection looks for HTTP GET requests to a specific URI pattern within Confluence's directory, ensuring no "cookie" or "authorization" headers are present, which might indicate an unauthorized attempt.
-  Updated-Date: '2026_09_03'
+  Summary: This rule detects an attempt to exploit a vulnerability in Atlassian Confluence, identified as CVE-2021-26085, which allows a pre-authorization arbitrary file read. The attack is triggered by a specific HTTP GET request pattern directed towards a server, where the URL path includes a distinctive sequence starting with "/s/" and containing "/_;/meta-inf/". The rule specifically checks for the absence of "cookie" and "authorization" headers to indicate a potentially unauthorized attempt. This vulnerability, known for potentially allowing unauthorized users to access sensitive files on the server, has serious implications for Confluence instances lacking proper security measures.
+  Updated-Date: '2026_11_20'
 '2034153':
   Created-Date: '2024_08_07'
   Custom-Edited: false
@@ -553282,10 +553282,10 @@
   Created-Date: '2026_10_07'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: 20c43ef6784248bba5e6f044d42385d7
+  Rule-Body-Hash: 18d7ee1123ffb8deb45f617cd479a0ae
   Ruleset: ETOPEN
-  Summary: This rule detects a DNS query for the domain "kjhg.shop," which is associated with the ClickFix malware family. The detection pertains to instances when this domain appears in a DNS lookup, indicating a potential exploit kit activity. The rule targets client endpoints and is deployed at the network perimeter to monitor for initial access tactics, specifically under the drive-by compromise technique. The alert suggests a potential compromise involving a compromised website, contributing to a high confidence level regarding the threat's presence.
-  Updated-Date: '2026_10_07'
+  Summary: This rule detects DNS queries for the domain "kjhg.shop," which is associated with the ClickFix exploitation kit. The query size is checked to be 9 bytes long, and the match is case-insensitive. The domain is identified as part of malicious activity aimed at exploiting vulnerabilities for initial access, tying into the broader tactic of drive-by compromise. The rule highlights potential threats to client endpoints, focusing on web browsers as the affected product. The associated blog references provide further context about how ClickFix can compromise systems through deceptive or compromised websites.
+  Updated-Date: '2026_11_20'
 '2072377':
   Created-Date: '2026_10_07'
   Custom-Edited: false
@@ -554874,10 +554874,10 @@
   Created-Date: '2026_10_27'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: e4da73a6ecde11c69d6a93a4225ddc9a
+  Rule-Body-Hash: 613394e63a4ec25d2b1fc421ff2aa57b
   Ruleset: ETOPEN
-  Summary: This rule detects communication between a potentially compromised client endpoint within the home network and an external network involving a specific Command and Control (CnC) domain associated with the Gholoader malware. The domain "firebase.emeraldpineventuresllc.com" is identified in the Server Name Indication (SNI) field during a TLS handshake, which helps attribute the activity to the SocGholish malware family. This detection is relevant for identifying traffic that indicates the presence of Trojan activity linked to this malware, which has associations with exploit kits and compromised websites.
-  Updated-Date: '2026_10_27'
+  Summary: This rule detects communication with a command and control domain associated with the TA569 threat actor using the Gholoader malware. It identifies when a `Server Name Indication` (SNI) in a `Transport Layer Security` (TLS) connection matches the domain "firebase.emeraldpineventuresllc.com," indicating potential malicious activity related to this campaign. Gholoader is often used to deliver other malicious payloads and is connected to the SocGholish malware family, making it a significant threat to client endpoints accessing potentially compromised websites.
+  Updated-Date: '2026_11_20'
 '2072576':
   Created-Date: '2026_10_27'
   Custom-Edited: false
@@ -555018,50 +555018,50 @@
   Created-Date: '2026_10_30'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: c56221545fabb14072917962fe98a57f
+  Rule-Body-Hash: 212430418ee1ee897666185e6146adfa
   Ruleset: ETOPEN
-  Summary: This rule detects HTTP requests where the "X-Forwarded-For" header is set to indicate a localhost IP address. The intent behind such a modification could be to exploit potential vulnerabilities related to server-side request forgery (SSRF) by misleading the server into treating external requests as if they originated from the local host. This activity is often associated with attempts to bypass security controls and access internal resources or data. The detection relies on identifying specific patterns in the request headers that represent IP addresses for localhost, such as 127.0.0.1 or other equivalent formats.
-  Updated-Date: '2026_10_30'
+  Summary: This rule detects HTTP requests sent to a server where the "X-Forwarded-For" HTTP header is set to an address that resolves to localhost, such as 127.0.0.1 or equivalent representations. The detection focuses on identifying potential server-side request forgery (SSRF) attacks, where an attacker might try to manipulate requests to gain unauthorized access to internal network services by tricking the server into thinking the request is originating from its own network. The rule uses various patterns to identify these localhost addresses in the "X-Forwarded-For" header, thereby alerting on suspicious traffic that could pose a security threat or involve unauthorized access attempts.
+  Updated-Date: '2026_11_20'
 '2072594':
   Created-Date: '2026_10_30'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: 2c167b316e01c00390cf0ed608db501d
+  Rule-Body-Hash: 35253fc058e91e80763d10fb966b9a17
   Ruleset: ETOPEN
-  Summary: This rule detects HTTP traffic where the X-Custom-IP-Authorization header is set to localhost or similar values, such as 127.0.0.1, ::1, or other equivalent representations. This pattern might be indicative of attempts to exploit vulnerabilities like Server-Side Request Forgery (SSRF), where an attacker accesses internal server functionality by manipulating IP address headers. The detection is aimed at identifying potentially unauthorized access or manipulation targeting web servers.
-  Updated-Date: '2026_10_30'
+  Summary: This rule detects HTTP requests containing the "X-Custom-IP-Authorization" header set to localhost addresses when communicated from any external network to an internal network. It monitors established connections directed to a server to identify potential server-side request forgery (SSRF) attempts by spotting the use of various representations of localhost, such as "127.0.0.1" or "localhost", within this specific custom HTTP header. This activity is flagged as it may indicate an attempt to exploit vulnerabilities that allow unauthorized access to internal network resources or sensitive server information.
+  Updated-Date: '2026_11_20'
 '2072595':
   Created-Date: '2026_10_30'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: 41d81e8a407d58ed67613997e28372c2
+  Rule-Body-Hash: 3ff83c496633015aa6adf3b4ee536dbb
   Ruleset: ETOPEN
-  Summary: This rule detects HTTP traffic where the "X-Forwarded-Host" header is set to "localhost." The presence of this condition may indicate an attempt at server-side request forgery (SSRF), where an attacker manipulates HTTP headers to make a targeted web application initiate a request to a local or internal resource believed to be on the external network. The rule looks for multiple patterns corresponding to the localhost or its numerical representations, such as "127.0.0.1" and others, to identify potential misuse that could facilitate unauthorized internal access or information disclosure.
-  Updated-Date: '2026_10_30'
+  Summary: This rule detects HTTP traffic where the "X-Forwarded-Host" header is set to "localhost" or equivalent loopback addresses, which could indicate a Server-Side Request Forgery (SSRF) attack. SSRF is an attack that allows an adversary to send crafted requests from the server side, potentially bypassing security controls and accessing internal services. The rule focuses on HTTP requests directed to a server and analyzes the headers to find patterns suggesting attempts to exploit SSRF vulnerabilities by manipulating the "X-Forwarded-Host" field to resolve to localhost or private IP ranges.
+  Updated-Date: '2026_11_20'
 '2072596':
   Created-Date: '2026_10_30'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: 032b820352185c7dc1b7d81ab7bccc31
+  Rule-Body-Hash: 97d000834c6f03c2881f97cdb7abc547
   Ruleset: ETOPEN
-  Summary: This rule detects HTTP traffic where the X-Remote-IP header is set to the localhost address. This behavior can indicate attempts to perform server-side request forgery (SSRF) attacks, potentially allowing attackers to manipulate the server into making unauthorized requests from localhost, which could lead to exploitation of trust relationships or access to internal services not intended for external exposure.
-  Updated-Date: '2026_10_30'
+  Summary: This rule detects HTTP requests with an "X-Remote-IP" header set to the IP address for localhost. Such an indication might point to a potential Server-Side Request Forgery (SSRF) attack, where external attackers manipulate server-side applications to make unauthorized requests to internal resources. By analyzing established connections that are directed from external to internal networks, the rule identifies patterns consistent with localhost or other local internal IP address encodings, which can signify an attempt at unauthorized access or exposure of internal server information. The rule utilizes PCRE to match typical representations of a localhost address, such as 127.0.0.1 or equivalent numeric or notation variations. The detection helps in identifying network boundary bridging or evasion tactics by malicious actors.
+  Updated-Date: '2026_11_20'
 '2072597':
   Created-Date: '2026_10_30'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: 656e7c43e1b2fb39b2ce97c3b96136f9
+  Rule-Body-Hash: 098f96362b5f1f6c35a1a51c888c2de2
   Ruleset: ETOPEN
-  Summary: This rule detects HTTP requests in which the `X-Client-IP` header is set to a value that resolves to "localhost," indicating an attempt at Server-Side Request Forgery (SSRF). The header value can appear in various formats representing the localhost IP, such as "127.0.0.1," "::1," or other numerical or encoded representations like "2130706433." This behavior may be indicative of an attacker attempting to manipulate server-side behavior by presenting misleading IP address information within the HTTP header, potentially bypassing certain access controls or filters.
-  Updated-Date: '2026_10_30'
+  Summary: This rule detects HTTP requests where the "X-Client-IP" header is set to indicate a localhost address. This behavior can be indicative of attempts at server-side request forgery (SSRF), where an attacker tries to manipulate internal or local server interactions for malicious purposes. The specific address patterns searched for include various representations of the localhost, such as common numeral and octet-based formats, potentially used to bypass regular checks. This detection aims to identify and mitigate risks associated with such attempts that can expose internal services to attackers.
+  Updated-Date: '2026_11_20'
 '2072598':
   Created-Date: '2026_10_30'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: db6ea9d7b82ff2fb97f6c7c84618217e
+  Rule-Body-Hash: a0ec51b4880f3eb93ab1a25e02b137a6
   Ruleset: ETOPEN
-  Summary: This rule detects HTTP traffic in which the "X-Real-IP" header is set to localhost. It targets scenarios where a client sends an HTTP request to a server, and the header value is manipulated to indicate an internal IP address such as "127.0.0.1" or the equivalent in different formats, which could signify malicious intentions like Server-Side Request Forgery (SSRF), where an attacker attempts to make the server connect to itself or another internal service. This action may be part of techniques for defense evasion or network boundary bridging, where attackers try to exploit the internal network by circumventing expected network boundaries using deceptive IP headers.
-  Updated-Date: '2026_10_30'
+  Summary: This rule detects an HTTP request where the "X-Real-IP" header is set to "localhost," which may indicate a potential Server-Side Request Forgery (SSRF) attempt. SSRF involves an attacker attempting to access internal resources by manipulating web server requests to bypass security controls. This rule specifically identifies patterns matching IP representations of localhost (such as 127.0.0.1) and other reserved IP addresses within HTTP traffic directed to internal servers, highlighting potential misuse or unauthorized access attempts.
+  Updated-Date: '2026_11_20'
 '2072599':
   Created-Date: '2026_10_30'
   Custom-Edited: false
@@ -555114,10 +555114,10 @@
   Created-Date: '2026_10_30'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: a127b2461cfa18d1b868c5f2d3ca219d
+  Rule-Body-Hash: 16f4b5df183169fa8837dc3159b1531b
   Ruleset: ETOPEN
-  Summary: This rule detects a potential command and control communication attempt by flagging any Transport Layer Security (TLS) session where the Server Name Indication (SNI) field includes the domain ".mops.to." This activity is associated with the RedHive malware family, which is known to use such domains for its operations, possibly indicating an attempt at establishing a malicious communication channel. This detection is particularly relevant for systems running Windows operating systems, as it targets client endpoints and aligns with tactics and techniques related to command and control strategies using application layer protocols.
-  Updated-Date: '2026_10_30'
+  Summary: This rule detects traffic with a TLS Server Name Indication (SNI) field related to the RedHive malware, specifically targeting connections to domains ending with ".mops.to". The rule monitors established connections from inside the network to external networks and is designed to identify potential command and control (C2) communications involving the RedHive malware, which could affect various Windows operating systems.
+  Updated-Date: '2026_11_20'
 '2072606':
   Created-Date: '2026_10_30'
   Custom-Edited: false
@@ -555642,10 +555642,10 @@
   Created-Date: '2026_11_12'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: 60e7b12129547ff39804f844df8f851e
+  Rule-Body-Hash: 8823a885ce319d7d085f53406db80356
   Ruleset: ETOPEN
-  Summary: This rule detects a DNS query for domains ending with ".it123.net," which are commonly associated with dynamic DNS services often used for command and control (C2) communication. This type of activity may be related to techniques that use dynamic resolution to manage C2 infrastructure, posing potential security concerns for clients and servers.
-  Updated-Date: '2026_11_12'
+  Summary: This rule detects DNS queries made to domains ending with ".it123.net", which are associated with dynamic DNS services. Dynamic DNS is a technique commonly used to automatically update a name server in the Domain Name System (DNS) with the active DNS configuration of a host, which can facilitate activities such as command and control for malicious purposes. This specific detection focuses on potential usage of such services in a suspicious manner related to command and control tactics as identified by MITRE's framework.
+  Updated-Date: '2026_11_20'
 '2072672':
   Created-Date: '2026_11_12'
   Custom-Edited: false
@@ -556306,10 +556306,10 @@
   Created-Date: '2026_11_16'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: 794d2f5d39ac70b61560e0f825975a40
+  Rule-Body-Hash: 3c673ae8c8fad17078058c8984baabce
   Ruleset: ETOPEN
-  Summary: This rule detects an HTTP request from a client to an external network indicating the presence of the RedFlick malware, specifically identifying the user-agent string "DNSObserver" in the request headers. RedFlick is associated with trojan activity, and this signature helps to identify malicious communication from the malware, which is known to mimic legitimate traffic to evade detection. The detection is supported by research into spearphishing campaigns targeting Ukrainian organizations, highlighting the malware's use in sophisticated attacks.
-  Updated-Date: '2026_11_16'
+  Summary: This rule detects outbound HTTP requests containing the "DNSObserver" user-agent string, which is associated with the RedFlick malware family. The detection occurs when a client endpoint communicates with an external network server as part of an established flow. RedFlick is known for utilizing a specific user-agent in its malicious activities, and this pattern is used to identify potential command-and-control (C2) communication, possibly linked to spearphishing campaigns targeting Ukrainian civil society organizations.
+  Updated-Date: '2026_11_20'
 '2072755':
   Created-Date: '2026_11_17'
   Custom-Edited: false
@@ -556402,10 +556402,10 @@
   Created-Date: '2026_11_18'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: e0c2ec8c15f304c5ad47cb9564278e9e
+  Rule-Body-Hash: d9ca6a762c070d4879bbf32520497bec
   Ruleset: ETOPEN
-  Summary: This rule detects network traffic indicative of the SocketflowRAT malware used as a Remote Access Trojan (RAT), specifically monitoring for a keepalive message from the client. The communication pattern involves established TCP connections directed towards external destinations. The signature looks for specific JSON-formatted data that includes the keywords "__ping__", which is used by the malware as a keepalive mechanism. The rule aims to identify client endpoints running Windows operating systems that are compromised and sending these keepalive signals to potentially malicious servers. SocketflowRAT is known to facilitate unauthorized remote control by attackers, allowing them to perform various functions on the infected machine.
-  Updated-Date: '2026_11_18'
+  Summary: This rule detects network traffic characteristic of the SocketflowRAT malware, specifically identifying a keepalive message from the client. SocketflowRAT is a type of Remote Access Trojan (RAT) that allows attackers to remotely control infected systems. The rule triggers when it sees an established TCP connection from an internal network towards an external network where the traffic contains specific JSON-like message patterns indicating the presence of this RAT. This rule is significant for identifying trojan activity on Windows operating systems and aims to protect endpoint clients.
+  Updated-Date: '2026_11_20'
 '2072767':
   Created-Date: '2026_11_18'
   Custom-Edited: false
@@ -556426,10 +556426,10 @@
   Created-Date: '2026_11_18'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: f0ff66425d2b3f0b336fcb66f9614fae
+  Rule-Body-Hash: 3e19f5ffbcbf99c18a1203ef8d78138b
   Ruleset: ETOPEN
-  Summary: This rule detects communication with a command and control server associated with the Heyiwei/LTM LTM2 malware. It looks for a specific 'LTM2SHLO' message sent over an established TCP connection to a client, with a data size of 72 bytes. The detection helps identify potential Trojan activity related to Heyiwei, which is a type of Remote Access Trojan (RAT) targeting Linux client endpoints. This communication occurs in plaintext, allowing the rule to identify the pattern effectively and flag it as malicious.
-  Updated-Date: '2026_11_18'
+  Summary: This rule detects a communication related to the Heyiwei/LTM malware family, specifically identifying a server-hello message "LTM2SHLO" sent over TCP. It targets scenarios where such communication is established to a client within the home network. The rule indicates an exchanged data size of 72 bytes and is intended to identify network patterns consistent with command and control (C2) communications associated with malicious operations. The context implies it is relevant to Linux systems and focuses on client endpoints, with a categorization linked to trojan activity and a high level of confidence in detecting such threats. This detection is a part of monitoring for remote access trojans (RATs), ensuring major severity level alerting for effective threat management.
+  Updated-Date: '2026_11_20'
 '2072770':
   Created-Date: '2026_11_18'
   Custom-Edited: false
@@ -556450,10 +556450,10 @@
   Created-Date: '2026_11_18'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: 8c2fb0cf6cc3c238f21f2ad6095c018d
+  Rule-Body-Hash: 7b641d0057f81fc53d27d0baa23561ee
   Ruleset: ETOPEN
-  Summary: This rule detects DNS queries to the domain "gm38duxoihbmy5o.icu," which is associated with the OPTIMJACK exploit kit. OPTIMJACK is a type of malware designed to compromise systems by exploiting vulnerabilities, and the presence of DNS queries to this domain may indicate an active infection or attempted exploitation. The detection is achieved by identifying query requests containing this specific domain name, and the rule operates without case sensitivity to ensure detection regardless of letter casing.
-  Updated-Date: '2026_11_18'
+  Summary: This rule detects a DNS query to a specific domain associated with the OPTIMJACK malware family. The domain in question, "gm38duxoihbmy5o.icu," is an indicator of a potential exploit kit in action. The rule is set to trigger on any traffic from internal network sources, indicating a possible attempt to reach a malicious domain that is likely part of a broader malware distribution or exploit campaign. The context provided by references highlights previous instances where prominent brands were targeted via such methods, emphasizing the rule's importance in identifying and mitigating threats related to the OPTIMJACK malware.
+  Updated-Date: '2026_11_20'
 '2072773':
   Created-Date: '2026_11_18'
   Custom-Edited: false
@@ -556466,10 +556466,10 @@
   Created-Date: '2026_11_18'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: 9751ab7caefe7f619eef8ef04042d3b1
+  Rule-Body-Hash: d25f27380a6d2bc881b063ba7e689945
   Ruleset: ETOPEN
-  Summary: This rule detects DNS queries made to a domain associated with the OPTIMJACK exploit kit, specifically targeting the ".p55abnw2pnsz0bo.icu" domain. The exploit kit is known for its use in malicious activities, potentially involving malware distribution or other cyber threats. The detection rule is configured to identify queries to this domain, regardless of case sensitivity, ensuring comprehensive monitoring of network traffic for signs of compromise linked to the OPTIMJACK family.
-  Updated-Date: '2026_11_18'
+  Summary: This rule detects DNS queries made to a domain associated with the OptimJack exploit kit, specifically targeting domains with the suffix ".p55abnw2pnsz0bo.icu". The domain is linked to malicious activity involving the distribution of malware, potentially affecting client endpoints through compromised JavaScript from large brands.
+  Updated-Date: '2026_11_20'
 '2072775':
   Created-Date: '2026_11_18'
   Custom-Edited: false
@@ -556562,10 +556562,10 @@
   Created-Date: '2026_11_18'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: c1db0fc2b7db5931807b23f1c6691de8
+  Rule-Body-Hash: 2dfd8c4ed7577466a9d6ba131f2e64ea
   Ruleset: ETOPEN
-  Summary: This rule detects a DNS query to a domain associated with the OPTIMJACK exploit kit, specifically targeting the domain "1y69gy2mdzaltz1.icu". The detection indicates potential exploitation activity, as the domain is linked to a known malware campaign that compromises high-profile brands through malicious scripts. The rule aims to identify traffic related to this exploit kit, which is part of a broader attack chain involving the injection of malicious code.
-  Updated-Date: '2026_11_18'
+  Summary: This rule detects DNS queries to a domain associated with the OPTIMJACK exploit kit, specifically targeting queries for the domain "1y69gy2mdzaltz1.icu". The OPTIMJACK exploit kit is used for delivering malware, and this rule aims to identify network traffic indicative of systems attempting to communicate with potentially malicious domains related to this exploit kit. The detection focuses on DNS requests from internal network clients, suggesting that there may be compromised endpoints or active threats within the network.
+  Updated-Date: '2026_11_20'
 '2072787':
   Created-Date: '2026_11_18'
   Custom-Edited: false
@@ -556586,10 +556586,10 @@
   Created-Date: '2026_11_18'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: 47c4c0fcfb70fb164280849ffe446fa7
+  Rule-Body-Hash: 1244dd11478298d3fd59ec77972eff52
   Ruleset: ETOPEN
-  Summary: This rule detects potential connections to a malicious domain related to the OPTIMJACK exploit kit by observing the Server Name Indication (SNI) in TLS traffic for the presence of the domain "gm38duxoihbmy5o.icu". The OPTIMJACK exploit kit is known for leveraging domains in attacks to potentially distribute malware. The rule is triggered when traffic from an internal network to an external network includes the specified domain in the SNI of TLS connections during an established flow to a server.
-  Updated-Date: '2026_11_18'
+  Summary: This rule detects potential exploitation activity associated with the OPTIMJACK malware by identifying the presence of a specific domain, "gm38duxoihbmy5o.icu," within the Server Name Indication (SNI) field of a TLS connection. It targets traffic from an internal network to an external network where communication is established to a server. The detection focuses on patterns indicating this domain is used by the OPTIMJACK exploit kit, intended to alert on possible infection attempts.
+  Updated-Date: '2026_11_20'
 '2072790':
   Created-Date: '2026_11_18'
   Custom-Edited: false
@@ -556610,10 +556610,10 @@
   Created-Date: '2026_11_18'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: 91b6b4f92012d054d31ee030607bc8b9
+  Rule-Body-Hash: cfc225017220bc23cda1e669e679d82a
   Ruleset: ETOPEN
-  Summary: This rule detects TLS connections from an internal network to an external network that involve a server name indicator (SNI) matching a specific domain associated with the OPTIMJACK malware campaign. The rule targets traffic where the SNI field ends with ".5vobauua3ojpklx.icu," which is indicative of an exploit kit being used as part of malicious activities linked to OPTIMJACK. The rule applies to established connections directed towards servers, serving as a mechanism to identify potential exploitation attempts or infections related to this particular malicious domain.
-  Updated-Date: '2026_11_18'
+  Summary: This rule detects an attempted connection from an internal network to an external network using TLS when the server name indication in the TLS handshake matches a specific domain associated with the OPTIMJACK exploit kit, identified as "5vobauua3ojpklx.icu". The presence of this domain suggests that the client endpoint may be targeted by this malware family, which is known to deliver various malicious payloads. The rule triggers on established connections where the server name matches this pattern, aiming to identify and prevent compromise from this threat.
+  Updated-Date: '2026_11_20'
 '2072793':
   Created-Date: '2026_11_18'
   Custom-Edited: false
@@ -556706,10 +556706,10 @@
   Created-Date: '2026_11_18'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: e5a5fe4c77d1878c565a04c68b963102
+  Rule-Body-Hash: be0660431eee75353affdd570381d0c9
   Ruleset: ETOPEN
-  Summary: This rule detects network traffic involving a domain linked to the OPTIMJACK exploit kit, specifically identifying traffic where the TLS Server Name Indication (SNI) field contains the domain "eil786npto9u5bq.icu". The rule is concerned with established connections from internal to external networks, indicating a potential compromise or malicious activity involving this exploit kit, which is associated with malware infection and distribution.
-  Updated-Date: '2026_11_18'
+  Summary: This rule detects network traffic that involves the use of the domain "eil786npto9u5bq.icu" in the TLS Server Name Indication (SNI) field, which is associated with the OPTIMJACK malware family. This malware distribution is known to affect client endpoints and is identified when encrypted communication is established with this specific domain, suggesting potential exploit kit activity. The alert is relevant for monitoring and security analysis due to its high confidence and notable impact, as documented by references to specific detailed reports on this threat.
+  Updated-Date: '2026_11_20'
 '2072805':
   Created-Date: '2026_11_18'
   Custom-Edited: false
@@ -556898,18 +556898,18 @@
   Created-Date: '2026_11_19'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: dd8278c6ea55636c05fc261100284b37
+  Rule-Body-Hash: 0169001faa2ac9bac3ac1b27dfe8c2d1
   Ruleset: ETOPEN
-  Summary: This rule detects communication attempts to a command and control domain associated with the TA569 group using the malware GhoLoader, observed in the TLS Server Name Indication (SNI) field of network traffic. The specific domain targeted is "mng.digafertiliser.com," indicating potential malicious activity by compromised client endpoints accessing this domain through established TLS sessions. The signature specifically aims to identify such behaviors as part of ongoing efforts to monitor and mitigate threats associated with the SocGholish malware family.
-  Updated-Date: '2026_11_19'
+  Summary: This rule detects network traffic associated with the TA569 Gholoader malware, specifically through identifying a Command and Control (CnC) domain used by the malware within the Server Name Indication (SNI) field of a TLS connection. The domain "mng.digafertiliser.com" is identified as an indicator of compromise related to the SocGholish malware family, suggesting that a client machine might be communicating with infrastructure under the control of attackers for malicious purposes.
+  Updated-Date: '2026_11_20'
 '2072829':
   Created-Date: '2026_11_19'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: af3d2fe02f2e8cccb4be3aa8055b5e99
+  Rule-Body-Hash: 46ee9d0436b0048df091609878df71b2
   Ruleset: ETOPEN
-  Summary: This rule detects an exploit attempt targeting servers by identifying a specific pattern in HTTP User-Agent headers that matches "java4shell-". This pattern is associated with a Proof of Concept (POC) exploit for a vulnerability identified as CVE-2026-114938. The rule is designed to monitor inbound HTTP requests to detect potential exploitation efforts against susceptible servers. It is intended to provide early warning signs of attempted attacks leveraging this exploit method.
-  Updated-Date: '2026_11_19'
+  Summary: This rule detects attempts to exploit the Java4Shell vulnerability, identified as CVE-2026-114938, by examining HTTP traffic for a specific user-agent string containing "java4shell-". The detection occurs in established connections directed to servers within the monitored network, signaling a network scan. Java4Shell is associated with credential access tactics, where attackers might leverage this vulnerability to gain unauthorized access to network resources by exploiting improper handling of Java-based inputs within HTTP server environments.
+  Updated-Date: '2026_11_20'
 '2072830':
   Created-Date: '2026_11_19'
   Custom-Edited: false
@@ -556938,18 +556938,66 @@
   Created-Date: '2026_11_19'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: 9b66ea0d5baa8fbf92ab35b229f50411
+  Rule-Body-Hash: 9d9c82c53d57120b8cb8787f84438163
   Ruleset: ETOPEN
-  Summary: This rule detects potential exploitation attempts of a vulnerability identified by the CVE-2026-114938, commonly known as Java4Shell. It targets HTTP headers that contain unusually formatted non-RFC compliant Base64 encoded data fragments. The detection focuses on patterns that could indicate attempts to exploit Java-based applications over HTTP connections, specifically when communications are from an external network to a home network or HTTP servers. The alert is triggered when such suspicious data patterns are observed within established connections directed to a server, suggesting a web application attack.
-  Updated-Date: '2026_11_19'
+  Summary: This rule detects attempts to exploit a vulnerability known as Java4Shell (CVE-2026-114938) by identifying non-standard Base64 encoded data in the HTTP header. The detection focuses on Base64 encoded strings that follow a specific length and pattern, which includes special characters and padding variants that do not comply with the standard Base64 encoding specification. This anomaly may indicate an attempt to execute unauthorized code or inject malicious payloads relevant to web application attacks. The rule targets traffic from external networks directed towards monitored internal networks or specific HTTP servers, highlighting potential threats to server-side applications, particularly those related to the Java platform, during established connections.
+  Updated-Date: '2026_11_20'
 '2072834':
   Created-Date: '2026_11_19'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: c13877752b9af2b4499895bc04d792ed
+  Rule-Body-Hash: bd924c8301e91e6522e059c7546bb397
   Ruleset: ETOPEN
-  Summary: This rule detects attempts to exploit the Java4Shell vulnerability, identified as CVE-2026-114938, by analyzing HTTP request bodies for non-RFC compliant Base64 encoded data with trailing fragments. The rule is triggered when such encoding is found, indicating a potential web application attack targeting Java applications on server environments.
-  Updated-Date: '2026_11_19'
+  Summary: This rule detects attempts to exploit a vulnerability identified as CVE-2026-114938, known as Java4Shell, by looking for non-RFC compliant Base64 encoding sequences in the HTTP request body. The rule is designed to identify suspicious trailing fragments in Base64 data directed towards servers, which may indicate an attempt to exploit this vulnerability frequently associated with Java applications. It specifically evaluates HTTP traffic in established connections going to a server, focusing on unusual Base64 patterns that may be used in web application attacks.
+  Updated-Date: '2026_11_20'
+'2072835':
+  Created-Date: '2026_11_20'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: 3372c9ebb4c799b7561fecf899fa1af6
+  Ruleset: ETOPEN
+  Summary: This rule detects DNS queries to domains associated with the ClickFix exploit kit, specifically targeting domains with the ".js-static.cfd" suffix. Exploit kits like ClickFix are used by attackers to deliver malware to vulnerable systems, often by exploiting web browsers through drive-by downloads. This detection is relevant for identifying initial access attempts by threat actors leveraging compromised websites.
+  Updated-Date: '2026_11_20'
+'2072836':
+  Created-Date: '2026_11_20'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: 5a24c2049137accf70b462d2692230a8
+  Ruleset: ETOPEN
+  Summary: This rule detects network traffic where a TLS Server Name Indication (SNI) ends with ".js-static.cfd", indicative of communication with a ClickFix exploit kit domain. The rule triggers on established connections from internal to external networks, specifically targeting traffic that could lead to drive-by compromises of client endpoints via compromised websites.
+  Updated-Date: '2026_11_20'
+'2072837':
+  Created-Date: '2026_11_20'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: be4f9483437d792e2104dec0ecb5d71d
+  Ruleset: ETOPEN
+  Summary: This rule detects HTTP/2 traffic in which there is a WINDOW_UPDATE frame with a window size increment near the upper limit, which could indicate an attempt to exploit a specific vulnerability related to integer underflow in nginx HTTP/2 (CVE-2026-123007). This exploit has the potential to lead to remote code execution on the targeted server, making it a significant security threat.
+  Updated-Date: '2026_11_20'
+'2072838':
+  Created-Date: '2026_11_20'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: c0e0b6c7fb4afdfc18d8a0b18b57dc72
+  Ruleset: ETOPEN
+  Summary: This rule detects an attempted authentication bypass aimed at GPUStack, a specific web application, through a forged SAML login attempt. The detection mechanism is designed to identify a POST request to the "/auth/saml/callback" URI, accompanied by a "SAMLResponse" parameter that indicates a potential exploit. The rule leverages pattern matching to identify crafted SAML responses that include administrative credentials, as detailed by three specific regular expression patterns. This activity targets a server under the pretext of exploiting a known vulnerability, CVE-2026-102894.
+  Updated-Date: '2026_11_20'
+'2072839':
+  Created-Date: '2026_11_20'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: c68fc55efc303ba799a4b3aef6734ba4
+  Ruleset: ETOPEN
+  Summary: This rule detects an authentication bypass vulnerability in GPUStack, identified as CVE-2026-102895, via spoofing of the "X-GPUStack-Real-IP" HTTP header. The rule targets HTTP requests to the server containing the specific URI "/v2/users" and checks for malicious IP spoofing using patterns that match localhost or internal IP addresses within this custom header. The detection aims to identify attempts to gain unauthorized access to systems running GPUStack by exploiting this vulnerability, which allows attackers to manipulate IP-based trust mechanisms.
+  Updated-Date: '2026_11_20'
+'2072840':
+  Created-Date: '2026_11_20'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: 7b01cdae00f0d33588ea61d1597510ec
+  Ruleset: ETOPEN
+  Summary: This rule detects traffic directed from a client within a protected network to an external server, specifically identifying when the domain ".niko-ngx-schema.com" appears in the Server Name Indication (SNI) field of a TLS handshake. This domain is associated with the OPTIMJACK exploit kit, a type of malware delivery infrastructure used to execute malicious activities on compromised systems. The rule is triggered when a connection to the specified domain is established, indicating potential exploitation activity linked to OPTIMJACK.
+  Updated-Date: '2026_11_20'
 '2100110':
   Created-Date: '2024_08_07'
   Custom-Edited: false
