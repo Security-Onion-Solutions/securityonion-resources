@@ -556442,10 +556442,10 @@
   Created-Date: '2026_11_18'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: 9057a6b5a81b7b4587491b985edf7240
+  Rule-Body-Hash: 3e3c1970eac1d1bc4fc2642cd2aebda2
   Ruleset: ETOPEN
-  Summary: This rule detects DNS queries to the domain "ios-hack.icu," which is associated with the OPTIMJACK malware family. The detection is aimed at identifying potential exploit kit activities, as this domain is known to be part of a malicious network that leverages DNS queries for exploitative purposes. This rule targets client endpoints to help mitigate the risk of malware infections associated with the referenced attack campaign.
-  Updated-Date: '2026_11_18'
+  Summary: This rule detects DNS queries to the domain "ios-hack.icu," which is associated with the OPTIMJACK malware family. The domain's involvement indicates potential exploit kit activity, specifically targeting client endpoints for malicious purposes. The detection is noted for its high confidence level and major severity, stemming from insights relating to significant malware campaigns that have previously been documented to impact major brands globally.
+  Updated-Date: '2026_11_23'
 '2072772':
   Created-Date: '2026_11_18'
   Custom-Edited: false
@@ -556514,10 +556514,10 @@
   Created-Date: '2026_11_18'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: 8f72106fb63fe941a809913cde654963
+  Rule-Body-Hash: 5e523061f8f27e2f7aa333e655d859c8
   Ruleset: ETOPEN
-  Summary: This rule detects DNS queries to the domain "blogforge.vu" as part of identifying potential activity related to the OPTIMJACK exploit kit. It involves monitoring DNS traffic for queries to this specific domain, which has been associated with malware distribution. The presence of such queries could indicate that a client's endpoint might be targeted or involved in a malicious campaign leveraging the OPTIMJACK malware. This is crucial for identifying compromised systems and preventing the spread of the exploit kit.
-  Updated-Date: '2026_11_18'
+  Summary: This rule detects a DNS query made to the domain "blogforge.vu", which is associated with the Optimjack exploit kit. This exploit kit is known for delivering malware through infected web resources, potentially affecting major brand websites. The intent of this rule is to identify network traffic that might indicate an attempt to communicate with infrastructure linked to the distribution of such malware, thereby helping to prevent exploit-related activities within the network.
+  Updated-Date: '2026_11_23'
 '2072781':
   Created-Date: '2026_11_18'
   Custom-Edited: false
@@ -556650,10 +556650,10 @@
   Created-Date: '2026_11_18'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: adb01a796fa6531bbe4b3e9805bc6947
+  Rule-Body-Hash: fd8adcb2fa02b0b14e37a31f3ed3b6ad
   Ruleset: ETOPEN
-  Summary: This rule detects attempts to exploit a vulnerability involving the OPTIMJACK malware by observing the domain "blogforge.vu" in the TLS Server Name Indication (SNI) field of network traffic. The presence of this specific domain may indicate that the OPTIMJACK exploit kit is being utilized, which aligns with known malicious activity involving the compromise of brands through malware delivered via the Optimizely platform. The detection is triggered when a connection is established from an internal to an external network and the domain suffix appears in the SNI of the TLS handshake.
-  Updated-Date: '2026_11_18'
+  Summary: This rule detects traffic involving the Optimjack exploit kit by identifying connections where the Server Name Indication (SNI) in the TLS handshake contains the domain ".blogforge.vu". It monitors established connections to external networks, specifically flagging this domain in the context of potential malware distribution. The rule leverages information indicating this site is associated with spreading malware, targeting client endpoints with a high degree of confidence.
+  Updated-Date: '2026_11_23'
 '2072798':
   Created-Date: '2026_11_18'
   Custom-Edited: false
@@ -556714,154 +556714,154 @@
   Created-Date: '2026_11_18'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: 1a61b66e8e2a8f68301fd2b7933a1cd6
+  Rule-Body-Hash: b41479468d90c127abc6c1beef21cebe
   Ruleset: ETOPEN
-  Summary: This rule detects traffic involving the OPTIMJACK exploit kit, specifically identifying when a crypto wallet is observed in the HTTP response body. The detection is based on a specific pattern associated with the malicious activity linked to the OPTIMJACK malware family, which is known for compromising websites to target client endpoints for initial access via drive-by compromises.
-  Updated-Date: '2026_11_18'
+  Summary: This rule detects the presence of the OPTIMJACK crypto wallet's unique identifier within HTTP response bodies sent to the client's endpoint. The OPTIMJACK wallet is part of a malware campaign that has compromised well-known brands through a method involving the exploitation of web browsers. The rule is designed to identify initial access tactics related to drive-by compromises, where unsuspecting users are targeted through malicious content delivered via websites.
+  Updated-Date: '2026_11_23'
 '2072806':
   Created-Date: '2026_11_18'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: 47fbf1f926a5ce7a4c49bffa1c8d8c95
+  Rule-Body-Hash: 47a1e2a86133d9587af310fd5d74897d
   Ruleset: ETOPEN
-  Summary: This rule detects activity associated with the OPTIMJACK exploit kit, which is relevant to crypto wallet activities. The rule triggers when there is an established HTTP connection to a client, specifically looking for response bodies that contain the specific Ethereum wallet address "0x7005b45DE07e1b70DCD38eE3A708CFD88A6c7f8e". OPTIMJACK is identified as malware involved in compromising websites, potentially as part of a drive-by compromise attack technique. This detection method involves monitoring traffic that may suggest the initial access phase of an attack targeting client endpoints through browsers.
-  Updated-Date: '2026_11_18'
+  Summary: This rule detects the presence of the Crypto Wallet associated with the "OPTIMJACK" malware within HTTP response bodies from external networks to a home network. It identifies specific traffic involving a known Ethereum wallet address linked to this threat. "OPTIMJACK" is a form of malware that can compromise websites to facilitate unauthorized cryptocurrency transactions or activities. The rule is designed to help identify potential compromises of client endpoints by detecting these specific transactions over a network.
+  Updated-Date: '2026_11_23'
 '2072807':
   Created-Date: '2026_11_18'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: 84b2b55f5388100bdf7dfd233c632b3f
+  Rule-Body-Hash: 08352e180e345fbce15de3d99878f9da
   Ruleset: ETOPEN
-  Summary: This rule detects the presence of the OPTIMJACK Crypto Wallet associated with exploit kits when a client receives an HTTP response that contains a specific Ethereum wallet address. This indicates potential infection or compromise by the OPTIMJACK malware, which is delivered as part of a drive-by compromise attack on clients accessing compromised websites. The rule is designed to identify malicious activity targeting client endpoints, signifying critical security threats leveraging compromised online platforms.
-  Updated-Date: '2026_11_18'
+  Summary: This rule detects the presence of a specific cryptocurrency wallet address associated with the OPTIMJACK malware in HTTP responses. OPTIMJACK is known for its involvement in compromising websites to exploit vulnerabilities and infect users' systems. The detection is triggered when an established connection to a client contains this wallet address in the HTTP response body, indicating potential malicious activity linked to this malware family. This rule's context is supported by references to documentation on the malware's impact on large brands through such compromises.
+  Updated-Date: '2026_11_23'
 '2072808':
   Created-Date: '2026_11_18'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: 0e3cd2633c06e22ddd124e7126dc5add
+  Rule-Body-Hash: 7a1ae4eb076f3f15cebfe8edda4c94dc
   Ruleset: ETOPEN
-  Summary: This rule detects a specific crypto wallet address associated with the OPTIMJACK malware, observed in HTTP responses that are directed toward the client. The presence of this wallet address indicates potential involvement in an exploit kit campaign, which may compromise websites through a drive-by download attack. This activity is associated with OPTIMJACK, a malware family implicated in infecting websites, including those of major brands, possibly resulting in subsequent unauthorized crypto transactions. The rule is designed to identify and mitigate such attacks by monitoring established connections and analyzing the content of HTTP responses received by web browsers within the network.
-  Updated-Date: '2026_11_18'
+  Summary: This rule detects traffic associated with the OPTIMJACK crypto wallet by identifying a specific cryptocurrency address within an HTTP response body, indicating potential compromise or malicious activity. The rule focuses on traffic flowing from external networks to internal networks, specifically analyzing the response content sent to clients. The context involves malware distribution through compromised websites, as documented by references to related research and reports. The detection of this activity is relevant to users exposed to drive-by compromises, which is a common technique for gaining initial access in cyber attacks.
+  Updated-Date: '2026_11_23'
 '2072809':
   Created-Date: '2026_11_18'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: 217966431ed7e4916d523e7372272cd7
+  Rule-Body-Hash: fa9b529bebeea0ae4abc899523ae7094
   Ruleset: ETOPEN
-  Summary: This rule detects an occurrence of the OPTIMJACK exploit kit associated with the presence of a specific cryptocurrency wallet address in HTTP response bodies being sent to a client's network. It focuses on identifying a known pattern indicative of malicious activity related to the OPTIMJACK malware family, which is linked to compromised websites used for illicit purposes. This detection aims to prevent unauthorized access to client endpoints and mitigate the risk of exploitation through drive-by compromise techniques.
-  Updated-Date: '2026_11_18'
+  Summary: This rule detects instances of the OPTIMJACK crypto wallet being observed in HTTP traffic traveling from an external network to a home network. It indicates a response from a server to a client, where the response body contains specific content related to the wallet. This is associated with potential cryptocurrency theft activities, as referenced by documented cases where malware infiltrated through web services, affecting well-known brands. This activity falls under the MITRE ATT&CK framework tactic of Initial Access, specifically within the Drive-by Compromise technique.
+  Updated-Date: '2026_11_23'
 '2072810':
   Created-Date: '2026_11_18'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: ba06b99d19d80dd555a81bced31c8823
+  Rule-Body-Hash: d27ddf4777e5ede6fcba5526fa15af34
   Ruleset: ETOPEN
-  Summary: This rule detects traffic related to the OPTIMJACK exploit kit, which targets crypto wallets. The detection occurs when a specific string, indicative of the exploit kit, is observed in the body of an HTTP response directed towards a client within the network. The rule aims to identify attempts by the exploit kit to compromise client endpoints by leveraging known vulnerabilities in web browsers, potentially resulting in unauthorized access to crypto wallets.
-  Updated-Date: '2026_11_18'
+  Summary: This rule detects the presence of a specific string related to the OPTIMJACK cryptocurrency wallet within HTTP response bodies, indicating possible compromise through websites breached by malware. The rule identifies attempts to deliver malicious components associated with OPTIMJACK, which is known to exploit compromised web content to initiate unauthorized financial transactions. This behavior aligns with tactics and techniques aimed at initial access via drive-by compromise, impacting client endpoints and potentially compromising web browsers.
+  Updated-Date: '2026_11_23'
 '2072811':
   Created-Date: '2026_11_18'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: 152d49f32b61b67ffdf9fd4c0195e186
+  Rule-Body-Hash: 2c310454f4a3c7d2b9669a637810bd97
   Ruleset: ETOPEN
-  Summary: This rule detects the presence of the OPTIMJACK exploit kit by identifying specific patterns in an HTTP response body indicative of crypto wallet activity. It is designed to monitor traffic from external networks to internal networks, focusing on established connections directed to client endpoints. The detection is triggered by the occurrence of the specified content string within the response body, signifying a potential Drive-by Compromise attack, which is part of the Initial Access tactic. This activity is linked to compromised websites that have been infected with malware, posing a significant threat to web browsers on client systems.
-  Updated-Date: '2026_11_18'
+  Summary: This rule detects the presence of the OPTIMJACK crypto wallet being used within HTTP response bodies to a client. It identifies a specific pattern of data associated with the wallet, indicating potential compromise or malfeasance, such as a drive-by compromise on the client endpoint. This activity involves the OPTIMJACK malware and is relevant to web browsers operating in an environment where SSL decryption is enabled to inspect the traffic. The rule is designed to alert on interactions that suggest a compromised website might be distributing or interacting with OPTIMJACK components.
+  Updated-Date: '2026_11_23'
 '2072812':
   Created-Date: '2026_11_18'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: 1e96012ded4cce17a4593ce9eca2650b
+  Rule-Body-Hash: af6ed6d28dd9cddd7053274761cd64f8
   Ruleset: ETOPEN
-  Summary: This rule detects the presence of the OPTIMJACK exploit kit, which specifically targets cryptocurrency wallets, by identifying a unique pattern within HTTP response bodies directed towards internal networks from external sources. Exploit kits like OPTIMJACK are typically used to deliver malware by exploiting vulnerabilities in web browsers or related software upon visiting a compromised or malicious website. The detection relies on the presence of a specific sequence of bytes, which indicates potential compromise linked to this exploit kit. This signature is associated with an attack pattern characterized by initial access techniques where a victim can be compromised through a drive-by download scenario, highlighting the strategic use of compromised websites to deliver malicious payloads.
-  Updated-Date: '2026_11_18'
+  Summary: This rule detects HTTP traffic containing a specific pattern associated with the OPTIMJACK crypto wallet, which may indicate the presence of malicious activity or compromised websites delivering malware. It monitors established connections to client endpoints, focusing on the HTTP response body where the pattern "|27|TD64NDwZfQB6UASW2Xz6hWrz1T12p1pxL7|27|" is found. The rule helps identify potential threats linked to the OPTIMJACK malware family, which is known to compromise well-known brands by exploiting web browsers.
+  Updated-Date: '2026_11_23'
 '2072813':
   Created-Date: '2026_11_18'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: a84b6e508863f67644c46d41fa5db726
+  Rule-Body-Hash: 9e334fe5b994f4b0a05778d44639e204
   Ruleset: ETOPEN
-  Summary: This rule detects the presence of the OPTIMJACK exploit kit, which is associated with crypto wallet theft, by monitoring HTTP responses for a specific pattern indicating the kit's activity. The detection targets client endpoints and is concerned with traffic from external networks to internal networks, focusing on established connections. The rule specifically looks for a signature in the HTTP response body related to the OPTIMJACK malware family, known for leveraging compromised websites as an initial access vector through a drive-by compromise technique.
-  Updated-Date: '2026_11_18'
+  Summary: This rule detects an HTTP response containing a specific string associated with the OPTIMJACK crypto wallet, potentially indicating the presence of the OptimJack malware. This malware is known to be distributed through compromised websites and may involve drive-by compromise tactics. The rule triggers when the identified content is observed in an HTTP response body during an established connection directed to a client within the home network.
+  Updated-Date: '2026_11_23'
 '2072814':
   Created-Date: '2026_11_18'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: a8c062194dcca70ca74214a599e729ff
+  Rule-Body-Hash: e868692717a75692b2f5c846dbc5dadc
   Ruleset: ETOPEN
-  Summary: This rule detects network traffic associated with the OPTIMJACK exploit kit, specifically when a compromised web page includes a certain sequence of characters (|27|TFRQz28WJ8tNjj3Spin1ZkcENwjhnGdouW|27|) in an HTTP response body. This pattern is linked to the distribution of malicious content that targets web browsers. The traffic is identified as originating from external sources towards an internal network on connections that are already established and directed at client endpoints. This detection is used to identify attempts to gain initial access through drive-by compromise, which involves users unknowingly downloading malware by visiting compromised websites.
-  Updated-Date: '2026_11_18'
+  Summary: This rule detects the presence of the OptimJack cryptocurrency wallet malware by identifying specific patterns in HTTP response bodies. When a client accesses a compromised website, the malware signature is detected in the network traffic. The rule is designed to monitor established connections from external networks to internal networks, focusing on content consistent with the OptimJack threat, a malware family associated with manipulating or compromising browser sessions to harvest cryptocurrency information.
+  Updated-Date: '2026_11_23'
 '2072815':
   Created-Date: '2026_11_18'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: 0bf14823550353e31e233e49fe66b0e3
+  Rule-Body-Hash: 026a5e7741f8f05e037f3de6d2190930
   Ruleset: ETOPEN
-  Summary: This rule detects the presence of the OPTIMJACK exploit kit, specifically related to the observation of a crypto wallet associated with the attack. It triggers on established HTTP responses from external networks targeting internal networks. The detection relies on identifying a specific content pattern within the HTTP response body, which references the OPTIMJACK malware family. This attack is associated with compromised websites and poses a threat primarily to client endpoints, capitalizing on drive-by compromise techniques to gain initial access.
-  Updated-Date: '2026_11_18'
+  Summary: This rule detects network traffic indicating the presence of the OPTIMJACK crypto wallet, which is associated with malicious activity. The detection focuses on HTTP responses transmitted to clients from external networks to internal network hosts. The specific pattern identified in the response body indicates potential involvement in a drive-by compromise, whereby malware spreads through the web, possibly affecting well-known brands and exploiting vulnerabilities in systems to gain initial access. The rule targets web browsers on client endpoints and is relevant in environments where TLS decryption is employed to monitor and secure network traffic.
+  Updated-Date: '2026_11_23'
 '2072816':
   Created-Date: '2026_11_18'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: 79b055dd0847bfee95520685967265a8
+  Rule-Body-Hash: d1df58551d147083e1f86f23129bdfb4
   Ruleset: ETOPEN
-  Summary: This rule detects HTTP responses that indicate the presence of the OPTIMJACK exploit kit, which is associated with the compromise of crypto wallets through malicious activities. The detection is triggered by a specific value, "|27|THvs6p56XkUiMkJeSc51cAP64u2RsTYqxa|27|", observed in the HTTP response body during established connections to clients. The rule is designed to identify instances where client endpoints may be exposed to this exploit, potentially via drive-by compromise techniques, as outlined in the associated references.
-  Updated-Date: '2026_11_18'
+  Summary: This rule detects HTTP responses containing a specific cryptocurrency wallet address associated with the OPTIMJACK malware. It monitors established client-side connections for content that matches the wallet address representation within the HTTP response body. This traffic pattern is indicative of potential compromise or infection involving the OPTIMJACK malware, which has been known to affect web browsers and target client endpoints through methods such as drive-by downloads. The rule aids in identifying compromised websites distributing this malware, allowing for the detection and response to attempts at initial access exploitation.
+  Updated-Date: '2026_11_23'
 '2072817':
   Created-Date: '2026_11_18'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: 90ccbbc58d1217cbe941c353a734efc6
+  Rule-Body-Hash: 490016cad9831e51504d40a27e7c4994
   Ruleset: ETOPEN
-  Summary: This rule detects the presence of the OPTIMJACK exploit kit by identifying specific content within HTTP response bodies. This link to OPTIMJACK malware focuses on crypto wallet security and is associated with compromised websites delivering malicious payloads to client endpoints. It monitors traffic where an established connection exists to the client, and the specified pattern matches within the TLS-decrypted HTTP response body. This detection aids in identifying potential drive-by compromises on client endpoints, exploiting vulnerabilities in web browsers to obtain unauthorized access.
-  Updated-Date: '2026_11_18'
+  Summary: This rule detects the presence of the OPTIMJACK crypto wallet malware by examining HTTP traffic directed to a home network. It specifically looks for a string associated with the malware in the response body of the HTTP traffic. The OPTIMJACK malware has been implicated in compromising websites and is known to target client endpoints as part of an initial access attack vector, which falls under drive-by compromise techniques. The detection aims to identify when a client endpoint might be receiving potentially harmful content linked to this malware during an established connection using decrypted TLS traffic.
+  Updated-Date: '2026_11_23'
 '2072818':
   Created-Date: '2026_11_18'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: 3d474410265b4dc8df7b6239b494f84f
+  Rule-Body-Hash: 25a1e64ad9b662bd524358172305c806
   Ruleset: ETOPEN
-  Summary: This rule detects activity associated with the OPTIMJACK exploit kit, specifically the presence of a crypto wallet string in HTTP response bodies indicating a potential compromise. OPTIMJACK is known for infecting websites and affecting web browsers on client endpoints during an established connection. The detection points to a tactic of initial access through drive-by compromise, highlighting involvement with compromised websites where unsuspecting users' interactions could expose them to malware.
-  Updated-Date: '2026_11_18'
+  Summary: This rule detects HTTP responses containing a specific string associated with the OptimJack crypto wallet, indicating potential malware activity. The rule is designed to identify traffic where an established connection is directed to a client, with the response body containing the unique string '|27|TLFxe3jygjfLVJM6koqRUwCGYmBNGaVXHv|27|'. The presence of this string suggests that a user may be exposed to, or involved with, the OptimJack crypto wallet threat, which is connected to a known attack targeting web browsers and client endpoints via compromised websites, often involving drive-by compromise techniques.
+  Updated-Date: '2026_11_23'
 '2072819':
   Created-Date: '2026_11_18'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: cd0976a6a404609a54798fc132095e27
+  Rule-Body-Hash: c8dfce2735c3713e7573d8ac54d3c655
   Ruleset: ETOPEN
-  Summary: This rule detects the presence of the OPTIMJACK exploit kit by searching for specific content in HTTP response bodies. The exploit kit is associated with the infection of crypto wallets and has been documented as being used to compromise websites, leading to drive-by compromise attacks. The rule matches content within the HTTP responses from external networks directed to internal clients, indicating a potential security threat related to compromised websites. The involvement of major brands in malware infections via platforms like Optimizely has been reported, highlighting the significance of this detection in maintaining security.
-  Updated-Date: '2026_11_18'
+  Summary: This rule detects the presence of a specific string associated with the OPTIMJACK malware family in HTTP response bodies. OPTIMJACK is related to cryptocurrency wallet targeting through malicious activity. The detection is based on identifying the character sequence "|27|TMLQvDvpgSyx94maptc3TxvmCVtT5qHVup|27|" in the response, which suggests an infected resource associated with compromised websites. The rule is part of a threat-hunting effort focusing on potential drive-by compromise tactics and aims to protect client endpoints from being targeted by attacks leveraging infected web content.
+  Updated-Date: '2026_11_23'
 '2072820':
   Created-Date: '2026_11_18'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: da1b82c296e11a943ed6a271641348ec
+  Rule-Body-Hash: 43526b8bb5821d5f17d9bc7337f1ef4f
   Ruleset: ETOPEN
-  Summary: This rule detects the presence of the OPTIMJACK cryptocurrency wallet malware within HTTP response bodies directed at the protected network. The detection is based on identifying a specific sequence of characters associated with this exploit kit. The OPTIMJACK malware is known for compromising web browsers and targeting client endpoints, often through drive-by compromise techniques. The attack is facilitated via a malicious web infrastructure, as noted in documented instances of world-renowned brands being compromised through similar campaigns.
-  Updated-Date: '2026_11_18'
+  Summary: This rule detects traffic associated with the OPTIMJACK crypto wallet, specifically targeting the presence of a unique identifier within the HTTP response body, which indicates potential compromise. The context suggests that this rule monitors responses to identify connections related to the distribution of malware via compromised advertising platforms. This is significant due to the technique's use in drive-by compromise attacks, which exploit legitimate websites to deliver malware to unsuspecting users' machines.
+  Updated-Date: '2026_11_23'
 '2072821':
   Created-Date: '2026_11_18'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: 396daff291148b3e96b3b109cf5bc3ca
+  Rule-Body-Hash: e690b5863949243b67909bd91a5f0681
   Ruleset: ETOPEN
-  Summary: This rule detects traffic associated with the OPTIMJACK exploit kit, specifically when a crypto wallet reference is observed in HTTP response bodies that are sent from external networks to internal client endpoints. The presence of a particular string pattern suggests that the client may have been exposed to a drive-by compromise, potentially linked to the OPTIMJACK malware family, which is known to compromise websites and target client endpoints.
-  Updated-Date: '2026_11_18'
+  Summary: This rule detects network traffic associated with the OPTIMJACK crypto wallet, specifically identifying the presence of a unique identifier in HTTP response bodies. It triggers on established connections directed to a client and aims to identify instances where a compromised website might deliver content related to the OPTIMJACK malware family. This detection is part of efforts to identify drive-by compromises, where malicious actors use infected websites to initiate unauthorized access to client endpoints.
+  Updated-Date: '2026_11_23'
 '2072822':
   Created-Date: '2026_11_18'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: d22c548f5e112a1aae57dc865f8238cd
+  Rule-Body-Hash: ca79c459d041cc9460289009830221d5
   Ruleset: ETOPEN
-  Summary: This rule detects traffic associated with the OPTIMJACK crypto wallet malware. It identifies an exploit kit activity by inspecting HTTP response bodies for specific content patterns indicative of this malware. The rule is aimed at identifying potential infections on client endpoints when browsing, leveraging compromised websites to deliver the malicious payload. The detection of this specific pattern suggests an attempt to compromise user systems for initial access through drive-by download techniques. The rule is tailored for monitoring traffic from external networks to internal networks and functions in a context where TLS decryption is possible, focusing on web browser activities.
-  Updated-Date: '2026_11_18'
+  Summary: This rule detects traffic indicating the presence of the OPTIMJACK crypto wallet, specifically targeting compromised websites. It triggers on HTTP responses containing a specific pattern of data that suggests communication with the wallet, which is part of a broader malware campaign. This malware is known to exploit client endpoints by using a drive-by compromise technique, facilitating initial access to affected systems through compromised web browsers. The reference links suggest that the malware impacts some of the world's largest brands and involves the modification of content delivered through services like Optimizely.
+  Updated-Date: '2026_11_23'
 '2072823':
   Created-Date: '2026_11_18'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: 930cf0fd25d7f47666bc5be71d26a9c3
+  Rule-Body-Hash: 0d6ce3d8cc3812b18921c1f9360ef239
   Ruleset: ETOPEN
-  Summary: This rule detects the presence of the OPTIMJACK malware, specifically targeting crypto wallet information via a compromised website. It identifies an established HTTP flow directed to the client containing a specific pattern in the response body, which indicates the involvement of malicious activity linked to the OPTIMJACK exploit kit. The rule is designed to recognize traffic involving cryptographic threats and drive-by compromise techniques as part of an initial access tactic in a cyber attack scenario.
-  Updated-Date: '2026_11_18'
+  Summary: This rule detects HTTP responses containing a specific string associated with the OptimJack crypto wallet, indicating potential malware activity. OptimJack is a malware family that may compromise websites, enabling unauthorized access or actions. The detection focuses on established HTTP connections where the response body contains the distinctive sequence "|27|qzkaaf8n6grmpr0d9lx8xutn3r9lk722f566hhpe58|27|". This pattern is linked to compromised websites that may have been targeted by malware to facilitate initial access to target systems, reflecting a drive-by compromise technique. The rule mainly aims to protect client endpoints by identifying such malicious activities transacted over web browsers.
+  Updated-Date: '2026_11_23'
 '2072824':
   Created-Date: '2026_11_18'
   Custom-Edited: false
@@ -556890,10 +556890,10 @@
   Created-Date: '2026_11_19'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: dae93c14038c4b56c604b07729fccaa0
+  Rule-Body-Hash: 6a394ccf821bbd6ef0227cef75fb4535
   Ruleset: ETOPEN
-  Summary: This rule detects a DNS query for the domain "mng.digafertiliser.com," which is associated with the Gholoader command-and-control (C2) infrastructure tied to the TA569 threat actor group. Gholoader is part of the SocGholish malware family, known for distributing malware by using drive-by downloads from compromised websites. The detection of such a query indicates potential trojan activity targeting client endpoints, with an exploit kit possibly being involved in this threat vector.
-  Updated-Date: '2026_11_19'
+  Summary: This rule detects DNS queries associated with the TA569 threat actor's Gholoader malware command and control (C2) activity by identifying lookup requests for the specific domain "mng.digafertiliser.com". Gholoader is a loader used to distribute additional malicious payloads and establish communication with a C2 server. The detection is focused on identifying potential compromised client endpoints querying this domain, which could indicate malicious activity related to the SocGholish malware family.
+  Updated-Date: '2026_11_23'
 '2072828':
   Created-Date: '2026_11_19'
   Custom-Edited: false
@@ -556998,6 +556998,62 @@
   Ruleset: ETOPEN
   Summary: This rule detects traffic directed from a client within a protected network to an external server, specifically identifying when the domain ".niko-ngx-schema.com" appears in the Server Name Indication (SNI) field of a TLS handshake. This domain is associated with the OPTIMJACK exploit kit, a type of malware delivery infrastructure used to execute malicious activities on compromised systems. The rule is triggered when a connection to the specified domain is established, indicating potential exploitation activity linked to OPTIMJACK.
   Updated-Date: '2026_11_20'
+'2072841':
+  Created-Date: '2026_11_23'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: c0c63f2647171b1a3855d34cf07295c6
+  Ruleset: ETOPEN
+  Summary: This rule detects DNS queries for the domain "microsoft.a.pinggy.link," which is associated with the TryNodeRAT malware. TryNodeRAT is a remote access trojan that can potentially allow unauthorized control over an infected system. The rule focuses on identifying this specific domain query as an indicator of the trojan's activity.
+  Updated-Date: '2026_11_23'
+'2072842':
+  Created-Date: '2026_11_23'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: 636438a2b162ebf561b5515d054757f2
+  Ruleset: ETOPEN
+  Summary: This rule detects a DNS query for the domain "get-main.link," which is associated with the TryNodeRAT malware, a type of Remote Access Trojan. Such malware allows unauthorized remote control of an infected system, posing a security risk by potentially enabling malicious activities and data exfiltration. The detection highlights potential trojan activity on a client endpoint targeted by this DNS query.
+  Updated-Date: '2026_11_23'
+'2072843':
+  Created-Date: '2026_11_23'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: 2626cc22579dbf11ee79c11156c8b3fc
+  Ruleset: ETOPEN
+  Summary: This rule detects network traffic that associates with the TryNodeRAT malware by identifying the Server Name Indication (SNI) in TLS traffic. Specifically, it looks for connections to the domain "microsoft.a.pinggy.link" in outbound communications from any internal home network to external networks. TryNodeRAT is a type of remote access trojan that allows attackers to control infected systems remotely.
+  Updated-Date: '2026_11_23'
+'2072844':
+  Created-Date: '2026_11_23'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: bc517e6fd6bbe6b8e5d47469b85d0668
+  Ruleset: ETOPEN
+  Summary: This rule detects network traffic associated with the TryNodeRAT malware by identifying connections where the Server Name Indication (SNI) in a TLS handshake matches the specific domain "get-main.link." The detection focuses on flows established from internal to external networks, indicating potential communication with this known malicious domain.
+  Updated-Date: '2026_11_23'
+'2072845':
+  Created-Date: '2026_11_23'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: 8c6ec1b3496f9e99a71fa98e73675171
+  Ruleset: ETOPEN
+  Summary: This rule detects DNS queries to a domain with the pattern ".wf.md", which is associated with dynamic DNS services. Dynamic DNS allows for the automatic updating of a DNS name in the event of a change in the corresponding IP address. Domains with such patterns may be indicative of malicious use such as command and control communications. This activity is identified as potentially related to command and control tactics, specifically under the MITRE technique of Dynamic Resolution.
+  Updated-Date: '2026_11_23'
+'2072846':
+  Created-Date: '2026_11_23'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: 3bb5cb9d2b0aa197af2a2ca36ae55195
+  Ruleset: ETOPEN
+  Summary: This rule detects HTTP requests originating from a home network to external networks that are addressed to domains ending with ".wf.md". These domains are associated with dynamic DNS services, which can be used for various purposes, including potential malicious activities like command and control through dynamic resolution techniques. The rule focuses on identifying such DNS requests as part of network traffic analysis to mitigate risks associated with dynamic DNS service misuse.
+  Updated-Date: '2026_11_23'
+'2072847':
+  Created-Date: '2026_11_23'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: 75debda02fa72707e4f683dfa8e53953
+  Ruleset: ETOPEN
+  Summary: This rule detects an attempt to exploit a vulnerability in the Puppet Server, identified as CVE-2026-115731, which allows for authenticated remote code execution (RCE) via event deserialization. It triggers when an HTTP POST request is made to the "/puppet/v3/report/" endpoint with specific content in the request body that indicates deserialization of a Ruby object. The exploit is characterized by the presence of Ruby method metadata and certain patterns in the payload, hinting at possible execution of arbitrary commands. This particular vulnerability falls under the category of attempted administrative access and adheres to the MITRE ATT&CK framework, specifically under the tactic of Initial Access and the technique of Exploit Public-Facing Application.
+  Updated-Date: '2026_11_23'
 '2100110':
   Created-Date: '2024_08_07'
   Custom-Edited: false
