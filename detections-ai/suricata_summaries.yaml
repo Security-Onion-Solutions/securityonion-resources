@@ -196770,10 +196770,10 @@
   Created-Date: '2024_08_07'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: 2c0737e4f1e1a24762a5802edc54cec0
+  Rule-Body-Hash: 6882e8dad6bffe6b9ee165375b05129d
   Ruleset: ETOPEN
-  Summary: This rule detects an attempted exploitation of a format string vulnerability in the Palo Alto Networks SSL VPN, specifically targeting the sslmgr component as indicated by CVE-2019-1579. It identifies HTTP POST requests to the "/sslmgr" endpoint, where the request body begins with "scep-profile-name=%", indicating a possible attempt to trigger a remote code execution vulnerability that could allow unauthorized administrative access to the server.
-  Updated-Date: '2025_09_24'
+  Summary: This rule detects an attempted format string injection vulnerability targeting Palo Alto Networks SSL VPN, specifically the sslmgr component. The attack leverages a POST request to the "/sslmgr" URI and examines the request body for a pattern beginning with "scep-profile-name=%". The vulnerability, identified as CVE-2019-1579, could potentially allow an unauthenticated attacker to execute arbitrary code on affected systems.
+  Updated-Date: '2026_11_25'
 '2027724':
   Created-Date: '2024_08_07'
   Custom-Edited: false
@@ -210666,10 +210666,10 @@
   Created-Date: '2024_08_06'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: 85a0c639fd24e0915048ba8d5809863e
+  Rule-Body-Hash: fca93015f2f0fefceefc1c6786d77f6a
   Ruleset: ETOPEN
-  Summary: This rule detects a potential remote code execution (RCE) attempt on Microsoft SQL Server, specifically targeting CVE-2020-0618. It focuses on HTTP POST requests directed to the path "/ReportServer/pages/ReportViewer.aspx" on a server. The request body must start with the sequence "NavigationCorrector|24|PageState|3d|NeedsCorrection|26|NavigationCorrector|24|ViewState|3d|" and end with the sequence "|26 5f 5f|VIEWSTATE|3d|". Additionally, the rule verifies the absence of a "referer" HTTP header in the request. This vulnerability could allow attackers to execute arbitrary code on the affected system if successfully exploited.
-  Updated-Date: '2025_01_31'
+  Summary: This rule detects an attempted remote code execution exploit targeting Microsoft SQL Server, specifically associated with CVE-2020-0618. It identifies HTTP POST requests directed to the path "/pages/reportviewer.aspx" on a server within the protected network. The rule looks for specific content in the HTTP request body, such as "PageState=NeedsCorrection" and the presence of "NavigationCorrector" which indicate an exploitation attempt. Additionally, the rule checks for certain encoding patterns in parameter names and values, such as "ViewState" and "_VIEWSTATE", while ensuring the absence of the "referer" header in requests. This signature is designed to recognize malicious activities that attempt to exploit vulnerabilities in SQL Server's report viewer component for remote execution purposes.
+  Updated-Date: '2026_11_25'
 '2029477':
   Created-Date: '2024_08_07'
   Custom-Edited: false
@@ -555610,10 +555610,10 @@
   Created-Date: '2026_11_12'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: 54093cfb5ff32c569ccdfe52c55a9ef6
+  Rule-Body-Hash: ce7000cf62ad138e8fd3cc03843ebc7d
   Ruleset: ETOPEN
-  Summary: This rule detects attempts to establish a connection to a Command and Control (CnC) server used by TryNodeRAT malware via the Server Name Indication (SNI) field in TLS traffic. The specific domain ".connect-apis.workers.dev" is associated with TryNodeRAT, a Remote Access Trojan (RAT) that targets Windows operating systems and allows attackers to remotely control infected endpoints. The detection focuses on TLS traffic flowing from internal networks to external networks, indicating potential malicious activity related to this type of malware.
-  Updated-Date: '2026_11_12'
+  Summary: This rule detects the presence of the TryNodeRAT command-and-control domain in the Server Name Indication (SNI) field of a TLS handshake. It specifically looks for connections to the domain "connect-apis.workers.dev" as part of an established flow from internal to external networks. TryNodeRAT is a type of Remote Access Trojan (RAT) which allows attackers unauthorized access and control over an infected system. This detection helps identify potential malware communication related to TryNodeRAT.
+  Updated-Date: '2026_11_25'
 '2072668':
   Created-Date: '2026_11_12'
   Custom-Edited: false
@@ -555626,10 +555626,10 @@
   Created-Date: '2026_11_12'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: 2a769783d8e34099a7eabbfc0217d9a8
+  Rule-Body-Hash: 2294af4ca5278c7b79efd7636ceb4736
   Ruleset: ETOPEN
-  Summary: This rule detects communication with a Command and Control (CnC) domain associated with the TryNodeRAT malware over TLS by identifying the Server Name Indication (SNI) extension in the TLS handshake containing the domain "filestorage.a.pinggy.link". TryNodeRAT is a type of Remote Access Trojan (RAT) that potentially compromises client endpoints running various versions of Windows. The detection focuses on outbound traffic from the internal network to external destinations, specifically looking for established connections directed to a server.
-  Updated-Date: '2026_11_12'
+  Summary: This rule detects attempts to use a known command-and-control (C2) domain related to the TryNodeRAT malware within the Server Name Indicator (SNI) field of TLS traffic. TryNodeRAT is a type of Remote Access Trojan (RAT) that allows attackers to remotely control infected systems. The rule identifies specific traffic patterns where the domain ".filestorage.a.pinggy.link" appears at the end of the SNI, indicating potential communication with this malware's C2 infrastructure.
+  Updated-Date: '2026_11_25'
 '2072670':
   Created-Date: '2026_11_12'
   Custom-Edited: false
@@ -557170,10 +557170,10 @@
   Created-Date: '2026_11_24'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: a1fa0c07286fb0b34e6c9d40b37d28ac
+  Rule-Body-Hash: 2535b3fe575cfa14938a9fa82de6cee7
   Ruleset: ETOPEN
-  Summary: This rule detects an HTTP GET request originating from a client to an external server, specifically looking for a URI request to "/service/RemoteDll.dll" without a "Referer" header. It is designed to identify activity related to StingerRAT, a type of malware that typically targets Windows client endpoints. StingerRAT is known for its capabilities in remote access operations, often employed in command and control scenarios. This detection is particularly relevant for identifying efforts to transfer additional malicious modules, which aligns with the tactic of ingress tool transfer as described in cybersecurity threat frameworks.
-  Updated-Date: '2026_11_24'
+  Summary: This rule detects a network request made by StingerRAT, which is a type of malware known to perform remote administration tasks. The rule identifies attempts to download an additional module by monitoring HTTP GET requests that target the specific URI "/service/RemoteDll.dll". It requires that no "Referer" header is present in the HTTP request. This behavior is associated with malicious activity where a trojan attempts to expand its capabilities by transferring additional tools or payloads to a compromised client endpoint.
+  Updated-Date: '2026_11_25'
 '2072863':
   Created-Date: '2026_11_24'
   Custom-Edited: false
@@ -557198,6 +557198,22 @@
   Ruleset: ETOPEN
   Summary: This rule detects communication from the EasyShell malware implant, which is a type of malicious software. Specifically, it identifies the command-and-control (C2) beacon activity associated with EasyShell. The detection is triggered by a POST request containing a URI path "/api/v2/sync" along with the presence of a "client-id" header. EasyShell is known to be involved in trojan activity, and this rule targets traffic going from a client's endpoint towards an external network, indicating an attempt by the malware to communicate with its controlling server.
   Updated-Date: '2026_11_24'
+'2072866':
+  Created-Date: '2026_11_25'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: 28f2b2cf4cb4e81d1eea40f979c1dd20
+  Ruleset: ETOPEN
+  Summary: This rule detects DNS lookups for the command and control (CnC) domain "termoywall.fun," which is associated with the malware known as Win32/Lumma Stealer. This malware is a form of data stealer used to exfiltrate sensitive information from infected client endpoints. The detection occurs by matching the queried domain name with the specified pattern, indicating potential malicious activity related to Lumma Stealer. The rule leverages the DNS query content and identifies it with high confidence as part of command and control communications.
+  Updated-Date: '2026_11_25'
+'2072867':
+  Created-Date: '2026_11_25'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: 67e9a010c1b8d8f84aa94d740d7d4513
+  Ruleset: ETOPEN
+  Summary: This rule detects traffic using TLS where the Server Name Indicator (SNI) matches the domain "termoywall.fun," which is associated with the Lumma Stealer malware. Lumma Stealer is known for data theft, and such activity typically represents command and control communication. The rule alerts on traffic that is destined for this domain, representing a potential threat within the network environment.
+  Updated-Date: '2026_11_25'
 '2100110':
   Created-Date: '2024_08_07'
   Custom-Edited: false
