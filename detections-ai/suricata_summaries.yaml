@@ -178610,10 +178610,10 @@
   Created-Date: '2024_08_07'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: cb24555d2b591f3269ad2847fb784954
+  Rule-Body-Hash: 5b0b654488f678aad1a02c44fc4726f9
   Ruleset: ETOPEN
-  Summary: This rule detects an exploit attempt targeting Exim mail servers, specifically versions prior to 4.90.1, which are vulnerable to a remote code execution flaw due to a Base64 overflow vulnerability (CVE-2018-6789). The rule triggers on an established TCP connection to port 25, which is the standard SMTP port, when a specific pattern within the AUTH command is identified. This pattern involves the use of Base64 encoding in a manner that can lead to a buffer overflow, potentially allowing remote attackers to execute arbitrary code on the targeted server.
-  Updated-Date: '2025_01_31'
+  Summary: This rule detects an attempt to exploit a vulnerability in Exim mail transfer agent versions prior to 4.90.1, specifically targeting a Base64 overflow that could lead to remote code execution (RCE). The attack involves an established TCP connection to a mail server within the home network on port 25, where a specific Base64 AUTH command sequence is used. This vulnerability is known as CVE-2018-6789, allowing attackers to execute arbitrary code on affected Exim servers.
+  Updated-Date: '2026_11_26'
 '2025428':
   Created-Date: '2024_08_06'
   Custom-Edited: false
@@ -267274,18 +267274,18 @@
   Created-Date: '2024_08_07'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: 6e664d99c10dba0f8e16c36cead012a2
+  Rule-Body-Hash: ad686fc4801ee6fe7f148c2ce2bc81d8
   Ruleset: ETOPEN
-  Summary: This rule detects an attempted remote code execution (RCE) exploit targeting ThinkPHP versions earlier than 5.2.x, identified by CVE-2018-20062. The exploit involves sending a crafted HTTP POST request containing a specific sequence of parameters, such as "_method=__construct&filter[]=assert&method=get&server[REQUEST_METHOD]," to a server hosting a PHP file. This malicious activity aims to manipulate the PHP framework behavior for unauthorized command execution on targeted web servers.
-  Updated-Date: '2025_09_04'
+  Summary: This rule detects an attempted remote code execution (RCE) attack targeting ThinkPHP versions below 5.2.x. The attack involves an HTTP POST request with a URI ending in ".php" and a specific pattern in the request body that includes "_method=__construct" and manipulates PHP's "filter" functionality to potentially execute arbitrary code. This vulnerability is identified as CVE-2018-20062 and CVE-2019-9082, and it signals a web application attack directed towards a web server.
+  Updated-Date: '2026_11_26'
 '2036599':
   Created-Date: '2024_08_06'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: 1802b4ff7b3bbf7a313eafef261274df
+  Rule-Body-Hash: e3bc3e7723055d41a39408d8d13ab95c
   Ruleset: ETOPEN
-  Summary: This rule detects an attempted remote code execution (RCE) exploit targeting ThinkPHP versions lower than 5.2.x, specifically related to CVE-2018-20062. It triggers on outbound HTTP POST requests directed to a PHP file, containing specific attack patterns in the request body that indicate an attempt to exploit a vulnerability by invoking the `assert` function through an HTTP method manipulation.
-  Updated-Date: '2025_09_04'
+  Summary: This rule detects an outbound remote code execution (RCE) attempt targeting ThinkPHP versions below 5.2.x, specifically exploiting CVE-2018-20062. The attack involves a HTTP POST request to a PHP file on the server. The request body contains specific parameters such as "_method=__construct", "filter[]=", and "server[request_method]=", indicating an attempt to exploit a vulnerability in the ThinkPHP framework that could allow an attacker to execute arbitrary code on the server. This rule focuses on traffic identified as web application attacks directed towards servers, aiming to prevent potential exploitation of this vulnerability.
+  Updated-Date: '2026_11_26'
 '2036600':
   Created-Date: '2024_08_07'
   Custom-Edited: false
@@ -388994,10 +388994,10 @@
   Created-Date: '2024_08_07'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: d5669e84f78997b2e7111559c4b4b5f2
+  Rule-Body-Hash: 2cb291501c24685b5ac7d60f97db9742
   Ruleset: ETOPEN
-  Summary: This rule detects an attempt to exploit a persistent cross-site scripting (XSS) vulnerability in RoundCube Webmail, identified as CVE-2023-43770. The detection involves monitoring SMTP traffic to servers within a specified home network or list of SMTP servers, looking for specific patterns in email content that may indicate an XSS attempt. The rule analyzes the email's structure and content type, searching for suspicious scripting or iframe activities that could lead to malicious script execution within a webmail environment. This type of exploitation can allow attackers to execute arbitrary scripts in the context of a user's webmail session, potentially leading to data theft or account compromise.
-  Updated-Date: '2026_11_19'
+  Summary: This rule detects an attempted persistent cross-site scripting (XSS) attack targeting the RoundCube Webmail application. The rule is designed to identify malicious SMTP traffic that might exploit known vulnerabilities (CVE-2020-35730, CVE-2023-43770) by looking for specific patterns in the content of messages. It scans for suspicious patterns such as improperly terminated script tags and certain XSS vectors, indicating an attempt to inject malicious scripts or HTML into webmail content. This alert is triggered when a crafted email is sent towards a server running RoundCube, aiming to exploit these vulnerabilities for unauthorized actions within the webmail interface.
+  Updated-Date: '2026_11_26'
 '2051828':
   Created-Date: '2024_08_07'
   Custom-Edited: false
@@ -453554,10 +453554,10 @@
   Created-Date: '2025_02_06'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: bafb2470905946493e337aa23b26b693
+  Rule-Body-Hash: 5d508b8ff239bd6250e88036e3605f52
   Ruleset: ETOPEN
-  Summary: This rule detects cross-site scripting (XSS) attacks targeting the Roundcube webmail application through a malicious XML attachment. The attack leverages a known vulnerability identified as CVE-2020-13965. The rule specifically identifies SMTP traffic containing an XML attachment with scripted namespaces that exploit this vulnerability. The pattern within the attachment includes specific headers and XML structures aimed at executing the exploit on the webserver.
-  Updated-Date: '2025_06_13'
+  Summary: This rule detects attempts to exploit a cross-site scripting (XSS) vulnerability in Roundcube, a webmail application, via a malicious XML attachment sent over SMTP. The rule specifically looks for the "Content-Type" header indicating "text/xml" in an established connection to the server. It uses pattern matching to identify suspicious XML content that includes script tags or attributes commonly used in XSS attacks, such as event handlers or embedded script code, within the attachment. This vulnerability is identified by CVE-2020-13965 and could be used to execute arbitrary code in the context of the user's webmail session.
+  Updated-Date: '2026_11_26'
 '2059899':
   Created-Date: '2025_02_06'
   Custom-Edited: false
@@ -557018,10 +557018,10 @@
   Created-Date: '2026_11_23'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: 2626cc22579dbf11ee79c11156c8b3fc
+  Rule-Body-Hash: edbc9ce64bbf6a1d4e2b9f17d8377130
   Ruleset: ETOPEN
-  Summary: This rule detects network traffic that associates with the TryNodeRAT malware by identifying the Server Name Indication (SNI) in TLS traffic. Specifically, it looks for connections to the domain "microsoft.a.pinggy.link" in outbound communications from any internal home network to external networks. TryNodeRAT is a type of remote access trojan that allows attackers to control infected systems remotely.
-  Updated-Date: '2026_11_23'
+  Summary: This rule detects an attempt to connect to a domain associated with TryNodeRAT malware within the Server Name Indication (SNI) field of a TLS handshake. TryNodeRAT is a type of remote access trojan that provides attackers control over infected systems. The specific domain observed is "microsoft.a.pinggy.link", a known indicator of malicious activity related to this malware. This detection occurs when there is established traffic initiated from the internal network towards an external network, indicating potential compromise or misuse of network resources.
+  Updated-Date: '2026_11_26'
 '2072844':
   Created-Date: '2026_11_23'
   Custom-Edited: false
@@ -557214,6 +557214,54 @@
   Ruleset: ETOPEN
   Summary: This rule detects traffic using TLS where the Server Name Indicator (SNI) matches the domain "termoywall.fun," which is associated with the Lumma Stealer malware. Lumma Stealer is known for data theft, and such activity typically represents command and control communication. The rule alerts on traffic that is destined for this domain, representing a potential threat within the network environment.
   Updated-Date: '2026_11_25'
+'2072868':
+  Created-Date: '2026_11_26'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: 776e226ac50ce50f65041ea7011a749b
+  Ruleset: ETOPEN
+  Summary: This rule detects a DNS query for the domain "pics.huidetrading.com," which is associated with the TA569 threat actor using the Gholoader malware. This detection is indicative of command and control (C2) activity, potentially relating to the SocGholish malware family, which is known to exploit compromised websites. The rule triggers when a query of 21 bytes in size matches the specified domain, disregarding case sensitivity. This activity is classified as major in severity, impacting client endpoints via web browsers, with a low performance impact on the monitoring system.
+  Updated-Date: '2026_11_26'
+'2072869':
+  Created-Date: '2026_11_26'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: 568073f0a139cfbb2729fc93ff09d759
+  Ruleset: ETOPEN
+  Summary: This rule detects DNS queries for the domain "rebound.digasfertilizerth.com," which is associated with command-and-control activities of the TA569 group and the Gholoader malware. Gholoader is a type of malware loader part of the SocGholish malware family, commonly used to deliver additional malicious payloads onto a compromised client endpoint. The rule targets DNS traffic originating from the home network and serves to identify potentially infected endpoints that are attempting to communicate with a known malicious domain.
+  Updated-Date: '2026_11_26'
+'2072870':
+  Created-Date: '2026_11_26'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: ec60fe8df7007c76ff5330b1a6de4e03
+  Ruleset: ETOPEN
+  Summary: This rule detects a DNS query associated with the Gholoader command and control (C2) traffic linked to the domain "us-beacon.globaltrading-fr.com". This activity is related to the SocGholish malware family, which typically targets web browsers on client endpoints. The rule is part of efforts to identify malicious activity involving the exploitation of compromised websites by the threat actor group tagged as TA569. The detection helps in identifying potential trojan activity on a network.
+  Updated-Date: '2026_11_26'
+'2072871':
+  Created-Date: '2026_11_26'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: db1939f178872b4ee7bebecd407f4850
+  Ruleset: ETOPEN
+  Summary: This rule detects network connections using the TLS protocol where the Server Name Indication (SNI) field in the TLS handshake matches the domain "pics.huidetrading.com." This domain is associated with the command and control (CnC) activity of the TA569 malware group, specifically tied to the Gholoader malware family, which is part of the SocGholish exploit kit. The rule is designed to identify attempts by compromised web browsers on client endpoints to connect to external malicious servers as part of potential trojan activity.
+  Updated-Date: '2026_11_26'
+'2072872':
+  Created-Date: '2026_11_26'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: 0a72565594e9d0f65640f6ea73a72633
+  Ruleset: ETOPEN
+  Summary: This rule detects communication with the command and control (C&C) domain "rebound.digasfertilizerth.com" in the Server Name Indication (SNI) field of TLS traffic, associated with the TA569 Gholoader malware. This particular behavior signifies trojan activity related to the SocGholish malware family, which targets client endpoints by exploiting web browsers. The detection aims to identify potential threats from compromised websites linked to this exploit kit.
+  Updated-Date: '2026_11_26'
+'2072873':
+  Created-Date: '2026_11_26'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: 0b8e7e3dd925269c8fb55ad8e7a5fc7b
+  Ruleset: ETOPEN
+  Summary: This rule detects communication with a command and control (CnC) domain associated with the TA569 threat actor group, specifically the Gholoader malware, within the Server Name Indication (SNI) field of a TLS handshake. The rule inspects traffic from internal networks to external networks, flagging connections to the domain "us-beacon.globaltrading-fr.com" as indicative of SocGholish malware activity, which often involves compromised websites used to deliver malicious payloads to client endpoints.
+  Updated-Date: '2026_11_26'
 '2100110':
   Created-Date: '2024_08_07'
   Custom-Edited: false
