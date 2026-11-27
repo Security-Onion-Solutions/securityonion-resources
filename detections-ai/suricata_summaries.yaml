@@ -555282,10 +555282,10 @@
   Created-Date: '2026_11_04'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: d3b8f68cd2f604c2c377e6af8501934a
+  Rule-Body-Hash: ddf29b7c327677ef5ce25fe6006669f7
   Ruleset: ETOPEN
-  Summary: This rule detects DNS queries to domains ending with ".naughtybaptistbrewery.com", which are associated with dynamic DNS services. Dynamic DNS is often used to facilitate dynamic IP address updates, making it easier to control remote systems, and it can be mobilized in command and control scenarios by malicious actors. This detection helps identify potential misuse related to command and control activities, aligning with the MITRE ATT&CK framework's techniques for dynamic resolution in command and control operations.
-  Updated-Date: '2026_11_04'
+  Summary: This rule detects a DNS query to any domain ending in ".naughtybaptistbrewery.com," which is associated with dynamic DNS services. This activity could signify the use of dynamic DNS for potentially suspicious purposes. The rule is informative and aids in identifying command and control tactics using dynamic resolution techniques.
+  Updated-Date: '2026_11_27'
 '2072627':
   Created-Date: '2026_11_04'
   Custom-Edited: false
@@ -555410,10 +555410,10 @@
   Created-Date: '2026_11_09'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: 17faa2971652eb1bf4a62709683be95f
+  Rule-Body-Hash: 695b4ddae51d24065aed038ad3a38033
   Ruleset: ETOPEN
-  Summary: This rule detects an attempt to establish a TCP connection using a SYN packet that includes the IPv4 Source Route option (SSRR), which is a potential indication of reconnaissance activity. It focuses on incoming traffic to the protected network that is not part of an established connection and is intended for servers. The rule leverages the identification of SSRR options in IP headers to identify suspicious routing behavior that might be used to bypass security controls or study the network topology.
-  Updated-Date: '2026_11_09'
+  Summary: This rule detects a TCP SYN packet containing the IPv4 Source Route Option (SSRR) directed from an external network to a home network, which suggests an attempted reconnaissance activity. The packet must be not part of an established flow and it targets servers with the source routing option, which can be used to bypass network security controls or gather information about network topology. This behavior is considered noteworthy as it may indicate a stealthy probing effort to identify and exploit network vulnerabilities on Linux or Unix systems.
+  Updated-Date: '2026_11_27'
 '2072643':
   Created-Date: '2026_11_09'
   Custom-Edited: false
@@ -556554,10 +556554,10 @@
   Created-Date: '2026_11_18'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: a60f924edbf21150a9046eaa1be26043
+  Rule-Body-Hash: ac91ea26542ba6f08245bc4212770ebe
   Ruleset: ETOPEN
-  Summary: This rule detects DNS queries to the domain "moiubpagedocs.cc," which is associated with the OPTIMJACK malware family. This malware employs exploit kits to infiltrate systems, often using compromised domains as part of its attack chain. The rule analyzes DNS traffic for queries that end with ".moiubpagedocs.cc" to identify potential infection attempts linked to this domain.
-  Updated-Date: '2026_11_18'
+  Summary: This rule detects DNS queries for the domain "moiubpagedocs.cc" associated with the OPTIMJACK malware family. This domain is linked to exploit kit activities and indicates potential compromise via a connection to malicious infrastructure. The presence of this DNS query suggests that the client endpoint may be involved in or targeted by an exploit distribution campaign leveraging this domain.
+  Updated-Date: '2026_11_27'
 '2072786':
   Created-Date: '2026_11_18'
   Custom-Edited: false
@@ -557034,10 +557034,10 @@
   Created-Date: '2026_11_23'
   Custom-Edited: false
   Reviewed: true
-  Rule-Body-Hash: 8c6ec1b3496f9e99a71fa98e73675171
+  Rule-Body-Hash: 0c10dcbd824d1148fe1e280a89dc8a0f
   Ruleset: ETOPEN
-  Summary: This rule detects DNS queries to a domain with the pattern ".wf.md", which is associated with dynamic DNS services. Dynamic DNS allows for the automatic updating of a DNS name in the event of a change in the corresponding IP address. Domains with such patterns may be indicative of malicious use such as command and control communications. This activity is identified as potentially related to command and control tactics, specifically under the MITRE technique of Dynamic Resolution.
-  Updated-Date: '2026_11_23'
+  Summary: This rule detects DNS queries to domains ending in ".wf.md," which are associated with dynamic DNS services. Dynamic DNS services allow the assignment of a fixed domain name to a dynamically changing IP address, often used by individuals or services that need to access devices with changing network addresses. This specific rule highlights potential use related to command and control tactics by identifying such queries, as these domains could potentially be utilized by threat actors for maintaining communication channels with compromised devices.
+  Updated-Date: '2026_11_27'
 '2072846':
   Created-Date: '2026_11_23'
   Custom-Edited: false
@@ -557262,6 +557262,22 @@
   Ruleset: ETOPEN
   Summary: This rule detects communication with a command and control (CnC) domain associated with the TA569 threat actor group, specifically the Gholoader malware, within the Server Name Indication (SNI) field of a TLS handshake. The rule inspects traffic from internal networks to external networks, flagging connections to the domain "us-beacon.globaltrading-fr.com" as indicative of SocGholish malware activity, which often involves compromised websites used to deliver malicious payloads to client endpoints.
   Updated-Date: '2026_11_26'
+'2072874':
+  Created-Date: '2026_11_27'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: 8a0ad53c05778a48544e0a2f29011b29
+  Ruleset: ETOPEN
+  Summary: This rule detects DNS queries involving the domain "openport.pw," which is associated with command and control (CnC) activities related to the Lumma Stealer malware. Lumma Stealer is a type of malware designed to infiltrate systems in order to steal information. The detection focuses on DNS lookup requests that query for this specific domain, which is indicative of a potential malware communication attempt. This investigation is relevant to identifying potential threats targeting client endpoints. The context of the rule suggests usage in both perimeter and internal deployments to monitor for this malicious activity associated with command and control communications.
+  Updated-Date: '2026_11_27'
+'2072875':
+  Created-Date: '2026_11_27'
+  Custom-Edited: false
+  Reviewed: true
+  Rule-Body-Hash: d73ebe69575c54dc7d4f2ba9e4e8a078
+  Ruleset: ETOPEN
+  Summary: This rule detects TLS traffic where the Server Name Indication (SNI) matches "openport.pw", which is associated with the Win32/Lumma Stealer malware. The detection specifically looks for an established connection from internal hosts to any server, identifying communication potentially indicative of command and control activities related to this malware using the specified domain.
+  Updated-Date: '2026_11_27'
 '2100110':
   Created-Date: '2024_08_07'
   Custom-Edited: false
